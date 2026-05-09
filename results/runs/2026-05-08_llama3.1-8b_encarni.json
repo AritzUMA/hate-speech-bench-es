@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-05-08_llama3.1-8b_encarni.json",
+  "timestamp": "2026-05-08T18:10:50.540361+00:00",
+  "model": "llama3.1:8b",
+  "family": "LLaMA 3.1",
+  "params": "8B",
+  "size_gb": 4.9,
+  "dataset": "encarni",
+  "n_instances": 667,
+  "n_sin_pred": 0,
+  "metrics": {
+    "macro_f1": 0.6644,
+    "precision": 0.6615,
+    "recall": 0.6677,
+    "accuracy": 0.7526
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.844,
+      "recall": 0.8290766208251473,
+      "f1-score": 0.8364717542120912,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.47904191616766467,
+      "recall": 0.5063291139240507,
+      "f1-score": 0.49230769230769234,
+      "support": 158.0
+    },
+    "accuracy": 0.7526236881559221,
+    "macro avg": {
+      "precision": 0.6615209580838324,
+      "recall": 0.667702867374599,
+      "f1-score": 0.6643897232598918,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.7575481600517107,
+      "recall": 0.7526236881559221,
+      "f1-score": 0.7549456346005544,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 500,
+      "no_hate": 167
+    }
+  },
+  "elapsed_seconds": 403.4,
+  "prompt_hash": "v1",
+  "predictions_file": "results/predictions/2026-05-08_llama3.1-8b_encarni_predictions.jsonl"
+}

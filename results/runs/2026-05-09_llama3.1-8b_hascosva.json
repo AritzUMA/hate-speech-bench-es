@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-05-09_llama3.1-8b_hascosva.json",
+  "timestamp": "2026-05-09T11:17:49.782733+00:00",
+  "model": "llama3.1:8b",
+  "family": "LLaMA 3.1",
+  "params": "8B",
+  "size_gb": 4.9,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_sin_pred": 0,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.6334,
+    "precision": 0.6434,
+    "recall": 0.7866,
+    "accuracy": 0.7133
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.31238095238095237,
+      "recall": 0.8880866425992779,
+      "f1-score": 0.46218882104274306,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.9743695742042167,
+      "recall": 0.6851744186046511,
+      "f1-score": 0.8045741594128691,
+      "support": 3440.0
+    },
+    "accuracy": 0.7133199799699549,
+    "macro avg": {
+      "precision": 0.6433752632925845,
+      "recall": 0.7866305306019645,
+      "f1-score": 0.6333814902278061,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.8825464153434034,
+      "recall": 0.7133199799699549,
+      "f1-score": 0.757082552638445,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 1575,
+      "no_hate": 2419
+    }
+  },
+  "elapsed_seconds": 931.4,
+  "prompt_hash": "v1",
+  "predictions_file": "results/predictions/2026-05-09_llama3.1-8b_hascosva_predictions.jsonl"
+}
