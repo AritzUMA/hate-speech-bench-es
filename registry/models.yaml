@@ -1,148 +1,126 @@
 models:
 
-  # ── Evaluados en proyecto Encarnación ──────────────────────────────────────
-
   - ollama_name: "llama3.1:8b"
     family: "LLaMA 3.1"
     params: "8B"
     size_gb: 4.9
+    release_date: "2024-07"
+    developer: "Meta"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_llama.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "gemma2:latest"
     family: "Gemma 2"
     params: "9B"
     size_gb: 5.4
+    release_date: "2024-06"
+    developer: "Google DeepMind"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_gemma.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "gemma3:12b"
     family: "Gemma 3"
     params: "12B"
     size_gb: 8.1
+    release_date: "2025-03"
+    developer: "Google DeepMind"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_gemma_3.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "qwen2.5:7b"
     family: "Qwen 2.5"
     params: "7B"
     size_gb: 4.7
+    release_date: "2024-09"
+    developer: "Alibaba"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_qwen.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "mistral:7b"
     family: "Mistral"
     params: "7B"
     size_gb: 4.4
+    release_date: "2024-05"
+    developer: "Mistral AI"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_mistral.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "deepseek-r1:latest"
     family: "DeepSeek R1"
     params: "7B"
     size_gb: 4.7
+    release_date: "2025-01"
+    developer: "DeepSeek"
     added: "2025-04-08"
     notes: "usado como 'latest' en Encarni — resuelve a deepseek-r1:7b en ic4"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_deepseek_encarni.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "hdnh2006/salamandra-7b-instruct:latest"
     family: "Salamandra"
     params: "7B"
     size_gb: 4.9
+    release_date: "2024-09"
+    developer: "BSC-CNS"
     added: "2025-04-08"
-    notes: "modelo español BSC-CNS"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_salamandra.json"
-        run_date: "2024-08-01"
+    notes: "modelo multilingüe europeo — Barcelona Supercomputing Center"
 
   - ollama_name: "gpt-oss:20b"
     family: "GPT-OSS"
     params: "20B"
     size_gb: 13.0
+    release_date: "2025-04"
+    developer: "OpenAI"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_open_oss.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "yi:9b"
     family: "Yi"
     params: "9B"
     size_gb: 5.0
+    release_date: "2024-03"
+    developer: "01.AI"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_yi_9b.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "phi3.5:3.8b"
     family: "Phi 3.5"
     params: "3.8B"
     size_gb: 2.2
+    release_date: "2024-08"
+    developer: "Microsoft"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_total_phi3.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "stablelm2:12b"
     family: "StableLM 2"
     params: "12B"
     size_gb: 7.0
+    release_date: "2024-01"
+    developer: "Stability AI"
     added: "2025-04-08"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_stablelm2.json"
-        run_date: "2024-08-01"
 
   - ollama_name: "jobautomation/OpenEuroLLM-Spanish:latest"
     family: "OpenEuroLLM"
     params: "7B"
     size_gb: 8.1
+    release_date: "2024-12"
+    developer: "OpenEuroLLM Consortium"
     added: "2025-04-08"
-    notes: "modelo español open-source"
-    datasets:
-      encarni:
-        source_file: "tweets_classified_open_europe.json"
-        run_date: "2024-08-01"
-
-  # ── Nuevos modelos disponibles en ic4 (pendientes de evaluar) ──────────────
+    notes: "modelo español open-source — proyecto europeo"
 
   - ollama_name: "qwen3:8b"
     family: "Qwen 3"
     params: "8B"
     size_gb: 5.2
+    release_date: "2025-04"
+    developer: "Alibaba"
     added: "2025-05-08"
 
   - ollama_name: "qwen3.5:9b"
     family: "Qwen 3.5"
     params: "9B"
     size_gb: 6.6
+    release_date: "2025-04"
+    developer: "Alibaba"
     added: "2025-05-08"
 
   - ollama_name: "gemma4:e2b"
     family: "Gemma 4"
     params: "2B"
     size_gb: 7.2
+    release_date: "2026-04"
+    developer: "Google DeepMind"
     added: "2025-05-08"
     notes: "multimodal — eval solo texto"
 
@@ -150,6 +128,8 @@ models:
     family: "Gemma 4"
     params: "4B"
     size_gb: 9.6
+    release_date: "2026-04"
+    developer: "Google DeepMind"
     added: "2025-05-08"
     notes: "multimodal — eval solo texto"
 
@@ -157,4 +137,6 @@ models:
     family: "Phi 3"
     params: "3.8B"
     size_gb: 2.2
+    release_date: "2024-04"
+    developer: "Microsoft"
     added: "2025-05-08"
