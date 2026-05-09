@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-09T13:20:05.384307+00:00",
+  "generated": "2026-05-09T13:46:49.372282+00:00",
   "n_runs": 18,
   "n_models": 13,
   "n_datasets": 6,
@@ -252,20 +252,124 @@
       }
     }
   },
-  "avg_f1": {
-    "gemma2:latest": 0.6685,
-    "llama3.1:8b": 0.5677,
-    "gemma3:12b": 0.6426,
-    "qwen2.5:7b": 0.4197,
-    "mistral:7b": 0.548,
-    "deepseek-r1:latest": 0.1915,
-    "hdnh2006/salamandra-7b-instruct:latest": 0.5355,
-    "gpt-oss:20b": 0.5256,
-    "yi:9b": 0.5502,
-    "phi3.5:3.8b": 0.1937,
-    "stablelm2:12b": 0.4583,
-    "jobautomation/OpenEuroLLM-Spanish:latest": 0.6409,
-    "qwen3:8b": 0.5072
+  "overall": {
+    "gemma2:latest": {
+      "macro_f1": 0.6685,
+      "hate_f1": 0.8325,
+      "precision": 0.6626,
+      "recall": 0.6766,
+      "accuracy": 0.7496,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "llama3.1:8b": {
+      "macro_f1": 0.5677,
+      "hate_f1": 0.5565,
+      "precision": 0.6553,
+      "recall": 0.6811,
+      "accuracy": 0.611,
+      "n_datasets": 6,
+      "n_datasets_total": 6
+    },
+    "gemma3:12b": {
+      "macro_f1": 0.6426,
+      "hate_f1": 0.7637,
+      "precision": 0.6472,
+      "recall": 0.6989,
+      "accuracy": 0.6837,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "qwen2.5:7b": {
+      "macro_f1": 0.4197,
+      "hate_f1": 0.4127,
+      "precision": 0.5926,
+      "recall": 0.5893,
+      "accuracy": 0.4198,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "mistral:7b": {
+      "macro_f1": 0.548,
+      "hate_f1": 0.6917,
+      "precision": 0.5657,
+      "recall": 0.5898,
+      "accuracy": 0.5937,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "deepseek-r1:latest": {
+      "macro_f1": 0.1915,
+      "hate_f1": 0.0,
+      "precision": 0.1184,
+      "recall": 0.5,
+      "accuracy": 0.2369,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "hdnh2006/salamandra-7b-instruct:latest": {
+      "macro_f1": 0.5355,
+      "hate_f1": 0.6337,
+      "precision": 0.5843,
+      "recall": 0.6154,
+      "accuracy": 0.5562,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "gpt-oss:20b": {
+      "macro_f1": 0.5256,
+      "hate_f1": 0.5982,
+      "precision": 0.5996,
+      "recall": 0.631,
+      "accuracy": 0.5367,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "yi:9b": {
+      "macro_f1": 0.5502,
+      "hate_f1": 0.6635,
+      "precision": 0.5847,
+      "recall": 0.617,
+      "accuracy": 0.5787,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "phi3.5:3.8b": {
+      "macro_f1": 0.1937,
+      "hate_f1": 0.0039,
+      "precision": 0.6186,
+      "recall": 0.501,
+      "accuracy": 0.2384,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "stablelm2:12b": {
+      "macro_f1": 0.4583,
+      "hate_f1": 0.4745,
+      "precision": 0.6041,
+      "recall": 0.6126,
+      "accuracy": 0.4588,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "jobautomation/OpenEuroLLM-Spanish:latest": {
+      "macro_f1": 0.6409,
+      "hate_f1": 0.7604,
+      "precision": 0.6468,
+      "recall": 0.6991,
+      "accuracy": 0.6807,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    },
+    "qwen3:8b": {
+      "macro_f1": 0.5072,
+      "hate_f1": 0.5722,
+      "precision": 0.591,
+      "recall": 0.6172,
+      "accuracy": 0.5157,
+      "n_datasets": 1,
+      "n_datasets_total": 6
+    }
   },
   "history": [
     {
