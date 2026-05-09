@@ -17,23 +17,6 @@ datasets:
     lang: "es-ES"
     paper: "Hidalgo Tenorio & Castro Peña (UMA)"
 
-  - name: "pereira2019"
-    display: "Pereira-Kohatsu et al. (2019)"
-    path: "data/pereira2019_clean.csv"
-    text_col: "text"
-    label_col: "label"
-    labels: {"no_hate": "no_hate", "hate": "hate"}
-    task: "binary"
-    platform: "Twitter"
-    source: "Twitter España"
-    n_total: 2000
-    hate: 973
-    no_hate: 1027
-    iaa: "Cohen κ: 0.588"
-    topic: "hate speech general (raza, etnia, género, religión, orientación sexual)"
-    lang: "es-ES"
-    paper: "Pereira-Kohatsu et al. (2019)"
-
   - name: "hateval"
     display: "HatEval — SemEval-2019 Task 5"
     path: "data/hateval_clean.csv"

@@ -1,8 +1,8 @@
 {
-  "generated": "2026-05-09T12:56:33.747690+00:00",
-  "n_runs": 20,
+  "generated": "2026-05-09T13:20:05.384307+00:00",
+  "n_runs": 18,
   "n_models": 13,
-  "n_datasets": 7,
+  "n_datasets": 6,
   "models": [
     "deepseek-r1:latest",
     "gemma2:latest",
@@ -24,8 +24,7 @@
     "hascosva",
     "haternet",
     "hateval",
-    "misocorpus",
-    "pereira2019"
+    "misocorpus"
   ],
   "results": {
     "gemma2:latest": {
@@ -39,17 +38,6 @@
         "n_sin_pred": 54,
         "elapsed": 520.8,
         "timestamp": "2026-05-08T16:19:55.542148+00:00"
-      },
-      "pereira2019": {
-        "macro_f1": 0.7654,
-        "precision": 0.7839,
-        "recall": 0.7706,
-        "accuracy": 0.7675,
-        "hate_f1": 0.7877681424007302,
-        "n_instances": 2000,
-        "n_sin_pred": 24,
-        "elapsed": 2846.8,
-        "timestamp": "2026-05-09T11:46:27.770089+00:00"
       }
     },
     "llama3.1:8b": {
@@ -63,17 +51,6 @@
         "n_sin_pred": 0,
         "elapsed": 403.4,
         "timestamp": "2026-05-08T18:10:50.540361+00:00"
-      },
-      "pereira2019": {
-        "macro_f1": 0.7487,
-        "precision": 0.7766,
-        "recall": 0.7564,
-        "accuracy": 0.7525,
-        "hate_f1": 0.779510022271715,
-        "n_instances": 2000,
-        "n_sin_pred": 3,
-        "elapsed": 490.6,
-        "timestamp": "2026-05-09T09:47:05.741664+00:00"
       },
       "hateval": {
         "macro_f1": 0.5589,
@@ -276,8 +253,8 @@
     }
   },
   "avg_f1": {
-    "gemma2:latest": 0.7169,
-    "llama3.1:8b": 0.5936,
+    "gemma2:latest": 0.6685,
+    "llama3.1:8b": 0.5677,
     "gemma3:12b": 0.6426,
     "qwen2.5:7b": 0.4197,
     "mistral:7b": 0.548,
@@ -306,14 +283,6 @@
       "f1": 0.5072,
       "hate_f1": 0.5721854304635762,
       "elapsed": 4114.8
-    },
-    {
-      "ts": "2026-05-09",
-      "model": "llama3.1:8b",
-      "dataset": "pereira2019",
-      "f1": 0.7487,
-      "hate_f1": 0.779510022271715,
-      "elapsed": 490.6
     },
     {
       "ts": "2026-05-09",
@@ -354,14 +323,6 @@
       "f1": 0.6392,
       "hate_f1": 0.7032859244727808,
       "elapsed": 783.8
-    },
-    {
-      "ts": "2026-05-09",
-      "model": "gemma2:latest",
-      "dataset": "pereira2019",
-      "f1": 0.7654,
-      "hate_f1": 0.7877681424007302,
-      "elapsed": 2846.8
     },
     {
       "ts": "2026-05-08",
@@ -632,18 +593,6 @@
       "topic": "hate speech general + desinformación",
       "lang": "es-ES",
       "paper": "Hidalgo Tenorio & Castro Peña (UMA)"
-    },
-    "pereira2019": {
-      "display": "Pereira-Kohatsu et al. (2019)",
-      "platform": "Twitter",
-      "source": "Twitter España",
-      "n_total": 2000,
-      "hate": 973,
-      "no_hate": 1027,
-      "iaa": "Cohen κ: 0.588",
-      "topic": "hate speech general (raza, etnia, género, religión, orientación sexual)",
-      "lang": "es-ES",
-      "paper": "Pereira-Kohatsu et al. (2019)"
     },
     "hateval": {
       "display": "HatEval — SemEval-2019 Task 5",
