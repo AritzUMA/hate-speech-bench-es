@@ -7,223 +7,388 @@
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;padding:1.5rem}
-.wrap{max-width:1200px;margin:0 auto}
-h1{font-size:20px;font-weight:500;margin-bottom:4px}
-.meta{font-size:12px;color:#888;margin-bottom:1.5rem}
+body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a}
+.wrap{max-width:1280px;margin:0 auto;padding:1.5rem}
+h1{font-size:22px;font-weight:600;margin-bottom:4px}
+.subtitle{font-size:13px;color:#666;margin-bottom:4px}
+.meta{font-size:12px;color:#aaa;margin-bottom:1.5rem}
 .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2e7d32;margin-right:5px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
-.stat{background:#fff;border:0.5px solid #e0e0e0;border-radius:8px;padding:.9rem 1rem}
-.stat .lbl{font-size:11px;color:#888;margin-bottom:3px}
-.stat .val{font-size:22px;font-weight:500}
-.tabs{display:flex;gap:4px;margin-bottom:1rem}
-.tab{padding:5px 14px;border:0.5px solid #ddd;border-radius:6px;font-size:13px;cursor:pointer;background:transparent;color:#555}
-.tab.active{background:#f0f0f0;color:#111;font-weight:500;border-color:#bbb}
-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:8px;overflow:hidden;border:0.5px solid #e0e0e0}
-th{padding:8px 12px;text-align:left;font-weight:500;font-size:12px;color:#555;background:#f5f5f3;border-bottom:0.5px solid #e0e0e0;cursor:pointer;user-select:none;white-space:nowrap}
-th:hover{background:#ebebea}
-td{padding:7px 12px;border-bottom:0.5px solid #f0f0f0}
+.stat{background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:1rem 1.1rem}
+.stat .lbl{font-size:11px;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.stat .val{font-size:24px;font-weight:600}
+.stat .sub{font-size:11px;color:#aaa;margin-top:2px}
+.nav{display:flex;gap:2px;margin-bottom:1.5rem;border-bottom:0.5px solid #e0e0e0;padding-bottom:0}
+.nav-tab{padding:8px 18px;font-size:13px;cursor:pointer;background:transparent;color:#666;border:none;border-bottom:2px solid transparent;margin-bottom:-0.5px}
+.nav-tab.active{color:#1a1a1a;font-weight:500;border-bottom-color:#1a1a1a}
+.nav-tab:hover:not(.active){color:#333}
+.section-title{font-size:13px;font-weight:500;color:#444;margin-bottom:10px;margin-top:1.5rem}
+.section-title:first-child{margin-top:0}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0e0}
+th{padding:9px 12px;text-align:left;font-weight:500;font-size:12px;color:#666;background:#fafaf8;border-bottom:0.5px solid #e8e8e8;cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{background:#f0f0ee}
+td{padding:8px 12px;border-bottom:0.5px solid #f0f0f0;vertical-align:middle}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:#fafafa}
+tr:hover td{background:#fafaf8}
 .bar-wrap{display:flex;align-items:center;gap:8px}
-.bar-bg{flex:1;height:5px;background:#eee;border-radius:3px;min-width:60px}
-.bar-fill{height:5px;border-radius:3px}
-.tag{font-size:10px;padding:2px 7px;border-radius:12px;background:#eef;color:#336}
-.tag-overall{font-size:10px;padding:2px 7px;border-radius:12px;background:#fff3e0;color:#e65100}
-.chip{padding:3px 12px;border:0.5px solid #ddd;border-radius:20px;font-size:12px;cursor:pointer;background:transparent;color:#555}
+.bar-bg{flex:1;height:5px;background:#eee;border-radius:3px;min-width:50px}
+.bar-fill{height:5px;border-radius:3px;transition:width .3s}
+.tag{font-size:10px;padding:2px 7px;border-radius:12px;background:#eef;color:#336;white-space:nowrap}
+.tag-ds{font-size:10px;padding:2px 7px;border-radius:12px;background:#fef3e2;color:#b45309}
+.chip{padding:4px 12px;border:0.5px solid #ddd;border-radius:20px;font-size:12px;cursor:pointer;background:#fff;color:#555;transition:all .15s}
+.chip:hover{border-color:#999;color:#111}
 .chip.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;font-weight:500}
-.chip.overall{font-weight:500}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-select{font-size:12px;padding:4px 8px;border-radius:6px;border:0.5px solid #ddd;background:#fff}
-.controls{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.rank{color:#aaa;font-size:12px;width:20px}
-.r1{color:#BA7517;font-weight:500}
-.r2{color:#888}
-.r3{color:#534AB7}
-.ds-badge{font-size:11px;color:#888}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.controls{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.rank{color:#bbb;font-size:12px;width:24px;text-align:right}
+.r1{color:#B8860B;font-weight:600}
+.r2{color:#71717a;font-weight:500}
+.r3{color:#6366f1}
+select{font-size:12px;padding:5px 9px;border-radius:7px;border:0.5px solid #ddd;background:#fff;cursor:pointer}
+.coverage-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.chart-wrap{background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:1.2rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.chart-title{font-size:12px;font-weight:500;color:#555;margin-bottom:10px}
+.heatmap-cell{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border-radius:4px;height:36px;cursor:default;transition:opacity .15s}
+.heatmap-cell:hover{opacity:.8}
+.heatmap-wrap{overflow-x:auto}
+.heatmap-table{border-collapse:separate;border-spacing:3px;font-size:11px}
+.heatmap-table th{padding:4px 8px;font-size:11px;color:#888;font-weight:400;background:transparent;border:none;cursor:default;white-space:nowrap}
+.heatmap-table td{border:none;padding:0;}
+.info-box{background:#f0f4ff;border:0.5px solid #c7d2fe;border-radius:8px;padding:.8rem 1rem;font-size:12px;color:#4338ca;margin-bottom:1rem}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script>
-window.__INDEX__ = {"generated": "2026-05-09T14:19:12.683109+00:00", "n_runs": 18, "n_models": 13, "n_datasets": 6, "models": ["deepseek-r1:latest", "gemma2:latest", "gemma3:12b", "gpt-oss:20b", "hdnh2006/salamandra-7b-instruct:latest", "jobautomation/OpenEuroLLM-Spanish:latest", "llama3.1:8b", "mistral:7b", "phi3.5:3.8b", "qwen2.5:7b", "qwen3:8b", "stablelm2:12b", "yi:9b"], "datasets": ["chileno", "encarni", "hascosva", "haternet", "hateval", "misocorpus"], "results": {"gemma2:latest": {"encarni": {"macro_f1": 0.6685, "precision": 0.6626, "recall": 0.6766, "accuracy": 0.7496, "hate_f1": 0.8324974924774323, "n_instances": 667, "n_sin_pred": 54, "elapsed": 520.8, "timestamp": "2026-05-08T16:19:55.542148+00:00"}}, "llama3.1:8b": {"encarni": {"macro_f1": 0.6644, "precision": 0.6615, "recall": 0.6677, "accuracy": 0.7526, "hate_f1": 0.8364717542120912, "n_instances": 667, "n_sin_pred": 0, "elapsed": 403.4, "timestamp": "2026-05-08T18:10:50.540361+00:00"}, "hateval": {"macro_f1": 0.5589, "precision": 0.6915, "recall": 0.6307, "accuracy": 0.5774, "hate_f1": 0.6493016232540582, "n_instances": 6595, "n_sin_pred": 17, "elapsed": 1426.0, "timestamp": "2026-05-09T09:55:17.784542+00:00"}, "haternet": {"macro_f1": 0.5539, "precision": 0.6631, "recall": 0.6837, "accuracy": 0.5554, "hate_f1": 0.5280481330737923, "n_instances": 5999, "n_sin_pred": 5, "elapsed": 1311.6, "timestamp": "2026-05-09T10:19:04.749048+00:00"}, "chileno": {"macro_f1": 0.3564, "precision": 0.5337, "recall": 0.6326, "accuracy": 0.4165, "hate_f1": 0.15976959223889647, "n_instances": 9500, "n_sin_pred": 6, "elapsed": 2210.6, "timestamp": "2026-05-09T10:40:57.802665+00:00"}, "hascosva": {"macro_f1": 0.6334, "precision": 0.6434, "recall": 0.7866, "accuracy": 0.7133, "hate_f1": 0.46218882104274306, "n_instances": 3994, "n_sin_pred": 0, "elapsed": 931.4, "timestamp": "2026-05-09T11:17:49.782733+00:00"}, "misocorpus": {"macro_f1": 0.6392, "precision": 0.7384, "recall": 0.6853, "accuracy": 0.6506, "hate_f1": 0.7032859244727808, "n_instances": 3463, "n_sin_pred": 9, "elapsed": 783.8, "timestamp": "2026-05-09T11:33:22.737949+00:00"}}, "gemma3:12b": {"encarni": {"macro_f1": 0.6426, "precision": 0.6472, "recall": 0.6989, "accuracy": 0.6837, "hate_f1": 0.7637178051511758, "n_instances": 667, "n_sin_pred": 42, "elapsed": 1106.6, "timestamp": "2026-05-08T18:17:35.849452+00:00"}}, "qwen2.5:7b": {"encarni": {"macro_f1": 0.4197, "precision": 0.5926, "recall": 0.5893, "accuracy": 0.4198, "hate_f1": 0.41274658573596357, "n_instances": 667, "n_sin_pred": 4, "elapsed": 383.0, "timestamp": "2026-05-08T18:36:03.721137+00:00"}}, "mistral:7b": {"encarni": {"macro_f1": 0.548, "precision": 0.5657, "recall": 0.5898, "accuracy": 0.5937, "hate_f1": 0.6916951080773607, "n_instances": 667, "n_sin_pred": 172, "elapsed": 1648.9, "timestamp": "2026-05-08T18:42:27.697302+00:00"}}, "deepseek-r1:latest": {"encarni": {"macro_f1": 0.1915, "precision": 0.1184, "recall": 0.5, "accuracy": 0.2369, "hate_f1": 0.0, "n_instances": 667, "n_sin_pred": 667, "elapsed": 4008.0, "timestamp": "2026-05-08T19:09:58.828436+00:00"}}, "hdnh2006/salamandra-7b-instruct:latest": {"encarni": {"macro_f1": 0.5355, "precision": 0.5843, "recall": 0.6154, "accuracy": 0.5562, "hate_f1": 0.6336633663366337, "n_instances": 667, "n_sin_pred": 280, "elapsed": 2211.1, "timestamp": "2026-05-08T20:16:47.848447+00:00"}}, "gpt-oss:20b": {"encarni": {"macro_f1": 0.5256, "precision": 0.5996, "recall": 0.631, "accuracy": 0.5367, "hate_f1": 0.5981794538361509, "n_instances": 667, "n_sin_pred": 4, "elapsed": 2800.4, "timestamp": "2026-05-08T20:53:40.790122+00:00"}}, "yi:9b": {"encarni": {"macro_f1": 0.5502, "precision": 0.5847, "recall": 0.617, "accuracy": 0.5787, "hate_f1": 0.6634730538922156, "n_instances": 667, "n_sin_pred": 38, "elapsed": 1272.6, "timestamp": "2026-05-08T21:40:22.663294+00:00"}}, "phi3.5:3.8b": {"encarni": {"macro_f1": 0.1937, "precision": 0.6186, "recall": 0.501, "accuracy": 0.2384, "hate_f1": 0.00392156862745098, "n_instances": 667, "n_sin_pred": 666, "elapsed": 6922.4, "timestamp": "2026-05-08T22:01:36.707134+00:00"}}, "stablelm2:12b": {"encarni": {"macro_f1": 0.4583, "precision": 0.6041, "recall": 0.6126, "accuracy": 0.4588, "hate_f1": 0.4745269286754003, "n_instances": 667, "n_sin_pred": 7, "elapsed": 1629.9, "timestamp": "2026-05-08T23:57:00.703767+00:00"}}, "jobautomation/OpenEuroLLM-Spanish:latest": {"encarni": {"macro_f1": 0.6409, "precision": 0.6468, "recall": 0.6991, "accuracy": 0.6807, "hate_f1": 0.7604049493813273, "n_instances": 667, "n_sin_pred": 41, "elapsed": 9264.0, "timestamp": "2026-05-09T00:24:11.768678+00:00"}}, "qwen3:8b": {"encarni": {"macro_f1": 0.5072, "precision": 0.591, "recall": 0.6172, "accuracy": 0.5157, "hate_f1": 0.5721854304635762, "n_instances": 667, "n_sin_pred": 84, "elapsed": 4114.8, "timestamp": "2026-05-09T02:58:36.809817+00:00"}}}, "overall": {"gemma2:latest": {"macro_f1": 0.6685, "hate_f1": 0.8325, "precision": 0.6626, "recall": 0.6766, "accuracy": 0.7496, "n_datasets": 1, "n_datasets_total": 6}, "llama3.1:8b": {"macro_f1": 0.5677, "hate_f1": 0.5565, "precision": 0.6553, "recall": 0.6811, "accuracy": 0.611, "n_datasets": 6, "n_datasets_total": 6}, "gemma3:12b": {"macro_f1": 0.6426, "hate_f1": 0.7637, "precision": 0.6472, "recall": 0.6989, "accuracy": 0.6837, "n_datasets": 1, "n_datasets_total": 6}, "qwen2.5:7b": {"macro_f1": 0.4197, "hate_f1": 0.4127, "precision": 0.5926, "recall": 0.5893, "accuracy": 0.4198, "n_datasets": 1, "n_datasets_total": 6}, "mistral:7b": {"macro_f1": 0.548, "hate_f1": 0.6917, "precision": 0.5657, "recall": 0.5898, "accuracy": 0.5937, "n_datasets": 1, "n_datasets_total": 6}, "deepseek-r1:latest": {"macro_f1": 0.1915, "hate_f1": 0.0, "precision": 0.1184, "recall": 0.5, "accuracy": 0.2369, "n_datasets": 1, "n_datasets_total": 6}, "hdnh2006/salamandra-7b-instruct:latest": {"macro_f1": 0.5355, "hate_f1": 0.6337, "precision": 0.5843, "recall": 0.6154, "accuracy": 0.5562, "n_datasets": 1, "n_datasets_total": 6}, "gpt-oss:20b": {"macro_f1": 0.5256, "hate_f1": 0.5982, "precision": 0.5996, "recall": 0.631, "accuracy": 0.5367, "n_datasets": 1, "n_datasets_total": 6}, "yi:9b": {"macro_f1": 0.5502, "hate_f1": 0.6635, "precision": 0.5847, "recall": 0.617, "accuracy": 0.5787, "n_datasets": 1, "n_datasets_total": 6}, "phi3.5:3.8b": {"macro_f1": 0.1937, "hate_f1": 0.0039, "precision": 0.6186, "recall": 0.501, "accuracy": 0.2384, "n_datasets": 1, "n_datasets_total": 6}, "stablelm2:12b": {"macro_f1": 0.4583, "hate_f1": 0.4745, "precision": 0.6041, "recall": 0.6126, "accuracy": 0.4588, "n_datasets": 1, "n_datasets_total": 6}, "jobautomation/OpenEuroLLM-Spanish:latest": {"macro_f1": 0.6409, "hate_f1": 0.7604, "precision": 0.6468, "recall": 0.6991, "accuracy": 0.6807, "n_datasets": 1, "n_datasets_total": 6}, "qwen3:8b": {"macro_f1": 0.5072, "hate_f1": 0.5722, "precision": 0.591, "recall": 0.6172, "accuracy": 0.5157, "n_datasets": 1, "n_datasets_total": 6}}, "history": [{"ts": "2026-05-09", "model": "jobautomation/OpenEuroLLM-Spanish:latest", "dataset": "encarni", "f1": 0.6409, "hate_f1": 0.7604049493813273, "elapsed": 9264.0}, {"ts": "2026-05-09", "model": "qwen3:8b", "dataset": "encarni", "f1": 0.5072, "hate_f1": 0.5721854304635762, "elapsed": 4114.8}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "hateval", "f1": 0.5589, "hate_f1": 0.6493016232540582, "elapsed": 1426.0}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "haternet", "f1": 0.5539, "hate_f1": 0.5280481330737923, "elapsed": 1311.6}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "chileno", "f1": 0.3564, "hate_f1": 0.15976959223889647, "elapsed": 2210.6}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "hascosva", "f1": 0.6334, "hate_f1": 0.46218882104274306, "elapsed": 931.4}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "misocorpus", "f1": 0.6392, "hate_f1": 0.7032859244727808, "elapsed": 783.8}, {"ts": "2026-05-08", "model": "gemma2:latest", "dataset": "encarni", "f1": 0.6685, "hate_f1": 0.8324974924774323, "elapsed": 520.8}, {"ts": "2026-05-08", "model": "llama3.1:8b", "dataset": "encarni", "f1": 0.6644, "hate_f1": 0.8364717542120912, "elapsed": 403.4}, {"ts": "2026-05-08", "model": "gemma3:12b", "dataset": "encarni", "f1": 0.6426, "hate_f1": 0.7637178051511758, "elapsed": 1106.6}, {"ts": "2026-05-08", "model": "qwen2.5:7b", "dataset": "encarni", "f1": 0.4197, "hate_f1": 0.41274658573596357, "elapsed": 383.0}, {"ts": "2026-05-08", "model": "mistral:7b", "dataset": "encarni", "f1": 0.548, "hate_f1": 0.6916951080773607, "elapsed": 1648.9}, {"ts": "2026-05-08", "model": "deepseek-r1:latest", "dataset": "encarni", "f1": 0.1915, "hate_f1": 0.0, "elapsed": 4008.0}, {"ts": "2026-05-08", "model": "hdnh2006/salamandra-7b-instruct:latest", "dataset": "encarni", "f1": 0.5355, "hate_f1": 0.6336633663366337, "elapsed": 2211.1}, {"ts": "2026-05-08", "model": "gpt-oss:20b", "dataset": "encarni", "f1": 0.5256, "hate_f1": 0.5981794538361509, "elapsed": 2800.4}, {"ts": "2026-05-08", "model": "yi:9b", "dataset": "encarni", "f1": 0.5502, "hate_f1": 0.6634730538922156, "elapsed": 1272.6}, {"ts": "2026-05-08", "model": "phi3.5:3.8b", "dataset": "encarni", "f1": 0.1937, "hate_f1": 0.00392156862745098, "elapsed": 6922.4}, {"ts": "2026-05-08", "model": "stablelm2:12b", "dataset": "encarni", "f1": 0.4583, "hate_f1": 0.4745269286754003, "elapsed": 1629.9}], "models_meta": {"llama3.1:8b": {"family": "LLaMA 3.1", "params": "8B", "size_gb": 4.9, "release_date": "2024-07", "developer": "Meta", "notes": ""}, "gemma2:latest": {"family": "Gemma 2", "params": "9B", "size_gb": 5.4, "release_date": "2024-06", "developer": "Google DeepMind", "notes": ""}, "gemma3:12b": {"family": "Gemma 3", "params": "12B", "size_gb": 8.1, "release_date": "2025-03", "developer": "Google DeepMind", "notes": ""}, "qwen2.5:7b": {"family": "Qwen 2.5", "params": "7B", "size_gb": 4.7, "release_date": "2024-09", "developer": "Alibaba", "notes": ""}, "mistral:7b": {"family": "Mistral", "params": "7B", "size_gb": 4.4, "release_date": "2024-05", "developer": "Mistral AI", "notes": ""}, "deepseek-r1:latest": {"family": "DeepSeek R1", "params": "7B", "size_gb": 4.7, "release_date": "2025-01", "developer": "DeepSeek", "notes": "usado como 'latest' en Encarni — resuelve a deepseek-r1:7b en ic4"}, "hdnh2006/salamandra-7b-instruct:latest": {"family": "Salamandra", "params": "7B", "size_gb": 4.9, "release_date": "2024-09", "developer": "BSC-CNS", "notes": "modelo multilingüe europeo — Barcelona Supercomputing Center"}, "gpt-oss:20b": {"family": "GPT-OSS", "params": "20B", "size_gb": 13.0, "release_date": "2025-04", "developer": "OpenAI", "notes": ""}, "yi:9b": {"family": "Yi", "params": "9B", "size_gb": 5.0, "release_date": "2024-03", "developer": "01.AI", "notes": ""}, "phi3.5:3.8b": {"family": "Phi 3.5", "params": "3.8B", "size_gb": 2.2, "release_date": "2024-08", "developer": "Microsoft", "notes": ""}, "stablelm2:12b": {"family": "StableLM 2", "params": "12B", "size_gb": 7.0, "release_date": "2024-01", "developer": "Stability AI", "notes": ""}, "jobautomation/OpenEuroLLM-Spanish:latest": {"family": "OpenEuroLLM", "params": "7B", "size_gb": 8.1, "release_date": "2024-12", "developer": "OpenEuroLLM Consortium", "notes": "modelo español open-source — proyecto europeo"}, "qwen3:8b": {"family": "Qwen 3", "params": "8B", "size_gb": 5.2, "release_date": "2025-04", "developer": "Alibaba", "notes": ""}}, "datasets_meta": {"encarni": {"display": "Encarnación Hidalgo (UMA)", "platform": "Twitter", "source": "Twitter España", "n_total": 667, "hate": 509, "no_hate": 158, "iaa": null, "topic": "hate speech general + desinformación", "lang": "es-ES", "paper": "Hidalgo Tenorio & Castro Peña (UMA)"}, "hateval": {"display": "HatEval — SemEval-2019 Task 5", "platform": "Twitter", "source": "Twitter España + EEUU", "n_total": 6595, "hate": 2735, "no_hate": 3860, "iaa": null, "topic": "hate speech contra inmigrantes y mujeres", "lang": "es", "paper": "Basile et al. (2019)"}, "haternet": {"display": "HaterNet — Pereira-Kohatsu et al. (2019)", "platform": "Twitter", "source": "Twitter España", "n_total": 5999, "hate": 1567, "no_hate": 4432, "iaa": "Cohen κ: 0.588", "topic": "hate speech general", "lang": "es-ES", "paper": "Pereira-Kohatsu et al. (2019)"}, "chileno": {"display": "Chileno — Arango Monnar et al. (2022)", "platform": "Twitter", "source": "Twitter Chile", "n_total": 9500, "hate": 599, "no_hate": 8901, "iaa": "Krippendorff α: > 0.7", "topic": "hate speech general (mujeres, inmigrantes, minorías)", "lang": "es-CL", "paper": "Arango Monnar et al. (2022)"}, "hascosva": {"display": "HaSCoSVa — Castillo-López et al. (2023)", "platform": "Twitter", "source": "Twitter España + Latinoamérica", "n_total": 3994, "hate": 554, "no_hate": 3440, "iaa": "Cohen κ: 0.44", "topic": "xenofobia hacia inmigrantes", "lang": "es", "paper": "Castillo-López et al. (2023)"}, "misocorpus": {"display": "MisoCorpus — García-Díaz et al. (2021)", "platform": "Twitter", "source": "Twitter España + Latinoamérica", "n_total": 3463, "hate": 1506, "no_hate": 1957, "iaa": "Krippendorff α: 0.69", "topic": "misoginia", "lang": "es", "paper": "García-Díaz et al. (2021)"}}};
-</script>
+<script>window.__INDEX__ = {"generated": "2026-05-10T10:13:38.188254+00:00", "n_runs": 20, "n_models": 4, "n_datasets": 6, "best_overall_f1": 0.427, "models": ["gemma2:latest", "gemma3:12b", "llama3.1:8b", "qwen2.5:7b"], "datasets": ["chileno", "encarni", "hascosva", "haternet", "hateval", "misocorpus"], "results": {"llama3.1:8b": {"encarni": {"macro_f1": 0.461, "macro_f1_binary": 0.6927, "precision": 0.4597, "recall": 0.4624, "accuracy": 0.7721, "hate_f1": 0.8503468780971258, "n_instances": 667, "n_unclear": 2, "elapsed": 156.3, "timestamp": "2026-05-09T19:01:26.749172+00:00"}, "hateval": {"macro_f1": 0.371, "macro_f1_binary": 0.5576, "precision": 0.463, "recall": 0.4189, "accuracy": 0.5745, "hate_f1": 0.6492265123883788, "n_instances": 6595, "n_unclear": 28, "elapsed": 1399.5, "timestamp": "2026-05-09T19:04:04.860833+00:00"}, "haternet": {"macro_f1": 0.3699, "macro_f1_binary": 0.556, "precision": 0.4432, "recall": 0.4558, "accuracy": 0.5553, "hate_f1": 0.5301846590909091, "n_instances": 5999, "n_unclear": 24, "elapsed": 1239.9, "timestamp": "2026-05-09T19:27:25.731338+00:00"}, "chileno": {"macro_f1": 0.2361, "macro_f1_binary": 0.3549, "precision": 0.3558, "recall": 0.4203, "accuracy": 0.4125, "hate_f1": 0.1596244131455399, "n_instances": 9500, "n_unclear": 33, "elapsed": 2139.4, "timestamp": "2026-05-09T19:48:06.850121+00:00"}, "hascosva": {"macro_f1": 0.4222, "macro_f1_binary": 0.6347, "precision": 0.4298, "recall": 0.524, "accuracy": 0.7108, "hate_f1": 0.46378174976481656, "n_instances": 3994, "n_unclear": 18, "elapsed": 904.5, "timestamp": "2026-05-09T20:23:47.755313+00:00"}, "misocorpus": {"macro_f1": 0.426, "macro_f1_binary": 0.6409, "precision": 0.4948, "recall": 0.4562, "accuracy": 0.6491, "hate_f1": 0.7056223913577215, "n_instances": 3463, "n_unclear": 19, "elapsed": 769.5, "timestamp": "2026-05-09T20:38:53.734020+00:00"}}, "gemma2:latest": {"encarni": {"macro_f1": 0.4289, "macro_f1_binary": 0.6843, "precision": 0.4815, "recall": 0.3978, "accuracy": 0.7241, "hate_f1": 0.8405511811023622, "n_instances": 667, "n_unclear": 67, "elapsed": 955.0, "timestamp": "2026-05-09T20:51:44.870918+00:00"}, "hateval": {"macro_f1": 0.3696, "macro_f1_binary": 0.5803, "precision": 0.4825, "recall": 0.406, "accuracy": 0.5539, "hate_f1": 0.672645739910314, "n_instances": 6595, "n_unclear": 551, "elapsed": 8293.3, "timestamp": "2026-05-09T21:07:41.749174+00:00"}, "haternet": {"macro_f1": 0.3425, "macro_f1_binary": 0.5502, "precision": 0.4505, "recall": 0.4129, "accuracy": 0.4792, "hate_f1": 0.539622641509434, "n_instances": 5999, "n_unclear": 774, "elapsed": 8227.9, "timestamp": "2026-05-09T23:25:56.759619+00:00"}, "chileno": {"macro_f1": 0.2251, "macro_f1_binary": 0.3622, "precision": 0.3554, "recall": 0.3793, "accuracy": 0.3762, "hate_f1": 0.16184773310521813, "n_instances": 9500, "n_unclear": 1077, "elapsed": 12934.0, "timestamp": "2026-05-10T01:43:05.791464+00:00"}, "hascosva": {"macro_f1": 0.4198, "macro_f1_binary": 0.6638, "precision": 0.4448, "recall": 0.4977, "accuracy": 0.6587, "hate_f1": 0.49333333333333335, "n_instances": 3994, "n_unclear": 426, "elapsed": 5187.2, "timestamp": "2026-05-10T05:18:41.738583+00:00"}, "misocorpus": {"macro_f1": 0.4179, "macro_f1_binary": 0.6577, "precision": 0.5108, "recall": 0.435, "accuracy": 0.6159, "hate_f1": 0.7195902688860435, "n_instances": 3463, "n_unclear": 295, "elapsed": 4637.8, "timestamp": "2026-05-10T06:45:11.716904+00:00"}}, "gemma3:12b": {"encarni": {"macro_f1": 0.4099, "macro_f1_binary": 0.7124, "precision": 0.4655, "recall": 0.3698, "accuracy": 0.5967, "hate_f1": 0.7442396313364056, "n_instances": 667, "n_unclear": 157, "elapsed": 160.1, "timestamp": "2026-05-10T08:02:30.744367+00:00"}, "hateval": {"macro_f1": 0.4388, "macro_f1_binary": 0.6772, "precision": 0.4915, "recall": 0.4523, "accuracy": 0.6435, "hate_f1": 0.6955520368504391, "n_instances": 6595, "n_unclear": 354, "elapsed": 1263.4, "timestamp": "2026-05-10T08:05:11.772280+00:00"}, "haternet": {"macro_f1": 0.4443, "macro_f1_binary": 0.693, "precision": 0.4736, "recall": 0.4793, "accuracy": 0.6503, "hate_f1": 0.6201834862385321, "n_instances": 5999, "n_unclear": 485, "elapsed": 1168.3, "timestamp": "2026-05-10T08:26:16.734918+00:00"}, "chileno": {"macro_f1": 0.3024, "macro_f1_binary": 0.4734, "precision": 0.36, "recall": 0.4044, "accuracy": 0.5765, "hate_f1": 0.1872713972201902, "n_instances": 9500, "n_unclear": 749, "elapsed": 1872.0, "timestamp": "2026-05-10T08:45:46.773238+00:00"}, "hascosva": {"macro_f1": 0.4857, "macro_f1_binary": 0.7622, "precision": 0.4834, "recall": 0.5171, "accuracy": 0.7869, "hate_f1": 0.5818935729094679, "n_instances": 3994, "n_unclear": 320, "elapsed": 783.3, "timestamp": "2026-05-10T09:16:59.762324+00:00"}, "misocorpus": {"macro_f1": 0.4793, "macro_f1_binary": 0.7378, "precision": 0.5072, "recall": 0.4791, "accuracy": 0.7017, "hate_f1": 0.7344827586206897, "n_instances": 3463, "n_unclear": 171, "elapsed": 708.1, "timestamp": "2026-05-10T09:30:04.736890+00:00"}}, "qwen2.5:7b": {"encarni": {"macro_f1": 0.3223, "macro_f1_binary": 0.4868, "precision": 0.3966, "recall": 0.4036, "accuracy": 0.4843, "hate_f1": 0.5283540802213001, "n_instances": 667, "n_unclear": 9, "elapsed": 142.4, "timestamp": "2026-05-10T09:41:53.785554+00:00"}, "hateval": {"macro_f1": 0.4317, "macro_f1_binary": 0.6516, "precision": 0.4409, "recall": 0.4375, "accuracy": 0.644, "hate_f1": 0.6335877862595419, "n_instances": 6595, "n_unclear": 83, "elapsed": 1212.8, "timestamp": "2026-05-10T09:44:17.745149+00:00"}}}, "overall": {"llama3.1:8b": {"macro_f1": 0.381, "macro_f1_binary": 0.5728, "hate_f1": 0.5598, "precision": 0.441, "recall": 0.4563, "accuracy": 0.6124, "n_datasets": 6, "n_datasets_total": 6, "coverage": 99.6}, "gemma2:latest": {"macro_f1": 0.3673, "macro_f1_binary": 0.5831, "hate_f1": 0.5713, "precision": 0.4542, "recall": 0.4215, "accuracy": 0.568, "n_datasets": 6, "n_datasets_total": 6, "coverage": 89.4}, "gemma3:12b": {"macro_f1": 0.4267, "macro_f1_binary": 0.676, "hate_f1": 0.5939, "precision": 0.4635, "recall": 0.4503, "accuracy": 0.6593, "n_datasets": 6, "n_datasets_total": 6, "coverage": 92.6}, "qwen2.5:7b": {"macro_f1": 0.377, "macro_f1_binary": 0.5692, "hate_f1": 0.581, "precision": 0.4188, "recall": 0.4205, "accuracy": 0.5642, "n_datasets": 2, "n_datasets_total": 6, "coverage": 98.7}}, "history": [{"ts": "2026-05-10", "model": "gemma2:latest", "dataset": "chileno", "f1": 0.2251, "hate_f1": 0.16184773310521813, "elapsed": 12934.0}, {"ts": "2026-05-10", "model": "gemma2:latest", "dataset": "hascosva", "f1": 0.4198, "hate_f1": 0.49333333333333335, "elapsed": 5187.2}, {"ts": "2026-05-10", "model": "gemma2:latest", "dataset": "misocorpus", "f1": 0.4179, "hate_f1": 0.7195902688860435, "elapsed": 4637.8}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "encarni", "f1": 0.4099, "hate_f1": 0.7442396313364056, "elapsed": 160.1}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "hateval", "f1": 0.4388, "hate_f1": 0.6955520368504391, "elapsed": 1263.4}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "haternet", "f1": 0.4443, "hate_f1": 0.6201834862385321, "elapsed": 1168.3}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "chileno", "f1": 0.3024, "hate_f1": 0.1872713972201902, "elapsed": 1872.0}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "hascosva", "f1": 0.4857, "hate_f1": 0.5818935729094679, "elapsed": 783.3}, {"ts": "2026-05-10", "model": "gemma3:12b", "dataset": "misocorpus", "f1": 0.4793, "hate_f1": 0.7344827586206897, "elapsed": 708.1}, {"ts": "2026-05-10", "model": "qwen2.5:7b", "dataset": "encarni", "f1": 0.3223, "hate_f1": 0.5283540802213001, "elapsed": 142.4}, {"ts": "2026-05-10", "model": "qwen2.5:7b", "dataset": "hateval", "f1": 0.4317, "hate_f1": 0.6335877862595419, "elapsed": 1212.8}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "encarni", "f1": 0.461, "hate_f1": 0.8503468780971258, "elapsed": 156.3}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "hateval", "f1": 0.371, "hate_f1": 0.6492265123883788, "elapsed": 1399.5}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "haternet", "f1": 0.3699, "hate_f1": 0.5301846590909091, "elapsed": 1239.9}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "chileno", "f1": 0.2361, "hate_f1": 0.1596244131455399, "elapsed": 2139.4}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "hascosva", "f1": 0.4222, "hate_f1": 0.46378174976481656, "elapsed": 904.5}, {"ts": "2026-05-09", "model": "llama3.1:8b", "dataset": "misocorpus", "f1": 0.426, "hate_f1": 0.7056223913577215, "elapsed": 769.5}, {"ts": "2026-05-09", "model": "gemma2:latest", "dataset": "encarni", "f1": 0.4289, "hate_f1": 0.8405511811023622, "elapsed": 955.0}, {"ts": "2026-05-09", "model": "gemma2:latest", "dataset": "hateval", "f1": 0.3696, "hate_f1": 0.672645739910314, "elapsed": 8293.3}, {"ts": "2026-05-09", "model": "gemma2:latest", "dataset": "haternet", "f1": 0.3425, "hate_f1": 0.539622641509434, "elapsed": 8227.9}], "models_meta": {"llama3.1:8b": {"family": "LLaMA 3.1", "params": "8B", "size_gb": 4.9, "release_date": "2024-07", "developer": "Meta", "notes": ""}, "gemma2:latest": {"family": "Gemma 2", "params": "9B", "size_gb": 5.4, "release_date": "2024-06", "developer": "Google DeepMind", "notes": ""}, "gemma3:12b": {"family": "Gemma 3", "params": "12B", "size_gb": 8.1, "release_date": "2025-03", "developer": "Google DeepMind", "notes": ""}, "qwen2.5:7b": {"family": "Qwen 2.5", "params": "7B", "size_gb": 4.7, "release_date": "2024-09", "developer": "Alibaba", "notes": ""}}, "datasets_meta": {"encarni": {"display": "Encarnación Hidalgo (UMA)", "platform": "Twitter", "source": "Twitter España", "n_total": 667, "hate": 509, "no_hate": 158, "iaa": null, "topic": "hate speech general + desinformación", "lang": "es-ES", "paper": "Hidalgo Tenorio & Castro Peña (UMA)"}, "hateval": {"display": "HatEval — SemEval-2019 Task 5", "platform": "Twitter", "source": "Twitter España + EEUU", "n_total": 6595, "hate": 2735, "no_hate": 3860, "iaa": null, "topic": "hate speech contra inmigrantes y mujeres", "lang": "es", "paper": "Basile et al. (2019)"}, "haternet": {"display": "HaterNet — Pereira-Kohatsu et al. (2019)", "platform": "Twitter", "source": "Twitter España", "n_total": 5999, "hate": 1567, "no_hate": 4432, "iaa": "Cohen κ: 0.588", "topic": "hate speech general", "lang": "es-ES", "paper": "Pereira-Kohatsu et al. (2019)"}, "chileno": {"display": "Chileno — Arango Monnar et al. (2022)", "platform": "Twitter", "source": "Twitter Chile", "n_total": 9500, "hate": 599, "no_hate": 8901, "iaa": "Krippendorff α: > 0.7", "topic": "hate speech general (mujeres, inmigrantes, minorías)", "lang": "es-CL", "paper": "Arango Monnar et al. (2022)"}, "hascosva": {"display": "HaSCoSVa — Castillo-López et al. (2023)", "platform": "Twitter", "source": "Twitter España + Latinoamérica", "n_total": 3994, "hate": 554, "no_hate": 3440, "iaa": "Cohen κ: 0.44", "topic": "xenofobia hacia inmigrantes", "lang": "es", "paper": "Castillo-López et al. (2023)"}, "misocorpus": {"display": "MisoCorpus — García-Díaz et al. (2021)", "platform": "Twitter", "source": "Twitter España + Latinoamérica", "n_total": 3463, "hate": 1506, "no_hate": 1957, "iaa": "Krippendorff α: 0.69", "topic": "misoginia", "lang": "es", "paper": "García-Díaz et al. (2021)"}}};</script>
 <script type="text/babel">
-const { useState, useMemo } = React;
+const { useState, useMemo, useEffect, useRef } = React;
 const DATA = window.__INDEX__;
 
 const COLORS = {
-  'LLaMA 3.1':'#378ADD','LLaMA':'#378ADD',
-  'Gemma 2':'#1D9E75','Gemma 3':'#16856A','Gemma 4':'#0D6B54',
-  'Qwen 2.5':'#D85A30','Qwen 3':'#C04820','Qwen 3.5':'#A33810',
-  'Mistral':'#7F77DD','DeepSeek R1':'#D4537E',
-  'Salamandra':'#BA7517','GPT-OSS':'#888',
-  'Yi':'#534AB7','Phi 3.5':'#2D8A6E','Phi 3':'#3A9A7E',
-  'StableLM 2':'#999','OpenEuroLLM':'#E07020',
+  'LLaMA 3.1':'#3b82f6','LLaMA':'#3b82f6',
+  'Gemma 2':'#10b981','Gemma 3':'#059669','Gemma 4':'#047857',
+  'Qwen 2.5':'#f59e0b','Qwen 3':'#d97706','Qwen 3.5':'#b45309',
+  'Mistral':'#8b5cf6','DeepSeek R1':'#ec4899',
+  'Salamandra':'#f97316','GPT-OSS':'#6b7280',
+  'Yi':'#6366f1','Phi 3.5':'#14b8a6','Phi 3':'#0d9488',
+  'StableLM 2':'#9ca3af','OpenEuroLLM':'#84cc16',
 };
-
 const METRICS = [
-  {key:'macro_f1',  label:'Macro-F1'},
-  {key:'hate_f1',   label:'Hate F1'},
-  {key:'precision', label:'Precisión'},
-  {key:'recall',    label:'Recall'},
-  {key:'accuracy',  label:'Accuracy'},
+  {key:'macro_f1',        label:'Macro-F1'},
+  {key:'macro_f1_binary', label:'Macro-F1 (binario)'},
+  {key:'hate_f1',         label:'Hate F1'},
+  {key:'precision',       label:'Precisión'},
+  {key:'recall',          label:'Recall'},
+  {key:'accuracy',        label:'Accuracy'},
 ];
+const col = f => COLORS[f] || '#6b7280';
+const fmt = v => v != null ? v.toFixed(4) : '—';
+const fmt3 = v => v != null ? v.toFixed(3) : '—';
 
-function color(family) { return COLORS[family] || '#888'; }
-function fmt(v) { return v != null ? v.toFixed(4) : '—'; }
-
-function SortTh({ k, label, sortKey, sortDir, onSort }) {
-  return (
-    <th onClick={() => onSort(k)}>
-      {label}
-      <span style={{color:'#aaa',marginLeft:4}}>
-        {sortKey === k ? (sortDir === 'desc' ? '↓' : '↑') : '↕'}
-      </span>
-    </th>
-  );
+function SortTh({k,label,sortKey,sortDir,onSort}) {
+  return <th onClick={()=>onSort(k)}>{label}<span style={{color:'#ccc',marginLeft:3}}>{sortKey===k?(sortDir==='desc'?'↓':'↑'):'↕'}</span></th>;
 }
 
 // ── Leaderboard ───────────────────────────────────────────────────────────────
 function Leaderboard() {
-  const datasets  = DATA.datasets;
   const [ds, setDs]           = useState('__overall__');
   const [sortKey, setSortKey] = useState('macro_f1');
   const [sortDir, setSortDir] = useState('desc');
 
-  function handleSort(key) {
-    if (key === sortKey) setSortDir(d => d === 'desc' ? 'asc' : 'desc');
-    else { setSortKey(key); setSortDir('desc'); }
+  function onSort(k) {
+    if (k===sortKey) setSortDir(d=>d==='desc'?'asc':'desc');
+    else { setSortKey(k); setSortDir('desc'); }
   }
 
   const rows = useMemo(() => {
-    let r;
-    if (ds === '__overall__') {
-      r = DATA.models
-        .filter(m => DATA.overall[m])
-        .map(m => ({
-          model:        m,
-          family:       DATA.models_meta[m]?.family || '',
-          params:       DATA.models_meta[m]?.params || '',
-          release_date: DATA.models_meta[m]?.release_date || '',
-          developer:    DATA.models_meta[m]?.developer || '',
-          size_gb:      DATA.models_meta[m]?.size_gb || '',
-          n_datasets:   DATA.overall[m].n_datasets,
-          n_datasets_total: DATA.overall[m].n_datasets_total,
-          ...DATA.overall[m],
-          n_instances: null,
-        }));
-    } else {
-      r = DATA.models
-        .filter(m => DATA.results[m]?.[ds])
-        .map(m => ({
-          model:        m,
-          family:       DATA.models_meta[m]?.family || '',
-          params:       DATA.models_meta[m]?.params || '',
-          release_date: DATA.models_meta[m]?.release_date || '',
-          developer:    DATA.models_meta[m]?.developer || '',
-          size_gb:      DATA.models_meta[m]?.size_gb || '',
-          ...DATA.results[m][ds],
-        }));
-    }
-    r.sort((a, b) => {
-      const av = a[sortKey] ?? -1;
-      const bv = b[sortKey] ?? -1;
-      return sortDir === 'desc' ? bv - av : av - bv;
-    });
+    const isOv = ds==='__overall__';
+    let r = DATA.models.filter(m => isOv ? DATA.overall[m] : DATA.results[m]?.[ds]).map(m => ({
+      model: m,
+      family: DATA.models_meta[m]?.family||'',
+      params: DATA.models_meta[m]?.params||'',
+      developer: DATA.models_meta[m]?.developer||'',
+      release_date: DATA.models_meta[m]?.release_date||'',
+      size_gb: DATA.models_meta[m]?.size_gb,
+      ...(isOv ? DATA.overall[m] : DATA.results[m][ds]),
+    }));
+    r.sort((a,b) => sortDir==='desc' ? (b[sortKey]??-1)-(a[sortKey]??-1) : (a[sortKey]??-1)-(b[sortKey]??-1));
     return r;
   }, [ds, sortKey, sortDir]);
 
-  const maxVal = Math.max(...rows.map(r => r[sortKey] || 0));
-  const isOverall = ds === '__overall__';
+  const isOv = ds==='__overall__';
+  const maxVal = Math.max(...rows.map(r=>r[sortKey]||0));
 
   return (
     <div>
       <div className="controls">
         <div className="chips">
-          <button
-            className={'chip overall' + (isOverall ? ' active' : '')}
-            onClick={() => setDs('__overall__')}>
-            ★ Overall
-          </button>
-          {datasets.map(d => (
-            <button key={d}
-              className={'chip' + (d === ds ? ' active' : '')}
-              onClick={() => setDs(d)}>
-              {DATA.datasets_meta[d]?.display || d}
+          <button className={'chip'+(isOv?' active':'')} onClick={()=>setDs('__overall__')}>★ Overall</button>
+          {DATA.datasets.map(d=>(
+            <button key={d} className={'chip'+(d===ds?' active':'')} onClick={()=>setDs(d)}>
+              {DATA.datasets_meta[d]?.display||d}
             </button>
           ))}
         </div>
-        <select value={sortKey} onChange={e => { setSortKey(e.target.value); setSortDir('desc'); }}>
-          {METRICS.map(m => <option key={m.key} value={m.key}>{m.label}</option>)}
+        <select value={sortKey} onChange={e=>{setSortKey(e.target.value);setSortDir('desc');}}>
+          {METRICS.map(m=><option key={m.key} value={m.key}>{m.label}</option>)}
         </select>
       </div>
-
-      {isOverall && (
-        <p style={{fontSize:12,color:'#888',marginBottom:8}}>
-          Media de cada métrica sobre todos los datasets evaluados por modelo.
-          La columna <b>DS</b> indica cuántos datasets tiene evaluados.
-        </p>
-      )}
-
+      {isOv && <div className="info-box">Media de cada métrica sobre todos los datasets evaluados. <b>Macro-F1 binario</b> excluye las predicciones <i>unclear</i>. La columna <b>DS</b> indica cuántos datasets tiene evaluados.</div>}
       <table>
-        <thead>
-          <tr>
-            <th style={{width:28}}>#</th>
-            <th>Modelo</th>
-            <th>Familia</th>
-            <th>Params</th>
-            {isOverall && <th>Developer</th>}
-            {isOverall && <th>Release</th>}
-            <SortTh k="macro_f1"  label="Macro-F1"  sortKey={sortKey} sortDir={sortDir} onSort={handleSort} />
-            <SortTh k="hate_f1"   label="Hate F1"   sortKey={sortKey} sortDir={sortDir} onSort={handleSort} />
-            <SortTh k="accuracy"  label="Accuracy"  sortKey={sortKey} sortDir={sortDir} onSort={handleSort} />
-            <SortTh k="precision" label="Precisión" sortKey={sortKey} sortDir={sortDir} onSort={handleSort} />
-            <SortTh k="recall"    label="Recall"    sortKey={sortKey} sortDir={sortDir} onSort={handleSort} />
-            <th>{isOverall ? 'DS' : 'n'}</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th style={{width:28}}>#</th>
+          <th>Modelo</th>
+          <th>Familia</th>
+          <th>Params</th>
+          {isOv && <th>Developer</th>}
+          {isOv && <th>Release</th>}
+          <SortTh k="macro_f1"        label="Macro-F1"       sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <SortTh k="macro_f1_binary" label="F1 binario"     sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <SortTh k="hate_f1"         label="Hate F1"        sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <SortTh k="accuracy"        label="Accuracy"       sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <SortTh k="precision"       label="Precisión"      sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <SortTh k="recall"          label="Recall"         sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+          <th>{isOv?'DS':'n'}</th>
+          {isOv && <th>Cobertura</th>}
+        </tr></thead>
         <tbody>
-          {rows.map((r, i) => {
-            const pct = maxVal > 0 ? (r[sortKey] || 0) / maxVal * 100 : 0;
-            const rk  = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : 'rank';
-            return (
-              <tr key={r.model}>
-                <td className={rk}>{i + 1}</td>
-                <td><b>{r.model}</b></td>
-                <td style={{color:'#888'}}>{r.family}</td>
-                <td><span className="tag">{r.params}</span></td>
-                {isOverall && <td style={{color:'#888',fontSize:12}}>{r.developer}</td>}
-                {isOverall && <td style={{color:'#888',fontSize:12}}>{r.release_date}</td>}
-                <td>
-                  <div className="bar-wrap">
-                    <div className="bar-bg">
-                      <div className="bar-fill"
-                        style={{width: pct + '%', background: color(r.family)}} />
-                    </div>
-                    <span style={{minWidth:46,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>
-                      {fmt(r.macro_f1)}
-                    </span>
-                  </div>
-                </td>
-                <td>{fmt(r.hate_f1)}</td>
-                <td>{fmt(r.accuracy)}</td>
-                <td>{fmt(r.precision)}</td>
-                <td>{fmt(r.recall)}</td>
-                <td style={{color:'#aaa'}}>
-                  {isOverall
-                    ? <span className="ds-badge">{r.n_datasets}/{r.n_datasets_total}</span>
-                    : r.n_instances?.toLocaleString()
-                  }
-                </td>
-              </tr>
-            );
+          {rows.map((r,i)=>{
+            const pct = maxVal>0?(r[sortKey]||0)/maxVal*100:0;
+            const rk = i===0?'r1':i===1?'r2':i===2?'r3':'rank';
+            const cov = r.coverage;
+            const covColor = cov===undefined?'#aaa':cov>=95?'#10b981':cov>=80?'#f59e0b':'#ef4444';
+            return <tr key={r.model}>
+              <td className={rk}>{i+1}</td>
+              <td><b>{r.model}</b></td>
+              <td style={{color:'#888'}}>{r.family}</td>
+              <td><span className="tag">{r.params}</span></td>
+              {isOv && <td style={{color:'#888',fontSize:12}}>{r.developer}</td>}
+              {isOv && <td style={{color:'#888',fontSize:12}}>{r.release_date}</td>}
+              <td><div className="bar-wrap">
+                <div className="bar-bg"><div className="bar-fill" style={{width:pct+'%',background:col(r.family)}}/></div>
+                <span style={{minWidth:44,textAlign:'right',fontVariantNumeric:'tabular-nums'}}>{fmt(r.macro_f1)}</span>
+              </div></td>
+              <td>{fmt(r.macro_f1_binary)}</td>
+              <td>{fmt(r.hate_f1)}</td>
+              <td>{fmt(r.accuracy)}</td>
+              <td>{fmt(r.precision)}</td>
+              <td>{fmt(r.recall)}</td>
+              <td style={{color:'#aaa'}}>{isOv?<span className="tag-ds">{r.n_datasets}/{r.n_datasets_total}</span>:r.n_instances?.toLocaleString()}</td>
+              {isOv && <td><span className="coverage-dot" style={{background:covColor}}/>{cov!=null?cov+'%':'—'}</td>}
+            </tr>;
           })}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+// ── Visualizaciones ───────────────────────────────────────────────────────────
+function ScatterChart({canvasId, datasets, title}) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    const existing = Chart.getChart(ref.current);
+    if (existing) existing.destroy();
+    new Chart(ref.current, {
+      type: 'scatter',
+      data: { datasets },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: datasets.length > 1, position: 'bottom', labels: {boxWidth:10,font:{size:11}} },
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.raw.label}: (${ctx.raw.x}, ${ctx.raw.y?.toFixed(4)})`,
+            }
+          }
+        },
+        scales: {
+          x: { grid:{color:'#f0f0f0'}, ticks:{font:{size:11},color:'#888'} },
+          y: { min:0, max:1, grid:{color:'#f0f0f0'}, ticks:{font:{size:11},color:'#888'} }
+        }
+      }
+    });
+  }, [datasets]);
+  return <canvas ref={ref} height={200}/>;
+}
+
+function RadarChart({model}) {
+  const ref = useRef(null);
+  const ov = DATA.overall[model];
+  useEffect(() => {
+    if (!ref.current || !ov) return;
+    const existing = Chart.getChart(ref.current);
+    if (existing) existing.destroy();
+    const family = DATA.models_meta[model]?.family||'';
+    const c = col(family);
+    new Chart(ref.current, {
+      type: 'radar',
+      data: {
+        labels: ['Macro-F1','Hate F1','Precisión','Recall','Accuracy'],
+        datasets: [{
+          label: model,
+          data: [ov.macro_f1,ov.hate_f1,ov.precision,ov.recall,ov.accuracy].map(v=>v||0),
+          borderColor: c,
+          backgroundColor: c+'33',
+          pointBackgroundColor: c,
+          borderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { r: {
+          min:0, max:1,
+          ticks: {stepSize:0.25,font:{size:10},color:'#aaa'},
+          grid: {color:'#e8e8e8'},
+          pointLabels: {font:{size:11},color:'#555'}
+        } }
+      }
+    });
+  }, [model]);
+  return <canvas ref={ref} height={180}/>;
+}
+
+function HeatmapView() {
+  const models  = DATA.models.filter(m=>DATA.overall[m]);
+  const datasets = DATA.datasets;
+
+  function getColor(v) {
+    if (v==null) return '#f5f5f5';
+    const r = Math.round(255*(1-v));
+    const g = Math.round(180*v+50);
+    return `rgb(${r},${g},80)`;
+  }
+
+  return (
+    <div>
+      <div className="chart-wrap">
+        <div className="chart-title">Macro-F1 por modelo × dataset</div>
+        <div className="heatmap-wrap">
+          <table className="heatmap-table">
+            <thead><tr>
+              <th style={{textAlign:'left',minWidth:180}}>Modelo</th>
+              {datasets.map(d=><th key={d}>{DATA.datasets_meta[d]?.display||d}</th>)}
+              <th>Media</th>
+            </tr></thead>
+            <tbody>
+              {models.sort((a,b)=>(DATA.overall[b]?.macro_f1||0)-(DATA.overall[a]?.macro_f1||0)).map(m=>{
+                const ov = DATA.overall[m];
+                return <tr key={m}>
+                  <td style={{padding:'2px 8px 2px 0',fontSize:12,whiteSpace:'nowrap',color:'#444'}}>{m}</td>
+                  {datasets.map(d=>{
+                    const v = DATA.results[m]?.[d]?.macro_f1;
+                    return <td key={d}><div className="heatmap-cell"
+                      style={{background:getColor(v),color:v!=null?(v>0.5?'#fff':'#333'):'#ccc',minWidth:70}}
+                      title={`${m} × ${d}: ${v?.toFixed(4)||'—'}`}>
+                      {v!=null?v.toFixed(3):'—'}
+                    </div></td>;
+                  })}
+                  <td><div className="heatmap-cell"
+                    style={{background:getColor(ov?.macro_f1),color:(ov?.macro_f1||0)>0.5?'#fff':'#333',minWidth:60,fontWeight:600}}>
+                    {ov?.macro_f1?.toFixed(3)||'—'}
+                  </div></td>
+                </tr>;
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Graficos() {
+  const models = DATA.models.filter(m => DATA.overall[m]);
+  const [selectedModel, setSelectedModel] = useState(models[0]||'');
+
+  // Scatter: F1 vs Release date
+  const scatterRelease = useMemo(() => {
+    const byFamily = {};
+    models.forEach(m => {
+      const meta = DATA.models_meta[m]||{};
+      const f = meta.family||'Otro';
+      if (!byFamily[f]) byFamily[f] = [];
+      const rd = meta.release_date||'';
+      const [y,mo] = rd.split('-').map(Number);
+      if (!y) return;
+      const x = y + (mo-1)/12;
+      byFamily[f].push({x, y: DATA.overall[m]?.macro_f1||0, label: m});
+    });
+    return Object.entries(byFamily).map(([f,data]) => ({
+      label: f, data,
+      backgroundColor: col(f)+'cc',
+      borderColor: col(f),
+      pointRadius: 7, pointHoverRadius: 9,
+    }));
+  }, []);
+
+  // Scatter: F1 vs Params
+  const scatterParams = useMemo(() => {
+    const byFamily = {};
+    models.forEach(m => {
+      const meta = DATA.models_meta[m]||{};
+      const f = meta.family||'Otro';
+      if (!byFamily[f]) byFamily[f] = [];
+      const p = parseFloat((meta.params||'0').replace('B',''));
+      if (!p) return;
+      byFamily[f].push({x: p, y: DATA.overall[m]?.macro_f1||0, label: m});
+    });
+    return Object.entries(byFamily).map(([f,data]) => ({
+      label: f, data,
+      backgroundColor: col(f)+'cc',
+      borderColor: col(f),
+      pointRadius: 7, pointHoverRadius: 9,
+    }));
+  }, []);
+
+  return (
+    <div>
+      <div className="grid-2">
+        <div className="chart-wrap">
+          <div className="chart-title">Macro-F1 vs Fecha de lanzamiento</div>
+          <ScatterChart canvasId="scatter-release" datasets={scatterRelease} title="F1 vs Release"/>
+        </div>
+        <div className="chart-wrap">
+          <div className="chart-title">Macro-F1 vs Tamaño del modelo (B params)</div>
+          <ScatterChart canvasId="scatter-params" datasets={scatterParams} title="F1 vs Params"/>
+        </div>
+      </div>
+
+      <div className="section-title">Perfil de métricas por modelo (radar)</div>
+      <div style={{marginBottom:10}}>
+        <select value={selectedModel} onChange={e=>setSelectedModel(e.target.value)}>
+          {models.map(m=><option key={m} value={m}>{m}</option>)}
+        </select>
+      </div>
+      <div className="grid-3">
+        {models.slice(0,6).map(m=>(
+          <div key={m} className="chart-wrap">
+            <div className="chart-title" style={{color:col(DATA.models_meta[m]?.family||'')}}>{m}</div>
+            <RadarChart model={m}/>
+          </div>
+        ))}
+      </div>
+      {models.length>6 && (
+        <div className="grid-3">
+          {models.slice(6,12).map(m=>(
+            <div key={m} className="chart-wrap">
+              <div className="chart-title" style={{color:col(DATA.models_meta[m]?.family||'')}}>{m}</div>
+              <RadarChart model={m}/>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="section-title" style={{marginTop:'1.5rem'}}>Heatmap modelo × dataset</div>
+      <HeatmapView/>
     </div>
   );
 }
@@ -232,37 +397,28 @@ function Leaderboard() {
 function Datasets() {
   return (
     <table>
-      <thead>
-        <tr>
-          <th>Dataset</th>
-          <th>Paper</th>
-          <th>Plataforma</th>
-          <th>Fuente</th>
-          <th style={{textAlign:'right'}}>Total</th>
-          <th style={{textAlign:'right'}}>Hate</th>
-          <th style={{textAlign:'right'}}>No hate</th>
-          <th>IAA</th>
-          <th>Tema</th>
-          <th>Lengua</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Dataset</th><th>Paper</th><th>Plataforma</th><th>Fuente</th>
+        <th style={{textAlign:'right'}}>Total</th>
+        <th style={{textAlign:'right'}}>Hate</th>
+        <th style={{textAlign:'right'}}>No hate</th>
+        <th>IAA</th><th>Tema</th><th>Lengua</th>
+      </tr></thead>
       <tbody>
-        {DATA.datasets.map(d => {
-          const m = DATA.datasets_meta[d] || {};
-          return (
-            <tr key={d}>
-              <td><b>{m.display || d}</b></td>
-              <td style={{color:'#888',fontSize:11}}>{m.paper}</td>
-              <td>{m.platform}</td>
-              <td style={{color:'#888'}}>{m.source}</td>
-              <td style={{textAlign:'right'}}>{m.n_total?.toLocaleString()}</td>
-              <td style={{textAlign:'right',color:'#c04820'}}>{m.hate?.toLocaleString()}</td>
-              <td style={{textAlign:'right',color:'#1D9E75'}}>{m.no_hate?.toLocaleString()}</td>
-              <td style={{fontSize:11}}>{m.iaa || '—'}</td>
-              <td style={{fontSize:11,color:'#888'}}>{m.topic}</td>
-              <td><span className="tag">{m.lang}</span></td>
-            </tr>
-          );
+        {DATA.datasets.map(d=>{
+          const m = DATA.datasets_meta[d]||{};
+          return <tr key={d}>
+            <td><b>{m.display||d}</b></td>
+            <td style={{color:'#888',fontSize:11}}>{m.paper}</td>
+            <td>{m.platform}</td>
+            <td style={{color:'#888'}}>{m.source}</td>
+            <td style={{textAlign:'right'}}>{m.n_total?.toLocaleString()}</td>
+            <td style={{textAlign:'right',color:'#ef4444'}}>{m.hate?.toLocaleString()}</td>
+            <td style={{textAlign:'right',color:'#10b981'}}>{m.no_hate?.toLocaleString()}</td>
+            <td style={{fontSize:11}}>{m.iaa||'—'}</td>
+            <td style={{fontSize:11,color:'#888'}}>{m.topic}</td>
+            <td><span className="tag">{m.lang}</span></td>
+          </tr>;
         })}
       </tbody>
     </table>
@@ -273,25 +429,21 @@ function Datasets() {
 function History() {
   return (
     <table>
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Modelo</th>
-          <th>Dataset</th>
-          <th style={{textAlign:'right'}}>Macro-F1</th>
-          <th style={{textAlign:'right'}}>Hate F1</th>
-          <th style={{textAlign:'right'}}>Tiempo (s)</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Fecha</th><th>Modelo</th><th>Dataset</th>
+        <th style={{textAlign:'right'}}>Macro-F1</th>
+        <th style={{textAlign:'right'}}>Hate F1</th>
+        <th style={{textAlign:'right'}}>Tiempo (s)</th>
+      </tr></thead>
       <tbody>
-        {DATA.history.map((r, i) => (
+        {DATA.history.map((r,i)=>(
           <tr key={i}>
             <td style={{color:'#aaa'}}>{r.ts}</td>
             <td><b>{r.model}</b></td>
-            <td>{DATA.datasets_meta[r.dataset]?.display || r.dataset}</td>
+            <td>{DATA.datasets_meta[r.dataset]?.display||r.dataset}</td>
             <td style={{textAlign:'right'}}><b>{fmt(r.f1)}</b></td>
             <td style={{textAlign:'right'}}>{fmt(r.hate_f1)}</td>
-            <td style={{textAlign:'right',color:'#aaa'}}>{r.elapsed ?? '—'}</td>
+            <td style={{textAlign:'right',color:'#aaa'}}>{r.elapsed??'—'}</td>
           </tr>
         ))}
       </tbody>
@@ -303,53 +455,59 @@ function History() {
 function App() {
   const [tab, setTab] = useState('leaderboard');
   const gen = DATA.generated?.slice(0,16).replace('T',' ') + ' UTC';
-  const bestOverall = Math.max(...Object.values(DATA.overall).map(o => o.macro_f1 || 0));
+  const TABS = [
+    {id:'leaderboard', label:'Leaderboard'},
+    {id:'graficos',    label:'Gráficos'},
+    {id:'datasets',    label:'Datasets'},
+    {id:'historial',   label:'Historial'},
+  ];
 
   return (
     <div className="wrap">
-      <h1><span className="live" />Detección de Discurso de Odio en Español — Benchmark Continuo</h1>
-      <p className="meta">
-        Generado: {gen} · {DATA.n_runs} evaluaciones ·
-        {DATA.n_models} modelos · {DATA.n_datasets} datasets ·
-        RTX 4070 Ti Super · 16GB VRAM
-      </p>
+      <h1><span className="live"/>Detección de Discurso de Odio en Español — Benchmark Continuo</h1>
+      <div className="subtitle">Evaluación de modelos locales via Ollama · RTX 4070 Ti Super · 16GB VRAM</div>
+      <div className="meta">Generado: {gen} · {DATA.n_runs} evaluaciones · {DATA.n_models} modelos · {DATA.n_datasets} datasets</div>
 
       <div className="stats">
         <div className="stat">
           <div className="lbl">Modelos evaluados</div>
           <div className="val">{DATA.n_models}</div>
+          <div className="sub">modelos de lenguaje local</div>
         </div>
         <div className="stat">
           <div className="lbl">Datasets</div>
           <div className="val">{DATA.n_datasets}</div>
+          <div className="sub">benchmarks en español</div>
         </div>
         <div className="stat">
           <div className="lbl">Evaluaciones</div>
           <div className="val">{DATA.n_runs}</div>
+          <div className="sub">combinaciones modelo × dataset</div>
         </div>
         <div className="stat">
-          <div className="lbl">Mejor Macro-F1 (overall)</div>
-          <div className="val">{bestOverall.toFixed(3)}</div>
+          <div className="lbl">Mejor Macro-F1</div>
+          <div className="val">{DATA.best_overall_f1}</div>
+          <div className="sub">media sobre todos los datasets</div>
         </div>
       </div>
 
-      <div className="tabs">
-        {['leaderboard','datasets','historial'].map(t => (
-          <button key={t} className={'tab' + (tab === t ? ' active' : '')}
-            onClick={() => setTab(t)}>
-            {t.charAt(0).toUpperCase() + t.slice(1)}
+      <div className="nav">
+        {TABS.map(t=>(
+          <button key={t.id} className={'nav-tab'+(tab===t.id?' active':'')} onClick={()=>setTab(t.id)}>
+            {t.label}
           </button>
         ))}
       </div>
 
-      {tab === 'leaderboard' && <Leaderboard />}
-      {tab === 'datasets'    && <Datasets />}
-      {tab === 'historial'   && <History />}
+      {tab==='leaderboard' && <Leaderboard/>}
+      {tab==='graficos'    && <Graficos/>}
+      {tab==='datasets'    && <Datasets/>}
+      {tab==='historial'   && <History/>}
     </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
 </html>
