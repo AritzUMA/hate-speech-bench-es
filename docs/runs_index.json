@@ -1,12 +1,14 @@
 {
-  "generated": "2026-05-10T13:05:17.975620+00:00",
-  "n_runs": 29,
-  "n_models": 5,
+  "generated": "2026-05-10T18:29:59.336588+00:00",
+  "n_runs": 40,
+  "n_models": 7,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
+    "deepseek-r1:latest",
     "gemma2:latest",
     "gemma3:12b",
+    "hdnh2006/salamandra-7b-instruct:latest",
     "llama3.1:8b",
     "mistral:7b",
     "qwen2.5:7b"
@@ -376,6 +378,142 @@
         "n_unclear": 1216,
         "elapsed": 936.9,
         "timestamp": "2026-05-10T12:47:56.723030+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.343,
+        "macro_f1_binary": 0.6007,
+        "precision": 0.4762,
+        "recall": 0.328,
+        "accuracy": 0.4635,
+        "hate_f1": 0.6109526525955505,
+        "n_instances": 3463,
+        "n_unclear": 865,
+        "elapsed": 860.9,
+        "timestamp": "2026-05-10T13:03:34.690442+00:00"
+      }
+    },
+    "deepseek-r1:latest": {
+      "encarni": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 667,
+        "n_unclear": 667,
+        "elapsed": 0.4,
+        "timestamp": "2026-05-10T13:17:56.726296+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 6595,
+        "n_unclear": 6595,
+        "elapsed": 5.5,
+        "timestamp": "2026-05-10T13:17:58.721778+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 5999,
+        "n_unclear": 5999,
+        "elapsed": 5.2,
+        "timestamp": "2026-05-10T13:18:05.781665+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 9500,
+        "n_unclear": 9500,
+        "elapsed": 12.3,
+        "timestamp": "2026-05-10T13:18:12.786462+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3994,
+        "n_unclear": 3994,
+        "elapsed": 3.2,
+        "timestamp": "2026-05-10T13:18:26.765836+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3463,
+        "n_unclear": 3463,
+        "elapsed": 2.6,
+        "timestamp": "2026-05-10T13:18:31.751453+00:00"
+      }
+    },
+    "hdnh2006/salamandra-7b-instruct:latest": {
+      "encarni": {
+        "macro_f1": 0.2499,
+        "macro_f1_binary": 0.5902,
+        "precision": 0.3914,
+        "recall": 0.1852,
+        "accuracy": 0.3208,
+        "hate_f1": 0.505524861878453,
+        "n_instances": 667,
+        "n_unclear": 356,
+        "elapsed": 482.1,
+        "timestamp": "2026-05-10T13:18:35.758473+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.2811,
+        "macro_f1_binary": 0.6022,
+        "precision": 0.4572,
+        "recall": 0.2378,
+        "accuracy": 0.3278,
+        "hate_f1": 0.5382457452777258,
+        "n_instances": 6595,
+        "n_unclear": 3102,
+        "elapsed": 4769.0,
+        "timestamp": "2026-05-10T13:26:38.777813+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.2941,
+        "macro_f1_binary": 0.588,
+        "precision": 0.4501,
+        "recall": 0.2845,
+        "accuracy": 0.3416,
+        "hate_f1": 0.48929032258064514,
+        "n_instances": 5999,
+        "n_unclear": 2519,
+        "elapsed": 4609.2,
+        "timestamp": "2026-05-10T14:46:10.723882+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.1557,
+        "macro_f1_binary": 0.357,
+        "precision": 0.3551,
+        "recall": 0.2152,
+        "accuracy": 0.2038,
+        "hate_f1": 0.15380313199105144,
+        "n_instances": 9500,
+        "n_unclear": 4816,
+        "elapsed": 6930.0,
+        "timestamp": "2026-05-10T16:03:01.764057+00:00"
       }
     }
   },
@@ -425,15 +563,37 @@
       "coverage": 98.4
     },
     "mistral:7b": {
-      "macro_f1": 0.3098,
-      "macro_f1_binary": 0.5713,
-      "hate_f1": 0.4815,
-      "precision": 0.4255,
-      "recall": 0.3161,
-      "accuracy": 0.432,
-      "n_datasets": 5,
+      "macro_f1": 0.3153,
+      "macro_f1_binary": 0.5762,
+      "hate_f1": 0.5031,
+      "precision": 0.434,
+      "recall": 0.3181,
+      "accuracy": 0.4372,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 68.0
+      "coverage": 68.8
+    },
+    "deepseek-r1:latest": {
+      "macro_f1": 0.0,
+      "macro_f1_binary": 0.0,
+      "hate_f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "n_datasets": 6,
+      "n_datasets_total": 6,
+      "coverage": 0.0
+    },
+    "hdnh2006/salamandra-7b-instruct:latest": {
+      "macro_f1": 0.2452,
+      "macro_f1_binary": 0.5343,
+      "hate_f1": 0.4217,
+      "precision": 0.4134,
+      "recall": 0.2307,
+      "accuracy": 0.2985,
+      "n_datasets": 4,
+      "n_datasets_total": 6,
+      "coverage": 52.6
     }
   },
   "history": [
@@ -598,6 +758,94 @@
       "elapsed": 936.9
     },
     {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "misocorpus",
+      "f1": 0.343,
+      "hate_f1": 0.6109526525955505,
+      "elapsed": 860.9
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "encarni",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 0.4
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "hateval",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 5.5
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "haternet",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 5.2
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "chileno",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 12.3
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "hascosva",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 3.2
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "deepseek-r1:latest",
+      "dataset": "misocorpus",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 2.6
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "hdnh2006/salamandra-7b-instruct:latest",
+      "dataset": "encarni",
+      "f1": 0.2499,
+      "hate_f1": 0.505524861878453,
+      "elapsed": 482.1
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "hdnh2006/salamandra-7b-instruct:latest",
+      "dataset": "hateval",
+      "f1": 0.2811,
+      "hate_f1": 0.5382457452777258,
+      "elapsed": 4769.0
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "hdnh2006/salamandra-7b-instruct:latest",
+      "dataset": "haternet",
+      "f1": 0.2941,
+      "hate_f1": 0.48929032258064514,
+      "elapsed": 4609.2
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "hdnh2006/salamandra-7b-instruct:latest",
+      "dataset": "chileno",
+      "f1": 0.1557,
+      "hate_f1": 0.15380313199105144,
+      "elapsed": 6930.0
+    },
+    {
       "ts": "2026-05-09",
       "model": "llama3.1:8b",
       "dataset": "encarni",
@@ -705,6 +953,20 @@
       "size_gb": 4.4,
       "release_date": "2024-05",
       "developer": "Mistral AI"
+    },
+    "deepseek-r1:latest": {
+      "family": "DeepSeek R1",
+      "params": "7B",
+      "size_gb": 4.7,
+      "release_date": "2025-01",
+      "developer": "DeepSeek"
+    },
+    "hdnh2006/salamandra-7b-instruct:latest": {
+      "family": "Salamandra",
+      "params": "7B",
+      "size_gb": 4.9,
+      "release_date": "2024-09",
+      "developer": "BSC-CNS"
     }
   },
   "datasets_meta": {
