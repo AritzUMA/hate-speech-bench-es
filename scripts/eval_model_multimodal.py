@@ -1,20 +1,15 @@
 #!/usr/bin/env python3
 """
-Evalua un modelo Ollama sobre cualquier dataset del benchmark.
-Usa ThreadPoolExecutor para paralelizar las inferencias (OLLAMA_NUM_PARALLEL=16).
-
-Etiquetas de prediccion:
-  hate    -> modelo predice hate speech
-  no_hate -> modelo predice no hate speech
-  unclear -> modelo responde Unclear, da error de parseo, o no responde
-             (en el analisis posterior se trata como clase 2)
+Evalua un modelo vision de Ollama sobre cualquier dataset multimodal del benchmark.
+Lee la configuracion de registry/datasets.yaml y registry/models.yaml.
 
 Uso:
-    python3 scripts/eval_model.py --model llama3.1:8b --dataset hateval
-    python3 scripts/eval_model.py --model llama3.1:8b --dataset encarni --dry-run
-    python3 scripts/eval_model.py --model gemma3:12b --dataset misocorpus --force
+    python3 scripts/eval_model_multimodal.py --model llama3.2-vision:latest --dataset multi3hate
+    python3 scripts/eval_model_multimodal.py --model gemma4:e2b --dataset multi3hate --dry-run
+    python3 scripts/eval_model_multimodal.py --model moondream:latest --dataset multi3hate --force
 """
 import argparse
+import base64
 import json
 import re
 import time
@@ -34,17 +29,18 @@ from tqdm import tqdm
 
 # Rutas
 REPO_ROOT  = Path(__file__).parent.parent
-SAVE_EVERY = 50
-N_WORKERS  = 16
+SAVE_EVERY = 20
+N_WORKERS  = 4   # vision es mas pesado que texto
 
 # Prompt
-SYSTEM_PROMPT = """Eres un clasificador de tweets en espanol.
-Analiza cada tweet y responde solo con un objeto JSON valido exactamente en este formato:
+SYSTEM_PROMPT = """Eres un clasificador de memes en espanol.
+Analiza la imagen y el texto del meme y determina si contiene discurso de odio.
+Responde SOLO con un objeto JSON exactamente en este formato:
 {
   "is_hate_speech": "Yes" | "No" | "Unclear",
   "rationale": "Breve explicacion (1-2 frases)"
 }
-No incluyas texto adicional, ni comentarios, ni encabezados ni markdown. SOLO JSON puro."""
+No incluyas texto adicional, ni comentarios, ni markdown. SOLO JSON puro."""
 
 
 # Registry
@@ -54,9 +50,14 @@ def get_dataset_cfg(dataset_name: str) -> dict:
         datasets = yaml.safe_load(f)["datasets"]
     for d in datasets:
         if d["name"] == dataset_name:
+            if d.get("modality") != "image+text":
+                raise ValueError(
+                    f"Dataset '{dataset_name}' no es multimodal (modality={d.get('modality')}). "
+                    f"Usa eval_model.py para datasets de texto."
+                )
             return d
-    raise ValueError(f"Dataset '{dataset_name}' no encontrado en datasets.yaml.\n"
-                     f"Disponibles: {[d['name'] for d in datasets]}")
+    avail = [d["name"] for d in datasets if d.get("modality") == "image+text"]
+    raise ValueError(f"Dataset '{dataset_name}' no encontrado. Disponibles image+text: {avail}")
 
 
 def get_model_meta(model_name: str) -> dict:
@@ -66,7 +67,7 @@ def get_model_meta(model_name: str) -> dict:
         if m["ollama_name"] == model_name:
             return m
     return {"ollama_name": model_name, "family": "unknown",
-            "params": "unknown", "size_gb": None}
+            "params": "unknown", "size_gb": None, "modality": "image+text"}
 
 
 def get_evaluated(runs_dir: Path, dataset_name: str) -> set:
@@ -86,8 +87,11 @@ def get_evaluated(runs_dir: Path, dataset_name: str) -> set:
 def load_dataset(cfg: dict) -> list:
     path = REPO_ROOT / cfg["path"]
     df   = pd.read_csv(path)
-    df   = df[[cfg["text_col"], cfg["label_col"]]].dropna()
-    df.columns = ["text", "label"]
+    text_col  = cfg["text_col"]
+    image_col = cfg["image_col"]
+    label_col = cfg["label_col"]
+    df = df[[text_col, image_col, label_col]].dropna()
+    df.columns = ["text", "image_path", "label"]
     df["label"] = df["label"].str.strip()
     records = df.to_dict(orient="records")
     valid = [r for r in records if r["label"] in ("hate", "no_hate")]
@@ -98,31 +102,38 @@ def load_dataset(cfg: dict) -> list:
 
 # Clasificador
 
-def classify_tweet(model: str, text: str) -> str:
-    """
-    Clasifica un tweet. Devuelve 'hate', 'no_hate' o 'unclear'.
-    Un solo intento — si falla o es ambiguo devuelve 'unclear'.
-    """
-    messages = [
-        {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user",   "content": text},
-    ]
+def image_to_base64(image_path: str) -> str:
+    with open(image_path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
 
+
+def classify_meme(model: str, text: str, image_path: str) -> str:
+    """
+    Clasifica un meme (imagen + texto).
+    Devuelve 'hate', 'no_hate' o 'unclear'.
+    Un solo intento — si falla devuelve 'unclear'.
+    """
     try:
+        img_b64    = image_to_base64(image_path)
+        caption    = text.replace("<sep>", "\n").strip()
+        user_content = f'Texto del meme:\n"{caption}"\n\nClasifica este meme.'
+
         response = ollama.chat(
             model=model,
-            messages=messages,
-            options={"temperature": 0, "seed": 42},
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {
+                    "role":    "user",
+                    "content": user_content,
+                    "images":  [img_b64],
+                },
+            ],
+            options={"temperature": 0},
         )
+
         raw = response["message"]["content"].strip()
-
-        # Elimina bloques <think>...</think> de modelos de razonamiento
-        raw = re.sub(r'<think>.*?</think>', '', raw, flags=re.DOTALL).strip()
-
-        # Limpieza markdown
+        raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
         raw = raw.replace("```json", "").replace("```", "").strip()
-
-        # Extrae el primer bloque JSON si hay texto alrededor
         if not raw.startswith("{"):
             start, end = raw.find("{"), raw.rfind("}")
             if start != -1 and end > start:
@@ -131,11 +142,10 @@ def classify_tweet(model: str, text: str) -> str:
         clf = json.loads(raw)
         val = str(clf.get("is_hate_speech", "")).strip().lower()
 
-        if val in ("yes", "si", "sí"):
+        if val in ("yes", "si", "si"):
             return "hate"
-        if val == "no":
-            return "no_hate"
-        # Unclear explícito o valor no reconocido
+        if val in ("no", "unclear"):
+            return "no_hate" if val == "no" else "unclear"
         return "unclear"
 
     except Exception:
@@ -145,13 +155,14 @@ def classify_tweet(model: str, text: str) -> str:
 # Main
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Evalua un modelo vision sobre un dataset multimodal del benchmark")
     parser.add_argument("--model",   required=True)
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--dry-run", action="store_true",
-                        help="Clasifica solo los primeros 10 tweets sin guardar")
+                        help="Clasifica solo los primeros 5 memes sin guardar")
     parser.add_argument("--force",   action="store_true",
-                        help="Evalua aunque ya exista resultado en results/runs/")
+                        help="Evalua aunque ya exista resultado")
     parser.add_argument("--workers", type=int, default=N_WORKERS)
     args = parser.parse_args()
 
@@ -171,18 +182,19 @@ def main():
             print("       Usa --force para repetir.")
             return
 
-    # Cargar dataset
+    # Cargar dataset y metadata
     ds_cfg     = get_dataset_cfg(args.dataset)
     model_meta = get_model_meta(args.model)
     test_set   = load_dataset(ds_cfg)
 
     if args.dry_run:
-        test_set = test_set[:10]
+        test_set = test_set[:5]
 
     print(f"[eval] modelo    : {args.model}")
     print(f"[eval] familia   : {model_meta.get('family')}  |  "
           f"{model_meta.get('params')}  |  {model_meta.get('size_gb')} GB")
     print(f"[eval] dataset   : {args.dataset} - {ds_cfg['display']}")
+    print(f"[eval] modalidad : {ds_cfg.get('modality')}")
     print(f"[eval] instancias: {len(test_set)}")
     print(f"[eval] workers   : {args.workers}")
     if args.dry_run:
@@ -190,17 +202,21 @@ def main():
 
     # Evaluacion paralela
     results_map     = {}
+    n_unclear       = 0
     checkpoint_lock = threading.Lock()
     partial_path    = runs_dir / f"partial_{safe_model}_{args.dataset}.jsonl"
     completed       = 0
     t0              = time.time()
 
     pbar = tqdm(total=len(test_set),
-                desc=f"{args.model} x {args.dataset}", unit="tweet")
+                desc=f"{args.model} x {args.dataset}", unit="meme")
 
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         futures = {
-            executor.submit(classify_tweet, args.model, item["text"]): i
+            executor.submit(
+                classify_meme, args.model,
+                item["text"], item["image_path"]
+            ): i
             for i, item in enumerate(test_set)
         }
 
@@ -218,22 +234,22 @@ def main():
                             row = {
                                 "idx":        idx,
                                 "text":       test_set[idx]["text"],
+                                "image_path": test_set[idx]["image_path"],
                                 "gold_label": test_set[idx]["label"],
                                 "pred_label": results_map[idx],
                                 "model":      args.model,
                                 "dataset":    args.dataset,
                             }
                             pf.write(json.dumps(row, ensure_ascii=False) + "\n")
-                    tqdm.write(f"  [checkpoint] {completed}/{len(test_set)} guardado")
+                tqdm.write(f"  [checkpoint] {completed}/{len(test_set)} guardado")
 
     pbar.close()
     elapsed = time.time() - t0
 
-    # Reordena resultados por idx
+    # Reordena
     trues            = []
     preds            = []
     predictions_rows = []
-    n_unclear        = 0
 
     for i, item in enumerate(test_set):
         pred = results_map.get(i, "unclear")
@@ -244,22 +260,21 @@ def main():
         predictions_rows.append({
             "idx":        i,
             "text":       item["text"],
+            "image_path": item["image_path"],
             "gold_label": item["label"],
             "pred_label": pred,
             "model":      args.model,
             "dataset":    args.dataset,
         })
 
-    # Dry-run: solo mostrar
+    # Dry-run
     if args.dry_run:
         print(f"\n[dry-run] predicciones : {preds}")
         print(f"[dry-run] gold         : {trues}")
-        correct = sum(p == g for p, g in zip(preds, trues) if p != "unclear")
         print(f"[dry-run] unclear      : {n_unclear}/{len(trues)}")
-        print(f"[dry-run] correctas    : {correct}/{len(trues) - n_unclear}")
         return
 
-    # Metricas — sobre las 3 clases (unclear = 2 en el analisis posterior)
+    # Metricas
     labels_present = ["hate", "no_hate", "unclear"]
     macro_f1  = f1_score(trues, preds, average="macro",
                          labels=labels_present, zero_division=0)
@@ -269,26 +284,21 @@ def main():
                              labels=labels_present, zero_division=0)
     accuracy  = accuracy_score(trues, preds)
     per_class = classification_report(
-        trues, preds,
-        labels=labels_present,
-        output_dict=True,
-        zero_division=0,
+        trues, preds, labels=labels_present,
+        output_dict=True, zero_division=0,
     )
-
-    # Metricas binarias (excluyendo unclear) para comparacion
-    trues_bin = [t for t, p in zip(trues, preds) if p != "unclear"]
-    preds_bin = [p for p in preds if p != "unclear"]
+    trues_bin    = [t for t, p in zip(trues, preds) if p != "unclear"]
+    preds_bin    = [p for p in preds if p != "unclear"]
     macro_f1_bin = f1_score(trues_bin, preds_bin, average="macro",
                             zero_division=0) if trues_bin else 0
 
     print(f"\n[eval] Resultados")
     print(f"[eval] macro-F1 (3 clases) : {macro_f1:.4f}")
-    print(f"[eval] macro-F1 (binario)  : {macro_f1_bin:.4f}  (excluyendo unclear)")
+    print(f"[eval] macro-F1 (binario)  : {macro_f1_bin:.4f}")
     print(f"[eval] accuracy            : {accuracy:.4f}")
     print(f"[eval] hate F1             : {per_class.get('hate', {}).get('f1-score', 0):.4f}")
-    print(f"[eval] unclear             : {n_unclear}/{len(test_set)}  "
-          f"({n_unclear/len(test_set)*100:.1f}%)")
-    print(f"[eval] tiempo              : {elapsed:.0f}s  ({elapsed/len(test_set):.2f}s/tweet)")
+    print(f"[eval] unclear             : {n_unclear}/{len(test_set)}  ({n_unclear/len(test_set)*100:.1f}%)")
+    print(f"[eval] tiempo              : {elapsed:.0f}s  ({elapsed/len(test_set):.1f}s/meme)")
 
     pred_fname = f"{ts.strftime('%Y-%m-%d')}_{safe_model}_{args.dataset}_predictions.jsonl"
     fname      = f"{ts.strftime('%Y-%m-%d')}_{safe_model}_{args.dataset}.json"
@@ -302,6 +312,7 @@ def main():
         "size_gb":         model_meta.get("size_gb"),
         "dataset":         args.dataset,
         "dataset_display": ds_cfg["display"],
+        "modality":        ds_cfg.get("modality", "image+text"),
         "n_instances":     len(test_set),
         "n_unclear":       n_unclear,
         "n_workers":       args.workers,
@@ -325,7 +336,7 @@ def main():
             },
         },
         "elapsed_seconds":  round(elapsed, 1),
-        "prompt_hash":      "v2",
+        "prompt_hash":      "v1_multimodal",
         "predictions_file": f"results/predictions/{pred_fname}",
     }
 

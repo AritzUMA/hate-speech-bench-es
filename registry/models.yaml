@@ -140,3 +140,45 @@ models:
     release_date: "2024-04"
     developer: "Microsoft"
     added: "2025-05-08"
+
+
+  # ── Modelos vision (imagen + texto) ────────────────────────────────────────
+ 
+  - ollama_name: "llama3.2-vision:latest"
+    family: "LLaMA 3.2"
+    params: "11B"
+    size_gb: 7.8
+    release_date: "2024-09"
+    developer: "Meta"
+    modality: "image+text"
+    added: "2025-05-10"
+ 
+  - ollama_name: "moondream:latest"
+    family: "Moondream"
+    params: "1.8B"
+    size_gb: 1.7
+    release_date: "2024-06"
+    developer: "Vikhyat Kopf"
+    modality: "image+text"
+    notes: "modelo ligero especializado en imagen"
+    added: "2025-05-10"
+ 
+  - ollama_name: "gemma4:e2b"
+    family: "Gemma 4"
+    params: "2B"
+    size_gb: 7.2
+    release_date: "2026-04"
+    developer: "Google DeepMind"
+    modality: "image+text"
+    notes: "multimodal nativo"
+    added: "2025-05-08"
+ 
+  - ollama_name: "gemma4:e4b"
+    family: "Gemma 4"
+    params: "4B"
+    size_gb: 9.6
+    release_date: "2026-04"
+    developer: "Google DeepMind"
+    modality: "image+text"
+    notes: "multimodal nativo"
+    added: "2025-05-08"

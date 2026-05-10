@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-10_hdnh2006-salamandra-7b-instruct-latest_chileno.json",
+  "timestamp": "2026-05-10T16:03:01.764057+00:00",
+  "model": "hdnh2006/salamandra-7b-instruct:latest",
+  "family": "Salamandra",
+  "params": "7B",
+  "size_gb": 4.9,
+  "dataset": "chileno",
+  "dataset_display": "Chileno — Arango Monnar et al. (2022)",
+  "n_instances": 9500,
+  "n_unclear": 4816,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.1557,
+    "macro_f1_binary": 0.357,
+    "precision": 0.3551,
+    "recall": 0.2152,
+    "accuracy": 0.2038
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.09237487403426269,
+      "recall": 0.4590984974958264,
+      "f1-score": 0.15380313199105144,
+      "support": 599.0
+    },
+    "no_hate": {
+      "precision": 0.9730521382542472,
+      "recall": 0.18660824626446468,
+      "f1-score": 0.3131598793363499,
+      "support": 8901.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.20378947368421052,
+    "macro avg": {
+      "precision": 0.3551423374295033,
+      "recall": 0.21523558125343034,
+      "f1-score": 0.1556543371091338,
+      "support": 9500.0
+    },
+    "weighted avg": {
+      "precision": 0.9175231191734291,
+      "recall": 0.20378947368421052,
+      "f1-score": 0.3031120170563675,
+      "support": 9500.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 599,
+      "no_hate": 8901
+    },
+    "pred": {
+      "hate": 2977,
+      "no_hate": 1707,
+      "unclear": 4816
+    }
+  },
+  "elapsed_seconds": 6930.0,
+  "prompt_hash": "v2",
+  "predictions_file": "results/predictions/2026-05-10_hdnh2006-salamandra-7b-instruct-latest_chileno_predictions.jsonl"
+}

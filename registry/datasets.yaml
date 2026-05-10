@@ -1,7 +1,10 @@
 datasets:
 
+  # ── Texto ──────────────────────────────────────────────────────────────────
+
   - name: "encarni"
     display: "Encarnación Hidalgo (UMA)"
+    modality: "text"
     path: "data/encarni_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -19,6 +22,7 @@ datasets:
 
   - name: "hateval"
     display: "HatEval — SemEval-2019 Task 5"
+    modality: "text"
     path: "data/hateval_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -36,6 +40,7 @@ datasets:
 
   - name: "haternet"
     display: "HaterNet — Pereira-Kohatsu et al. (2019)"
+    modality: "text"
     path: "data/haternet_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -53,6 +58,7 @@ datasets:
 
   - name: "chileno"
     display: "Chileno — Arango Monnar et al. (2022)"
+    modality: "text"
     path: "data/chileno_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -70,6 +76,7 @@ datasets:
 
   - name: "hascosva"
     display: "HaSCoSVa — Castillo-López et al. (2023)"
+    modality: "text"
     path: "data/hascosva_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -87,6 +94,7 @@ datasets:
 
   - name: "misocorpus"
     display: "MisoCorpus — García-Díaz et al. (2021)"
+    modality: "text"
     path: "data/misocorpus_clean.csv"
     text_col: "text"
     label_col: "label"
@@ -101,3 +109,25 @@ datasets:
     topic: "misoginia"
     lang: "es"
     paper: "García-Díaz et al. (2021)"
+
+  # ── Imagen + Texto ─────────────────────────────────────────────────────────
+
+  - name: "multi3hate"
+    display: "Multi3Hate — Bui et al. (2024)"
+    modality: "image+text"
+    path: "data/multi3hate_clean.csv"
+    text_col: "caption_es"
+    image_col: "image_path"
+    label_col: "label"
+    labels: {"no_hate": "no_hate", "hate": "hate"}
+    task: "binary"
+    platform: "Internet (memes)"
+    source: "Memes multilingüe — anotadores MX"
+    n_total: 300
+    hate: 167
+    no_hate: 133
+    iaa: "Acuerdo medio: 74%"
+    topic: "hate speech en memes — perspectiva multicultural"
+    lang: "es-MX"
+    paper: "Bui et al. (2024)"
+    image_dir: "data/Multi3Hate/data/memes/es"

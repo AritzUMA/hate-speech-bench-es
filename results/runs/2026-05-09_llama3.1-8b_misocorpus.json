@@ -1,6 +1,6 @@
 {
   "run_id": "2026-05-09_llama3.1-8b_misocorpus.json",
-  "timestamp": "2026-05-09T11:33:22.737949+00:00",
+  "timestamp": "2026-05-09T20:38:53.734020+00:00",
   "model": "llama3.1:8b",
   "family": "LLaMA 3.1",
   "params": "8B",
@@ -8,38 +8,45 @@
   "dataset": "misocorpus",
   "dataset_display": "MisoCorpus — García-Díaz et al. (2021)",
   "n_instances": 3463,
-  "n_sin_pred": 9,
-  "n_workers": 8,
+  "n_unclear": 19,
+  "n_workers": 16,
   "metrics": {
-    "macro_f1": 0.6392,
-    "precision": 0.7384,
-    "recall": 0.6853,
-    "accuracy": 0.6506
+    "macro_f1": 0.426,
+    "macro_f1_binary": 0.6409,
+    "precision": 0.4948,
+    "recall": 0.4562,
+    "accuracy": 0.6491
   },
   "per_class": {
     "hate": {
-      "precision": 0.557542768273717,
-      "recall": 0.952191235059761,
-      "f1-score": 0.7032859244727808,
+      "precision": 0.559797428905337,
+      "recall": 0.954183266932271,
+      "f1-score": 0.7056223913577215,
       "support": 1506.0
     },
     "no_hate": {
-      "precision": 0.9191919191919192,
-      "recall": 0.41849770056208485,
-      "f1-score": 0.5751404494382022,
+      "precision": 0.9247434435575826,
+      "recall": 0.41440981093510476,
+      "f1-score": 0.5723359209597741,
       "support": 1957.0
     },
-    "accuracy": 0.6505919722783714,
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6491481374530753,
     "macro avg": {
-      "precision": 0.7383673437328181,
-      "recall": 0.685344467810923,
-      "f1-score": 0.6392131869554916,
+      "precision": 0.4948469574876399,
+      "recall": 0.45619769262245863,
+      "f1-score": 0.42598610410583193,
       "support": 3463.0
     },
     "weighted avg": {
-      "precision": 0.7619168336352307,
-      "recall": 0.6505919722783714,
-      "f1-score": 0.6308687443853797,
+      "precision": 0.7660346078468457,
+      "recall": 0.6491481374530753,
+      "f1-score": 0.6302999476474176,
       "support": 3463.0
     }
   },
@@ -49,11 +56,12 @@
       "no_hate": 1957
     },
     "pred": {
-      "hate": 2572,
-      "no_hate": 891
+      "hate": 2567,
+      "no_hate": 877,
+      "unclear": 19
     }
   },
-  "elapsed_seconds": 783.8,
-  "prompt_hash": "v1",
+  "elapsed_seconds": 769.5,
+  "prompt_hash": "v2",
   "predictions_file": "results/predictions/2026-05-09_llama3.1-8b_misocorpus_predictions.jsonl"
 }

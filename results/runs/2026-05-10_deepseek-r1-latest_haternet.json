@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-10_deepseek-r1-latest_haternet.json",
+  "timestamp": "2026-05-10T13:18:05.781665+00:00",
+  "model": "deepseek-r1:latest",
+  "family": "DeepSeek R1",
+  "params": "7B",
+  "size_gb": 4.7,
+  "dataset": "haternet",
+  "dataset_display": "HaterNet — Pereira-Kohatsu et al. (2019)",
+  "n_instances": 5999,
+  "n_unclear": 5999,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.0,
+    "macro_f1_binary": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "accuracy": 0.0
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1567.0
+    },
+    "no_hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 4432.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.0,
+    "macro avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 5999.0
+    },
+    "weighted avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 5999.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1567,
+      "no_hate": 4432
+    },
+    "pred": {
+      "hate": 0,
+      "no_hate": 0,
+      "unclear": 5999
+    }
+  },
+  "elapsed_seconds": 5.2,
+  "prompt_hash": "v2",
+  "predictions_file": "results/predictions/2026-05-10_deepseek-r1-latest_haternet_predictions.jsonl"
+}

@@ -1,6 +1,6 @@
 {
   "run_id": "2026-05-09_llama3.1-8b_hascosva.json",
-  "timestamp": "2026-05-09T11:17:49.782733+00:00",
+  "timestamp": "2026-05-09T20:23:47.755313+00:00",
   "model": "llama3.1:8b",
   "family": "LLaMA 3.1",
   "params": "8B",
@@ -8,38 +8,45 @@
   "dataset": "hascosva",
   "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
   "n_instances": 3994,
-  "n_sin_pred": 0,
-  "n_workers": 8,
+  "n_unclear": 18,
+  "n_workers": 16,
   "metrics": {
-    "macro_f1": 0.6334,
-    "precision": 0.6434,
-    "recall": 0.7866,
-    "accuracy": 0.7133
+    "macro_f1": 0.4222,
+    "macro_f1_binary": 0.6347,
+    "precision": 0.4298,
+    "recall": 0.524,
+    "accuracy": 0.7108
   },
   "per_class": {
     "hate": {
-      "precision": 0.31238095238095237,
-      "recall": 0.8880866425992779,
-      "f1-score": 0.46218882104274306,
+      "precision": 0.31361323155216286,
+      "recall": 0.8898916967509025,
+      "f1-score": 0.46378174976481656,
       "support": 554.0
     },
     "no_hate": {
-      "precision": 0.9743695742042167,
-      "recall": 0.6851744186046511,
-      "f1-score": 0.8045741594128691,
+      "precision": 0.9758735440931781,
+      "recall": 0.6819767441860465,
+      "f1-score": 0.8028747433264887,
       "support": 3440.0
     },
-    "accuracy": 0.7133199799699549,
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7108162243365047,
     "macro avg": {
-      "precision": 0.6433752632925845,
-      "recall": 0.7866305306019645,
-      "f1-score": 0.6333814902278061,
+      "precision": 0.4298289252151137,
+      "recall": 0.523956146978983,
+      "f1-score": 0.4222188310304351,
       "support": 3994.0
     },
     "weighted avg": {
-      "precision": 0.8825464153434034,
-      "recall": 0.7133199799699549,
-      "f1-score": 0.757082552638445,
+      "precision": 0.8840126995394167,
+      "recall": 0.7108162243365047,
+      "f1-score": 0.7558398113201876,
       "support": 3994.0
     }
   },
@@ -49,11 +56,12 @@
       "no_hate": 3440
     },
     "pred": {
-      "hate": 1575,
-      "no_hate": 2419
+      "hate": 1572,
+      "no_hate": 2404,
+      "unclear": 18
     }
   },
-  "elapsed_seconds": 931.4,
-  "prompt_hash": "v1",
+  "elapsed_seconds": 904.5,
+  "prompt_hash": "v2",
   "predictions_file": "results/predictions/2026-05-09_llama3.1-8b_hascosva_predictions.jsonl"
 }

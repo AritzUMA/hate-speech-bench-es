@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-10_gpt-oss-20b_encarni.json",
+  "timestamp": "2026-05-10T19:30:54.756265+00:00",
+  "model": "gpt-oss:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "encarni",
+  "dataset_display": "Encarnación Hidalgo (UMA)",
+  "n_instances": 667,
+  "n_unclear": 315,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.231,
+    "macro_f1_binary": 0.4897,
+    "precision": 0.4009,
+    "recall": 0.2239,
+    "accuracy": 0.2594
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.8899082568807339,
+      "recall": 0.1905697445972495,
+      "f1-score": 0.313915857605178,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.31275720164609055,
+      "recall": 0.4810126582278481,
+      "f1-score": 0.3790523690773067,
+      "support": 158.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.2593703148425787,
+    "macro avg": {
+      "precision": 0.4008884861756082,
+      "recall": 0.22386080094169922,
+      "f1-score": 0.23098940889416156,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.7531918150110584,
+      "recall": 0.2593703148425787,
+      "f1-score": 0.3293454960048726,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 109,
+      "no_hate": 243,
+      "unclear": 315
+    }
+  },
+  "elapsed_seconds": 487.3,
+  "prompt_hash": "v2",
+  "predictions_file": "results/predictions/2026-05-10_gpt-oss-20b_encarni_predictions.jsonl"
+}
