@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-10T11:05:30.395265+00:00",
-  "n_runs": 22,
+  "generated": "2026-05-10T11:10:40.636848+00:00",
+  "n_runs": 23,
   "n_models": 4,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
@@ -289,6 +289,18 @@
         "n_unclear": 201,
         "elapsed": 1902.6,
         "timestamp": "2026-05-10T10:24:00.735223+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.477,
+        "macro_f1_binary": 0.7239,
+        "precision": 0.4812,
+        "recall": 0.4729,
+        "accuracy": 0.8553,
+        "hate_f1": 0.512306289881495,
+        "n_instances": 3994,
+        "n_unclear": 66,
+        "elapsed": 783.5,
+        "timestamp": "2026-05-10T10:55:44.784142+00:00"
       }
     }
   },
@@ -327,13 +339,13 @@
       "coverage": 92.6
     },
     "qwen2.5:7b": {
-      "macro_f1": 0.3851,
-      "macro_f1_binary": 0.5819,
-      "hate_f1": 0.4767,
-      "precision": 0.411,
-      "recall": 0.4256,
-      "accuracy": 0.6393,
-      "n_datasets": 4,
+      "macro_f1": 0.4035,
+      "macro_f1_binary": 0.6103,
+      "hate_f1": 0.4838,
+      "precision": 0.425,
+      "recall": 0.4351,
+      "accuracy": 0.6825,
+      "n_datasets": 5,
       "n_datasets_total": 6,
       "coverage": 98.4
     }
@@ -442,6 +454,14 @@
       "f1": 0.3305,
       "hate_f1": 0.161946017994002,
       "elapsed": 1902.6
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "qwen2.5:7b",
+      "dataset": "hascosva",
+      "f1": 0.477,
+      "hate_f1": 0.512306289881495,
+      "elapsed": 783.5
     },
     {
       "ts": "2026-05-09",
