@@ -1,13 +1,14 @@
 {
-  "generated": "2026-05-10T11:16:11.870742+00:00",
-  "n_runs": 23,
-  "n_models": 4,
+  "generated": "2026-05-10T11:23:31.597692+00:00",
+  "n_runs": 25,
+  "n_models": 5,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
     "gemma2:latest",
     "gemma3:12b",
     "llama3.1:8b",
+    "mistral:7b",
     "qwen2.5:7b"
   ],
   "datasets": [
@@ -301,6 +302,32 @@
         "n_unclear": 66,
         "elapsed": 783.5,
         "timestamp": "2026-05-10T10:55:44.784142+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.4581,
+        "macro_f1_binary": 0.6916,
+        "precision": 0.4606,
+        "recall": 0.456,
+        "accuracy": 0.6867,
+        "hate_f1": 0.6521030322791,
+        "n_instances": 3463,
+        "n_unclear": 43,
+        "elapsed": 681.8,
+        "timestamp": "2026-05-10T11:08:49.798604+00:00"
+      }
+    },
+    "mistral:7b": {
+      "encarni": {
+        "macro_f1": 0.3301,
+        "macro_f1_binary": 0.6305,
+        "precision": 0.4206,
+        "recall": 0.2718,
+        "accuracy": 0.4858,
+        "hate_f1": 0.6674528301886793,
+        "n_instances": 667,
+        "n_unclear": 232,
+        "elapsed": 151.2,
+        "timestamp": "2026-05-10T11:20:12.762815+00:00"
       }
     }
   },
@@ -339,15 +366,26 @@
       "coverage": 92.6
     },
     "qwen2.5:7b": {
-      "macro_f1": 0.4035,
-      "macro_f1_binary": 0.6103,
-      "hate_f1": 0.4838,
-      "precision": 0.425,
-      "recall": 0.4351,
-      "accuracy": 0.6825,
-      "n_datasets": 5,
+      "macro_f1": 0.4126,
+      "macro_f1_binary": 0.6239,
+      "hate_f1": 0.5118,
+      "precision": 0.4309,
+      "recall": 0.4385,
+      "accuracy": 0.6832,
+      "n_datasets": 6,
       "n_datasets_total": 6,
       "coverage": 98.4
+    },
+    "mistral:7b": {
+      "macro_f1": 0.3301,
+      "macro_f1_binary": 0.6305,
+      "hate_f1": 0.6675,
+      "precision": 0.4206,
+      "recall": 0.2718,
+      "accuracy": 0.4858,
+      "n_datasets": 1,
+      "n_datasets_total": 6,
+      "coverage": 65.2
     }
   },
   "history": [
@@ -464,6 +502,22 @@
       "elapsed": 783.5
     },
     {
+      "ts": "2026-05-10",
+      "model": "qwen2.5:7b",
+      "dataset": "misocorpus",
+      "f1": 0.4581,
+      "hate_f1": 0.6521030322791,
+      "elapsed": 681.8
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "encarni",
+      "f1": 0.3301,
+      "hate_f1": 0.6674528301886793,
+      "elapsed": 151.2
+    },
+    {
       "ts": "2026-05-09",
       "model": "llama3.1:8b",
       "dataset": "encarni",
@@ -564,6 +618,13 @@
       "size_gb": 4.7,
       "release_date": "2024-09",
       "developer": "Alibaba"
+    },
+    "mistral:7b": {
+      "family": "Mistral",
+      "params": "7B",
+      "size_gb": 4.4,
+      "release_date": "2024-05",
+      "developer": "Mistral AI"
     }
   },
   "datasets_meta": {
