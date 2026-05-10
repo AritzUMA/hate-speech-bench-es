@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-10T10:51:30.216121+00:00",
-  "n_runs": 21,
+  "generated": "2026-05-10T10:58:34.511293+00:00",
+  "n_runs": 22,
   "n_models": 4,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
@@ -277,6 +277,18 @@
         "n_unclear": 76,
         "elapsed": 1167.2,
         "timestamp": "2026-05-10T10:04:31.790693+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3305,
+        "macro_f1_binary": 0.5011,
+        "precision": 0.3504,
+        "recall": 0.3806,
+        "accuracy": 0.7154,
+        "hate_f1": 0.161946017994002,
+        "n_instances": 9500,
+        "n_unclear": 201,
+        "elapsed": 1902.6,
+        "timestamp": "2026-05-10T10:24:00.735223+00:00"
       }
     }
   },
@@ -315,15 +327,15 @@
       "coverage": 92.6
     },
     "qwen2.5:7b": {
-      "macro_f1": 0.4033,
-      "macro_f1_binary": 0.6088,
-      "hate_f1": 0.5816,
-      "precision": 0.4312,
-      "recall": 0.4406,
-      "accuracy": 0.6139,
-      "n_datasets": 3,
+      "macro_f1": 0.3851,
+      "macro_f1_binary": 0.5819,
+      "hate_f1": 0.4767,
+      "precision": 0.411,
+      "recall": 0.4256,
+      "accuracy": 0.6393,
+      "n_datasets": 4,
       "n_datasets_total": 6,
-      "coverage": 98.7
+      "coverage": 98.4
     }
   },
   "history": [
@@ -422,6 +434,14 @@
       "f1": 0.456,
       "hate_f1": 0.582744702320888,
       "elapsed": 1167.2
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "qwen2.5:7b",
+      "dataset": "chileno",
+      "f1": 0.3305,
+      "hate_f1": 0.161946017994002,
+      "elapsed": 1902.6
     },
     {
       "ts": "2026-05-09",
