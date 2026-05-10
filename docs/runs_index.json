@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-10T10:13:38.188254+00:00",
-  "n_runs": 20,
+  "generated": "2026-05-10T10:30:30.674371+00:00",
+  "n_runs": 21,
   "n_models": 4,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
@@ -265,6 +265,18 @@
         "n_unclear": 83,
         "elapsed": 1212.8,
         "timestamp": "2026-05-10T09:44:17.745149+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.456,
+        "macro_f1_binary": 0.6881,
+        "precision": 0.456,
+        "recall": 0.4807,
+        "accuracy": 0.7135,
+        "hate_f1": 0.582744702320888,
+        "n_instances": 5999,
+        "n_unclear": 76,
+        "elapsed": 1167.2,
+        "timestamp": "2026-05-10T10:04:31.790693+00:00"
       }
     }
   },
@@ -303,13 +315,13 @@
       "coverage": 92.6
     },
     "qwen2.5:7b": {
-      "macro_f1": 0.377,
-      "macro_f1_binary": 0.5692,
-      "hate_f1": 0.581,
-      "precision": 0.4188,
-      "recall": 0.4205,
-      "accuracy": 0.5642,
-      "n_datasets": 2,
+      "macro_f1": 0.4033,
+      "macro_f1_binary": 0.6088,
+      "hate_f1": 0.5816,
+      "precision": 0.4312,
+      "recall": 0.4406,
+      "accuracy": 0.6139,
+      "n_datasets": 3,
       "n_datasets_total": 6,
       "coverage": 98.7
     }
@@ -402,6 +414,14 @@
       "f1": 0.4317,
       "hate_f1": 0.6335877862595419,
       "elapsed": 1212.8
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "qwen2.5:7b",
+      "dataset": "haternet",
+      "f1": 0.456,
+      "hate_f1": 0.582744702320888,
+      "elapsed": 1167.2
     },
     {
       "ts": "2026-05-09",
