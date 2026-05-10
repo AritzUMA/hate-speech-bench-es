@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-10T11:34:27.354770+00:00",
-  "n_runs": 25,
+  "generated": "2026-05-10T13:05:17.975620+00:00",
+  "n_runs": 29,
   "n_models": 5,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
@@ -328,6 +328,54 @@
         "n_unclear": 232,
         "elapsed": 151.2,
         "timestamp": "2026-05-10T11:20:12.762815+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.3269,
+        "macro_f1_binary": 0.563,
+        "precision": 0.4562,
+        "recall": 0.3309,
+        "accuracy": 0.4513,
+        "hate_f1": 0.6165235416049748,
+        "n_instances": 6595,
+        "n_unclear": 1525,
+        "elapsed": 1396.5,
+        "timestamp": "2026-05-10T11:22:45.779784+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.3069,
+        "macro_f1_binary": 0.5729,
+        "precision": 0.4417,
+        "recall": 0.3147,
+        "accuracy": 0.3756,
+        "hate_f1": 0.5027374434658415,
+        "n_instances": 5999,
+        "n_unclear": 2070,
+        "elapsed": 1386.7,
+        "timestamp": "2026-05-10T11:46:03.773512+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.2023,
+        "macro_f1_binary": 0.3965,
+        "precision": 0.3603,
+        "recall": 0.2927,
+        "accuracy": 0.296,
+        "hate_f1": 0.1773955773955774,
+        "n_instances": 9500,
+        "n_unclear": 3520,
+        "elapsed": 2323.6,
+        "timestamp": "2026-05-10T12:09:11.694143+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.3826,
+        "macro_f1_binary": 0.6935,
+        "precision": 0.4489,
+        "recall": 0.3704,
+        "accuracy": 0.5513,
+        "hate_f1": 0.44333570919458304,
+        "n_instances": 3994,
+        "n_unclear": 1216,
+        "elapsed": 936.9,
+        "timestamp": "2026-05-10T12:47:56.723030+00:00"
       }
     }
   },
@@ -377,15 +425,15 @@
       "coverage": 98.4
     },
     "mistral:7b": {
-      "macro_f1": 0.3301,
-      "macro_f1_binary": 0.6305,
-      "hate_f1": 0.6675,
-      "precision": 0.4206,
-      "recall": 0.2718,
-      "accuracy": 0.4858,
-      "n_datasets": 1,
+      "macro_f1": 0.3098,
+      "macro_f1_binary": 0.5713,
+      "hate_f1": 0.4815,
+      "precision": 0.4255,
+      "recall": 0.3161,
+      "accuracy": 0.432,
+      "n_datasets": 5,
       "n_datasets_total": 6,
-      "coverage": 65.2
+      "coverage": 68.0
     }
   },
   "history": [
@@ -516,6 +564,38 @@
       "f1": 0.3301,
       "hate_f1": 0.6674528301886793,
       "elapsed": 151.2
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "hateval",
+      "f1": 0.3269,
+      "hate_f1": 0.6165235416049748,
+      "elapsed": 1396.5
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "haternet",
+      "f1": 0.3069,
+      "hate_f1": 0.5027374434658415,
+      "elapsed": 1386.7
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "chileno",
+      "f1": 0.2023,
+      "hate_f1": 0.1773955773955774,
+      "elapsed": 2323.6
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "mistral:7b",
+      "dataset": "hascosva",
+      "f1": 0.3826,
+      "hate_f1": 0.44333570919458304,
+      "elapsed": 936.9
     },
     {
       "ts": "2026-05-09",
