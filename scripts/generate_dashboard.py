@@ -100,6 +100,7 @@ def build_index(runs, models_meta, datasets_meta):
         "overall":         overall,
         "history":         history[:100],
         "models_meta":     {k: {
+            "display_name": v.get("display_name", k),
             "family":       v.get("family", ""),
             "params":       v.get("params", ""),
             "size_gb":      v.get("size_gb"),
@@ -188,7 +189,7 @@ const { useState, useMemo, useEffect, useRef } = React;
 const DATA = window.__INDEX__;
 
 const CDN   = 'https://unpkg.com/@lobehub/icons-static-png@latest/light/';
-const LOGOS = 'https://aritzuma.github.io/hate-speech-bench-es/docs/logos/';
+const LOGOS = 'https://aritzuma.github.io/hate-speech-bench-es/logos/';
 const FAMILY_ICON = {
   'LLaMA 3.1':   CDN+'meta.png',
   'LLaMA':       CDN+'meta.png',
@@ -290,6 +291,7 @@ function Leaderboard() {
       .filter(m => isOv ? DATA.overall[m] : DATA.results[m] && DATA.results[m][ds])
       .map(m => ({
         model:        m,
+        display_name: DATA.models_meta[m] ? DATA.models_meta[m].display_name : m,
         family:       DATA.models_meta[m] ? DATA.models_meta[m].family : '',
         params:       DATA.models_meta[m] ? DATA.models_meta[m].params : '',
         developer:    DATA.models_meta[m] ? DATA.models_meta[m].developer : '',
@@ -367,7 +369,7 @@ function Leaderboard() {
                         style={{marginRight:6, verticalAlign:'middle', borderRadius:2}}
                         onError={e => { e.target.style.display='none'; }}/>
                     : null}
-                  <b>{r.model}</b>
+                  <b>{r.display_name || r.model}</b>
                 </td>
                 <td style={{color: col(r.family), fontWeight:500}}>{r.family}</td>
                 <td><span className="tag">{r.params}</span></td>
@@ -417,7 +419,7 @@ function HateF1Bar() {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => m),
+      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
       values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
@@ -477,7 +479,7 @@ function ReleaseDateScatter() {
       const parts = (meta.release_date || '').split('-').map(Number);
       const y = parts[0], mo = parts[1];
       if (!y) return;
-      byFamily[f].push({ x: y + (mo-1)/12, y: DATA.overall[m].hate_f1 || 0, label: m, mo, yr: y });
+      byFamily[f].push({ x: y + (mo-1)/12, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
@@ -556,7 +558,7 @@ function ParamsScatter() {
       if (!byFamily[f]) byFamily[f] = [];
       const p = parseFloat((meta.params || '0').replace('B',''));
       if (!p) return;
-      byFamily[f].push({ x: p, y: DATA.overall[m].hate_f1 || 0, label: m });
+      byFamily[f].push({ x: p, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m) });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
