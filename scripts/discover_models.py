@@ -77,6 +77,6 @@ for m in raw:
 
 output.sort(key=lambda x: x["pulls"], reverse=True)
 
-out_path = REPO_ROOT / "pending_candidates.json"
+out_path = Path("pending_candidates.json")
 out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
 print(f"[discover] {len(output)} candidatos -> {out_path}")
