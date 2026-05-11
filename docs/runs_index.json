@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-11T10:10:56.318525+00:00",
+  "generated": "2026-05-11T10:11:24.918810+00:00",
   "n_runs": 61,
   "n_models": 11,
   "n_datasets": 6,
@@ -786,7 +786,7 @@
       "macro_f1": 0.381,
       "macro_f1_binary": 0.5728,
       "hate_f1": 0.5598,
-      "precision": 0.441,
+      "precision": 0.4411,
       "recall": 0.4563,
       "accuracy": 0.6124,
       "n_datasets": 6,
@@ -849,7 +849,7 @@
       "coverage": 0.0
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
-      "macro_f1": 0.2643,
+      "macro_f1": 0.2642,
       "macro_f1_binary": 0.5786,
       "hate_f1": 0.4464,
       "precision": 0.4337,
