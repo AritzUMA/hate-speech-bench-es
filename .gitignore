@@ -7,3 +7,4 @@ es_hf_102024.csv
 __pycache__/
 partial_*.jsonl
 pending_candidates.json
+pending_candidates.json

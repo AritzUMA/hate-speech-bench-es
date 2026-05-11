@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Scrape ollama.com/library para encontrar modelos nuevos no evaluados aun.
-Escribe pending_candidates.json para que GitHub Actions abra un Issue.
+Muestra los candidatos por pantalla.
+
 Uso: python3 scripts/discover_models.py
 """
 import json, re, yaml, requests
@@ -40,7 +41,6 @@ def fetch_ollama_library() -> list:
         if "application/json" in r.headers.get("content-type", ""):
             data = r.json()
             return data.get("models", data.get("results", []))
-        # Fallback HTML
         names = re.findall(r'href="/library/([a-z0-9_.-]+)"', r.text)
         for name in dict.fromkeys(names):
             models.append({"name": name, "pull_count": 0, "parameter_sizes": []})
@@ -59,7 +59,6 @@ for m in raw:
     if not name or name in seen or name in registered:
         continue
     seen.add(name)
-
     sizes    = m.get("parameter_sizes", m.get("tags", []))
     runnable = []
     for s in sizes:
@@ -68,7 +67,6 @@ for m in raw:
                 runnable.append(str(s))
         except Exception:
             pass
-
     output.append({
         "name":   name,
         "sizes":  runnable if runnable else (["unknown"] if not sizes else []),
@@ -77,6 +75,9 @@ for m in raw:
 
 output.sort(key=lambda x: x["pulls"], reverse=True)
 
-out_path = Path("pending_candidates.json")
-out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False))
-print(f"[discover] {len(output)} candidatos -> {out_path}")
+print(f"\n[discover] {len(output)} candidatos nuevos (no en registry)\n")
+print(f"{'Modelo':<40} {'Params':<15} {'Pulls':>8}")
+print("-" * 65)
+for c in output[:30]:
+    sizes_str = ', '.join(c['sizes']) if c['sizes'] else '—'
+    print(f"{c['name']:<40} {sizes_str:<15} {c['pulls']:>8,}")
