@@ -2,7 +2,7 @@
 #SBATCH --job-name=eval_multimodal
 #SBATCH --output=/mnt/data/hate-speech-bench-es/logs/slurm/eval_multimodal_%j.out
 #SBATCH --error=/mnt/data/hate-speech-bench-es/logs/slurm/eval_multimodal_%j.err
-#SBATCH --partition=high
+#SBATCH --partition=low
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00

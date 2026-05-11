@@ -207,7 +207,7 @@ const FAMILY_ICON = {
   'StableLM 2':  LOGOS+'Stable.png',
   'GPT-OSS':     CDN+'openai.png',
   'Salamandra':  LOGOS+'salamandra.png',
-  'OpenEuroLLM': LOGOS+'openeurollm.png',
+  'OpenEuroLLM': LOGOS+'openLLM.png',
   'Moondream':   LOGOS+'moondream.png',
 };
 

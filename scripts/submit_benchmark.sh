@@ -34,10 +34,10 @@ filter_dataset = sys.argv[2]
 filter_model   = sys.argv[3]
 
 with open(repo / "registry/models.yaml") as f:
-    all_models = [m["ollama_name"] for m in yaml.safe_load(f)["models"]]
+    all_models = [m["ollama_name"] for m in yaml.safe_load(f)["models"] if m.get("modality") != "image+text"]
 
 with open(repo / "registry/datasets.yaml") as f:
-    all_datasets = [d["name"] for d in yaml.safe_load(f)["datasets"]]
+    all_datasets = [d["name"] for d in yaml.safe_load(f)["datasets"] if d.get("modality", "text") == "text"]
 
 if filter_dataset:
     all_datasets = [d for d in all_datasets if d == filter_dataset]

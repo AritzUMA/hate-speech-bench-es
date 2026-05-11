@@ -1,11 +1,10 @@
 {
-  "generated": "2026-05-11T11:58:59.267397+00:00",
-  "n_runs": 61,
-  "n_models": 11,
+  "generated": "2026-05-11T15:45:33.795060+00:00",
+  "n_runs": 56,
+  "n_models": 10,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
-    "deepseek-r1:latest",
     "gemma2:latest",
     "gemma3:12b",
     "gpt-oss:20b",
@@ -396,80 +395,6 @@
         "timestamp": "2026-05-10T13:03:34.690442+00:00"
       }
     },
-    "deepseek-r1:latest": {
-      "encarni": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 667,
-        "n_unclear": 667,
-        "elapsed": 0.4,
-        "timestamp": "2026-05-10T13:17:56.726296+00:00"
-      },
-      "hateval": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 6595,
-        "n_unclear": 6595,
-        "elapsed": 5.5,
-        "timestamp": "2026-05-10T13:17:58.721778+00:00"
-      },
-      "haternet": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 5999,
-        "n_unclear": 5999,
-        "elapsed": 5.2,
-        "timestamp": "2026-05-10T13:18:05.781665+00:00"
-      },
-      "chileno": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 9500,
-        "n_unclear": 9500,
-        "elapsed": 12.3,
-        "timestamp": "2026-05-10T13:18:12.786462+00:00"
-      },
-      "hascosva": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3994,
-        "n_unclear": 3994,
-        "elapsed": 3.2,
-        "timestamp": "2026-05-10T13:18:26.765836+00:00"
-      },
-      "misocorpus": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3463,
-        "n_unclear": 3463,
-        "elapsed": 2.6,
-        "timestamp": "2026-05-10T13:18:31.751453+00:00"
-      }
-    },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "encarni": {
         "macro_f1": 0.2499,
@@ -778,6 +703,18 @@
         "n_unclear": 9,
         "elapsed": 1929.0,
         "timestamp": "2026-05-11T07:58:42.753383+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.4323,
+        "macro_f1_binary": 0.6509,
+        "precision": 0.4362,
+        "recall": 0.436,
+        "accuracy": 0.6481,
+        "hate_f1": 0.6218626155878467,
+        "n_instances": 6595,
+        "n_unclear": 50,
+        "elapsed": 17187.1,
+        "timestamp": "2026-05-11T08:30:52.785021+00:00"
       }
     }
   },
@@ -837,17 +774,6 @@
       "n_datasets_total": 6,
       "coverage": 68.8
     },
-    "deepseek-r1:latest": {
-      "macro_f1": 0.0,
-      "macro_f1_binary": 0.0,
-      "hate_f1": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "accuracy": 0.0,
-      "n_datasets": 6,
-      "n_datasets_total": 6,
-      "coverage": 0.0
-    },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "macro_f1": 0.2643,
       "macro_f1_binary": 0.5786,
@@ -893,15 +819,15 @@
       "coverage": 0.0
     },
     "stablelm2:12b": {
-      "macro_f1": 0.3291,
-      "macro_f1_binary": 0.497,
-      "hate_f1": 0.5307,
-      "precision": 0.4087,
-      "recall": 0.4177,
-      "accuracy": 0.4933,
-      "n_datasets": 1,
+      "macro_f1": 0.3807,
+      "macro_f1_binary": 0.5739,
+      "hate_f1": 0.5763,
+      "precision": 0.4224,
+      "recall": 0.4269,
+      "accuracy": 0.5707,
+      "n_datasets": 2,
       "n_datasets_total": 6,
-      "coverage": 98.7
+      "coverage": 99.2
     }
   },
   "history": [
@@ -960,6 +886,14 @@
       "f1": 0.3291,
       "hate_f1": 0.5307262569832403,
       "elapsed": 1929.0
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "stablelm2:12b",
+      "dataset": "hateval",
+      "f1": 0.4323,
+      "hate_f1": 0.6218626155878467,
+      "elapsed": 17187.1
     },
     {
       "ts": "2026-05-10",
@@ -1128,54 +1062,6 @@
       "f1": 0.343,
       "hate_f1": 0.6109526525955505,
       "elapsed": 860.9
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "encarni",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 0.4
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "hateval",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 5.5
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "haternet",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 5.2
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "chileno",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 12.3
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "hascosva",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 3.2
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "deepseek-r1:latest",
-      "dataset": "misocorpus",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 2.6
     },
     {
       "ts": "2026-05-10",
@@ -1434,14 +1320,6 @@
       "size_gb": 4.4,
       "release_date": "2024-05",
       "developer": "Mistral AI"
-    },
-    "deepseek-r1:latest": {
-      "display_name": "DeepSeek R1 7B",
-      "family": "DeepSeek R1",
-      "params": "7B",
-      "size_gb": 4.7,
-      "release_date": "2025-01",
-      "developer": "DeepSeek"
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",

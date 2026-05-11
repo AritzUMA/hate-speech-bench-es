@@ -63,5 +63,6 @@
   },
   "elapsed_seconds": 156.3,
   "prompt_hash": "v2",
-  "predictions_file": "results/predictions/2026-05-09_llama3.1-8b_encarni_predictions.jsonl"
+  "predictions_file": "results/predictions/2026-05-09_llama3.1-8b_encarni_predictions.jsonl",
+  "retry_unclear": true
 }
