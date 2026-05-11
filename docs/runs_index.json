@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-10T22:09:57.163759+00:00",
-  "n_runs": 51,
-  "n_models": 9,
+  "generated": "2026-05-11T09:47:23.560830+00:00",
+  "n_runs": 61,
+  "n_models": 11,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
@@ -12,7 +12,9 @@
     "hdnh2006/salamandra-7b-instruct:latest",
     "llama3.1:8b",
     "mistral:7b",
+    "phi3.5:3.8b",
     "qwen2.5:7b",
+    "stablelm2:12b",
     "yi:9b"
   ],
   "datasets": [
@@ -652,6 +654,130 @@
         "n_unclear": 473,
         "elapsed": 2931.6,
         "timestamp": "2026-05-10T21:13:39.711924+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3218,
+        "macro_f1_binary": 0.4968,
+        "precision": 0.3604,
+        "recall": 0.4143,
+        "accuracy": 0.6364,
+        "hate_f1": 0.1972214655407246,
+        "n_instances": 9500,
+        "n_unclear": 528,
+        "elapsed": 4887.0,
+        "timestamp": "2026-05-10T22:02:32.705917+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.4246,
+        "macro_f1_binary": 0.6578,
+        "precision": 0.4266,
+        "recall": 0.448,
+        "accuracy": 0.7364,
+        "hate_f1": 0.4361917623227549,
+        "n_instances": 3994,
+        "n_unclear": 256,
+        "elapsed": 2016.0,
+        "timestamp": "2026-05-10T23:24:00.727473+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.4403,
+        "macro_f1_binary": 0.6785,
+        "precision": 0.454,
+        "recall": 0.4329,
+        "accuracy": 0.6434,
+        "hate_f1": 0.6547842401500938,
+        "n_instances": 3463,
+        "n_unclear": 182,
+        "elapsed": 1755.1,
+        "timestamp": "2026-05-10T23:57:37.803610+00:00"
+      }
+    },
+    "phi3.5:3.8b": {
+      "encarni": {
+        "macro_f1": 0.008,
+        "macro_f1_binary": 0.625,
+        "precision": 0.4444,
+        "recall": 0.0041,
+        "accuracy": 0.006,
+        "hate_f1": 0.01171875,
+        "n_instances": 667,
+        "n_unclear": 661,
+        "elapsed": 1145.1,
+        "timestamp": "2026-05-11T00:26:55.755564+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 6595,
+        "n_unclear": 6595,
+        "elapsed": 5920.7,
+        "timestamp": "2026-05-11T00:46:03.712177+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 5999,
+        "n_unclear": 5999,
+        "elapsed": 5331.8,
+        "timestamp": "2026-05-11T02:24:45.765032+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 9500,
+        "n_unclear": 9500,
+        "elapsed": 8354.5,
+        "timestamp": "2026-05-11T03:53:38.753842+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3994,
+        "n_unclear": 3994,
+        "elapsed": 3430.3,
+        "timestamp": "2026-05-11T06:12:54.781215+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3463,
+        "n_unclear": 3463,
+        "elapsed": 2914.1,
+        "timestamp": "2026-05-11T07:10:06.781678+00:00"
+      }
+    },
+    "stablelm2:12b": {
+      "encarni": {
+        "macro_f1": 0.3291,
+        "macro_f1_binary": 0.497,
+        "precision": 0.4087,
+        "recall": 0.4177,
+        "accuracy": 0.4933,
+        "hate_f1": 0.5307262569832403,
+        "n_instances": 667,
+        "n_unclear": 9,
+        "elapsed": 1929.0,
+        "timestamp": "2026-05-11T07:58:42.753383+00:00"
       }
     }
   },
@@ -745,18 +871,96 @@
       "coverage": 1.2
     },
     "yi:9b": {
-      "macro_f1": 0.3887,
-      "macro_f1_binary": 0.5998,
-      "hate_f1": 0.598,
-      "precision": 0.4117,
-      "recall": 0.4027,
-      "accuracy": 0.5892,
-      "n_datasets": 3,
+      "macro_f1": 0.3921,
+      "macro_f1_binary": 0.6054,
+      "hate_f1": 0.5137,
+      "precision": 0.4127,
+      "recall": 0.4172,
+      "accuracy": 0.6307,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 94.1
+      "coverage": 94.2
+    },
+    "phi3.5:3.8b": {
+      "macro_f1": 0.0013,
+      "macro_f1_binary": 0.1042,
+      "hate_f1": 0.002,
+      "precision": 0.0741,
+      "recall": 0.0007,
+      "accuracy": 0.001,
+      "n_datasets": 6,
+      "n_datasets_total": 6,
+      "coverage": 0.0
+    },
+    "stablelm2:12b": {
+      "macro_f1": 0.3291,
+      "macro_f1_binary": 0.497,
+      "hate_f1": 0.5307,
+      "precision": 0.4087,
+      "recall": 0.4177,
+      "accuracy": 0.4933,
+      "n_datasets": 1,
+      "n_datasets_total": 6,
+      "coverage": 98.7
     }
   },
   "history": [
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "encarni",
+      "f1": 0.008,
+      "hate_f1": 0.01171875,
+      "elapsed": 1145.1
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "hateval",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 5920.7
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "haternet",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 5331.8
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "chileno",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 8354.5
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "hascosva",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 3430.3
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "phi3.5:3.8b",
+      "dataset": "misocorpus",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 2914.1
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "stablelm2:12b",
+      "dataset": "encarni",
+      "f1": 0.3291,
+      "hate_f1": 0.5307262569832403,
+      "elapsed": 1929.0
+    },
     {
       "ts": "2026-05-10",
       "model": "gemma2:latest",
@@ -1094,6 +1298,30 @@
       "elapsed": 2931.6
     },
     {
+      "ts": "2026-05-10",
+      "model": "yi:9b",
+      "dataset": "chileno",
+      "f1": 0.3218,
+      "hate_f1": 0.1972214655407246,
+      "elapsed": 4887.0
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "yi:9b",
+      "dataset": "hascosva",
+      "f1": 0.4246,
+      "hate_f1": 0.4361917623227549,
+      "elapsed": 2016.0
+    },
+    {
+      "ts": "2026-05-10",
+      "model": "yi:9b",
+      "dataset": "misocorpus",
+      "f1": 0.4403,
+      "hate_f1": 0.6547842401500938,
+      "elapsed": 1755.1
+    },
+    {
       "ts": "2026-05-09",
       "model": "llama3.1:8b",
       "dataset": "encarni",
@@ -1229,6 +1457,20 @@
       "size_gb": 5.0,
       "release_date": "2024-03",
       "developer": "01.AI"
+    },
+    "phi3.5:3.8b": {
+      "family": "Phi 3.5",
+      "params": "3.8B",
+      "size_gb": 2.2,
+      "release_date": "2024-08",
+      "developer": "Microsoft"
+    },
+    "stablelm2:12b": {
+      "family": "StableLM 2",
+      "params": "12B",
+      "size_gb": 7.0,
+      "release_date": "2024-01",
+      "developer": "Stability AI"
     }
   },
   "datasets_meta": {
