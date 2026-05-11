@@ -187,38 +187,38 @@ select{font-size:12px;padding:5px 9px;border-radius:7px;border:0.5px solid #ddd;
 const { useState, useMemo, useEffect, useRef } = React;
 const DATA = window.__INDEX__;
 
-const CDN = 'https://unpkg.com/@lobehub/icons-static-png@latest/light/';
-const LOGOS = 'https://aritzuma.github.io/hate-speech-bench-es/logos/';
-
+const CDN   = 'https://unpkg.com/@lobehub/icons-static-png@latest/light/';
+const LOGOS = 'https://aritzuma.github.io/hate-speech-bench-es/docs/logos/';
 const FAMILY_ICON = {
-  'LLaMA 3.1': CDN+'meta.png',
-  'LLaMA':     CDN+'meta.png',
-  'Gemma 2':   CDN+'gemma.png',
-  'Gemma 3':   CDN+'gemma.png',
-  'Gemma 4':   CDN+'gemma.png',
-  'Qwen 2.5':  CDN+'qwen.png',
-  'Qwen 3':    CDN+'qwen.png',
-  'Qwen 3.5':  CDN+'qwen.png',
-  'Mistral':   CDN+'mistral.png',
+  'LLaMA 3.1':   CDN+'meta.png',
+  'LLaMA':       CDN+'meta.png',
+  'Gemma 2':     CDN+'gemma.png',
+  'Gemma 3':     CDN+'gemma.png',
+  'Gemma 4':     CDN+'gemma.png',
+  'Qwen 2.5':    CDN+'qwen.png',
+  'Qwen 3':      CDN+'qwen.png',
+  'Qwen 3.5':    CDN+'qwen.png',
+  'Mistral':     CDN+'mistral.png',
   'DeepSeek R1': CDN+'deepseek.png',
-  'Phi 3':     CDN+'microsoft.png',
-  'Phi 3.5':   CDN+'microsoft.png',
-  'Yi':        CDN+'yi.png',
-  'StableLM 2': CDN+'stability-ai.png',
-  'GPT-OSS':   CDN+'openai.png',
-  'Salamandra': LOGOS+'salamndra.png',
+  'Phi 3':       CDN+'microsoft.png',
+  'Phi 3.5':     CDN+'microsoft.png',
+  'Yi':          CDN+'yi.png',
+  'StableLM 2':  CDN+'stability-ai.png',
+  'GPT-OSS':     CDN+'openai.png',
+  'Salamandra':  LOGOS+'salamandra.png',
+  'OpenEuroLLM': LOGOS+'openeurollm.png',
+  'Moondream':   LOGOS+'moondream.png',
 };
-
 
 const COLORS = {
   'LLaMA 3.1':'#3b82f6','LLaMA':'#3b82f6',
   'Gemma 2':'#10b981','Gemma 3':'#059669','Gemma 4':'#047857',
   'Qwen 2.5':'#f59e0b','Qwen 3':'#d97706','Qwen 3.5':'#b45309',
-  'Mistral':'#8b5cf6','DeepSeek R1':'#ec4899','GPT-OSS':'#6b7280',
+  'Mistral':'#8b5cf6','DeepSeek R1':'#ec4899',
+  'Salamandra':'#f97316','GPT-OSS':'#6b7280',
   'Yi':'#6366f1','Phi 3.5':'#14b8a6','Phi 3':'#0d9488',
   'StableLM 2':'#9ca3af','OpenEuroLLM':'#84cc16',
 };
-
 const MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 const METRICS = [
   {key:'macro_f1',        label:'Macro-F1'},
