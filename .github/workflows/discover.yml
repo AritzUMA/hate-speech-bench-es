@@ -21,16 +21,19 @@ jobs:
       - run: pip install requests pyyaml
 
       - name: Discover candidates
-        run: python scripts/discover_models.py
+        run: |
+          python scripts/discover_models.py
+          echo "--- pending_candidates.json ---"
+          cat pending_candidates.json
 
       - name: Open issue if hay candidatos
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            const candidates = JSON.parse(
-              fs.readFileSync('pending_candidates.json', 'utf8')
-            );
+            const path = require('path');
+            const jsonPath = path.join(process.env.GITHUB_WORKSPACE, 'pending_candidates.json');
+            const candidates = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
             if (!candidates.length) {
               console.log('Sin candidatos nuevos esta semana.');
               return;
@@ -42,13 +45,12 @@ jobs:
                 `- [ ] \`${c.name}\` — ${c.sizes.join(', ')} — ` +
                 `${c.pulls.toLocaleString()} pulls`
               ).join('\n');
-
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo:  context.repo.repo,
               title: `New Ollama models (${new Date().toISOString().slice(0,10)})`,
               body: [
-                '## Candidatos ≤14B no evaluados aún',
+                '## Candidatos no evaluados aun',
                 '',
                 rows,
                 '',
