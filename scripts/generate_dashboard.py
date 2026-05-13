@@ -492,7 +492,7 @@ const leaderLabelPlugin = {
           px:    el.x,   // punto fijo
           py:    el.y,
           x:     el.x,   // posicion etiqueta (simulada)
-          y:     el.y + (nodes.length % 2 === 0 ? -30 : 30) + (nodes.length % 4 < 2 ? -8 : 8),
+          y:     el.y + (nodes.length % 2 === 0 ? -40 : 40) + (nodes.length % 4 < 2 ? -12 : 12),
           w, h,
           label: pt.label,
         });
@@ -503,15 +503,31 @@ const leaderLabelPlugin = {
 
     const area = chart.chartArea;
 
+    // Radio minimo de separacion punto-etiqueta
+    const MIN_DIST = 18;
+
     // Simulacion d3-force
     const sim = d3.forceSimulation(nodes)
-      .force('collide', d3.forceCollide(d => Math.max(d.w, d.h) * 0.72 + 4).strength(1.0).iterations(8))
-      .force('x', d3.forceX(d => d.px).strength(0.05))
-      .force('y', d3.forceY(d => d.py).strength(0.05))
+      .force('collide', d3.forceCollide(d => Math.max(d.w, d.h) * 0.6 + 3).strength(1.0).iterations(6))
+      .force('x', d3.forceX(d => d.px).strength(0.02))
+      .force('y', d3.forceY(d => d.py).strength(0.02))
       .stop();
 
-    // Correr 600 ticks (sin animacion)
-    for (let i = 0; i < 600; i++) sim.tick();
+    // Correr 400 ticks
+    for (let i = 0; i < 400; i++) {
+      sim.tick();
+      // Repulsion manual del punto: empuja la etiqueta si esta demasiado cerca
+      nodes.forEach(n => {
+        const dx = n.x - n.px;
+        const dy = n.y - n.py;
+        const dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
+        if (dist < MIN_DIST) {
+          const scale = (MIN_DIST - dist) / dist * 0.5;
+          n.x += dx * scale;
+          n.y += dy * scale;
+        }
+      });
+    }
 
     // Contener dentro del area
     nodes.forEach(n => {
