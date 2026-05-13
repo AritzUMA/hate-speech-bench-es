@@ -1,18 +1,21 @@
 {
-  "generated": "2026-05-11T15:45:33.795060+00:00",
-  "n_runs": 56,
-  "n_models": 10,
+  "generated": "2026-05-13T09:57:07.694938+00:00",
+  "n_runs": 61,
+  "n_models": 13,
   "n_datasets": 6,
-  "best_overall_f1": 0.427,
+  "best_overall_f1": 0.464,
   "models": [
     "gemma2:latest",
     "gemma3:12b",
     "gpt-oss:20b",
     "hdnh2006/salamandra-7b-instruct:latest",
+    "jobautomation/OpenEuroLLM-Spanish:latest",
     "llama3.1:8b",
     "mistral:7b",
     "phi3.5:3.8b",
+    "phi3:3.8b",
     "qwen2.5:7b",
+    "qwen3:8b",
     "stablelm2:12b",
     "yi:9b"
   ],
@@ -716,6 +719,72 @@
         "elapsed": 17187.1,
         "timestamp": "2026-05-11T08:30:52.785021+00:00"
       }
+    },
+    "jobautomation/OpenEuroLLM-Spanish:latest": {
+      "haternet": {
+        "macro_f1": 0.4454,
+        "macro_f1_binary": 0.6979,
+        "precision": 0.4764,
+        "recall": 0.4782,
+        "accuracy": 0.6489,
+        "hate_f1": 0.6232085067036524,
+        "n_instances": 5999,
+        "n_unclear": 534,
+        "elapsed": 22406.5,
+        "timestamp": "2026-05-11T20:13:19.732488+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.4831,
+        "macro_f1_binary": 0.7614,
+        "precision": 0.483,
+        "recall": 0.5114,
+        "accuracy": 0.7802,
+        "hate_f1": 0.578397212543554,
+        "n_instances": 3994,
+        "n_unclear": 351,
+        "elapsed": 14275.3,
+        "timestamp": "2026-05-12T10:27:15.030613+00:00"
+      }
+    },
+    "qwen3:8b": {
+      "hascosva": {
+        "macro_f1": 0.4384,
+        "macro_f1_binary": 0.7301,
+        "precision": 0.4763,
+        "recall": 0.406,
+        "accuracy": 0.7451,
+        "hate_f1": 0.45111326234269117,
+        "n_instances": 3994,
+        "n_unclear": 605,
+        "elapsed": 3863.2,
+        "timestamp": "2026-05-12T20:53:49.778852+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.4735,
+        "macro_f1_binary": 0.7617,
+        "precision": 0.5141,
+        "recall": 0.4492,
+        "accuracy": 0.6653,
+        "hate_f1": 0.7040202595758152,
+        "n_instances": 3463,
+        "n_unclear": 439,
+        "elapsed": 3976.6,
+        "timestamp": "2026-05-12T21:58:14.770499+00:00"
+      }
+    },
+    "phi3:3.8b": {
+      "encarni": {
+        "macro_f1": 0.0928,
+        "macro_f1_binary": 0.569,
+        "precision": 0.3848,
+        "recall": 0.0547,
+        "accuracy": 0.072,
+        "hate_f1": 0.11594202898550725,
+        "n_instances": 667,
+        "n_unclear": 585,
+        "elapsed": 1457.8,
+        "timestamp": "2026-05-13T07:44:54.342574+00:00"
+      }
     }
   },
   "overall": {
@@ -828,9 +897,74 @@
       "n_datasets": 2,
       "n_datasets_total": 6,
       "coverage": 99.2
+    },
+    "jobautomation/OpenEuroLLM-Spanish:latest": {
+      "macro_f1": 0.4642,
+      "macro_f1_binary": 0.7296,
+      "hate_f1": 0.6008,
+      "precision": 0.4797,
+      "recall": 0.4948,
+      "accuracy": 0.7146,
+      "n_datasets": 2,
+      "n_datasets_total": 6,
+      "coverage": 91.1
+    },
+    "qwen3:8b": {
+      "macro_f1": 0.4559,
+      "macro_f1_binary": 0.7459,
+      "hate_f1": 0.5776,
+      "precision": 0.4952,
+      "recall": 0.4276,
+      "accuracy": 0.7052,
+      "n_datasets": 2,
+      "n_datasets_total": 6,
+      "coverage": 86.0
+    },
+    "phi3:3.8b": {
+      "macro_f1": 0.0928,
+      "macro_f1_binary": 0.569,
+      "hate_f1": 0.1159,
+      "precision": 0.3848,
+      "recall": 0.0547,
+      "accuracy": 0.072,
+      "n_datasets": 1,
+      "n_datasets_total": 6,
+      "coverage": 12.3
     }
   },
   "history": [
+    {
+      "ts": "2026-05-13",
+      "model": "phi3:3.8b",
+      "dataset": "encarni",
+      "f1": 0.0928,
+      "hate_f1": 0.11594202898550725,
+      "elapsed": 1457.8
+    },
+    {
+      "ts": "2026-05-12",
+      "model": "jobautomation/OpenEuroLLM-Spanish:latest",
+      "dataset": "hascosva",
+      "f1": 0.4831,
+      "hate_f1": 0.578397212543554,
+      "elapsed": 14275.3
+    },
+    {
+      "ts": "2026-05-12",
+      "model": "qwen3:8b",
+      "dataset": "hascosva",
+      "f1": 0.4384,
+      "hate_f1": 0.45111326234269117,
+      "elapsed": 3863.2
+    },
+    {
+      "ts": "2026-05-12",
+      "model": "qwen3:8b",
+      "dataset": "misocorpus",
+      "f1": 0.4735,
+      "hate_f1": 0.7040202595758152,
+      "elapsed": 3976.6
+    },
     {
       "ts": "2026-05-11",
       "model": "phi3.5:3.8b",
@@ -894,6 +1028,14 @@
       "f1": 0.4323,
       "hate_f1": 0.6218626155878467,
       "elapsed": 17187.1
+    },
+    {
+      "ts": "2026-05-11",
+      "model": "jobautomation/OpenEuroLLM-Spanish:latest",
+      "dataset": "haternet",
+      "f1": 0.4454,
+      "hate_f1": 0.6232085067036524,
+      "elapsed": 22406.5
     },
     {
       "ts": "2026-05-10",
@@ -1360,6 +1502,30 @@
       "size_gb": 7.0,
       "release_date": "2024-01",
       "developer": "Stability AI"
+    },
+    "jobautomation/OpenEuroLLM-Spanish:latest": {
+      "display_name": "OpenEuroLLM Spanish 7B",
+      "family": "OpenEuroLLM",
+      "params": "7B",
+      "size_gb": 8.1,
+      "release_date": "2024-12",
+      "developer": "OpenEuroLLM Consortium"
+    },
+    "qwen3:8b": {
+      "display_name": "Qwen 3 8B",
+      "family": "Qwen 3",
+      "params": "8B",
+      "size_gb": 5.2,
+      "release_date": "2025-04",
+      "developer": "Alibaba"
+    },
+    "phi3:3.8b": {
+      "display_name": "Phi 3 3.8B",
+      "family": "Phi 3",
+      "params": "3.8B",
+      "size_gb": 2.2,
+      "release_date": "2024-04",
+      "developer": "Microsoft"
     }
   },
   "datasets_meta": {
