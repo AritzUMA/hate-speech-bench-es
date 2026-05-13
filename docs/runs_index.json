@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-13T12:54:12.737003+00:00",
-  "n_runs": 62,
+  "generated": "2026-05-13T13:54:21.491884+00:00",
+  "n_runs": 63,
   "n_models": 13,
   "n_datasets": 6,
   "best_overall_f1": 0.464,
@@ -796,6 +796,18 @@
         "n_unclear": 6595,
         "elapsed": 10861.1,
         "timestamp": "2026-05-13T08:09:13.759739+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 5999,
+        "n_unclear": 5999,
+        "elapsed": 8640.3,
+        "timestamp": "2026-05-13T11:10:16.760090+00:00"
       }
     }
   },
@@ -933,15 +945,15 @@
       "coverage": 86.0
     },
     "phi3:3.8b": {
-      "macro_f1": 0.0464,
-      "macro_f1_binary": 0.2845,
-      "hate_f1": 0.058,
-      "precision": 0.1924,
-      "recall": 0.0273,
-      "accuracy": 0.036,
-      "n_datasets": 2,
+      "macro_f1": 0.0309,
+      "macro_f1_binary": 0.1897,
+      "hate_f1": 0.0386,
+      "precision": 0.1283,
+      "recall": 0.0182,
+      "accuracy": 0.024,
+      "n_datasets": 3,
       "n_datasets_total": 6,
-      "coverage": 1.1
+      "coverage": 0.6
     }
   },
   "history": [
@@ -960,6 +972,14 @@
       "f1": 0.0,
       "hate_f1": 0.0,
       "elapsed": 10861.1
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "phi3:3.8b",
+      "dataset": "haternet",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 8640.3
     },
     {
       "ts": "2026-05-12",
