@@ -419,12 +419,12 @@ function HateF1Bar({ds}) {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => m),
-      values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
+      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
+      values:   sorted.map(m => getF1(m)),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
     };
-  }, []);
+  }, [ds]);
 
   useEffect(() => {
     if (!ref.current) return;
