@@ -414,10 +414,10 @@ function HateF1Bar({ds}) {
   const ref = useRef(null);
 
   const chartData = useMemo(() => {
-    const models = DATA.models.filter(m => DATA.overall[m] && DATA.overall[m].hate_f1 != null);
-    const sorted = [...models].sort((a, b) =>
-      (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
-    );
+    const isOv  = ds === '__overall__';
+    const getF1 = m => isOv ? (DATA.overall[m]?.hate_f1||0) : (DATA.results[m]?.[ds]?.hate_f1||0);
+    const models = DATA.models.filter(m => isOv ? DATA.overall[m] : DATA.results[m]?.[ds]);
+    const sorted = [...models].sort((a, b) => getF1(b) - getF1(a));
     return {
       labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
       values:   sorted.map(m => getF1(m)),
@@ -628,10 +628,7 @@ function ReleaseDateScatter({ds}) {
       const y = parts[0], mo = parts[1] || 1, day = parts[2] || 1;
       if (!y) return;
       const x      = y + (mo-1)/12 + (day-1)/365;
-      const hate_f1 = isOv
-        ? (DATA.overall[m]?.hate_f1 || 0)
-        : (DATA.results[m]?.[ds]?.hate_f1 || 0);
-      byFamily[f].push({ x, y: hate_f1, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y, day });
+      byFamily[f].push({ x, y: isOv?(DATA.overall[m]?.hate_f1||0):(DATA.results[m]?.[ds]?.hate_f1||0), label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y, day });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
