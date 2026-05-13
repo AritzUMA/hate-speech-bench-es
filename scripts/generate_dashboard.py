@@ -156,7 +156,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f
 .chart-wrap{background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.5rem}
 .chart-label{font-size:12px;color:#888;margin-bottom:.6rem}
 .chart-box{position:relative;height:180px}
-.chart-box-scatter{position:relative;height:260px}
+.chart-box-scatter{position:relative;height:420px}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0e0}
 th{padding:9px 12px;text-align:left;font-weight:500;font-size:12px;color:#666;background:#fafaf8;border-bottom:0.5px solid #e8e8e8;cursor:pointer;user-select:none;white-space:nowrap}
 th:hover{background:#f0f0ee}
@@ -467,96 +467,150 @@ function HateF1Bar() {
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
 
-// Plugin ggrepel con d3-force
+// Plugin tipo ggrepel: evita solapamiento entre etiquetas y puntos
 const leaderLabelPlugin = {
   id: 'leaderLabel',
-  afterDraw(chart) {
-    const ctx  = chart.ctx;
-    const FONT = 10;
-    const PAD  = 3;
 
+  afterDatasetsDraw(chart) {
+    const ctx  = chart.ctx;
+    const area = chart.chartArea;
+
+    const FONT      = 10;
+    const PAD_X     = 5;
+    const PAD_Y     = 3;
+    const LABEL_GAP = 5;
+    const POINT_GAP = 8;
+
+    const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+    ctx.save();
     ctx.font         = `${FONT}px system-ui,sans-serif`;
     ctx.textBaseline = 'middle';
 
-    // Recopilar puntos
     const nodes = [];
+    const offsets = [
+      [46, -34], [-46, -34], [46, 34], [-46, 34],
+      [70, -10], [-70, -10], [70, 10], [-70, 10],
+      [0, -58],  [0, 58],
+      [92, -42], [-92, -42], [92, 42], [-92, 42],
+    ];
+
+    let idx = 0;
+
     chart.data.datasets.forEach((ds, di) => {
       const meta = chart.getDatasetMeta(di);
+      if (meta.hidden) return;
       ds.data.forEach((pt, pi) => {
         const el = meta.data[pi];
         if (!el || !pt.label) return;
-        const w = ctx.measureText(pt.label).width + PAD * 2;
-        const h = FONT + PAD * 2;
+        const label = String(pt.label);
+        const w = ctx.measureText(label).width + PAD_X * 2;
+        const h = FONT + PAD_Y * 2;
+        const [ox, oy] = offsets[idx % offsets.length];
+        const x0 = el.x + ox;
+        const y0 = el.y + oy;
         nodes.push({
-          id:    nodes.length,
-          px:    el.x,   // punto fijo
-          py:    el.y,
-          x:     el.x,   // posicion etiqueta (simulada)
-          y:     el.y + (nodes.length % 2 === 0 ? -40 : 40) + (nodes.length % 4 < 2 ? -12 : 12),
-          w, h,
-          label: pt.label,
+          id: idx, px: el.x, py: el.y,
+          tx: x0, ty: y0, x: x0, y: y0,
+          w, h, label,
+          color: ds.borderColor || '#999',
+          pointR: ds.pointRadius || 7,
         });
+        idx += 1;
       });
     });
 
-    if (!nodes.length) return;
+    if (!nodes.length) { ctx.restore(); return; }
 
-    const area = chart.chartArea;
-
-    // Radio minimo de separacion punto-etiqueta
-    const MIN_DIST = 18;
-
-    // Simulacion d3-force
-    const sim = d3.forceSimulation(nodes)
-      .force('collide', d3.forceCollide(d => Math.max(d.w, d.h) * 0.6 + 3).strength(1.0).iterations(6))
-      .force('x', d3.forceX(d => d.px).strength(0.02))
-      .force('y', d3.forceY(d => d.py).strength(0.02))
-      .stop();
-
-    // Correr 400 ticks
-    for (let i = 0; i < 400; i++) {
-      sim.tick();
-      // Repulsion manual del punto: empuja la etiqueta si esta demasiado cerca
-      nodes.forEach(n => {
-        const dx = n.x - n.px;
-        const dy = n.y - n.py;
-        const dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
-        if (dist < MIN_DIST) {
-          const scale = (MIN_DIST - dist) / dist * 0.5;
-          n.x += dx * scale;
-          n.y += dy * scale;
-        }
-      });
+    function clampNode(n) {
+      n.x = clamp(n.x, area.left + n.w/2 + 2, area.right  - n.w/2 - 2);
+      n.y = clamp(n.y, area.top  + n.h/2 + 2, area.bottom - n.h/2 - 2);
     }
 
-    // Contener dentro del area
-    nodes.forEach(n => {
-      n.x = Math.max(area.left  + n.w/2, Math.min(area.right  - n.w/2, n.x));
-      n.y = Math.max(area.top   + n.h/2, Math.min(area.bottom - n.h/2, n.y));
-    });
+    function pushAwayFromPoint(n) {
+      const halfW = n.w/2 + n.pointR + POINT_GAP;
+      const halfH = n.h/2 + n.pointR + POINT_GAP;
+      const dx = n.x - n.px;
+      const dy = n.y - n.py;
+      const overlapX = halfW - Math.abs(dx);
+      const overlapY = halfH - Math.abs(dy);
+      if (overlapX > 0 && overlapY > 0) {
+        if (overlapX < overlapY) n.x += (dx >= 0 ? 1 : -1) * (overlapX + 1);
+        else                      n.y += (dy >= 0 ? 1 : -1) * (overlapY + 1);
+      }
+    }
 
-    // Dibujar
+    for (let iter = 0; iter < 350; iter++) {
+      nodes.forEach(n => {
+        n.x += (n.tx - n.x) * 0.025;
+        n.y += (n.ty - n.y) * 0.025;
+        pushAwayFromPoint(n);
+      });
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i+1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x || 0.001;
+          const dy = a.y - b.y || 0.001;
+          const overlapX = (a.w+b.w)/2 + LABEL_GAP - Math.abs(dx);
+          const overlapY = (a.h+b.h)/2 + LABEL_GAP - Math.abs(dy);
+          if (overlapX > 0 && overlapY > 0) {
+            if (overlapX < overlapY) {
+              const sx = dx >= 0 ? 1 : -1;
+              a.x += sx*overlapX/2; b.x -= sx*overlapX/2;
+            } else {
+              const sy = dy >= 0 ? 1 : -1;
+              a.y += sy*overlapY/2; b.y -= sy*overlapY/2;
+            }
+          }
+        }
+      }
+      nodes.forEach(n => { pushAwayFromPoint(n); clampNode(n); });
+    }
+
+    for (let iter = 0; iter < 80; iter++) {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i+1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x || 0.001;
+          const dy = a.y - b.y || 0.001;
+          const overlapX = (a.w+b.w)/2 + LABEL_GAP - Math.abs(dx);
+          const overlapY = (a.h+b.h)/2 + LABEL_GAP - Math.abs(dy);
+          if (overlapX > 0 && overlapY > 0) {
+            if (overlapX < overlapY) {
+              const sx = dx >= 0 ? 1 : -1;
+              a.x += sx*overlapX/2; b.x -= sx*overlapX/2;
+            } else {
+              const sy = dy >= 0 ? 1 : -1;
+              a.y += sy*overlapY/2; b.y -= sy*overlapY/2;
+            }
+          }
+        }
+      }
+      nodes.forEach(n => { pushAwayFromPoint(n); clampNode(n); });
+    }
+
     nodes.forEach(n => {
-      // Linea punteada punto -> etiqueta
       ctx.beginPath();
       ctx.moveTo(n.px, n.py);
       ctx.lineTo(n.x, n.y);
-      ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+      ctx.strokeStyle = 'rgba(0,0,0,0.18)';
       ctx.lineWidth   = 0.8;
       ctx.setLineDash([2, 3]);
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Fondo blanco
-      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.fillStyle = 'rgba(255,255,255,0.96)';
       ctx.fillRect(n.x - n.w/2, n.y - n.h/2, n.w, n.h);
 
-      // Texto negro
-      ctx.fillStyle  = '#333';
-      ctx.textAlign  = 'center';
+      ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+      ctx.strokeRect(n.x - n.w/2, n.y - n.h/2, n.w, n.h);
+
+      ctx.fillStyle = '#333';
+      ctx.textAlign = 'center';
       ctx.fillText(n.label, n.x, n.y);
     });
-    ctx.textAlign = 'left';
+
+    ctx.restore();
   }
 };
 
@@ -605,7 +659,7 @@ function ReleaseDateScatter() {
             return ctx.raw.label + '  (' + day + ' ' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4);
           }}}
         },
-        layout: { padding: { top: 20, right: 20, bottom: 20, left: 20 } },
+        layout: { padding: { top: 35, right: 45, bottom: 35, left: 45 } },
         scales: {
           x: {
             grid: {color:'#f0f0f0'},
@@ -671,7 +725,7 @@ function ParamsScatter() {
           legend: {display: false},
           tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  ' + ctx.raw.y.toFixed(4)}}
         },
-        layout: { padding: { top: 20, right: 20, bottom: 20, left: 20 } },
+        layout: { padding: { top: 35, right: 45, bottom: 35, left: 45 } },
         scales: {
           x: {
             grid: {color:'#f0f0f0'},

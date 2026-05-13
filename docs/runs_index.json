@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-13T11:07:27.340346+00:00",
-  "n_runs": 61,
+  "generated": "2026-05-13T11:15:01.723931+00:00",
+  "n_runs": 62,
   "n_models": 13,
   "n_datasets": 6,
   "best_overall_f1": 0.464,
@@ -784,6 +784,18 @@
         "n_unclear": 585,
         "elapsed": 1457.8,
         "timestamp": "2026-05-13T07:44:54.342574+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 6595,
+        "n_unclear": 6595,
+        "elapsed": 10861.1,
+        "timestamp": "2026-05-13T08:09:13.759739+00:00"
       }
     }
   },
@@ -921,15 +933,15 @@
       "coverage": 86.0
     },
     "phi3:3.8b": {
-      "macro_f1": 0.0928,
-      "macro_f1_binary": 0.569,
-      "hate_f1": 0.1159,
-      "precision": 0.3848,
-      "recall": 0.0547,
-      "accuracy": 0.072,
-      "n_datasets": 1,
+      "macro_f1": 0.0464,
+      "macro_f1_binary": 0.2845,
+      "hate_f1": 0.058,
+      "precision": 0.1924,
+      "recall": 0.0273,
+      "accuracy": 0.036,
+      "n_datasets": 2,
       "n_datasets_total": 6,
-      "coverage": 12.3
+      "coverage": 1.1
     }
   },
   "history": [
@@ -940,6 +952,14 @@
       "f1": 0.0928,
       "hate_f1": 0.11594202898550725,
       "elapsed": 1457.8
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "phi3:3.8b",
+      "dataset": "hateval",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 10861.1
     },
     {
       "ts": "2026-05-12",
