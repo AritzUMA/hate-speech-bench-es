@@ -479,7 +479,7 @@ const leaderLabelPlugin = {
     const PAD_X     = 5;
     const PAD_Y     = 3;
     const LABEL_GAP = 5;
-    const POINT_GAP = 8;
+    const POINT_GAP = 20;
 
     const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
@@ -542,8 +542,8 @@ const leaderLabelPlugin = {
 
     for (let iter = 0; iter < 350; iter++) {
       nodes.forEach(n => {
-        n.x += (n.tx - n.x) * 0.025;
-        n.y += (n.ty - n.y) * 0.025;
+        n.x += (n.tx - n.x) * 0.005;
+        n.y += (n.ty - n.y) * 0.005;
         pushAwayFromPoint(n);
       });
       for (let i = 0; i < nodes.length; i++) {
