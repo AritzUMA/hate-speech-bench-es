@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-13T10:44:54.544094+00:00",
+  "generated": "2026-05-13T10:55:28.889943+00:00",
   "n_runs": 61,
   "n_models": 13,
   "n_datasets": 6,
@@ -1427,104 +1427,117 @@
       "display_name": "LLaMA 3.1 8B",
       "family": "LLaMA 3.1",
       "params": "8B",
+      "params_exact": 8.03,
       "size_gb": 4.9,
-      "release_date": "2024-07",
+      "release_date": "2024-07-23",
       "developer": "Meta"
     },
     "gemma2:latest": {
       "display_name": "Gemma 2 9B",
       "family": "Gemma 2",
       "params": "9B",
+      "params_exact": 9.24,
       "size_gb": 5.4,
-      "release_date": "2024-06",
+      "release_date": "2024-06-27",
       "developer": "Google DeepMind"
     },
     "gemma3:12b": {
       "display_name": "Gemma 3 12B",
       "family": "Gemma 3",
       "params": "12B",
+      "params_exact": 12.2,
       "size_gb": 8.1,
-      "release_date": "2025-03",
+      "release_date": "2025-03-12",
       "developer": "Google DeepMind"
     },
     "qwen2.5:7b": {
       "display_name": "Qwen 2.5 7B",
       "family": "Qwen 2.5",
       "params": "7B",
+      "params_exact": 7.62,
       "size_gb": 4.7,
-      "release_date": "2024-09",
+      "release_date": "2024-09-19",
       "developer": "Alibaba"
     },
     "mistral:7b": {
       "display_name": "Mistral 7B",
       "family": "Mistral",
       "params": "7B",
+      "params_exact": 7.24,
       "size_gb": 4.4,
-      "release_date": "2024-05",
+      "release_date": "2024-05-27",
       "developer": "Mistral AI"
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",
       "family": "Salamandra",
       "params": "7B",
+      "params_exact": 7.0,
       "size_gb": 4.9,
-      "release_date": "2024-09",
+      "release_date": "2024-09-01",
       "developer": "BSC-CNS"
     },
     "gpt-oss:20b": {
       "display_name": "GPT-OSS 20B",
       "family": "GPT-OSS",
       "params": "20B",
+      "params_exact": 20.0,
       "size_gb": 13.0,
-      "release_date": "2025-04",
+      "release_date": "2025-04-16",
       "developer": "OpenAI"
     },
     "yi:9b": {
       "display_name": "Yi 9B",
       "family": "Yi",
       "params": "9B",
+      "params_exact": 9.0,
       "size_gb": 5.0,
-      "release_date": "2024-03",
+      "release_date": "2024-03-06",
       "developer": "01.AI"
     },
     "phi3.5:3.8b": {
       "display_name": "Phi 3.5 3.8B",
       "family": "Phi 3.5",
       "params": "3.8B",
+      "params_exact": 3.82,
       "size_gb": 2.2,
-      "release_date": "2024-08",
+      "release_date": "2024-08-20",
       "developer": "Microsoft"
     },
     "stablelm2:12b": {
       "display_name": "StableLM 2 12B",
       "family": "StableLM 2",
       "params": "12B",
+      "params_exact": 12.0,
       "size_gb": 7.0,
-      "release_date": "2024-01",
+      "release_date": "2024-01-15",
       "developer": "Stability AI"
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
       "display_name": "OpenEuroLLM Spanish 7B",
       "family": "OpenEuroLLM",
       "params": "7B",
+      "params_exact": 7.0,
       "size_gb": 8.1,
-      "release_date": "2024-12",
+      "release_date": "2024-12-01",
       "developer": "OpenEuroLLM Consortium"
     },
     "qwen3:8b": {
       "display_name": "Qwen 3 8B",
       "family": "Qwen 3",
       "params": "8B",
+      "params_exact": 8.19,
       "size_gb": 5.2,
-      "release_date": "2025-04",
+      "release_date": "2025-04-28",
       "developer": "Alibaba"
     },
     "phi3:3.8b": {
       "display_name": "Phi 3 3.8B",
       "family": "Phi 3",
       "params": "3.8B",
+      "params_exact": 3.82,
       "size_gb": 2.2,
-      "release_date": "2024-04",
+      "release_date": "2024-04-23",
       "developer": "Microsoft"
     }
   },

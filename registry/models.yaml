@@ -6,8 +6,9 @@ models:
     display_name: "LLaMA 3.1 8B"
     family: "LLaMA 3.1"
     params: "8B"
+    params_exact: 8.03
     size_gb: 4.9
-    release_date: "2024-07"
+    release_date: "2024-07-23"
     developer: "Meta"
     added: "2025-04-08"
 
@@ -15,8 +16,9 @@ models:
     display_name: "Gemma 2 9B"
     family: "Gemma 2"
     params: "9B"
+    params_exact: 9.24
     size_gb: 5.4
-    release_date: "2024-06"
+    release_date: "2024-06-27"
     developer: "Google DeepMind"
     added: "2025-04-08"
 
@@ -24,8 +26,9 @@ models:
     display_name: "Gemma 3 12B"
     family: "Gemma 3"
     params: "12B"
+    params_exact: 12.2
     size_gb: 8.1
-    release_date: "2025-03"
+    release_date: "2025-03-12"
     developer: "Google DeepMind"
     added: "2025-04-08"
 
@@ -33,8 +36,9 @@ models:
     display_name: "Qwen 2.5 7B"
     family: "Qwen 2.5"
     params: "7B"
+    params_exact: 7.62
     size_gb: 4.7
-    release_date: "2024-09"
+    release_date: "2024-09-19"
     developer: "Alibaba"
     added: "2025-04-08"
 
@@ -42,17 +46,19 @@ models:
     display_name: "Mistral 7B"
     family: "Mistral"
     params: "7B"
+    params_exact: 7.24
     size_gb: 4.4
-    release_date: "2024-05"
+    release_date: "2024-05-27"
     developer: "Mistral AI"
     added: "2025-04-08"
 
-  - ollama_name: "deepseek-r1:7b"
+  - ollama_name: "deepseek-r1:latest"
     display_name: "DeepSeek R1 7B"
     family: "DeepSeek R1"
     params: "7B"
+    params_exact: 7.0
     size_gb: 4.7
-    release_date: "2025-01"
+    release_date: "2025-01-20"
     developer: "DeepSeek"
     added: "2025-04-08"
     notes: "resuelve a deepseek-r1:7b en ic4"
@@ -61,8 +67,9 @@ models:
     display_name: "Salamandra 7B"
     family: "Salamandra"
     params: "7B"
+    params_exact: 7.0
     size_gb: 4.9
-    release_date: "2024-09"
+    release_date: "2024-09-01"
     developer: "BSC-CNS"
     added: "2025-04-08"
     notes: "modelo multilingüe europeo — Barcelona Supercomputing Center"
@@ -71,8 +78,9 @@ models:
     display_name: "GPT-OSS 20B"
     family: "GPT-OSS"
     params: "20B"
+    params_exact: 20.0
     size_gb: 13.0
-    release_date: "2025-04"
+    release_date: "2025-04-16"
     developer: "OpenAI"
     added: "2025-04-08"
 
@@ -80,8 +88,9 @@ models:
     display_name: "Yi 9B"
     family: "Yi"
     params: "9B"
+    params_exact: 9.0
     size_gb: 5.0
-    release_date: "2024-03"
+    release_date: "2024-03-06"
     developer: "01.AI"
     added: "2025-04-08"
 
@@ -89,8 +98,9 @@ models:
     display_name: "Phi 3.5 3.8B"
     family: "Phi 3.5"
     params: "3.8B"
+    params_exact: 3.82
     size_gb: 2.2
-    release_date: "2024-08"
+    release_date: "2024-08-20"
     developer: "Microsoft"
     added: "2025-04-08"
 
@@ -98,8 +108,9 @@ models:
     display_name: "StableLM 2 12B"
     family: "StableLM 2"
     params: "12B"
+    params_exact: 12.0
     size_gb: 7.0
-    release_date: "2024-01"
+    release_date: "2024-01-15"
     developer: "Stability AI"
     added: "2025-04-08"
 
@@ -107,8 +118,9 @@ models:
     display_name: "OpenEuroLLM Spanish 7B"
     family: "OpenEuroLLM"
     params: "7B"
+    params_exact: 7.0
     size_gb: 8.1
-    release_date: "2024-12"
+    release_date: "2024-12-01"
     developer: "OpenEuroLLM Consortium"
     added: "2025-04-08"
     notes: "modelo español open-source — proyecto europeo"
@@ -117,8 +129,9 @@ models:
     display_name: "Qwen 3 8B"
     family: "Qwen 3"
     params: "8B"
+    params_exact: 8.19
     size_gb: 5.2
-    release_date: "2025-04"
+    release_date: "2025-04-28"
     developer: "Alibaba"
     added: "2025-05-08"
 
@@ -126,8 +139,9 @@ models:
     display_name: "Qwen 3.5 9B"
     family: "Qwen 3.5"
     params: "9B"
+    params_exact: 9.0
     size_gb: 6.6
-    release_date: "2025-04"
+    release_date: "2025-04-28"
     developer: "Alibaba"
     added: "2025-05-08"
 
@@ -135,8 +149,9 @@ models:
     display_name: "Phi 3 3.8B"
     family: "Phi 3"
     params: "3.8B"
+    params_exact: 3.82
     size_gb: 2.2
-    release_date: "2024-04"
+    release_date: "2024-04-23"
     developer: "Microsoft"
     added: "2025-05-08"
 
@@ -146,8 +161,9 @@ models:
     display_name: "LLaMA 3.2 Vision 11B"
     family: "LLaMA 3.2"
     params: "11B"
+    params_exact: 11.0
     size_gb: 7.8
-    release_date: "2024-09"
+    release_date: "2024-09-25"
     developer: "Meta"
     modality: "image+text"
     added: "2025-05-10"
@@ -156,8 +172,9 @@ models:
     display_name: "Moondream 1.8B"
     family: "Moondream"
     params: "1.8B"
+    params_exact: 1.86
     size_gb: 1.7
-    release_date: "2024-06"
+    release_date: "2024-06-01"
     developer: "Vikhyat Kopf"
     modality: "image+text"
     notes: "modelo ligero especializado en imagen"
@@ -167,8 +184,9 @@ models:
     display_name: "Gemma 4 2B"
     family: "Gemma 4"
     params: "2B"
+    params_exact: 2.0
     size_gb: 7.2
-    release_date: "2026-04"
+    release_date: "2026-04-03"
     developer: "Google DeepMind"
     modality: "image+text"
     notes: "multimodal nativo"
@@ -178,8 +196,9 @@ models:
     display_name: "Gemma 4 4B"
     family: "Gemma 4"
     params: "4B"
+    params_exact: 4.0
     size_gb: 9.6
-    release_date: "2026-04"
+    release_date: "2026-04-03"
     developer: "Google DeepMind"
     modality: "image+text"
     notes: "multimodal nativo"

@@ -103,6 +103,7 @@ def build_index(runs, models_meta, datasets_meta):
             "display_name": v.get("display_name", k),
             "family":       v.get("family", ""),
             "params":       v.get("params", ""),
+            "params_exact": v.get("params_exact"),
             "size_gb":      v.get("size_gb"),
             "release_date": v.get("release_date", ""),
             "developer":    v.get("developer", ""),
@@ -553,9 +554,10 @@ function ReleaseDateScatter() {
       const f    = meta.family || 'Otro';
       if (!byFamily[f]) byFamily[f] = [];
       const parts = (meta.release_date || '').split('-').map(Number);
-      const y = parts[0], mo = parts[1];
+      const y = parts[0], mo = parts[1] || 1, day = parts[2] || 1;
       if (!y) return;
-      byFamily[f].push({ x: y + (mo-1)/12, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y });
+      const x = y + (mo-1)/12 + (day-1)/365;
+      byFamily[f].push({ x, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y, day });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
@@ -582,7 +584,8 @@ function ReleaseDateScatter() {
           legend: {display: false},
           tooltip: {callbacks: {label: ctx => {
             const mo = MONTHS[(ctx.raw.mo||1)-1];
-            return ctx.raw.label + '  (' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4);
+            const day = ctx.raw.day || 1;
+            return ctx.raw.label + '  (' + day + ' ' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4);
           }}}
         },
         layout: { padding: { top: 20, right: 20, bottom: 20, left: 20 } },
@@ -622,7 +625,7 @@ function ParamsScatter() {
       const meta = DATA.models_meta[m] || {};
       const f    = meta.family || 'Otro';
       if (!byFamily[f]) byFamily[f] = [];
-      const p = parseFloat((meta.params || '0').replace('B',''));
+      const p = meta.params_exact || parseFloat((meta.params || '0').replace('B',''));
       if (!p) return;
       byFamily[f].push({ x: p, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m) });
     });
