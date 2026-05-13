@@ -465,110 +465,78 @@ function HateF1Bar() {
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
 
-// Plugin ggrepel-style: fuerza de repulsion entre etiquetas + lineas conectoras
+// Plugin ggrepel con d3-force
 const leaderLabelPlugin = {
   id: 'leaderLabel',
   afterDraw(chart) {
-    const ctx = chart.ctx;
-    const FONT_SIZE = 10;
-    const PAD       = 3;
-    const MARGIN    = 4;
-    const ITERS     = 80;
+    const ctx  = chart.ctx;
+    const FONT = 10;
+    const PAD  = 3;
 
-    ctx.font         = `${FONT_SIZE}px system-ui,sans-serif`;
+    ctx.font         = `${FONT}px system-ui,sans-serif`;
     ctx.textBaseline = 'middle';
 
     // Recopilar puntos
-    const items = [];
+    const nodes = [];
     chart.data.datasets.forEach((ds, di) => {
       const meta = chart.getDatasetMeta(di);
       ds.data.forEach((pt, pi) => {
         const el = meta.data[pi];
-        if (!el) return;
-        const w = ctx.measureText(pt.label || '').width + PAD * 2;
-        const h = FONT_SIZE + PAD * 2;
-        // posicion inicial: alternar arriba/abajo segun indice global
-        const dir = items.length % 2 === 0 ? -1 : 1;
-        items.push({
-          px: el.x, py: el.y,
-          lx: el.x, ly: el.y + dir * 22,
-          vx: 0,    vy: 0,
+        if (!el || !pt.label) return;
+        const w = ctx.measureText(pt.label).width + PAD * 2;
+        const h = FONT + PAD * 2;
+        nodes.push({
+          id:    nodes.length,
+          px:    el.x,   // punto fijo
+          py:    el.y,
+          x:     el.x,   // posicion etiqueta (simulada)
+          y:     el.y + (nodes.length % 2 === 0 ? -20 : 20),
           w, h,
-          label: pt.label || '',
+          label: pt.label,
         });
       });
     });
 
+    if (!nodes.length) return;
+
     const area = chart.chartArea;
 
-    // Simulacion de fuerzas estilo ggrepel
-    for (let iter = 0; iter < ITERS; iter++) {
-      const alpha = 1 - iter / ITERS;
+    // Simulacion d3-force
+    const sim = d3.forceSimulation(nodes)
+      .force('collide', d3.forceCollide(d => Math.sqrt(d.w * d.w + d.h * d.h) / 2 + 2))
+      .force('x', d3.forceX(d => d.px).strength(0.12))
+      .force('y', d3.forceY(d => d.py).strength(0.12))
+      .stop();
 
-      items.forEach(a => {
-        // Fuerza de atraccion hacia el punto original (suave)
-        a.vx += (a.px - a.lx) * 0.01 * alpha;
-        a.vy += (a.py - a.ly) * 0.02 * alpha;
-      });
+    // Correr 300 ticks (sin animacion)
+    for (let i = 0; i < 300; i++) sim.tick();
 
-      // Repulsion entre etiquetas
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          const a = items[i], b = items[j];
-          const ax = a.lx + a.w / 2, ay = a.ly;
-          const bx = b.lx + b.w / 2, by = b.ly;
-          const overlapX = (a.w + b.w) / 2 + MARGIN - Math.abs(ax - bx);
-          const overlapY = (a.h + b.h) / 2 + MARGIN - Math.abs(ay - by);
-          if (overlapX > 0 && overlapY > 0) {
-            const force = Math.min(overlapY, overlapX) * 0.5;
-            const dirY  = ay < by ? -1 : 1;
-            const dirX  = ax < bx ? -1 : 1;
-            if (overlapY < overlapX) {
-              a.vy -= force * dirY;
-              b.vy += force * dirY;
-            } else {
-              a.vx -= force * dirX * 0.3;
-              b.vx += force * dirX * 0.3;
-            }
-          }
-        }
-      }
-
-      // Aplicar velocidad con amortiguacion
-      items.forEach(a => {
-        a.lx += a.vx;
-        a.ly += a.vy;
-        a.vx *= 0.6;
-        a.vy *= 0.6;
-        // Contener dentro del area del grafico
-        a.lx = Math.max(area.left,  Math.min(area.right  - a.w,  a.lx));
-        a.ly = Math.max(area.top  + a.h/2, Math.min(area.bottom - a.h/2, a.ly));
-      });
-    }
+    // Contener dentro del area
+    nodes.forEach(n => {
+      n.x = Math.max(area.left  + n.w/2, Math.min(area.right  - n.w/2, n.x));
+      n.y = Math.max(area.top   + n.h/2, Math.min(area.bottom - n.h/2, n.y));
+    });
 
     // Dibujar
-    items.forEach(item => {
-      const tx = item.lx + item.w / 2;
-      const ty = item.ly;
-
-      // Linea conectora del punto al borde de la caja
+    nodes.forEach(n => {
+      // Linea punteada punto -> etiqueta
       ctx.beginPath();
-      ctx.moveTo(item.px, item.py);
-      ctx.lineTo(tx, ty);
-      ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+      ctx.moveTo(n.px, n.py);
+      ctx.lineTo(n.x, n.y);
+      ctx.strokeStyle = 'rgba(0,0,0,0.15)';
       ctx.lineWidth   = 0.8;
-      ctx.setLineDash([2, 2]);
+      ctx.setLineDash([2, 3]);
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Fondo
-      ctx.fillStyle = 'rgba(255,255,255,0.92)';
-      ctx.fillRect(item.lx, ty - item.h / 2, item.w, item.h);
+      // Fondo blanco
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.fillRect(n.x - n.w/2, n.y - n.h/2, n.w, n.h);
 
-      // Texto en negro
+      // Texto negro
       ctx.fillStyle  = '#333';
       ctx.textAlign  = 'center';
-      ctx.fillText(item.label, tx, ty);
+      ctx.fillText(n.label, n.x, n.y);
     });
     ctx.textAlign = 'left';
   }
