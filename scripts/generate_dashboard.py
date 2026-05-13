@@ -490,7 +490,7 @@ const leaderLabelPlugin = {
           px:    el.x,   // punto fijo
           py:    el.y,
           x:     el.x,   // posicion etiqueta (simulada)
-          y:     el.y + (nodes.length % 2 === 0 ? -20 : 20),
+          y:     el.y + (nodes.length % 2 === 0 ? -30 : 30) + (nodes.length % 4 < 2 ? -8 : 8),
           w, h,
           label: pt.label,
         });
@@ -503,13 +503,13 @@ const leaderLabelPlugin = {
 
     // Simulacion d3-force
     const sim = d3.forceSimulation(nodes)
-      .force('collide', d3.forceCollide(d => Math.sqrt(d.w * d.w + d.h * d.h) / 2 + 2))
-      .force('x', d3.forceX(d => d.px).strength(0.12))
-      .force('y', d3.forceY(d => d.py).strength(0.12))
+      .force('collide', d3.forceCollide(d => Math.max(d.w, d.h) * 0.72 + 4).strength(1.0).iterations(8))
+      .force('x', d3.forceX(d => d.px).strength(0.05))
+      .force('y', d3.forceY(d => d.py).strength(0.05))
       .stop();
 
-    // Correr 300 ticks (sin animacion)
-    for (let i = 0; i < 300; i++) sim.tick();
+    // Correr 600 ticks (sin animacion)
+    for (let i = 0; i < 600; i++) sim.tick();
 
     // Contener dentro del area
     nodes.forEach(n => {
