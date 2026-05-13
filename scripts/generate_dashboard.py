@@ -465,88 +465,110 @@ function HateF1Bar() {
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
 
-// Plugin de etiquetas con lineas conectoras y deteccion de colisiones
+// Plugin ggrepel-style: fuerza de repulsion entre etiquetas + lineas conectoras
 const leaderLabelPlugin = {
   id: 'leaderLabel',
   afterDraw(chart) {
-    const ctx   = chart.ctx;
-    const meta0 = chart.getDatasetMeta(0);
-    if (!meta0) return;
+    const ctx = chart.ctx;
+    const FONT_SIZE = 10;
+    const PAD       = 3;
+    const MARGIN    = 4;
+    const ITERS     = 80;
 
-    // Recopilar todos los puntos con etiqueta
+    ctx.font         = `${FONT_SIZE}px system-ui,sans-serif`;
+    ctx.textBaseline = 'middle';
+
+    // Recopilar puntos
     const items = [];
     chart.data.datasets.forEach((ds, di) => {
       const meta = chart.getDatasetMeta(di);
       ds.data.forEach((pt, pi) => {
         const el = meta.data[pi];
         if (!el) return;
+        const w = ctx.measureText(pt.label || '').width + PAD * 2;
+        const h = FONT_SIZE + PAD * 2;
+        // posicion inicial: alternar arriba/abajo segun indice global
+        const dir = items.length % 2 === 0 ? -1 : 1;
         items.push({
-          px: el.x,
-          py: el.y,
+          px: el.x, py: el.y,
+          lx: el.x, ly: el.y + dir * 22,
+          vx: 0,    vy: 0,
+          w, h,
           label: pt.label || '',
-          color: ds.borderColor || '#555',
         });
       });
     });
 
-    const FONT_SIZE = 10;
-    const PAD      = 3;
-    const LINE_LEN = 14;
-    ctx.font        = `${FONT_SIZE}px system-ui,sans-serif`;
-    ctx.textBaseline = 'middle';
+    const area = chart.chartArea;
 
-    // Asignar posicion inicial alternando arriba/abajo
-    const placed = items.map((item, i) => {
-      const w   = ctx.measureText(item.label).width + PAD * 2;
-      const h   = FONT_SIZE + PAD * 2;
-      const dir = i % 2 === 0 ? -1 : 1;
-      return {
-        ...item,
-        lx: item.px - w / 2,
-        ly: item.py + dir * (LINE_LEN + h / 2),
-        w, h,
-      };
-    });
+    // Simulacion de fuerzas estilo ggrepel
+    for (let iter = 0; iter < ITERS; iter++) {
+      const alpha = 1 - iter / ITERS;
 
-    // Iteraciones de separacion de colisiones
-    for (let iter = 0; iter < 30; iter++) {
-      for (let a = 0; a < placed.length; a++) {
-        for (let b = a + 1; b < placed.length; b++) {
-          const A = placed[a], B = placed[b];
-          const ox = Math.abs(A.lx + A.w/2 - (B.lx + B.w/2)) - (A.w + B.w) / 2;
-          const oy = Math.abs(A.ly - B.ly) - (A.h + B.h) / 2 - 2;
-          if (ox < 0 && oy < 0) {
-            const push = Math.min(-oy / 2 + 2, 8);
-            if (A.ly < B.ly) { A.ly -= push; B.ly += push; }
-            else              { A.ly += push; B.ly -= push; }
+      items.forEach(a => {
+        // Fuerza de atraccion hacia el punto original (suave)
+        a.vx += (a.px - a.lx) * 0.01 * alpha;
+        a.vy += (a.py - a.ly) * 0.02 * alpha;
+      });
+
+      // Repulsion entre etiquetas
+      for (let i = 0; i < items.length; i++) {
+        for (let j = i + 1; j < items.length; j++) {
+          const a = items[i], b = items[j];
+          const ax = a.lx + a.w / 2, ay = a.ly;
+          const bx = b.lx + b.w / 2, by = b.ly;
+          const overlapX = (a.w + b.w) / 2 + MARGIN - Math.abs(ax - bx);
+          const overlapY = (a.h + b.h) / 2 + MARGIN - Math.abs(ay - by);
+          if (overlapX > 0 && overlapY > 0) {
+            const force = Math.min(overlapY, overlapX) * 0.5;
+            const dirY  = ay < by ? -1 : 1;
+            const dirX  = ax < bx ? -1 : 1;
+            if (overlapY < overlapX) {
+              a.vy -= force * dirY;
+              b.vy += force * dirY;
+            } else {
+              a.vx -= force * dirX * 0.3;
+              b.vx += force * dirX * 0.3;
+            }
           }
         }
       }
+
+      // Aplicar velocidad con amortiguacion
+      items.forEach(a => {
+        a.lx += a.vx;
+        a.ly += a.vy;
+        a.vx *= 0.6;
+        a.vy *= 0.6;
+        // Contener dentro del area del grafico
+        a.lx = Math.max(area.left,  Math.min(area.right  - a.w,  a.lx));
+        a.ly = Math.max(area.top  + a.h/2, Math.min(area.bottom - a.h/2, a.ly));
+      });
     }
 
-    // Dibujar lineas y etiquetas
-    placed.forEach(item => {
-      const tx = item.lx;
+    // Dibujar
+    items.forEach(item => {
+      const tx = item.lx + item.w / 2;
       const ty = item.ly;
-      const cx = item.px;
-      const cy = item.py;
 
-      // Linea conectora
+      // Linea conectora del punto al borde de la caja
       ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(tx + item.w / 2, ty);
-      ctx.strokeStyle = item.color + '88';
+      ctx.moveTo(item.px, item.py);
+      ctx.lineTo(tx, ty);
+      ctx.strokeStyle = 'rgba(0,0,0,0.18)';
       ctx.lineWidth   = 0.8;
+      ctx.setLineDash([2, 2]);
       ctx.stroke();
+      ctx.setLineDash([]);
 
-      // Fondo semitransparente
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      ctx.fillRect(tx, ty - item.h / 2, item.w, item.h);
+      // Fondo
+      ctx.fillStyle = 'rgba(255,255,255,0.92)';
+      ctx.fillRect(item.lx, ty - item.h / 2, item.w, item.h);
 
-      // Texto
-      ctx.fillStyle   = item.color;
-      ctx.textAlign   = 'center';
-      ctx.fillText(item.label, tx + item.w / 2, ty);
+      // Texto en negro
+      ctx.fillStyle  = '#333';
+      ctx.textAlign  = 'center';
+      ctx.fillText(item.label, tx, ty);
     });
     ctx.textAlign = 'left';
   }
