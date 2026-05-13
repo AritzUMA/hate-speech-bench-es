@@ -204,10 +204,10 @@ const FAMILY_ICON = {
   'Phi 3':       CDN+'microsoft.png',
   'Phi 3.5':     CDN+'microsoft.png',
   'Yi':          CDN+'yi.png',
-  'StableLM 2':  LOGOS+'Stable.png',
+  'StableLM 2':  CDN+'stability-ai.png',
   'GPT-OSS':     CDN+'openai.png',
   'Salamandra':  LOGOS+'salamandra.png',
-  'OpenEuroLLM': LOGOS+'openLLM.png',
+  'OpenEuroLLM': LOGOS+'openeurollm.png',
   'Moondream':   LOGOS+'moondream.png',
 };
 
@@ -419,7 +419,7 @@ function HateF1Bar() {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
+      labels:   sorted.map(m => m),
       values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
@@ -510,13 +510,14 @@ function ReleaseDateScatter() {
           }}},
           datalabels: {
             display: true,
-            formatter: v => v.label.split(':')[0],
+            formatter: v => v.label,
             font: {size: 10},
-            color: '#555',
-            align: 'right',
-            anchor: 'end',
-            offset: 4,
+            color: ctx => ctx.dataset.borderColor,
+            align: ctx => ctx.dataIndex % 2 === 0 ? 'top' : 'bottom',
+            anchor: ctx => ctx.dataIndex % 2 === 0 ? 'end' : 'start',
+            offset: 6,
             clip: false,
+            overlap: false,
           }
         },
         layout: { padding: { right: 80 } },
@@ -586,13 +587,14 @@ function ParamsScatter() {
           tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  ' + ctx.raw.y.toFixed(4)}},
           datalabels: {
             display: true,
-            formatter: v => v.label.split(':')[0],
+            formatter: v => v.label,
             font: {size: 10},
-            color: '#555',
-            align: 'right',
-            anchor: 'end',
-            offset: 4,
+            color: ctx => ctx.dataset.borderColor,
+            align: ctx => ctx.dataIndex % 2 === 0 ? 'top' : 'bottom',
+            anchor: ctx => ctx.dataIndex % 2 === 0 ? 'end' : 'start',
+            offset: 6,
             clip: false,
+            overlap: false,
           }
         },
         layout: { padding: { right: 80 } },
