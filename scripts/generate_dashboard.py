@@ -155,7 +155,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f
 .section-sub{font-size:12px;color:#aaa}
 .chart-wrap{background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.5rem}
 .chart-label{font-size:12px;color:#888;margin-bottom:.6rem}
-.chart-box{position:relative;height:420px}
+.chart-box{position:relative;height:180px}
 .chart-box-scatter{position:relative;height:420px}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0e0}
 th{padding:9px 12px;text-align:left;font-weight:500;font-size:12px;color:#666;background:#fafaf8;border-bottom:0.5px solid #e8e8e8;cursor:pointer;user-select:none;white-space:nowrap}
@@ -275,7 +275,8 @@ function SortTh({k, label, sortKey, sortDir, onSort}) {
   );
 }
 
-function Leaderboard({ds, setDs}) {
+function Leaderboard() {
+  const [ds, setDs]           = useState('__overall__');
   const [sortKey, setSortKey] = useState('macro_f1');
   const [sortDir, setSortDir] = useState('desc');
 
@@ -410,7 +411,7 @@ function Leaderboard({ds, setDs}) {
   );
 }
 
-function HateF1Bar({ds}) {
+function HateF1Bar() {
   const ref = useRef(null);
 
   const chartData = useMemo(() => {
@@ -419,18 +420,18 @@ function HateF1Bar({ds}) {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
-      values:   sorted.map(m => getF1(m)),
+      labels:   sorted.map(m => m),
+      values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
     };
-  }, [ds]);
+  }, []);
 
   useEffect(() => {
     if (!ref.current) return;
     const ex = Chart.getChart(ref.current);
     if (ex) ex.destroy();
-    const dataset = {
+    const ds = {
       data:            chartData.values,
       backgroundColor: chartData.colors,
       borderRadius:    4,
@@ -439,7 +440,7 @@ function HateF1Bar({ds}) {
     };
     new Chart(ref.current, {
       type: 'bar',
-      data: { labels: chartData.labels, datasets: [dataset] },
+      data: { labels: chartData.labels, datasets: [ds] },
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -461,7 +462,7 @@ function HateF1Bar({ds}) {
         }
       }
     });
-  }, [ds]);
+  }, []);
 
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
@@ -478,7 +479,7 @@ const leaderLabelPlugin = {
     const PAD_X     = 5;
     const PAD_Y     = 3;
     const LABEL_GAP = 5;
-    const POINT_GAP = 8;
+    const POINT_GAP = 20;
 
     const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
@@ -541,8 +542,8 @@ const leaderLabelPlugin = {
 
     for (let iter = 0; iter < 350; iter++) {
       nodes.forEach(n => {
-        n.x += (n.tx - n.x) * 0.025;
-        n.y += (n.ty - n.y) * 0.025;
+        n.x += (n.tx - n.x) * 0.005;
+        n.y += (n.ty - n.y) * 0.005;
         pushAwayFromPoint(n);
       });
       for (let i = 0; i < nodes.length; i++) {
@@ -613,25 +614,21 @@ const leaderLabelPlugin = {
   }
 };
 
-function ReleaseDateScatter({ds}) {
+function ReleaseDateScatter() {
   const ref = useRef(null);
 
   const datasets = useMemo(() => {
-    const isOv  = ds === '__overall__';
-    const models = DATA.models.filter(m => isOv ? DATA.overall[m] : DATA.results[m]?.[ds]);
+    const models = DATA.models.filter(m => DATA.overall[m]);
     const byFamily = {};
     models.forEach(m => {
-      const meta   = DATA.models_meta[m] || {};
-      const f      = meta.family || 'Otro';
+      const meta = DATA.models_meta[m] || {};
+      const f    = meta.family || 'Otro';
       if (!byFamily[f]) byFamily[f] = [];
-      const parts  = (meta.release_date || '').split('-').map(Number);
+      const parts = (meta.release_date || '').split('-').map(Number);
       const y = parts[0], mo = parts[1] || 1, day = parts[2] || 1;
       if (!y) return;
-      const x      = y + (mo-1)/12 + (day-1)/365;
-      const hate_f1 = isOv
-        ? (DATA.overall[m]?.hate_f1 || 0)
-        : (DATA.results[m]?.[ds]?.hate_f1 || 0);
-      byFamily[f].push({ x, y: hate_f1, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y, day });
+      const x = y + (mo-1)/12 + (day-1)/365;
+      byFamily[f].push({ x, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m), mo, yr: y, day });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
@@ -689,23 +686,19 @@ function ReleaseDateScatter({ds}) {
   return <div className="chart-box-scatter"><canvas ref={ref}/></div>;
 }
 
-function ParamsScatter({ds}) {
+function ParamsScatter() {
   const ref = useRef(null);
 
   const datasets = useMemo(() => {
-    const isOv  = ds === '__overall__';
-    const models = DATA.models.filter(m => isOv ? DATA.overall[m] : DATA.results[m]?.[ds]);
+    const models = DATA.models.filter(m => DATA.overall[m]);
     const byFamily = {};
     models.forEach(m => {
-      const meta    = DATA.models_meta[m] || {};
-      const f       = meta.family || 'Otro';
+      const meta = DATA.models_meta[m] || {};
+      const f    = meta.family || 'Otro';
       if (!byFamily[f]) byFamily[f] = [];
       const p = meta.params_exact || parseFloat((meta.params || '0').replace('B',''));
       if (!p) return;
-      const hate_f1 = isOv
-        ? (DATA.overall[m]?.hate_f1 || 0)
-        : (DATA.results[m]?.[ds]?.hate_f1 || 0);
-      byFamily[f].push({ x: p, y: hate_f1, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m) });
+      byFamily[f].push({ x: p, y: DATA.overall[m].hate_f1 || 0, label: (DATA.models_meta[m] ? DATA.models_meta[m].display_name : m) });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label:            f,
@@ -753,32 +746,29 @@ function ParamsScatter({ds}) {
   return <div className="chart-box-scatter"><canvas ref={ref}/></div>;
 }
 
-function Graficos({ds}) {
-  const isOv   = ds === '__overall__';
-  const dsName = isOv ? 'todos los datasets' : (DATA.datasets_meta[ds]?.display || ds);
+function Graficos() {
   return (
     <div className="section">
       <div className="section-header">
         <h2>Analisis grafico</h2>
-        <span className="section-sub">{isOv ? 'Overall' : dsName}</span>
       </div>
       <div className="chart-label">
-        Hate F1 {isOv ? 'medio sobre todos los datasets' : 'en ' + dsName}, ordenado de mayor a menor
+        Hate F1 medio sobre todos los datasets evaluados, ordenado de mayor a menor
       </div>
       <div className="chart-wrap">
-        <HateF1Bar ds={ds}/>
+        <HateF1Bar/>
       </div>
       <div className="chart-label">
-        Hate F1 {isOv ? 'medio' : 'en ' + dsName} vs fecha de lanzamiento del modelo
+        Hate F1 medio vs fecha de lanzamiento del modelo — etiquetado por modelo
       </div>
       <div className="chart-wrap">
-        <ReleaseDateScatter ds={ds}/>
+        <ReleaseDateScatter/>
       </div>
       <div className="chart-label">
-        Hate F1 {isOv ? 'medio' : 'en ' + dsName} vs numero de parametros del modelo
+        Hate F1 medio vs numero de parametros del modelo
       </div>
       <div className="chart-wrap">
-        <ParamsScatter ds={ds}/>
+        <ParamsScatter/>
       </div>
     </div>
   );
@@ -869,7 +859,6 @@ function History() {
 }
 
 function App() {
-  const [ds, setDs] = useState('__overall__');
   const gen = DATA.generated ? DATA.generated.slice(0,16).replace('T',' ') + ' UTC' : '';
   return (
     <div>
@@ -904,8 +893,8 @@ function App() {
             Etiquetas: hate - no_hate - unclear
           </div>
         </div>
-        <Leaderboard ds={ds} setDs={setDs}/>
-        <Graficos ds={ds}/>
+        <Leaderboard/>
+        <Graficos/>
         <Datasets/>
         <History/>
       </div>
