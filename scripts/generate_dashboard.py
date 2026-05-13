@@ -134,7 +134,6 @@ def generate_html(index):
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
@@ -466,6 +465,93 @@ function HateF1Bar() {
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
 
+// Plugin de etiquetas con lineas conectoras y deteccion de colisiones
+const leaderLabelPlugin = {
+  id: 'leaderLabel',
+  afterDraw(chart) {
+    const ctx   = chart.ctx;
+    const meta0 = chart.getDatasetMeta(0);
+    if (!meta0) return;
+
+    // Recopilar todos los puntos con etiqueta
+    const items = [];
+    chart.data.datasets.forEach((ds, di) => {
+      const meta = chart.getDatasetMeta(di);
+      ds.data.forEach((pt, pi) => {
+        const el = meta.data[pi];
+        if (!el) return;
+        items.push({
+          px: el.x,
+          py: el.y,
+          label: pt.label || '',
+          color: ds.borderColor || '#555',
+        });
+      });
+    });
+
+    const FONT_SIZE = 10;
+    const PAD      = 3;
+    const LINE_LEN = 14;
+    ctx.font        = `${FONT_SIZE}px system-ui,sans-serif`;
+    ctx.textBaseline = 'middle';
+
+    // Asignar posicion inicial alternando arriba/abajo
+    const placed = items.map((item, i) => {
+      const w   = ctx.measureText(item.label).width + PAD * 2;
+      const h   = FONT_SIZE + PAD * 2;
+      const dir = i % 2 === 0 ? -1 : 1;
+      return {
+        ...item,
+        lx: item.px - w / 2,
+        ly: item.py + dir * (LINE_LEN + h / 2),
+        w, h,
+      };
+    });
+
+    // Iteraciones de separacion de colisiones
+    for (let iter = 0; iter < 30; iter++) {
+      for (let a = 0; a < placed.length; a++) {
+        for (let b = a + 1; b < placed.length; b++) {
+          const A = placed[a], B = placed[b];
+          const ox = Math.abs(A.lx + A.w/2 - (B.lx + B.w/2)) - (A.w + B.w) / 2;
+          const oy = Math.abs(A.ly - B.ly) - (A.h + B.h) / 2 - 2;
+          if (ox < 0 && oy < 0) {
+            const push = Math.min(-oy / 2 + 2, 8);
+            if (A.ly < B.ly) { A.ly -= push; B.ly += push; }
+            else              { A.ly += push; B.ly -= push; }
+          }
+        }
+      }
+    }
+
+    // Dibujar lineas y etiquetas
+    placed.forEach(item => {
+      const tx = item.lx;
+      const ty = item.ly;
+      const cx = item.px;
+      const cy = item.py;
+
+      // Linea conectora
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(tx + item.w / 2, ty);
+      ctx.strokeStyle = item.color + '88';
+      ctx.lineWidth   = 0.8;
+      ctx.stroke();
+
+      // Fondo semitransparente
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.fillRect(tx, ty - item.h / 2, item.w, item.h);
+
+      // Texto
+      ctx.fillStyle   = item.color;
+      ctx.textAlign   = 'center';
+      ctx.fillText(item.label, tx + item.w / 2, ty);
+    });
+    ctx.textAlign = 'left';
+  }
+};
+
 function ReleaseDateScatter() {
   const ref = useRef(null);
 
@@ -498,7 +584,7 @@ function ReleaseDateScatter() {
     new Chart(ref.current, {
       type: 'scatter',
       data: {datasets},
-      plugins: [ChartDataLabels],
+      plugins: [leaderLabelPlugin],
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -507,20 +593,9 @@ function ReleaseDateScatter() {
           tooltip: {callbacks: {label: ctx => {
             const mo = MONTHS[(ctx.raw.mo||1)-1];
             return ctx.raw.label + '  (' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4);
-          }}},
-          datalabels: {
-            display: true,
-            formatter: v => v.label,
-            font: {size: 10},
-            color: ctx => ctx.dataset.borderColor,
-            align: ctx => ctx.dataIndex % 2 === 0 ? 'top' : 'bottom',
-            anchor: ctx => ctx.dataIndex % 2 === 0 ? 'end' : 'start',
-            offset: 6,
-            clip: false,
-            overlap: false,
-          }
+          }}}
         },
-        layout: { padding: { right: 80 } },
+        layout: { padding: { top: 20, right: 20, bottom: 20, left: 20 } },
         scales: {
           x: {
             grid: {color:'#f0f0f0'},
@@ -578,26 +653,15 @@ function ParamsScatter() {
     new Chart(ref.current, {
       type: 'scatter',
       data: {datasets},
-      plugins: [ChartDataLabels],
+      plugins: [leaderLabelPlugin],
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {display: false},
-          tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  ' + ctx.raw.y.toFixed(4)}},
-          datalabels: {
-            display: true,
-            formatter: v => v.label,
-            font: {size: 10},
-            color: ctx => ctx.dataset.borderColor,
-            align: ctx => ctx.dataIndex % 2 === 0 ? 'top' : 'bottom',
-            anchor: ctx => ctx.dataIndex % 2 === 0 ? 'end' : 'start',
-            offset: 6,
-            clip: false,
-            overlap: false,
-          }
+          tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  ' + ctx.raw.y.toFixed(4)}}
         },
-        layout: { padding: { right: 80 } },
+        layout: { padding: { top: 20, right: 20, bottom: 20, left: 20 } },
         scales: {
           x: {
             grid: {color:'#f0f0f0'},
