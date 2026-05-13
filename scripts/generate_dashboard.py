@@ -420,7 +420,7 @@ function HateF1Bar() {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => m),
+      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
       values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
