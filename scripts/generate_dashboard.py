@@ -155,7 +155,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f
 .section-sub{font-size:12px;color:#aaa}
 .chart-wrap{background:#fff;border:0.5px solid #e0e0e0;border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.5rem}
 .chart-label{font-size:12px;color:#888;margin-bottom:.6rem}
-.chart-box{position:relative;height:420px}
+.chart-box{position:relative;height:180px}
 .chart-box-scatter{position:relative;height:420px}
 table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid #e0e0e0}
 th{padding:9px 12px;text-align:left;font-weight:500;font-size:12px;color:#666;background:#fafaf8;border-bottom:0.5px solid #e8e8e8;cursor:pointer;user-select:none;white-space:nowrap}
@@ -419,12 +419,12 @@ function HateF1Bar({ds}) {
       (DATA.overall[b].hate_f1 || 0) - (DATA.overall[a].hate_f1 || 0)
     );
     return {
-      labels:   sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].display_name : m),
-      values:   sorted.map(m => getF1(m)),
+      labels:   sorted.map(m => m),
+      values:   sorted.map(m => DATA.overall[m].hate_f1 || 0),
       colors:   sorted.map(m => col(DATA.models_meta[m] ? DATA.models_meta[m].family : '')),
       families: sorted.map(m => DATA.models_meta[m] ? DATA.models_meta[m].family : ''),
     };
-  }, [ds]);
+  }, []);
 
   useEffect(() => {
     if (!ref.current) return;
