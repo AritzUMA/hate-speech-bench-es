@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-13T13:54:21.491884+00:00",
-  "n_runs": 63,
+  "generated": "2026-05-13T22:05:24.919505+00:00",
+  "n_runs": 64,
   "n_models": 13,
   "n_datasets": 6,
   "best_overall_f1": 0.464,
@@ -38,6 +38,7 @@
         "hate_f1": 0.8503468780971258,
         "n_instances": 667,
         "n_unclear": 2,
+        "coverage": 99.7,
         "elapsed": 156.3,
         "timestamp": "2026-05-09T19:01:26.749172+00:00"
       },
@@ -50,6 +51,7 @@
         "hate_f1": 0.6492265123883788,
         "n_instances": 6595,
         "n_unclear": 28,
+        "coverage": 99.6,
         "elapsed": 1399.5,
         "timestamp": "2026-05-09T19:04:04.860833+00:00"
       },
@@ -62,6 +64,7 @@
         "hate_f1": 0.5301846590909091,
         "n_instances": 5999,
         "n_unclear": 24,
+        "coverage": 99.6,
         "elapsed": 1239.9,
         "timestamp": "2026-05-09T19:27:25.731338+00:00"
       },
@@ -74,6 +77,7 @@
         "hate_f1": 0.1596244131455399,
         "n_instances": 9500,
         "n_unclear": 33,
+        "coverage": 99.7,
         "elapsed": 2139.4,
         "timestamp": "2026-05-09T19:48:06.850121+00:00"
       },
@@ -86,6 +90,7 @@
         "hate_f1": 0.46378174976481656,
         "n_instances": 3994,
         "n_unclear": 18,
+        "coverage": 99.5,
         "elapsed": 904.5,
         "timestamp": "2026-05-09T20:23:47.755313+00:00"
       },
@@ -98,6 +103,7 @@
         "hate_f1": 0.7056223913577215,
         "n_instances": 3463,
         "n_unclear": 19,
+        "coverage": 99.5,
         "elapsed": 769.5,
         "timestamp": "2026-05-09T20:38:53.734020+00:00"
       }
@@ -112,6 +118,7 @@
         "hate_f1": 0.8405511811023622,
         "n_instances": 667,
         "n_unclear": 67,
+        "coverage": 90.0,
         "elapsed": 955.0,
         "timestamp": "2026-05-09T20:51:44.870918+00:00"
       },
@@ -124,6 +131,7 @@
         "hate_f1": 0.672645739910314,
         "n_instances": 6595,
         "n_unclear": 551,
+        "coverage": 91.6,
         "elapsed": 8293.3,
         "timestamp": "2026-05-09T21:07:41.749174+00:00"
       },
@@ -136,6 +144,7 @@
         "hate_f1": 0.539622641509434,
         "n_instances": 5999,
         "n_unclear": 774,
+        "coverage": 87.1,
         "elapsed": 8227.9,
         "timestamp": "2026-05-09T23:25:56.759619+00:00"
       },
@@ -148,6 +157,7 @@
         "hate_f1": 0.16184773310521813,
         "n_instances": 9500,
         "n_unclear": 1077,
+        "coverage": 88.7,
         "elapsed": 12934.0,
         "timestamp": "2026-05-10T01:43:05.791464+00:00"
       },
@@ -160,6 +170,7 @@
         "hate_f1": 0.49333333333333335,
         "n_instances": 3994,
         "n_unclear": 426,
+        "coverage": 89.3,
         "elapsed": 5187.2,
         "timestamp": "2026-05-10T05:18:41.738583+00:00"
       },
@@ -172,6 +183,7 @@
         "hate_f1": 0.7195902688860435,
         "n_instances": 3463,
         "n_unclear": 295,
+        "coverage": 91.5,
         "elapsed": 4637.8,
         "timestamp": "2026-05-10T06:45:11.716904+00:00"
       }
@@ -186,6 +198,7 @@
         "hate_f1": 0.7442396313364056,
         "n_instances": 667,
         "n_unclear": 157,
+        "coverage": 76.5,
         "elapsed": 160.1,
         "timestamp": "2026-05-10T08:02:30.744367+00:00"
       },
@@ -198,6 +211,7 @@
         "hate_f1": 0.6955520368504391,
         "n_instances": 6595,
         "n_unclear": 354,
+        "coverage": 94.6,
         "elapsed": 1263.4,
         "timestamp": "2026-05-10T08:05:11.772280+00:00"
       },
@@ -210,6 +224,7 @@
         "hate_f1": 0.6201834862385321,
         "n_instances": 5999,
         "n_unclear": 485,
+        "coverage": 91.9,
         "elapsed": 1168.3,
         "timestamp": "2026-05-10T08:26:16.734918+00:00"
       },
@@ -222,6 +237,7 @@
         "hate_f1": 0.1872713972201902,
         "n_instances": 9500,
         "n_unclear": 749,
+        "coverage": 92.1,
         "elapsed": 1872.0,
         "timestamp": "2026-05-10T08:45:46.773238+00:00"
       },
@@ -234,6 +250,7 @@
         "hate_f1": 0.5818935729094679,
         "n_instances": 3994,
         "n_unclear": 320,
+        "coverage": 92.0,
         "elapsed": 783.3,
         "timestamp": "2026-05-10T09:16:59.762324+00:00"
       },
@@ -246,6 +263,7 @@
         "hate_f1": 0.7344827586206897,
         "n_instances": 3463,
         "n_unclear": 171,
+        "coverage": 95.1,
         "elapsed": 708.1,
         "timestamp": "2026-05-10T09:30:04.736890+00:00"
       }
@@ -260,6 +278,7 @@
         "hate_f1": 0.5283540802213001,
         "n_instances": 667,
         "n_unclear": 9,
+        "coverage": 98.7,
         "elapsed": 142.4,
         "timestamp": "2026-05-10T09:41:53.785554+00:00"
       },
@@ -272,6 +291,7 @@
         "hate_f1": 0.6335877862595419,
         "n_instances": 6595,
         "n_unclear": 83,
+        "coverage": 98.7,
         "elapsed": 1212.8,
         "timestamp": "2026-05-10T09:44:17.745149+00:00"
       },
@@ -284,6 +304,7 @@
         "hate_f1": 0.582744702320888,
         "n_instances": 5999,
         "n_unclear": 76,
+        "coverage": 98.7,
         "elapsed": 1167.2,
         "timestamp": "2026-05-10T10:04:31.790693+00:00"
       },
@@ -296,6 +317,7 @@
         "hate_f1": 0.161946017994002,
         "n_instances": 9500,
         "n_unclear": 201,
+        "coverage": 97.9,
         "elapsed": 1902.6,
         "timestamp": "2026-05-10T10:24:00.735223+00:00"
       },
@@ -308,6 +330,7 @@
         "hate_f1": 0.512306289881495,
         "n_instances": 3994,
         "n_unclear": 66,
+        "coverage": 98.3,
         "elapsed": 783.5,
         "timestamp": "2026-05-10T10:55:44.784142+00:00"
       },
@@ -320,6 +343,7 @@
         "hate_f1": 0.6521030322791,
         "n_instances": 3463,
         "n_unclear": 43,
+        "coverage": 98.8,
         "elapsed": 681.8,
         "timestamp": "2026-05-10T11:08:49.798604+00:00"
       }
@@ -334,6 +358,7 @@
         "hate_f1": 0.6674528301886793,
         "n_instances": 667,
         "n_unclear": 232,
+        "coverage": 65.2,
         "elapsed": 151.2,
         "timestamp": "2026-05-10T11:20:12.762815+00:00"
       },
@@ -346,6 +371,7 @@
         "hate_f1": 0.6165235416049748,
         "n_instances": 6595,
         "n_unclear": 1525,
+        "coverage": 76.9,
         "elapsed": 1396.5,
         "timestamp": "2026-05-10T11:22:45.779784+00:00"
       },
@@ -358,6 +384,7 @@
         "hate_f1": 0.5027374434658415,
         "n_instances": 5999,
         "n_unclear": 2070,
+        "coverage": 65.5,
         "elapsed": 1386.7,
         "timestamp": "2026-05-10T11:46:03.773512+00:00"
       },
@@ -370,6 +397,7 @@
         "hate_f1": 0.1773955773955774,
         "n_instances": 9500,
         "n_unclear": 3520,
+        "coverage": 62.9,
         "elapsed": 2323.6,
         "timestamp": "2026-05-10T12:09:11.694143+00:00"
       },
@@ -382,6 +410,7 @@
         "hate_f1": 0.44333570919458304,
         "n_instances": 3994,
         "n_unclear": 1216,
+        "coverage": 69.6,
         "elapsed": 936.9,
         "timestamp": "2026-05-10T12:47:56.723030+00:00"
       },
@@ -394,6 +423,7 @@
         "hate_f1": 0.6109526525955505,
         "n_instances": 3463,
         "n_unclear": 865,
+        "coverage": 75.0,
         "elapsed": 860.9,
         "timestamp": "2026-05-10T13:03:34.690442+00:00"
       }
@@ -408,6 +438,7 @@
         "hate_f1": 0.505524861878453,
         "n_instances": 667,
         "n_unclear": 356,
+        "coverage": 46.6,
         "elapsed": 482.1,
         "timestamp": "2026-05-10T13:18:35.758473+00:00"
       },
@@ -420,6 +451,7 @@
         "hate_f1": 0.5382457452777258,
         "n_instances": 6595,
         "n_unclear": 3102,
+        "coverage": 53.0,
         "elapsed": 4769.0,
         "timestamp": "2026-05-10T13:26:38.777813+00:00"
       },
@@ -432,6 +464,7 @@
         "hate_f1": 0.48929032258064514,
         "n_instances": 5999,
         "n_unclear": 2519,
+        "coverage": 58.0,
         "elapsed": 4609.2,
         "timestamp": "2026-05-10T14:46:10.723882+00:00"
       },
@@ -444,6 +477,7 @@
         "hate_f1": 0.15380313199105144,
         "n_instances": 9500,
         "n_unclear": 4816,
+        "coverage": 49.3,
         "elapsed": 6930.0,
         "timestamp": "2026-05-10T16:03:01.764057+00:00"
       },
@@ -456,6 +490,7 @@
         "hate_f1": 0.42506350550381033,
         "n_instances": 3994,
         "n_unclear": 2185,
+        "coverage": 45.3,
         "elapsed": 2523.4,
         "timestamp": "2026-05-10T17:58:33.770690+00:00"
       },
@@ -468,6 +503,7 @@
         "hate_f1": 0.5664502903997267,
         "n_instances": 3463,
         "n_unclear": 1604,
+        "coverage": 53.7,
         "elapsed": 3014.7,
         "timestamp": "2026-05-10T18:40:38.723851+00:00"
       }
@@ -482,6 +518,7 @@
         "hate_f1": 0.313915857605178,
         "n_instances": 667,
         "n_unclear": 315,
+        "coverage": 52.8,
         "elapsed": 487.3,
         "timestamp": "2026-05-10T19:30:54.756265+00:00"
       },
@@ -494,6 +531,7 @@
         "hate_f1": 0.0,
         "n_instances": 6595,
         "n_unclear": 6595,
+        "coverage": 0.0,
         "elapsed": 521.2,
         "timestamp": "2026-05-10T19:39:03.808055+00:00"
       },
@@ -506,6 +544,7 @@
         "hate_f1": 0.0,
         "n_instances": 5999,
         "n_unclear": 5999,
+        "coverage": 0.0,
         "elapsed": 467.5,
         "timestamp": "2026-05-10T19:47:46.745877+00:00"
       },
@@ -518,6 +557,7 @@
         "hate_f1": 0.0,
         "n_instances": 9500,
         "n_unclear": 9500,
+        "coverage": 0.0,
         "elapsed": 754.3,
         "timestamp": "2026-05-10T19:55:35.690595+00:00"
       },
@@ -530,6 +570,7 @@
         "hate_f1": 0.0,
         "n_instances": 3994,
         "n_unclear": 3994,
+        "coverage": 0.0,
         "elapsed": 321.0,
         "timestamp": "2026-05-10T20:08:11.756468+00:00"
       },
@@ -542,6 +583,7 @@
         "hate_f1": 0.0,
         "n_instances": 3463,
         "n_unclear": 3463,
+        "coverage": 0.0,
         "elapsed": 275.8,
         "timestamp": "2026-05-10T20:13:33.783259+00:00"
       }
@@ -556,6 +598,7 @@
         "hate_f1": 0.6737588652482269,
         "n_instances": 667,
         "n_unclear": 30,
+        "coverage": 95.5,
         "elapsed": 334.8,
         "timestamp": "2026-05-10T20:18:11.781275+00:00"
       },
@@ -568,6 +611,7 @@
         "hate_f1": 0.636888483743543,
         "n_instances": 6595,
         "n_unclear": 280,
+        "coverage": 95.8,
         "elapsed": 2990.7,
         "timestamp": "2026-05-10T20:23:47.725089+00:00"
       },
@@ -580,6 +624,7 @@
         "hate_f1": 0.4832282471626734,
         "n_instances": 5999,
         "n_unclear": 473,
+        "coverage": 92.1,
         "elapsed": 2931.6,
         "timestamp": "2026-05-10T21:13:39.711924+00:00"
       },
@@ -592,6 +637,7 @@
         "hate_f1": 0.1972214655407246,
         "n_instances": 9500,
         "n_unclear": 528,
+        "coverage": 94.4,
         "elapsed": 4887.0,
         "timestamp": "2026-05-10T22:02:32.705917+00:00"
       },
@@ -604,6 +650,7 @@
         "hate_f1": 0.4361917623227549,
         "n_instances": 3994,
         "n_unclear": 256,
+        "coverage": 93.6,
         "elapsed": 2016.0,
         "timestamp": "2026-05-10T23:24:00.727473+00:00"
       },
@@ -616,6 +663,7 @@
         "hate_f1": 0.6547842401500938,
         "n_instances": 3463,
         "n_unclear": 182,
+        "coverage": 94.7,
         "elapsed": 1755.1,
         "timestamp": "2026-05-10T23:57:37.803610+00:00"
       }
@@ -630,6 +678,7 @@
         "hate_f1": 0.01171875,
         "n_instances": 667,
         "n_unclear": 661,
+        "coverage": 0.9,
         "elapsed": 1145.1,
         "timestamp": "2026-05-11T00:26:55.755564+00:00"
       },
@@ -642,6 +691,7 @@
         "hate_f1": 0.0,
         "n_instances": 6595,
         "n_unclear": 6595,
+        "coverage": 0.0,
         "elapsed": 5920.7,
         "timestamp": "2026-05-11T00:46:03.712177+00:00"
       },
@@ -654,6 +704,7 @@
         "hate_f1": 0.0,
         "n_instances": 5999,
         "n_unclear": 5999,
+        "coverage": 0.0,
         "elapsed": 5331.8,
         "timestamp": "2026-05-11T02:24:45.765032+00:00"
       },
@@ -666,6 +717,7 @@
         "hate_f1": 0.0,
         "n_instances": 9500,
         "n_unclear": 9500,
+        "coverage": 0.0,
         "elapsed": 8354.5,
         "timestamp": "2026-05-11T03:53:38.753842+00:00"
       },
@@ -678,6 +730,7 @@
         "hate_f1": 0.0,
         "n_instances": 3994,
         "n_unclear": 3994,
+        "coverage": 0.0,
         "elapsed": 3430.3,
         "timestamp": "2026-05-11T06:12:54.781215+00:00"
       },
@@ -690,6 +743,7 @@
         "hate_f1": 0.0,
         "n_instances": 3463,
         "n_unclear": 3463,
+        "coverage": 0.0,
         "elapsed": 2914.1,
         "timestamp": "2026-05-11T07:10:06.781678+00:00"
       }
@@ -704,6 +758,7 @@
         "hate_f1": 0.5307262569832403,
         "n_instances": 667,
         "n_unclear": 9,
+        "coverage": 98.7,
         "elapsed": 1929.0,
         "timestamp": "2026-05-11T07:58:42.753383+00:00"
       },
@@ -716,8 +771,22 @@
         "hate_f1": 0.6218626155878467,
         "n_instances": 6595,
         "n_unclear": 50,
+        "coverage": 99.2,
         "elapsed": 17187.1,
         "timestamp": "2026-05-11T08:30:52.785021+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.4735,
+        "macro_f1_binary": 0.7154,
+        "precision": 0.4714,
+        "recall": 0.4792,
+        "accuracy": 0.7546,
+        "hate_f1": 0.5924838520258368,
+        "n_instances": 5999,
+        "n_unclear": 95,
+        "coverage": 98.4,
+        "elapsed": 16509.7,
+        "timestamp": "2026-05-13T14:05:18.580605+00:00"
       }
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
@@ -730,6 +799,7 @@
         "hate_f1": 0.6232085067036524,
         "n_instances": 5999,
         "n_unclear": 534,
+        "coverage": 91.1,
         "elapsed": 22406.5,
         "timestamp": "2026-05-11T20:13:19.732488+00:00"
       },
@@ -742,6 +812,7 @@
         "hate_f1": 0.578397212543554,
         "n_instances": 3994,
         "n_unclear": 351,
+        "coverage": 91.2,
         "elapsed": 14275.3,
         "timestamp": "2026-05-12T10:27:15.030613+00:00"
       }
@@ -756,6 +827,7 @@
         "hate_f1": 0.45111326234269117,
         "n_instances": 3994,
         "n_unclear": 605,
+        "coverage": 84.9,
         "elapsed": 3863.2,
         "timestamp": "2026-05-12T20:53:49.778852+00:00"
       },
@@ -768,6 +840,7 @@
         "hate_f1": 0.7040202595758152,
         "n_instances": 3463,
         "n_unclear": 439,
+        "coverage": 87.3,
         "elapsed": 3976.6,
         "timestamp": "2026-05-12T21:58:14.770499+00:00"
       }
@@ -782,6 +855,7 @@
         "hate_f1": 0.11594202898550725,
         "n_instances": 667,
         "n_unclear": 585,
+        "coverage": 12.3,
         "elapsed": 1457.8,
         "timestamp": "2026-05-13T07:44:54.342574+00:00"
       },
@@ -794,6 +868,7 @@
         "hate_f1": 0.0,
         "n_instances": 6595,
         "n_unclear": 6595,
+        "coverage": 0.0,
         "elapsed": 10861.1,
         "timestamp": "2026-05-13T08:09:13.759739+00:00"
       },
@@ -806,6 +881,7 @@
         "hate_f1": 0.0,
         "n_instances": 5999,
         "n_unclear": 5999,
+        "coverage": 0.0,
         "elapsed": 8640.3,
         "timestamp": "2026-05-13T11:10:16.760090+00:00"
       }
@@ -912,15 +988,15 @@
       "coverage": 0.0
     },
     "stablelm2:12b": {
-      "macro_f1": 0.3807,
-      "macro_f1_binary": 0.5739,
-      "hate_f1": 0.5763,
-      "precision": 0.4224,
-      "recall": 0.4269,
-      "accuracy": 0.5707,
-      "n_datasets": 2,
+      "macro_f1": 0.4116,
+      "macro_f1_binary": 0.6211,
+      "hate_f1": 0.5817,
+      "precision": 0.4388,
+      "recall": 0.4443,
+      "accuracy": 0.632,
+      "n_datasets": 3,
       "n_datasets_total": 6,
-      "coverage": 99.2
+      "coverage": 98.8
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
       "macro_f1": 0.4642,
@@ -980,6 +1056,14 @@
       "f1": 0.0,
       "hate_f1": 0.0,
       "elapsed": 8640.3
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "stablelm2:12b",
+      "dataset": "haternet",
+      "f1": 0.4735,
+      "hate_f1": 0.5924838520258368,
+      "elapsed": 16509.7
     },
     {
       "ts": "2026-05-12",

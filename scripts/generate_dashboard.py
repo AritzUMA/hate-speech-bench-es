@@ -53,6 +53,7 @@ def build_index(runs, models_meta, datasets_meta):
             "hate_f1":         r["per_class"].get("hate", {}).get("f1-score", 0),
             "n_instances":     r.get("n_instances", 0),
             "n_unclear":       r.get("n_unclear", r.get("n_sin_pred", 0)),
+            "coverage":        round((r.get("n_instances",0) - r.get("n_unclear", r.get("n_sin_pred",0))) / r.get("n_instances",1) * 100, 1),
             "elapsed":         r.get("elapsed_seconds"),
             "timestamp":       r["timestamp"],
         }
@@ -350,7 +351,7 @@ function Leaderboard({ds, setDs}) {
             <SortTh k="precision"       label="Precision"  sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
             <SortTh k="recall"          label="Recall"     sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
             <th>{isOv ? 'DS' : 'n'}</th>
-            {isOv && <th>Cobertura</th>}
+            <th>Cobertura</th>
           </tr>
         </thead>
         <tbody>
@@ -395,12 +396,10 @@ function Leaderboard({ds, setDs}) {
                     ? <span className="tag-ds">{r.n_datasets}/{r.n_datasets_total}</span>
                     : (r.n_instances ? r.n_instances.toLocaleString() : '-')}
                 </td>
-                {isOv && (
-                  <td>
-                    <span className="cov-dot" style={{background: covColor}}/>
-                    {cov != null ? cov + '%' : '-'}
-                  </td>
-                )}
+                <td>
+                  <span className="cov-dot" style={{background: covColor}}/>
+                  {cov != null ? cov + '%' : '-'}
+                </td>
               </tr>
             );
           })}
