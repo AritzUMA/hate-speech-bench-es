@@ -238,6 +238,7 @@ const loadedImgs = {};
 Object.entries(FAMILY_ICON).forEach(([fam, url]) => {
   if (loadedImgs[fam]) return;
   const img = new Image();
+  img.onload = () => { Object.values(Chart.instances).forEach(c => c.update()); };
   img.src = url;
   loadedImgs[fam] = img;
 });
@@ -293,11 +294,15 @@ function Leaderboard({ds, setDs}) {
       .map(m => ({
         model:        m,
         display_name: DATA.models_meta[m] ? DATA.models_meta[m].display_name : m,
-        family:       DATA.models_meta[m] ? DATA.models_meta[m].family : '',
+        family:       DATA.models_meta[m]?.family || '',
         params:       DATA.models_meta[m] ? DATA.models_meta[m].params : '',
         developer:    DATA.models_meta[m] ? DATA.models_meta[m].developer : '',
         release_date: DATA.models_meta[m] ? DATA.models_meta[m].release_date : '',
         ...(isOv ? DATA.overall[m] : DATA.results[m][ds]),
+        // Override con registry para evitar valores obsoletos del run JSON
+        family:       DATA.models_meta[m]?.family || '',
+        params:       DATA.models_meta[m]?.params || '',
+        display_name: DATA.models_meta[m]?.display_name || m,
       }));
     r.sort((a, b) => sortDir==='desc'
       ? (b[sortKey] != null ? b[sortKey] : -1) - (a[sortKey] != null ? a[sortKey] : -1)
