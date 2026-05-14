@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-14T10:45:49.210707+00:00",
-  "n_runs": 69,
+  "generated": "2026-05-14T13:53:36.689054+00:00",
+  "n_runs": 71,
   "n_models": 14,
   "n_datasets": 6,
   "best_overall_f1": 0.464,
@@ -952,6 +952,32 @@
         "coverage": 84.9,
         "elapsed": 16861.3,
         "timestamp": "2026-05-14T05:04:18.770591+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.3897,
+        "macro_f1_binary": 0.6247,
+        "precision": 0.4071,
+        "recall": 0.3815,
+        "accuracy": 0.7028,
+        "hate_f1": 0.34200157604412923,
+        "n_instances": 3994,
+        "n_unclear": 457,
+        "coverage": 88.6,
+        "elapsed": 7254.8,
+        "timestamp": "2026-05-14T09:45:21.699038+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.3732,
+        "macro_f1_binary": 0.6069,
+        "precision": 0.4086,
+        "recall": 0.3494,
+        "accuracy": 0.5201,
+        "hate_f1": 0.5425048669695003,
+        "n_instances": 3463,
+        "n_unclear": 499,
+        "coverage": 85.6,
+        "elapsed": 6747.3,
+        "timestamp": "2026-05-14T11:46:17.774385+00:00"
       }
     }
   },
@@ -1100,15 +1126,15 @@
       "coverage": 0.6
     },
     "deepseek-r1:7b": {
-      "macro_f1": 0.3424,
-      "macro_f1_binary": 0.5537,
-      "hate_f1": 0.4325,
-      "precision": 0.3919,
-      "recall": 0.3597,
-      "accuracy": 0.5285,
-      "n_datasets": 4,
+      "macro_f1": 0.3554,
+      "macro_f1_binary": 0.5744,
+      "hate_f1": 0.4358,
+      "precision": 0.3972,
+      "recall": 0.3616,
+      "accuracy": 0.5562,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 86.3
+      "coverage": 86.5
     }
   },
   "history": [
@@ -1127,6 +1153,22 @@
       "f1": 0.3013,
       "hate_f1": 0.17765567765567766,
       "elapsed": 16861.3
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "deepseek-r1:7b",
+      "dataset": "hascosva",
+      "f1": 0.3897,
+      "hate_f1": 0.34200157604412923,
+      "elapsed": 7254.8
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "deepseek-r1:7b",
+      "dataset": "misocorpus",
+      "f1": 0.3732,
+      "hate_f1": 0.5425048669695003,
+      "elapsed": 6747.3
     },
     {
       "ts": "2026-05-13",

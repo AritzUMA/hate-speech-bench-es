@@ -44,6 +44,8 @@ def build_index(runs, models_meta, datasets_meta):
 
     for (model, dataset), r in best.items():
         m = r["metrics"]
+        # Override family/params from registry (run JSON may have stale values)
+        meta = models_meta.get(model, {})
         results[model][dataset] = {
             "macro_f1":        m.get("macro_f1", 0),
             "macro_f1_binary": m.get("macro_f1_binary", m.get("macro_f1", 0)),
@@ -74,6 +76,7 @@ def build_index(runs, models_meta, datasets_meta):
     METRICS = ["macro_f1", "macro_f1_binary", "hate_f1", "precision", "recall", "accuracy"]
     overall = {}
     for model, ds_scores in results.items():
+        # Ensure family comes from registry
         vals = {m: [] for m in METRICS}
         for ds_name, scores in ds_scores.items():
             for m in METRICS:
@@ -238,7 +241,6 @@ const loadedImgs = {};
 Object.entries(FAMILY_ICON).forEach(([fam, url]) => {
   if (loadedImgs[fam]) return;
   const img = new Image();
-  img.onload = () => { Object.values(Chart.instances).forEach(c => c.update()); };
   img.src = url;
   loadedImgs[fam] = img;
 });
@@ -294,15 +296,11 @@ function Leaderboard({ds, setDs}) {
       .map(m => ({
         model:        m,
         display_name: DATA.models_meta[m] ? DATA.models_meta[m].display_name : m,
-        family:       DATA.models_meta[m]?.family || '',
+        family:       DATA.models_meta[m] ? DATA.models_meta[m].family : '',
         params:       DATA.models_meta[m] ? DATA.models_meta[m].params : '',
         developer:    DATA.models_meta[m] ? DATA.models_meta[m].developer : '',
         release_date: DATA.models_meta[m] ? DATA.models_meta[m].release_date : '',
         ...(isOv ? DATA.overall[m] : DATA.results[m][ds]),
-        // Override con registry para evitar valores obsoletos del run JSON
-        family:       DATA.models_meta[m]?.family || '',
-        params:       DATA.models_meta[m]?.params || '',
-        display_name: DATA.models_meta[m]?.display_name || m,
       }));
     r.sort((a, b) => sortDir==='desc'
       ? (b[sortKey] != null ? b[sortKey] : -1) - (a[sortKey] != null ? a[sortKey] : -1)
@@ -916,6 +914,7 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
+<script data-goatcounter="https://hate-speech-bench.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>"""
 
