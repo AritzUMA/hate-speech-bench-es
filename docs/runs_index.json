@@ -1,10 +1,11 @@
 {
-  "generated": "2026-05-13T22:09:34.976034+00:00",
-  "n_runs": 64,
-  "n_models": 13,
+  "generated": "2026-05-14T10:36:30.663311+00:00",
+  "n_runs": 69,
+  "n_models": 14,
   "n_datasets": 6,
   "best_overall_f1": 0.464,
   "models": [
+    "deepseek-r1:7b",
     "gemma2:latest",
     "gemma3:12b",
     "gpt-oss:20b",
@@ -787,6 +788,19 @@
         "coverage": 98.4,
         "elapsed": 16509.7,
         "timestamp": "2026-05-13T14:05:18.580605+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.4417,
+        "macro_f1_binary": 0.6659,
+        "precision": 0.454,
+        "recall": 0.432,
+        "accuracy": 0.841,
+        "hate_f1": 0.4165844027640671,
+        "n_instances": 3994,
+        "n_unclear": 46,
+        "coverage": 98.8,
+        "elapsed": 11226.2,
+        "timestamp": "2026-05-13T19:47:59.777699+00:00"
       }
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
@@ -884,6 +898,60 @@
         "coverage": 0.0,
         "elapsed": 8640.3,
         "timestamp": "2026-05-13T11:10:16.760090+00:00"
+      }
+    },
+    "deepseek-r1:7b": {
+      "encarni": {
+        "macro_f1": 0.3184,
+        "macro_f1_binary": 0.5178,
+        "precision": 0.3958,
+        "recall": 0.352,
+        "accuracy": 0.4528,
+        "hate_f1": 0.5362517099863201,
+        "n_instances": 667,
+        "n_unclear": 97,
+        "coverage": 85.5,
+        "elapsed": 1185.0,
+        "timestamp": "2026-05-13T22:55:07.748317+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.3754,
+        "macro_f1_binary": 0.5977,
+        "precision": 0.4065,
+        "recall": 0.3626,
+        "accuracy": 0.5325,
+        "hate_f1": 0.5551305504739731,
+        "n_instances": 6595,
+        "n_unclear": 723,
+        "coverage": 89.0,
+        "elapsed": 10614.1,
+        "timestamp": "2026-05-13T23:14:53.766452+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.3745,
+        "macro_f1_binary": 0.607,
+        "precision": 0.4079,
+        "recall": 0.368,
+        "accuracy": 0.5521,
+        "hate_f1": 0.46096456168398614,
+        "n_instances": 5999,
+        "n_unclear": 858,
+        "coverage": 85.7,
+        "elapsed": 10347.9,
+        "timestamp": "2026-05-14T02:11:49.781221+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3013,
+        "macro_f1_binary": 0.4922,
+        "precision": 0.3573,
+        "recall": 0.3562,
+        "accuracy": 0.5767,
+        "hate_f1": 0.17765567765567766,
+        "n_instances": 9500,
+        "n_unclear": 1436,
+        "coverage": 84.9,
+        "elapsed": 16861.3,
+        "timestamp": "2026-05-14T05:04:18.770591+00:00"
       }
     }
   },
@@ -988,13 +1056,13 @@
       "coverage": 0.0
     },
     "stablelm2:12b": {
-      "macro_f1": 0.4116,
-      "macro_f1_binary": 0.6211,
-      "hate_f1": 0.5817,
-      "precision": 0.4388,
-      "recall": 0.4443,
-      "accuracy": 0.632,
-      "n_datasets": 3,
+      "macro_f1": 0.4192,
+      "macro_f1_binary": 0.6323,
+      "hate_f1": 0.5404,
+      "precision": 0.4426,
+      "recall": 0.4412,
+      "accuracy": 0.6843,
+      "n_datasets": 4,
       "n_datasets_total": 6,
       "coverage": 98.8
     },
@@ -1030,9 +1098,36 @@
       "n_datasets": 3,
       "n_datasets_total": 6,
       "coverage": 0.6
+    },
+    "deepseek-r1:7b": {
+      "macro_f1": 0.3424,
+      "macro_f1_binary": 0.5537,
+      "hate_f1": 0.4325,
+      "precision": 0.3919,
+      "recall": 0.3597,
+      "accuracy": 0.5285,
+      "n_datasets": 4,
+      "n_datasets_total": 6,
+      "coverage": 86.3
     }
   },
   "history": [
+    {
+      "ts": "2026-05-14",
+      "model": "deepseek-r1:7b",
+      "dataset": "haternet",
+      "f1": 0.3745,
+      "hate_f1": 0.46096456168398614,
+      "elapsed": 10347.9
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "deepseek-r1:7b",
+      "dataset": "chileno",
+      "f1": 0.3013,
+      "hate_f1": 0.17765567765567766,
+      "elapsed": 16861.3
+    },
     {
       "ts": "2026-05-13",
       "model": "phi3:3.8b",
@@ -1064,6 +1159,30 @@
       "f1": 0.4735,
       "hate_f1": 0.5924838520258368,
       "elapsed": 16509.7
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "stablelm2:12b",
+      "dataset": "hascosva",
+      "f1": 0.4417,
+      "hate_f1": 0.4165844027640671,
+      "elapsed": 11226.2
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "deepseek-r1:7b",
+      "dataset": "encarni",
+      "f1": 0.3184,
+      "hate_f1": 0.5362517099863201,
+      "elapsed": 1185.0
+    },
+    {
+      "ts": "2026-05-13",
+      "model": "deepseek-r1:7b",
+      "dataset": "hateval",
+      "f1": 0.3754,
+      "hate_f1": 0.5551305504739731,
+      "elapsed": 10614.1
     },
     {
       "ts": "2026-05-12",
