@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-14T10:36:30.663311+00:00",
+  "generated": "2026-05-14T10:40:56.749337+00:00",
   "n_runs": 69,
   "n_models": 14,
   "n_datasets": 6,
@@ -1710,6 +1710,15 @@
       "size_gb": 4.4,
       "release_date": "2024-05-27",
       "developer": "Mistral AI"
+    },
+    "deepseek-r1:7b": {
+      "display_name": "DeepSeek R1 7B",
+      "family": "DeepSeek R1",
+      "params": "7B",
+      "params_exact": 7.0,
+      "size_gb": 4.7,
+      "release_date": "2025-01-20",
+      "developer": "DeepSeek"
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",

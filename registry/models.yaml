@@ -52,7 +52,7 @@ models:
     developer: "Mistral AI"
     added: "2025-04-08"
 
-  - ollama_name: "deepseek-r1:latest"
+  - ollama_name: "deepseek-r1:7b"
     display_name: "DeepSeek R1 7B"
     family: "DeepSeek R1"
     params: "7B"
