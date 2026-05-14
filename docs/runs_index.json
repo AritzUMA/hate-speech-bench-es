@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-14T13:53:36.689054+00:00",
-  "n_runs": 71,
+  "generated": "2026-05-14T19:53:19.684143+00:00",
+  "n_runs": 73,
   "n_models": 14,
   "n_datasets": 6,
-  "best_overall_f1": 0.464,
+  "best_overall_f1": 0.456,
   "models": [
     "deepseek-r1:7b",
     "gemma2:latest",
@@ -801,6 +801,19 @@
         "coverage": 98.8,
         "elapsed": 11226.2,
         "timestamp": "2026-05-13T19:47:59.777699+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.4342,
+        "macro_f1_binary": 0.6562,
+        "precision": 0.4378,
+        "recall": 0.4308,
+        "accuracy": 0.6529,
+        "hate_f1": 0.6052009456264775,
+        "n_instances": 3463,
+        "n_unclear": 51,
+        "coverage": 98.5,
+        "elapsed": 10453.2,
+        "timestamp": "2026-05-14T13:38:46.733266+00:00"
       }
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
@@ -829,6 +842,19 @@
         "coverage": 91.2,
         "elapsed": 14275.3,
         "timestamp": "2026-05-12T10:27:15.030613+00:00"
+      },
+      "encarni": {
+        "macro_f1": 0.4118,
+        "macro_f1_binary": 0.7194,
+        "precision": 0.4705,
+        "recall": 0.37,
+        "accuracy": 0.5907,
+        "hate_f1": 0.7354988399071926,
+        "n_instances": 667,
+        "n_unclear": 164,
+        "coverage": 75.4,
+        "elapsed": 2798.1,
+        "timestamp": "2026-05-14T16:33:01.735840+00:00"
       }
     },
     "qwen3:8b": {
@@ -1082,26 +1108,26 @@
       "coverage": 0.0
     },
     "stablelm2:12b": {
-      "macro_f1": 0.4192,
-      "macro_f1_binary": 0.6323,
-      "hate_f1": 0.5404,
-      "precision": 0.4426,
-      "recall": 0.4412,
-      "accuracy": 0.6843,
-      "n_datasets": 4,
+      "macro_f1": 0.4222,
+      "macro_f1_binary": 0.6371,
+      "hate_f1": 0.5534,
+      "precision": 0.4416,
+      "recall": 0.4391,
+      "accuracy": 0.678,
+      "n_datasets": 5,
       "n_datasets_total": 6,
       "coverage": 98.8
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
-      "macro_f1": 0.4642,
-      "macro_f1_binary": 0.7296,
-      "hate_f1": 0.6008,
-      "precision": 0.4797,
-      "recall": 0.4948,
-      "accuracy": 0.7146,
-      "n_datasets": 2,
+      "macro_f1": 0.4468,
+      "macro_f1_binary": 0.7262,
+      "hate_f1": 0.6457,
+      "precision": 0.4766,
+      "recall": 0.4532,
+      "accuracy": 0.6733,
+      "n_datasets": 3,
       "n_datasets_total": 6,
-      "coverage": 91.1
+      "coverage": 90.2
     },
     "qwen3:8b": {
       "macro_f1": 0.4559,
@@ -1169,6 +1195,22 @@
       "f1": 0.3732,
       "hate_f1": 0.5425048669695003,
       "elapsed": 6747.3
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "stablelm2:12b",
+      "dataset": "misocorpus",
+      "f1": 0.4342,
+      "hate_f1": 0.6052009456264775,
+      "elapsed": 10453.2
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "jobautomation/OpenEuroLLM-Spanish:latest",
+      "dataset": "encarni",
+      "f1": 0.4118,
+      "hate_f1": 0.7354988399071926,
+      "elapsed": 2798.1
     },
     {
       "ts": "2026-05-13",

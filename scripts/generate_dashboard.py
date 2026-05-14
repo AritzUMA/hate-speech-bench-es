@@ -914,7 +914,7 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
-<script data-goatcounter="https://hate-speech-bench.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://hate-speech-bench.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>"""
 
