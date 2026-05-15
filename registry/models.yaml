@@ -203,3 +203,15 @@ models:
     modality: "image+text"
     notes: "multimodal nativo"
     added: "2025-05-08"
+
+  - ollama_name: "gemma4:26b"
+    display_name: "Gemma 4 26B"
+    family: "Gemma 4"
+    params: "26B"
+    params_exact: 3.8
+    size_gb: 17.0
+    release_date: "2026-04-02"
+    developer: "Google DeepMind"
+    modality: "image+text"
+    notes: "MoE 3.8B parametros activos, cabe en 16GB VRAM"
+    added: "2026-05-15"

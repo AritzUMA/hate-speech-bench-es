@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-15_qwen3-8b_haternet.json",
+  "timestamp": "2026-05-15T03:14:51.789702+00:00",
+  "model": "qwen3:8b",
+  "family": "Qwen 3",
+  "params": "8B",
+  "size_gb": 5.2,
+  "dataset": "haternet",
+  "dataset_display": "HaterNet — Pereira-Kohatsu et al. (2019)",
+  "n_instances": 5999,
+  "n_unclear": 1192,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.4243,
+    "macro_f1_binary": 0.7111,
+    "precision": 0.4729,
+    "recall": 0.411,
+    "accuracy": 0.5906
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.50626204238921,
+      "recall": 0.6707083599234206,
+      "f1-score": 0.5769969805105682,
+      "support": 1567.0
+    },
+    "no_hate": {
+      "precision": 0.9124862687660198,
+      "recall": 0.5622743682310469,
+      "f1-score": 0.6957978500628228,
+      "support": 4432.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.5905984330721787,
+    "macro avg": {
+      "precision": 0.47291610371841,
+      "recall": 0.4109942427181559,
+      "f1-score": 0.4242649435244637,
+      "support": 5999.0
+    },
+    "weighted avg": {
+      "precision": 0.8063763566585919,
+      "recall": 0.5905984330721787,
+      "f1-score": 0.6647658509649094,
+      "support": 5999.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1567,
+      "no_hate": 4432
+    },
+    "pred": {
+      "hate": 2076,
+      "no_hate": 2731,
+      "unclear": 1192
+    }
+  },
+  "elapsed_seconds": 6983.8,
+  "prompt_hash": "v2",
+  "predictions_file": "results/predictions/2026-05-15_qwen3-8b_haternet_predictions.jsonl"
+}

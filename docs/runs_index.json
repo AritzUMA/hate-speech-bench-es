@@ -1,9 +1,9 @@
 {
-  "generated": "2026-05-14T19:57:35.756947+00:00",
-  "n_runs": 73,
-  "n_models": 14,
-  "n_datasets": 6,
-  "best_overall_f1": 0.456,
+  "generated": "2026-05-15T13:26:23.858120+00:00",
+  "n_runs": 79,
+  "n_models": 15,
+  "n_datasets": 7,
+  "best_overall_f1": 0.455,
   "models": [
     "deepseek-r1:7b",
     "gemma2:latest",
@@ -12,6 +12,7 @@
     "hdnh2006/salamandra-7b-instruct:latest",
     "jobautomation/OpenEuroLLM-Spanish:latest",
     "llama3.1:8b",
+    "llama3.2-vision:latest",
     "mistral:7b",
     "phi3.5:3.8b",
     "phi3:3.8b",
@@ -26,7 +27,8 @@
     "hascosva",
     "haternet",
     "hateval",
-    "misocorpus"
+    "misocorpus",
+    "multi3hate"
   ],
   "results": {
     "llama3.1:8b": {
@@ -855,6 +857,19 @@
         "coverage": 75.4,
         "elapsed": 2798.1,
         "timestamp": "2026-05-14T16:33:01.735840+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.4802,
+        "macro_f1_binary": 0.7406,
+        "precision": 0.5083,
+        "recall": 0.4787,
+        "accuracy": 0.7017,
+        "hate_f1": 0.7344698064143311,
+        "n_instances": 3463,
+        "n_unclear": 183,
+        "coverage": 94.7,
+        "elapsed": 13194.9,
+        "timestamp": "2026-05-14T21:21:33.735377+00:00"
       }
     },
     "qwen3:8b": {
@@ -883,6 +898,58 @@
         "coverage": 87.3,
         "elapsed": 3976.6,
         "timestamp": "2026-05-12T21:58:14.770499+00:00"
+      },
+      "encarni": {
+        "macro_f1": 0.3242,
+        "macro_f1_binary": 0.5451,
+        "precision": 0.4255,
+        "recall": 0.3747,
+        "accuracy": 0.4348,
+        "hate_f1": 0.4745269286754003,
+        "n_instances": 667,
+        "n_unclear": 137,
+        "coverage": 79.5,
+        "elapsed": 814.6,
+        "timestamp": "2026-05-15T01:01:29.824369+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.4217,
+        "macro_f1_binary": 0.694,
+        "precision": 0.4712,
+        "recall": 0.3971,
+        "accuracy": 0.5806,
+        "hate_f1": 0.6409597257926307,
+        "n_instances": 6595,
+        "n_unclear": 1078,
+        "coverage": 83.7,
+        "elapsed": 7184.4,
+        "timestamp": "2026-05-15T01:15:05.740636+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.4243,
+        "macro_f1_binary": 0.7111,
+        "precision": 0.4729,
+        "recall": 0.411,
+        "accuracy": 0.5906,
+        "hate_f1": 0.5769969805105682,
+        "n_instances": 5999,
+        "n_unclear": 1192,
+        "coverage": 80.1,
+        "elapsed": 6983.8,
+        "timestamp": "2026-05-15T03:14:51.789702+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3038,
+        "macro_f1_binary": 0.525,
+        "precision": 0.3636,
+        "recall": 0.3325,
+        "accuracy": 0.5554,
+        "hate_f1": 0.20108275328692962,
+        "n_instances": 9500,
+        "n_unclear": 2288,
+        "coverage": 75.9,
+        "elapsed": 11713.7,
+        "timestamp": "2026-05-15T05:11:16.729141+00:00"
       }
     },
     "phi3:3.8b": {
@@ -1005,6 +1072,21 @@
         "elapsed": 6747.3,
         "timestamp": "2026-05-14T11:46:17.774385+00:00"
       }
+    },
+    "llama3.2-vision:latest": {
+      "multi3hate": {
+        "macro_f1": 0.2726,
+        "macro_f1_binary": 0.524,
+        "precision": 0.486,
+        "recall": 0.2655,
+        "accuracy": 0.3667,
+        "hate_f1": 0.21164021164021163,
+        "n_instances": 300,
+        "n_unclear": 114,
+        "coverage": 62.0,
+        "elapsed": 8814.9,
+        "timestamp": "2026-05-15T09:58:10.353893+00:00"
+      }
     }
   },
   "overall": {
@@ -1016,7 +1098,7 @@
       "recall": 0.4563,
       "accuracy": 0.6124,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 99.6
     },
     "gemma2:latest": {
@@ -1027,7 +1109,7 @@
       "recall": 0.4215,
       "accuracy": 0.568,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 89.4
     },
     "gemma3:12b": {
@@ -1038,7 +1120,7 @@
       "recall": 0.4503,
       "accuracy": 0.6593,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 92.6
     },
     "qwen2.5:7b": {
@@ -1049,7 +1131,7 @@
       "recall": 0.4385,
       "accuracy": 0.6832,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 98.4
     },
     "mistral:7b": {
@@ -1060,7 +1142,7 @@
       "recall": 0.3181,
       "accuracy": 0.4372,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 68.8
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
@@ -1071,7 +1153,7 @@
       "recall": 0.2392,
       "accuracy": 0.316,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 51.7
     },
     "gpt-oss:20b": {
@@ -1082,7 +1164,7 @@
       "recall": 0.0373,
       "accuracy": 0.0432,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 1.2
     },
     "yi:9b": {
@@ -1093,7 +1175,7 @@
       "recall": 0.4172,
       "accuracy": 0.6307,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 94.2
     },
     "phi3.5:3.8b": {
@@ -1104,7 +1186,7 @@
       "recall": 0.0007,
       "accuracy": 0.001,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 0.0
     },
     "stablelm2:12b": {
@@ -1115,30 +1197,30 @@
       "recall": 0.4391,
       "accuracy": 0.678,
       "n_datasets": 5,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 98.8
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
-      "macro_f1": 0.4468,
-      "macro_f1_binary": 0.7262,
-      "hate_f1": 0.6457,
-      "precision": 0.4766,
-      "recall": 0.4532,
-      "accuracy": 0.6733,
-      "n_datasets": 3,
-      "n_datasets_total": 6,
-      "coverage": 90.2
+      "macro_f1": 0.4551,
+      "macro_f1_binary": 0.7298,
+      "hate_f1": 0.6679,
+      "precision": 0.4845,
+      "recall": 0.4596,
+      "accuracy": 0.6804,
+      "n_datasets": 4,
+      "n_datasets_total": 7,
+      "coverage": 91.3
     },
     "qwen3:8b": {
-      "macro_f1": 0.4559,
-      "macro_f1_binary": 0.7459,
-      "hate_f1": 0.5776,
-      "precision": 0.4952,
-      "recall": 0.4276,
-      "accuracy": 0.7052,
-      "n_datasets": 2,
-      "n_datasets_total": 6,
-      "coverage": 86.0
+      "macro_f1": 0.3977,
+      "macro_f1_binary": 0.6612,
+      "hate_f1": 0.5081,
+      "precision": 0.4539,
+      "recall": 0.3951,
+      "accuracy": 0.5953,
+      "n_datasets": 6,
+      "n_datasets_total": 7,
+      "coverage": 81.0
     },
     "phi3:3.8b": {
       "macro_f1": 0.0309,
@@ -1148,7 +1230,7 @@
       "recall": 0.0182,
       "accuracy": 0.024,
       "n_datasets": 3,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 0.6
     },
     "deepseek-r1:7b": {
@@ -1159,11 +1241,62 @@
       "recall": 0.3616,
       "accuracy": 0.5562,
       "n_datasets": 6,
-      "n_datasets_total": 6,
+      "n_datasets_total": 7,
       "coverage": 86.5
+    },
+    "llama3.2-vision:latest": {
+      "macro_f1": 0.2726,
+      "macro_f1_binary": 0.524,
+      "hate_f1": 0.2116,
+      "precision": 0.486,
+      "recall": 0.2655,
+      "accuracy": 0.3667,
+      "n_datasets": 1,
+      "n_datasets_total": 7,
+      "coverage": 62.0
     }
   },
   "history": [
+    {
+      "ts": "2026-05-15",
+      "model": "qwen3:8b",
+      "dataset": "encarni",
+      "f1": 0.3242,
+      "hate_f1": 0.4745269286754003,
+      "elapsed": 814.6
+    },
+    {
+      "ts": "2026-05-15",
+      "model": "qwen3:8b",
+      "dataset": "hateval",
+      "f1": 0.4217,
+      "hate_f1": 0.6409597257926307,
+      "elapsed": 7184.4
+    },
+    {
+      "ts": "2026-05-15",
+      "model": "qwen3:8b",
+      "dataset": "haternet",
+      "f1": 0.4243,
+      "hate_f1": 0.5769969805105682,
+      "elapsed": 6983.8
+    },
+    {
+      "ts": "2026-05-15",
+      "model": "qwen3:8b",
+      "dataset": "chileno",
+      "f1": 0.3038,
+      "hate_f1": 0.20108275328692962,
+      "elapsed": 11713.7
+    },
+    {
+      "ts": "2026-05-15",
+      "model": "llama3.2-vision:latest",
+      "dataset": "multi3hate",
+      "f1": 0.2726,
+      "hate_f1": 0.21164021164021163,
+      "elapsed": 8814.9
+    },
     {
       "ts": "2026-05-14",
       "model": "deepseek-r1:7b",
@@ -1211,6 +1344,14 @@
       "f1": 0.4118,
       "hate_f1": 0.7354988399071926,
       "elapsed": 2798.1
+    },
+    {
+      "ts": "2026-05-14",
+      "model": "jobautomation/OpenEuroLLM-Spanish:latest",
+      "dataset": "misocorpus",
+      "f1": 0.4802,
+      "hate_f1": 0.7344698064143311,
+      "elapsed": 13194.9
     },
     {
       "ts": "2026-05-13",
@@ -1875,6 +2016,15 @@
       "size_gb": 2.2,
       "release_date": "2024-04-23",
       "developer": "Microsoft"
+    },
+    "llama3.2-vision:latest": {
+      "display_name": "LLaMA 3.2 Vision 11B",
+      "family": "LLaMA 3.2",
+      "params": "11B",
+      "params_exact": 11.0,
+      "size_gb": 7.8,
+      "release_date": "2024-09-25",
+      "developer": "Meta"
     }
   },
   "datasets_meta": {
@@ -1949,6 +2099,18 @@
       "topic": "misoginia",
       "lang": "es",
       "paper": "García-Díaz et al. (2021)"
+    },
+    "multi3hate": {
+      "display": "Multi3Hate — Bui et al. (2024)",
+      "platform": "Internet (memes)",
+      "source": "Memes multilingüe — anotadores MX",
+      "n_total": 300,
+      "hate": 167,
+      "no_hate": 133,
+      "iaa": "Acuerdo medio: 74%",
+      "topic": "hate speech en memes — perspectiva multicultural",
+      "lang": "es-MX",
+      "paper": "Bui et al. (2024)"
     }
   }
 }
