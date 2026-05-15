@@ -1,21 +1,19 @@
 {
-  "generated": "2026-05-15T13:26:23.858120+00:00",
-  "n_runs": 79,
-  "n_models": 15,
+  "generated": "2026-05-15T17:06:27.396375+00:00",
+  "n_runs": 65,
+  "n_models": 13,
   "n_datasets": 7,
   "best_overall_f1": 0.455,
   "models": [
     "deepseek-r1:7b",
     "gemma2:latest",
     "gemma3:12b",
-    "gpt-oss:20b",
+    "gemma4:26b",
     "hdnh2006/salamandra-7b-instruct:latest",
     "jobautomation/OpenEuroLLM-Spanish:latest",
     "llama3.1:8b",
     "llama3.2-vision:latest",
     "mistral:7b",
-    "phi3.5:3.8b",
-    "phi3:3.8b",
     "qwen2.5:7b",
     "qwen3:8b",
     "stablelm2:12b",
@@ -511,86 +509,6 @@
         "timestamp": "2026-05-10T18:40:38.723851+00:00"
       }
     },
-    "gpt-oss:20b": {
-      "encarni": {
-        "macro_f1": 0.231,
-        "macro_f1_binary": 0.4897,
-        "precision": 0.4009,
-        "recall": 0.2239,
-        "accuracy": 0.2594,
-        "hate_f1": 0.313915857605178,
-        "n_instances": 667,
-        "n_unclear": 315,
-        "coverage": 52.8,
-        "elapsed": 487.3,
-        "timestamp": "2026-05-10T19:30:54.756265+00:00"
-      },
-      "hateval": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 6595,
-        "n_unclear": 6595,
-        "coverage": 0.0,
-        "elapsed": 521.2,
-        "timestamp": "2026-05-10T19:39:03.808055+00:00"
-      },
-      "haternet": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 5999,
-        "n_unclear": 5999,
-        "coverage": 0.0,
-        "elapsed": 467.5,
-        "timestamp": "2026-05-10T19:47:46.745877+00:00"
-      },
-      "chileno": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 9500,
-        "n_unclear": 9500,
-        "coverage": 0.0,
-        "elapsed": 754.3,
-        "timestamp": "2026-05-10T19:55:35.690595+00:00"
-      },
-      "hascosva": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3994,
-        "n_unclear": 3994,
-        "coverage": 0.0,
-        "elapsed": 321.0,
-        "timestamp": "2026-05-10T20:08:11.756468+00:00"
-      },
-      "misocorpus": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3463,
-        "n_unclear": 3463,
-        "coverage": 0.0,
-        "elapsed": 275.8,
-        "timestamp": "2026-05-10T20:13:33.783259+00:00"
-      }
-    },
     "yi:9b": {
       "encarni": {
         "macro_f1": 0.3658,
@@ -669,86 +587,6 @@
         "coverage": 94.7,
         "elapsed": 1755.1,
         "timestamp": "2026-05-10T23:57:37.803610+00:00"
-      }
-    },
-    "phi3.5:3.8b": {
-      "encarni": {
-        "macro_f1": 0.008,
-        "macro_f1_binary": 0.625,
-        "precision": 0.4444,
-        "recall": 0.0041,
-        "accuracy": 0.006,
-        "hate_f1": 0.01171875,
-        "n_instances": 667,
-        "n_unclear": 661,
-        "coverage": 0.9,
-        "elapsed": 1145.1,
-        "timestamp": "2026-05-11T00:26:55.755564+00:00"
-      },
-      "hateval": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 6595,
-        "n_unclear": 6595,
-        "coverage": 0.0,
-        "elapsed": 5920.7,
-        "timestamp": "2026-05-11T00:46:03.712177+00:00"
-      },
-      "haternet": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 5999,
-        "n_unclear": 5999,
-        "coverage": 0.0,
-        "elapsed": 5331.8,
-        "timestamp": "2026-05-11T02:24:45.765032+00:00"
-      },
-      "chileno": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 9500,
-        "n_unclear": 9500,
-        "coverage": 0.0,
-        "elapsed": 8354.5,
-        "timestamp": "2026-05-11T03:53:38.753842+00:00"
-      },
-      "hascosva": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3994,
-        "n_unclear": 3994,
-        "coverage": 0.0,
-        "elapsed": 3430.3,
-        "timestamp": "2026-05-11T06:12:54.781215+00:00"
-      },
-      "misocorpus": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 3463,
-        "n_unclear": 3463,
-        "coverage": 0.0,
-        "elapsed": 2914.1,
-        "timestamp": "2026-05-11T07:10:06.781678+00:00"
       }
     },
     "stablelm2:12b": {
@@ -952,47 +790,6 @@
         "timestamp": "2026-05-15T05:11:16.729141+00:00"
       }
     },
-    "phi3:3.8b": {
-      "encarni": {
-        "macro_f1": 0.0928,
-        "macro_f1_binary": 0.569,
-        "precision": 0.3848,
-        "recall": 0.0547,
-        "accuracy": 0.072,
-        "hate_f1": 0.11594202898550725,
-        "n_instances": 667,
-        "n_unclear": 585,
-        "coverage": 12.3,
-        "elapsed": 1457.8,
-        "timestamp": "2026-05-13T07:44:54.342574+00:00"
-      },
-      "hateval": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 6595,
-        "n_unclear": 6595,
-        "coverage": 0.0,
-        "elapsed": 10861.1,
-        "timestamp": "2026-05-13T08:09:13.759739+00:00"
-      },
-      "haternet": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 5999,
-        "n_unclear": 5999,
-        "coverage": 0.0,
-        "elapsed": 8640.3,
-        "timestamp": "2026-05-13T11:10:16.760090+00:00"
-      }
-    },
     "deepseek-r1:7b": {
       "encarni": {
         "macro_f1": 0.3184,
@@ -1087,6 +884,21 @@
         "elapsed": 8814.9,
         "timestamp": "2026-05-15T09:58:10.353893+00:00"
       }
+    },
+    "gemma4:26b": {
+      "multi3hate": {
+        "macro_f1": 0.3107,
+        "macro_f1_binary": 0.472,
+        "precision": 0.4751,
+        "recall": 0.3797,
+        "accuracy": 0.5233,
+        "hate_f1": 0.2755102040816326,
+        "n_instances": 300,
+        "n_unclear": 8,
+        "coverage": 97.3,
+        "elapsed": 6780.4,
+        "timestamp": "2026-05-15T13:17:40.876709+00:00"
+      }
     }
   },
   "overall": {
@@ -1156,17 +968,6 @@
       "n_datasets_total": 7,
       "coverage": 51.7
     },
-    "gpt-oss:20b": {
-      "macro_f1": 0.0385,
-      "macro_f1_binary": 0.0816,
-      "hate_f1": 0.0523,
-      "precision": 0.0668,
-      "recall": 0.0373,
-      "accuracy": 0.0432,
-      "n_datasets": 6,
-      "n_datasets_total": 7,
-      "coverage": 1.2
-    },
     "yi:9b": {
       "macro_f1": 0.3921,
       "macro_f1_binary": 0.6054,
@@ -1177,17 +978,6 @@
       "n_datasets": 6,
       "n_datasets_total": 7,
       "coverage": 94.2
-    },
-    "phi3.5:3.8b": {
-      "macro_f1": 0.0013,
-      "macro_f1_binary": 0.1042,
-      "hate_f1": 0.002,
-      "precision": 0.0741,
-      "recall": 0.0007,
-      "accuracy": 0.001,
-      "n_datasets": 6,
-      "n_datasets_total": 7,
-      "coverage": 0.0
     },
     "stablelm2:12b": {
       "macro_f1": 0.4222,
@@ -1222,17 +1012,6 @@
       "n_datasets_total": 7,
       "coverage": 81.0
     },
-    "phi3:3.8b": {
-      "macro_f1": 0.0309,
-      "macro_f1_binary": 0.1897,
-      "hate_f1": 0.0386,
-      "precision": 0.1283,
-      "recall": 0.0182,
-      "accuracy": 0.024,
-      "n_datasets": 3,
-      "n_datasets_total": 7,
-      "coverage": 0.6
-    },
     "deepseek-r1:7b": {
       "macro_f1": 0.3554,
       "macro_f1_binary": 0.5744,
@@ -1254,6 +1033,17 @@
       "n_datasets": 1,
       "n_datasets_total": 7,
       "coverage": 62.0
+    },
+    "gemma4:26b": {
+      "macro_f1": 0.3107,
+      "macro_f1_binary": 0.472,
+      "hate_f1": 0.2755,
+      "precision": 0.4751,
+      "recall": 0.3797,
+      "accuracy": 0.5233,
+      "n_datasets": 1,
+      "n_datasets_total": 7,
+      "coverage": 97.3
     }
   },
   "history": [
@@ -1296,6 +1086,14 @@
       "f1": 0.2726,
       "hate_f1": 0.21164021164021163,
       "elapsed": 8814.9
+    },
+    {
+      "ts": "2026-05-15",
+      "model": "gemma4:26b",
+      "dataset": "multi3hate",
+      "f1": 0.3107,
+      "hate_f1": 0.2755102040816326,
+      "elapsed": 6780.4
     },
     {
       "ts": "2026-05-14",
@@ -1355,30 +1153,6 @@
     },
     {
       "ts": "2026-05-13",
-      "model": "phi3:3.8b",
-      "dataset": "encarni",
-      "f1": 0.0928,
-      "hate_f1": 0.11594202898550725,
-      "elapsed": 1457.8
-    },
-    {
-      "ts": "2026-05-13",
-      "model": "phi3:3.8b",
-      "dataset": "hateval",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 10861.1
-    },
-    {
-      "ts": "2026-05-13",
-      "model": "phi3:3.8b",
-      "dataset": "haternet",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 8640.3
-    },
-    {
-      "ts": "2026-05-13",
       "model": "stablelm2:12b",
       "dataset": "haternet",
       "f1": 0.4735,
@@ -1432,54 +1206,6 @@
       "f1": 0.4735,
       "hate_f1": 0.7040202595758152,
       "elapsed": 3976.6
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "encarni",
-      "f1": 0.008,
-      "hate_f1": 0.01171875,
-      "elapsed": 1145.1
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "hateval",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 5920.7
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "haternet",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 5331.8
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "chileno",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 8354.5
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "hascosva",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 3430.3
-    },
-    {
-      "ts": "2026-05-11",
-      "model": "phi3.5:3.8b",
-      "dataset": "misocorpus",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 2914.1
     },
     {
       "ts": "2026-05-11",
@@ -1723,54 +1449,6 @@
     },
     {
       "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "encarni",
-      "f1": 0.231,
-      "hate_f1": 0.313915857605178,
-      "elapsed": 487.3
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "hateval",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 521.2
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "haternet",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 467.5
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "chileno",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 754.3
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "hascosva",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 321.0
-    },
-    {
-      "ts": "2026-05-10",
-      "model": "gpt-oss:20b",
-      "dataset": "misocorpus",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 275.8
-    },
-    {
-      "ts": "2026-05-10",
       "model": "yi:9b",
       "dataset": "encarni",
       "f1": 0.3658,
@@ -1954,15 +1632,6 @@
       "release_date": "2024-09-01",
       "developer": "BSC-CNS"
     },
-    "gpt-oss:20b": {
-      "display_name": "GPT-OSS 20B",
-      "family": "GPT-OSS",
-      "params": "20B",
-      "params_exact": 20.0,
-      "size_gb": 13.0,
-      "release_date": "2025-04-16",
-      "developer": "OpenAI"
-    },
     "yi:9b": {
       "display_name": "Yi 9B",
       "family": "Yi",
@@ -1971,15 +1640,6 @@
       "size_gb": 5.0,
       "release_date": "2024-03-06",
       "developer": "01.AI"
-    },
-    "phi3.5:3.8b": {
-      "display_name": "Phi 3.5 3.8B",
-      "family": "Phi 3.5",
-      "params": "3.8B",
-      "params_exact": 3.82,
-      "size_gb": 2.2,
-      "release_date": "2024-08-20",
-      "developer": "Microsoft"
     },
     "stablelm2:12b": {
       "display_name": "StableLM 2 12B",
@@ -2008,15 +1668,6 @@
       "release_date": "2025-04-28",
       "developer": "Alibaba"
     },
-    "phi3:3.8b": {
-      "display_name": "Phi 3 3.8B",
-      "family": "Phi 3",
-      "params": "3.8B",
-      "params_exact": 3.82,
-      "size_gb": 2.2,
-      "release_date": "2024-04-23",
-      "developer": "Microsoft"
-    },
     "llama3.2-vision:latest": {
       "display_name": "LLaMA 3.2 Vision 11B",
       "family": "LLaMA 3.2",
@@ -2025,6 +1676,15 @@
       "size_gb": 7.8,
       "release_date": "2024-09-25",
       "developer": "Meta"
+    },
+    "gemma4:26b": {
+      "display_name": "Gemma 4 26B",
+      "family": "Gemma 4",
+      "params": "26B",
+      "params_exact": 3.8,
+      "size_gb": 17.0,
+      "release_date": "2026-04-02",
+      "developer": "Google DeepMind"
     }
   },
   "datasets_meta": {
