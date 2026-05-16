@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-05-15_BSC-LT-Salamandra-VL-7B-2512_multi3hate.json",
+  "timestamp": "2026-05-15T23:28:45.952445+00:00",
+  "model": "BSC-LT/Salamandra-VL-7B-2512",
+  "family": "Salamandra",
+  "params": "7B",
+  "size_gb": 15.0,
+  "backend": "vllm",
+  "dataset": "multi3hate",
+  "dataset_display": "Multi3Hate — Bui et al. (2024)",
+  "modality": "image+text",
+  "n_instances": 300,
+  "n_unclear": 300,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.0,
+    "macro_f1_binary": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "accuracy": 0.0
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 167.0
+    },
+    "no_hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 133.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.0,
+    "macro avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 300.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 167,
+      "no_hate": 133
+    },
+    "pred": {
+      "hate": 0,
+      "no_hate": 0,
+      "unclear": 300
+    }
+  },
+  "elapsed_seconds": 50.7,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-05-15_BSC-LT-Salamandra-VL-7B-2512_multi3hate_predictions.jsonl"
+}
