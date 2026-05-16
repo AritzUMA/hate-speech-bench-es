@@ -1003,6 +1003,68 @@ function MmGraficos() {
   );
 }
 
+
+function MmHistory() {
+  const [showAll, setShowAll] = useState(false);
+  const rows = DATA.mm_rows || [];
+  const visible = showAll ? rows : rows.slice(0, 5);
+
+  return (
+    <div className="section">
+      <div className="section-header">
+        <h2>Historial de evaluaciones</h2>
+        <span className="section-sub">{rows.length} modelos evaluados</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Modelo</th>
+            <th>Backend</th>
+            <th style={{textAlign:'right'}}>Macro-F1 bin</th>
+            <th style={{textAlign:'right'}}>Hate F1</th>
+            <th style={{textAlign:'right'}}>Cobertura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {visible.map((r, i) => (
+            <tr key={i}>
+              <td style={{color:'#aaa'}}>{r.timestamp}</td>
+              <td>
+                {FAMILY_ICON[r.family]
+                  ? <img src={FAMILY_ICON[r.family]} width={14} height={14}
+                      style={{marginRight:5, verticalAlign:'middle', borderRadius:2}}
+                      onError={e => { e.target.style.display='none'; }}/>
+                  : null}
+                <b>{r.display_name || r.model}</b>
+              </td>
+              <td>
+                <span style={{
+                  padding:'2px 7px', borderRadius:12, fontSize:10,
+                  background: r.backend==='vllm' ? '#eff6ff' : '#f0fdf4',
+                  color: r.backend==='vllm' ? '#1d4ed8' : '#166534'
+                }}>{r.backend}</span>
+              </td>
+              <td style={{textAlign:'right'}}><b>{r.macro_f1_binary != null ? r.macro_f1_binary.toFixed(4) : '-'}</b></td>
+              <td style={{textAlign:'right'}}>{r.hate_f1 != null ? r.hate_f1.toFixed(4) : '-'}</td>
+              <td style={{textAlign:'right', color: r.coverage >= 95 ? '#10b981' : r.coverage >= 80 ? '#f59e0b' : '#ef4444'}}>
+                {r.coverage != null ? r.coverage.toFixed(1) + '%' : '-'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {rows.length > 5 && (
+        <button
+          onClick={() => setShowAll(v => !v)}
+          style={{marginTop:10, fontSize:12, color:'#6366f1', background:'none', border:'none', cursor:'pointer', padding:'4px 0'}}>
+          {showAll ? 'Mostrar menos' : 'Ver todos (' + rows.length + ' modelos)'}
+        </button>
+      )}
+    </div>
+  );
+}
+
 function MultimodalSection() {
   const rows = DATA.mm_rows || [];
   if (!rows.length) return null;
@@ -1014,7 +1076,7 @@ function MultimodalSection() {
     <div id="multimodal">
       <div style={{margin:'3rem 0 1.5rem', paddingBottom:'1rem', borderBottom:'2px solid #e0e0e0'}}>
         <h2 style={{fontSize:20, fontWeight:700, letterSpacing:'-.3px'}}>
-          🖼️enchmark de Imagen
+          Benchmark de Imagen
         </h2>
         <div style={{fontSize:13, color:'#888', marginTop:4}}>
           {rows.length} modelos vision-lenguaje (VLMs) — Multi3Hate (Bui et al. 2024) — 300 memes, 5 idiomas
@@ -1113,6 +1175,7 @@ function MultimodalSection() {
       </div>
     </div>
     <MmGraficos/>
+    <MmHistory/>
     </div>
   );
 }
