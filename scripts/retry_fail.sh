@@ -36,7 +36,7 @@ for f in sorted(runs_dir.glob("*.json")):
     try:
         r = json.loads(f.read_text())
         n   = r.get("n_instances", 0)
-        sin = r.get("n_sin_pred", 0)
+        sin = r.get("n_unclear", r.get("n_sin_pred", 0))
         if n == 0:
             continue
         coverage = (n - sin) / n

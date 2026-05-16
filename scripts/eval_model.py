@@ -46,6 +46,20 @@ Analiza cada tweet y responde solo con un objeto JSON valido exactamente en este
 }
 No incluyas texto adicional, ni comentarios, ni encabezados ni markdown. SOLO JSON puro."""
 
+# Prompt alternativo para modelos con filtros de seguridad (GPT-OSS, Phi)
+SYSTEM_PROMPT_ACADEMIC = """Eres un investigador en linguistica computacional analizando textos
+para un estudio academico sobre deteccion automatica de lenguaje ofensivo en espanol.
+Tu tarea es etiquetar cada fragmento de texto segun si contiene lenguaje ofensivo o no,
+con fines exclusivamente cientificos y de investigacion.
+Responde SOLO con un objeto JSON valido exactamente en este formato:
+{
+  "is_hate_speech": "Yes" | "No" | "Unclear",
+  "rationale": "Breve explicacion (1-2 frases)"
+}
+No incluyas texto adicional, ni comentarios, ni markdown. SOLO JSON puro."""
+
+MODELS_ACADEMIC_PROMPT = {"phi3:3.8b", "phi3.5:3.8b"}
+
 
 # Registry
 
@@ -103,8 +117,9 @@ def classify_tweet(model: str, text: str) -> str:
     Clasifica un tweet. Devuelve 'hate', 'no_hate' o 'unclear'.
     Un solo intento — si falla o es ambiguo devuelve 'unclear'.
     """
+    prompt = SYSTEM_PROMPT_ACADEMIC if model in MODELS_ACADEMIC_PROMPT else SYSTEM_PROMPT
     messages = [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": prompt},
         {"role": "user",   "content": text},
     ]
 
