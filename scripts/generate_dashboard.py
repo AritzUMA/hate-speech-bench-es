@@ -196,27 +196,34 @@ const DATA = window.__INDEX__;
 const CDN   = 'https://unpkg.com/@lobehub/icons-static-png@latest/light/';
 const LOGOS = 'https://aritzuma.github.io/hate-speech-bench-es/logos/';
 const FAMILY_ICON = {
+  // Texto
   'LLaMA 3.1':   CDN+'meta.png',
   'LLaMA':       CDN+'meta.png',
+  'LLaMA 3.2':   CDN+'meta.png',
+  'Llama':       CDN+'meta.png',
   'Gemma 2':     CDN+'gemma.png',
   'Gemma 3':     CDN+'gemma.png',
   'Gemma 4':     CDN+'gemma.png',
+  'Gemma':       CDN+'gemma.png',
   'Qwen 2.5':    CDN+'qwen.png',
   'Qwen 3':      CDN+'qwen.png',
   'Qwen 3.5':    CDN+'qwen.png',
+  'Qwen':        CDN+'qwen.png',
   'Mistral':     CDN+'mistral.png',
   'DeepSeek R1': CDN+'deepseek.png',
   'Phi 3':       CDN+'microsoft.png',
   'Phi 3.5':     CDN+'microsoft.png',
+  'Phi':         CDN+'microsoft.png',
   'Yi':          CDN+'yi.png',
   'StableLM 2':  CDN+'stability-ai.png',
   'GPT-OSS':     CDN+'openai.png',
   'Salamandra':  LOGOS+'salamandra.png',
   'OpenEuroLLM': LOGOS+'openeurollm.png',
+  // Vision
   'Moondream':   LOGOS+'moondream.png',
-  'Gemma':       CDN+'gemma.png',
   'LLaVA':       CDN+'meta.png',
-  'MiniCPM':     CDN+'openbmb.png',
+  'InternVL':    CDN+'internlm.png',
+  'MiniCPM':     CDN+'minicpm.png',
   'Granite':     CDN+'ibm.png',
 };
 
@@ -228,7 +235,14 @@ const COLORS = {
   'Salamandra':'#f97316','GPT-OSS':'#6b7280',
   'Yi':'#6366f1','Phi 3.5':'#14b8a6','Phi 3':'#0d9488',
   'StableLM 2':'#9ca3af','OpenEuroLLM':'#84cc16',
-  'LLaVA':'#f97316','MiniCPM':'#06b6d4','Granite':'#0f172a',
+  // Vision
+  'LLaMA 3.2':'#3b82f6','Llama':'#3b82f6',
+  'Phi':'#14b8a6',
+  'Gemma':'#10b981',
+  'Qwen':'#f59e0b',
+  'LLaVA':'#f97316','InternVL':'#6366f1',
+  'MiniCPM':'#06b6d4','Granite':'#334155',
+  'Salamandra':'#f97316','Moondream':'#8b5cf6',
 };
 const MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 const METRICS = [
@@ -1000,7 +1014,7 @@ function MultimodalSection() {
     <div id="multimodal">
       <div style={{margin:'3rem 0 1.5rem', paddingBottom:'1rem', borderBottom:'2px solid #e0e0e0'}}>
         <h2 style={{fontSize:20, fontWeight:700, letterSpacing:'-.3px'}}>
-          🖼️ Benchmark de Imagen
+          🖼️enchmark de Imagen
         </h2>
         <div style={{fontSize:13, color:'#888', marginTop:4}}>
           {rows.length} modelos vision-lenguaje (VLMs) — Multi3Hate (Bui et al. 2024) — 300 memes, 5 idiomas
@@ -1141,7 +1155,7 @@ function App() {
         </div>
         <div style={{margin:'0 0 1.5rem', paddingBottom:'1rem', borderBottom:'2px solid #e0e0e0'}}>
           <h2 style={{fontSize:20, fontWeight:700, letterSpacing:'-.3px'}}>
-            📝 Benchmark de Texto
+            Benchmark de Texto
           </h2>
           <div style={{fontSize:13, color:'#888', marginTop:4}}>
             {DATA.n_models} modelos — {DATA.n_datasets} datasets — {DATA.n_runs} evaluaciones
