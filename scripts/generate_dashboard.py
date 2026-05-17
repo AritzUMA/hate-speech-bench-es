@@ -887,126 +887,254 @@ function History() {
 }
 
 
-function MmHateF1Bar() {
+function MmHateF1Bar({ds}) {
   const ref = useRef(null);
-  const rows = DATA.mm_rows || [];
+  const isOv = ds === '__overall__';
 
   const chartData = useMemo(() => {
-    const sorted = [...rows].sort((a, b) => (b.hate_f1||0) - (a.hate_f1||0));
+    const getF1 = m => isOv
+      ? (DATA.mm_overall[m]?.hate_f1 || 0)
+      : (DATA.mm_results[m]?.[ds]?.hate_f1 || 0);
+    const models = DATA.mm_models.filter(m => isOv ? DATA.mm_overall[m] : DATA.mm_results[m]?.[ds]);
+    const sorted = [...models].sort((a, b) => getF1(b) - getF1(a));
     return {
-      labels:   sorted.map(r => r.display_name || r.model),
-      values:   sorted.map(r => r.hate_f1 || 0),
-      colors:   sorted.map(r => col(r.family || '')),
-      families: sorted.map(r => r.family || ''),
+      labels:   sorted.map(m => DATA.mm_models_meta[m]?.display_name || m),
+      values:   sorted.map(m => getF1(m)),
+      colors:   sorted.map(m => col(DATA.mm_models_meta[m]?.family || '')),
+      families: sorted.map(m => DATA.mm_models_meta[m]?.family || ''),
     };
-  }, []);
+  }, [ds]);
 
   useEffect(() => {
     if (!ref.current) return;
     const ex = Chart.getChart(ref.current);
     if (ex) ex.destroy();
-    const dataset = {
-      data:            chartData.values,
-      backgroundColor: chartData.colors,
-      borderRadius:    4,
-      borderSkipped:   false,
-      _families:       chartData.families,
-    };
     new Chart(ref.current, {
       type: 'bar',
-      data: { labels: chartData.labels, datasets: [dataset] },
+      data: { labels: chartData.labels, datasets: [{
+        data: chartData.values, backgroundColor: chartData.colors,
+        borderRadius: 4, borderSkipped: false, _families: chartData.families,
+      }]},
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
+        responsive: true, maintainAspectRatio: false,
         layout: { padding: { top: 28 } },
-        plugins: {
-          legend: {display: false},
-          tooltip: {callbacks: {label: ctx => ' Hate F1: ' + ctx.raw.toFixed(4)}}
-        },
+        plugins: { legend: {display:false}, tooltip: {callbacks: {label: ctx => ' Hate F1: ' + ctx.raw.toFixed(4)}} },
         scales: {
-          x: { grid: {display: false}, ticks: {font:{size:10}, color:'#444', maxRotation:35, minRotation:25} },
-          y: { min: 0, max: 1, grid: {color:'#f0f0f0'}, ticks: {font:{size:11}, color:'#888'} }
+          x: { grid: {display:false}, ticks: {font:{size:10}, color:'#444', maxRotation:35, minRotation:25} },
+          y: { min:0, max:1, grid: {color:'#f0f0f0'}, ticks: {font:{size:11}, color:'#888'} }
         }
       }
     });
-  }, []);
+  }, [ds]);
 
   return <div className="chart-box"><canvas ref={ref}/></div>;
 }
 
-function MmParamsScatter() {
+function MmParamsScatter({ds}) {
   const ref = useRef(null);
-  const rows = DATA.mm_rows || [];
+  const isOv = ds === '__overall__';
 
   const datasets = useMemo(() => {
+    const models = DATA.mm_models.filter(m => isOv ? DATA.mm_overall[m] : DATA.mm_results[m]?.[ds]);
     const byFamily = {};
-    rows.forEach(r => {
-      const f = r.family || 'Otro';
+    models.forEach(m => {
+      const meta = DATA.mm_models_meta[m] || {};
+      const f = meta.family || 'Otro';
       if (!byFamily[f]) byFamily[f] = [];
-      const p = r.params_exact || parseFloat((r.params||'0').replace('B',''));
+      const p = meta.params_exact || parseFloat((meta.params||'0').replace('B',''));
       if (!p) return;
-      byFamily[f].push({ x: p, y: r.macro_f1_binary || 0, label: r.display_name || r.model });
+      const f1 = isOv
+        ? (DATA.mm_overall[m]?.macro_f1_binary || 0)
+        : (DATA.mm_results[m]?.[ds]?.macro_f1_binary || 0);
+      byFamily[f].push({ x: p, y: f1, label: meta.display_name || m });
     });
     return Object.entries(byFamily).map(([f, pts]) => ({
       label: f, data: pts,
-      backgroundColor: col(f) + 'cc', borderColor: col(f),
+      backgroundColor: col(f)+'cc', borderColor: col(f),
       pointRadius: 7, pointHoverRadius: 9,
     }));
-  }, []);
+  }, [ds]);
 
   useEffect(() => {
     if (!ref.current) return;
     const ex = Chart.getChart(ref.current);
     if (ex) ex.destroy();
     new Chart(ref.current, {
-      type: 'scatter',
-      data: {datasets},
-      plugins: [leaderLabelPlugin],
+      type: 'scatter', data: {datasets}, plugins: [leaderLabelPlugin],
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: {display: false},
-          tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  Macro-F1 bin: ' + ctx.raw.y.toFixed(4)}}
-        },
-        layout: { padding: { top: 35, right: 45, bottom: 35, left: 45 } },
+        plugins: { legend: {display:false}, tooltip: {callbacks: {label: ctx => ctx.raw.label + '  ' + ctx.raw.x + 'B  Macro-F1 bin: ' + ctx.raw.y.toFixed(4)}} },
+        layout: { padding: { top:35, right:45, bottom:35, left:45 } },
         scales: {
-          x: {
-            grid: {color:'#f0f0f0'},
-            ticks: {font:{size:11}, color:'#888', callback: v => v + 'B'},
-            title: {display:true, text:'Parametros (B)', font:{size:11}, color:'#888'}
-          },
-          y: {
-            min: 0, max: 1, grid: {color:'#f0f0f0'},
-            ticks: {font:{size:11}, color:'#888'},
-            title: {display:true, text:'Macro-F1 binario', font:{size:11}, color:'#888'}
-          }
+          x: { grid:{color:'#f0f0f0'}, ticks:{font:{size:11},color:'#888',callback:v=>v+'B'}, title:{display:true,text:'Parametros (B)',font:{size:11},color:'#888'} },
+          y: { min:0, max:1, grid:{color:'#f0f0f0'}, ticks:{font:{size:11},color:'#888'}, title:{display:true,text:'Macro-F1 binario',font:{size:11},color:'#888'} }
         }
       }
     });
-  }, []);
+  }, [ds]);
 
   return <div className="chart-box-scatter"><canvas ref={ref}/></div>;
 }
 
-function MmGraficos() {
+function MmGraficos({ds}) {
+  const isOv   = ds === '__overall__';
+  const dsName = isOv ? 'todos los datasets' : ds;
   return (
     <div className="section">
       <div className="section-header">
         <h2>Analisis grafico</h2>
-        <span className="section-sub">Multi3Hate — 300 memes ES</span>
+        <span className="section-sub">{isOv ? 'Overall' : dsName}</span>
       </div>
-      <div className="chart-label">Hate F1 en Multi3Hate, ordenado de mayor a menor</div>
-      <div className="chart-wrap"><MmHateF1Bar/></div>
+      <div className="chart-label">Hate F1 {isOv ? 'medio' : 'en ' + dsName}, ordenado de mayor a menor</div>
+      <div className="chart-wrap"><MmHateF1Bar ds={ds}/></div>
       <div className="chart-label">Macro-F1 binario vs numero de parametros del modelo</div>
-      <div className="chart-wrap"><MmParamsScatter/></div>
+      <div className="chart-wrap"><MmParamsScatter ds={ds}/></div>
     </div>
   );
 }
 
+function MmLeaderboard({ds, setDs}) {
+  const [sortKey, setSortKey] = useState('macro_f1_binary');
+  const [sortDir, setSortDir] = useState('desc');
+
+  function onSort(k) {
+    if (k === sortKey) setSortDir(d => d==='desc' ? 'asc' : 'desc');
+    else { setSortKey(k); setSortDir('desc'); }
+  }
+
+  const isOv = ds === '__overall__';
+
+  const rows = useMemo(() => {
+    const r = DATA.mm_models
+      .filter(m => isOv ? DATA.mm_overall[m] : DATA.mm_results[m]?.[ds])
+      .map(m => ({
+        model:        m,
+        display_name: DATA.mm_models_meta[m]?.display_name || m,
+        family:       DATA.mm_models_meta[m]?.family || '',
+        params:       DATA.mm_models_meta[m]?.params || '',
+        developer:    DATA.mm_models_meta[m]?.developer || '',
+        backend:      DATA.mm_models_meta[m]?.backend || 'ollama',
+        ...(isOv ? DATA.mm_overall[m] : DATA.mm_results[m][ds]),
+      }));
+    r.sort((a, b) => sortDir==='desc'
+      ? (b[sortKey] != null ? b[sortKey] : -1) - (a[sortKey] != null ? a[sortKey] : -1)
+      : (a[sortKey] != null ? a[sortKey] : -1) - (b[sortKey] != null ? b[sortKey] : -1));
+    return r;
+  }, [ds, sortKey, sortDir]);
+
+  const maxVal = Math.max(...rows.map(r => r[sortKey] || 0));
+
+  return (
+    <div className="section">
+      <div className="section-header">
+        <h2>Leaderboard</h2>
+        <span className="section-sub">{DATA.mm_n_models} modelos - {DATA.mm_n_datasets} datasets</span>
+      </div>
+      <div className="controls">
+        <div className="chips">
+          <button className={'chip' + (isOv ? ' active' : '')} onClick={() => setDs('__overall__')}>Overall</button>
+          {DATA.mm_datasets.map(d => (
+            <button key={d} className={'chip' + (d===ds ? ' active' : '')} onClick={() => setDs(d)}>{d}</button>
+          ))}
+        </div>
+        <select value={sortKey} onChange={e => { setSortKey(e.target.value); setSortDir('desc'); }}>
+          <option value="macro_f1_binary">Macro-F1 binario</option>
+          <option value="hate_f1">Hate F1</option>
+          <option value="macro_f1">Macro-F1</option>
+          <option value="accuracy">Accuracy</option>
+          <option value="precision">Precision</option>
+          <option value="recall">Recall</option>
+        </select>
+      </div>
+      {isOv && (
+        <div className="info-box">
+          Media de cada metrica sobre todos los datasets evaluados por modelo.
+          Macro-F1 binario excluye predicciones unclear.
+          DS indica cuantos datasets tiene evaluados cada modelo.
+        </div>
+      )}
+      <table>
+        <thead>
+          <tr>
+            <th style={{width:28}}>#</th>
+            <th>Modelo</th>
+            <th>Familia</th>
+            <th>Params</th>
+            <th>Backend</th>
+            {isOv && <th>Developer</th>}
+            {isOv && <th>DS</th>}
+            <SortTh k="macro_f1_binary" label="Macro-F1 bin" sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+            <SortTh k="hate_f1"         label="Hate F1"      sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+            <SortTh k="macro_f1"        label="Macro-F1"     sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+            <SortTh k="accuracy"        label="Accuracy"     sortKey={sortKey} sortDir={sortDir} onSort={onSort}/>
+            <th>Cobertura</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => {
+            const pct      = maxVal > 0 ? (r[sortKey] || 0) / maxVal * 100 : 0;
+            const rk       = i===0 ? 'r1' : i===1 ? 'r2' : i===2 ? 'r3' : 'rank';
+            const covColor = r.coverage >= 95 ? '#10b981' : r.coverage >= 80 ? '#f59e0b' : '#ef4444';
+            const iconUrl  = FAMILY_ICON[r.family];
+            return (
+              <tr key={r.model}>
+                <td className={rk}>{i+1}</td>
+                <td>
+                  {iconUrl
+                    ? <img src={iconUrl} width={16} height={16}
+                        style={{marginRight:6, verticalAlign:'middle', borderRadius:2}}
+                        onError={e => { e.target.style.display='none'; }}/>
+                    : null}
+                  <b>{r.display_name || r.model}</b>
+                </td>
+                <td style={{color: col(r.family), fontWeight:500}}>{r.family}</td>
+                <td><span className="tag">{r.params}</span></td>
+                <td>
+                  <span style={{
+                    padding:'2px 7px', borderRadius:12, fontSize:10,
+                    background: r.backend==='vllm' ? '#eff6ff' : '#f0fdf4',
+                    color: r.backend==='vllm' ? '#1d4ed8' : '#166534'
+                  }}>{r.backend}</span>
+                </td>
+                {isOv && <td style={{color:'#888', fontSize:12}}>{r.developer}</td>}
+                {isOv && <td><span className="tag-ds">{r.n_datasets}/{r.n_datasets_total}</span></td>}
+                <td>
+                  <div className="bar-wrap">
+                    <div className="bar-bg">
+                      <div className="bar-fill" style={{width: pct+'%', background: col(r.family)}}/>
+                    </div>
+                    <span style={{minWidth:44, textAlign:'right', fontVariantNumeric:'tabular-nums'}}>
+                      {r.macro_f1_binary != null ? r.macro_f1_binary.toFixed(4) : '-'}
+                    </span>
+                  </div>
+                </td>
+                <td>{r.hate_f1 != null ? r.hate_f1.toFixed(4) : '-'}</td>
+                <td>{r.macro_f1 != null ? r.macro_f1.toFixed(4) : '-'}</td>
+                <td>{r.accuracy != null ? r.accuracy.toFixed(4) : '-'}</td>
+                <td>
+                  <span className="cov-dot" style={{background: covColor}}/>
+                  {r.coverage != null ? r.coverage + '%' : '-'}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 function MmHistory() {
   const [showAll, setShowAll] = useState(false);
-  const rows = DATA.mm_rows || [];
+  const rows = Object.entries(DATA.mm_overall || {}).map(([model, metrics]) => ({
+    model,
+    display_name: DATA.mm_models_meta[model]?.display_name || model,
+    family:       DATA.mm_models_meta[model]?.family || '',
+    backend:      DATA.mm_models_meta[model]?.backend || 'ollama',
+    ...metrics,
+    timestamp: Object.values(DATA.mm_results[model] || {})[0]?.timestamp || '',
+  })).sort((a, b) => (b.timestamp||'').localeCompare(a.timestamp||''));
+
   const visible = showAll ? rows : rows.slice(0, 5);
 
   return (
@@ -1036,7 +1164,7 @@ function MmHistory() {
                       style={{marginRight:5, verticalAlign:'middle', borderRadius:2}}
                       onError={e => { e.target.style.display='none'; }}/>
                   : null}
-                <b>{r.display_name || r.model}</b>
+                <b>{r.display_name}</b>
               </td>
               <td>
                 <span style={{
@@ -1055,8 +1183,7 @@ function MmHistory() {
         </tbody>
       </table>
       {rows.length > 5 && (
-        <button
-          onClick={() => setShowAll(v => !v)}
+        <button onClick={() => setShowAll(v => !v)}
           style={{marginTop:10, fontSize:12, color:'#6366f1', background:'none', border:'none', cursor:'pointer', padding:'4px 0'}}>
           {showAll ? 'Mostrar menos' : 'Ver todos (' + rows.length + ' modelos)'}
         </button>
@@ -1066,11 +1193,9 @@ function MmHistory() {
 }
 
 function MultimodalSection() {
-  const rows = DATA.mm_rows || [];
+  const [ds, setDs] = useState('__overall__');
+  const rows = DATA.mm_models || [];
   if (!rows.length) return null;
-
-  const maxBin = Math.max(...rows.map(r => r.macro_f1_binary || 0));
-  const maxHate = Math.max(...rows.map(r => r.hate_f1 || 0));
 
   return (
     <div id="multimodal">
@@ -1079,7 +1204,7 @@ function MultimodalSection() {
           Benchmark de Imagen
         </h2>
         <div style={{fontSize:13, color:'#888', marginTop:4}}>
-          {rows.length} modelos vision-lenguaje (VLMs) — Multi3Hate (Bui et al. 2024) — 300 memes, 5 idiomas
+          {DATA.mm_n_models} modelos vision-lenguaje (VLMs) — {DATA.mm_n_datasets} datasets
         </div>
       </div>
       <div className="info-box" style={{background:'#f0fdf4', borderColor:'#86efac', color:'#166534'}}>
@@ -1088,94 +1213,9 @@ function MultimodalSection() {
         Los VLMs tienden a ser conservadores y clasificar mayoritariamente como no_hate,
         especialmente el hate implicito y culturalmente codificado.
       </div>
-    <div className="section">
-      <div className="section-header">
-        <h2>Leaderboard Multimodal</h2>
-        <span className="section-sub">{rows.length} modelos — dataset: Multi3Hate</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th style={{width:28}}>#</th>
-            <th>Modelo</th>
-            <th>Familia</th>
-            <th>Params</th>
-            <th>Backend</th>
-            <th>Developer</th>
-            <th>Macro-F1 bin ↓</th>
-            <th>Hate F1</th>
-            <th>Accuracy</th>
-            <th>Cobertura</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => {
-            const rk = i===0 ? 'r1' : i===1 ? 'r2' : i===2 ? 'r3' : 'rank';
-            const pct = maxBin > 0 ? (r.macro_f1_binary || 0) / maxBin * 100 : 0;
-            const hpct = maxHate > 0 ? (r.hate_f1 || 0) / maxHate * 100 : 0;
-            const covColor = r.coverage >= 95 ? '#10b981' : r.coverage >= 80 ? '#f59e0b' : '#ef4444';
-            const iconUrl = FAMILY_ICON[r.family];
-            return (
-              <tr key={r.model}>
-                <td className={rk}>{i+1}</td>
-                <td>
-                  {iconUrl
-                    ? <img src={iconUrl} width={16} height={16}
-                        style={{marginRight:6, verticalAlign:'middle', borderRadius:2}}
-                        onError={e => { e.target.style.display='none'; }}/>
-                    : null}
-                  <b>{r.display_name || r.model}</b>
-                  <span style={{fontSize:10, color:'#aaa', marginLeft:6}}>{r.timestamp}</span>
-                </td>
-                <td style={{color: col(r.family), fontWeight:500}}>{r.family}</td>
-                <td><span className="tag">{r.params}</span></td>
-                <td style={{fontSize:11}}>
-                  <span style={{
-                    padding:'2px 7px', borderRadius:12, fontSize:10,
-                    background: r.backend==='vllm' ? '#eff6ff' : '#f0fdf4',
-                    color: r.backend==='vllm' ? '#1d4ed8' : '#166534'
-                  }}>{r.backend}</span>
-                </td>
-                <td style={{color:'#888', fontSize:12}}>{r.developer}</td>
-                <td>
-                  <div className="bar-wrap">
-                    <div className="bar-bg">
-                      <div className="bar-fill" style={{width: pct+'%', background: col(r.family)}}/>
-                    </div>
-                    <span style={{minWidth:44, textAlign:'right', fontVariantNumeric:'tabular-nums'}}>
-                      {r.macro_f1_binary != null ? r.macro_f1_binary.toFixed(4) : '-'}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div className="bar-wrap">
-                    <div className="bar-bg">
-                      <div className="bar-fill" style={{width: hpct+'%', background:'#ef4444'}}/>
-                    </div>
-                    <span style={{minWidth:44, textAlign:'right', fontVariantNumeric:'tabular-nums'}}>
-                      {r.hate_f1 != null ? r.hate_f1.toFixed(4) : '-'}
-                    </span>
-                  </div>
-                </td>
-                <td>{r.accuracy != null ? r.accuracy.toFixed(4) : '-'}</td>
-                <td>
-                  <span style={{color: covColor, fontWeight:500}}>
-                    {r.coverage != null ? r.coverage.toFixed(1) + '%' : '-'}
-                  </span>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div style={{marginTop:8, fontSize:11, color:'#aaa'}}>
-        * Macro-F1 binario calculado solo sobre predicciones hate/no_hate (excluye unclear).
-        Hate F1 calculado sobre las 3 clases (hate, no_hate, unclear).
-        Dataset: Multi3Hate — Bui et al. (2024) — 300 memes ES, gold=anotadores MX.
-      </div>
-    </div>
-    <MmGraficos/>
-    <MmHistory/>
+      <MmLeaderboard ds={ds} setDs={setDs}/>
+      <MmGraficos ds={ds}/>
+      <MmHistory/>
     </div>
   );
 }
@@ -1260,36 +1300,76 @@ def load_mm_runs():
 
 
 def build_mm_index(mm_runs, models_meta):
+    from collections import defaultdict
+
     best = {}
     for r in sorted(mm_runs, key=lambda x: x["timestamp"]):
-        best[r["model"]] = r
+        key = (r["model"], r["dataset"])
+        best[key] = r
 
-    rows = []
-    for model, r in best.items():
+    results = defaultdict(dict)
+    METRICS = ["macro_f1", "macro_f1_binary", "hate_f1", "precision", "recall", "accuracy"]
+
+    for (model, dataset), r in best.items():
         m = r["metrics"]
-        meta = models_meta.get(model, {})
         n_i = r.get("n_instances", 0)
         n_u = r.get("n_unclear", 0)
-        rows.append({
-            "model":           model,
-            "display_name":    meta.get("display_name", model),
-            "family":          meta.get("family", r.get("family", "")),
-            "params":          meta.get("params", r.get("params", "")),
-            "params_exact":    meta.get("params_exact"),
-            "developer":       meta.get("developer", ""),
-            "backend":         meta.get("backend", r.get("backend", "ollama")),
+        results[model][dataset] = {
             "macro_f1":        round(m.get("macro_f1", 0), 4),
             "macro_f1_binary": round(m.get("macro_f1_binary", 0), 4),
             "hate_f1":         round(r["per_class"].get("hate", {}).get("f1-score", 0), 4),
+            "precision":       round(m.get("precision", 0), 4),
+            "recall":          round(m.get("recall", 0), 4),
             "accuracy":        round(m.get("accuracy", 0), 4),
-            "coverage":        round((n_i - n_u) / n_i * 100, 1) if n_i else 0,
             "n_instances":     n_i,
             "n_unclear":       n_u,
+            "coverage":        round((n_i - n_u) / n_i * 100, 1) if n_i else 0,
             "timestamp":       r["timestamp"][:10],
-        })
+        }
 
-    rows.sort(key=lambda x: x["macro_f1_binary"], reverse=True)
-    return rows
+    active_models   = sorted(results.keys())
+    active_datasets = sorted({d for ds in results.values() for d in ds.keys()})
+    n_datasets      = len(active_datasets)
+
+    overall = {}
+    for model, ds_scores in results.items():
+        vals = {m: [] for m in METRICS}
+        for ds_name, scores in ds_scores.items():
+            for m in METRICS:
+                v = scores.get(m)
+                if v is not None:
+                    vals[m].append(v)
+        overall[model] = {m: round(sum(v)/len(v), 4) if v else None for m, v in vals.items()}
+        overall[model]["n_datasets"]       = len(ds_scores)
+        overall[model]["n_datasets_total"] = n_datasets
+        n_u = sum(ds_scores[d].get("n_unclear", 0) for d in ds_scores)
+        n_i = sum(ds_scores[d].get("n_instances", 0) for d in ds_scores)
+        overall[model]["coverage"] = round((n_i - n_u) / n_i * 100, 1) if n_i else 100
+
+    # models_meta for mm models
+    mm_models_meta = {}
+    for model in active_models:
+        meta = models_meta.get(model, {})
+        r0 = next(v for v in best.values() if v["model"] == model)
+        mm_models_meta[model] = {
+            "display_name": meta.get("display_name", model),
+            "family":       meta.get("family", r0.get("family", "")),
+            "params":       meta.get("params", r0.get("params", "")),
+            "params_exact": meta.get("params_exact"),
+            "developer":    meta.get("developer", ""),
+            "backend":      meta.get("backend", r0.get("backend", "ollama")),
+            "release_date": meta.get("release_date", ""),
+        }
+
+    return {
+        "mm_models":      active_models,
+        "mm_datasets":    active_datasets,
+        "mm_results":     dict(results),
+        "mm_overall":     overall,
+        "mm_models_meta": mm_models_meta,
+        "mm_n_models":    len(active_models),
+        "mm_n_datasets":  n_datasets,
+    }
 
 
 def main():
@@ -1304,13 +1384,12 @@ def main():
     # Multimodal
     mm_runs = load_mm_runs()
     mm_index = build_mm_index(mm_runs, models_meta)
-    index["mm_rows"] = mm_index
-    index["mm_n_models"] = len(mm_index)
+    index.update(mm_index)
 
     (DOCS_DIR / "runs_index.json").write_text(
         json.dumps(index, indent=2, ensure_ascii=False))
     print(f"[gen] {index['n_runs']} runs - {index['n_models']} modelos - {index['n_datasets']} datasets")
-    print(f"[gen] multimodal: {len(mm_index)} modelos validos")
+    print(f"[gen] multimodal: {mm_index['mm_n_models']} modelos - {mm_index['mm_n_datasets']} datasets")
     html_path = DOCS_DIR / "index.html"
     html_path.write_text(generate_html(index), encoding="utf-8")
     print(f"[gen] index.html -> {html_path}")

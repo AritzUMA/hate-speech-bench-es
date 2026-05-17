@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T23:57:57.953247+00:00",
+  "generated": "2026-05-17T00:03:50.154150+00:00",
   "n_runs": 82,
   "n_models": 15,
   "n_datasets": 7,
@@ -2167,109 +2167,227 @@
       "paper": "Bui et al. (2024)"
     }
   },
-  "mm_rows": [
-    {
-      "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "mm_models": [
+    "Qwen/Qwen2.5-VL-3B-Instruct",
+    "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
+    "gemma4:26b",
+    "gemma4:e2b",
+    "gemma4:e4b",
+    "microsoft/Phi-3.5-vision-instruct"
+  ],
+  "mm_datasets": [
+    "multi3hate"
+  ],
+  "mm_results": {
+    "gemma4:26b": {
+      "multi3hate": {
+        "macro_f1": 0.3107,
+        "macro_f1_binary": 0.472,
+        "hate_f1": 0.2755,
+        "precision": 0.4751,
+        "recall": 0.3797,
+        "accuracy": 0.5233,
+        "n_instances": 300,
+        "n_unclear": 8,
+        "coverage": 97.3,
+        "timestamp": "2026-05-15"
+      }
+    },
+    "microsoft/Phi-3.5-vision-instruct": {
+      "multi3hate": {
+        "macro_f1": 0.3397,
+        "macro_f1_binary": 0.5104,
+        "hate_f1": 0.3662,
+        "precision": 0.4486,
+        "recall": 0.3936,
+        "accuracy": 0.55,
+        "n_instances": 300,
+        "n_unclear": 1,
+        "coverage": 99.7,
+        "timestamp": "2026-05-16"
+      }
+    },
+    "Qwen/Qwen2.5-VL-7B-Instruct-AWQ": {
+      "multi3hate": {
+        "macro_f1": 0.3828,
+        "macro_f1_binary": 0.5741,
+        "hate_f1": 0.4762,
+        "precision": 0.4616,
+        "recall": 0.4206,
+        "accuracy": 0.5967,
+        "n_instances": 300,
+        "n_unclear": 0,
+        "coverage": 100.0,
+        "timestamp": "2026-05-16"
+      }
+    },
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
+      "multi3hate": {
+        "macro_f1": 0.2012,
+        "macro_f1_binary": 0.7669,
+        "hate_f1": 0.2741,
+        "precision": 0.5248,
+        "recall": 0.1266,
+        "accuracy": 0.1867,
+        "n_instances": 300,
+        "n_unclear": 227,
+        "coverage": 24.3,
+        "timestamp": "2026-05-16"
+      }
+    },
+    "gemma4:e2b": {
+      "multi3hate": {
+        "macro_f1": 0.2623,
+        "macro_f1_binary": 0.3939,
+        "hate_f1": 0.1538,
+        "precision": 0.466,
+        "recall": 0.3588,
+        "accuracy": 0.4867,
+        "n_instances": 300,
+        "n_unclear": 1,
+        "coverage": 99.7,
+        "timestamp": "2026-05-16"
+      }
+    },
+    "gemma4:e4b": {
+      "multi3hate": {
+        "macro_f1": 0.192,
+        "macro_f1_binary": 0.3594,
+        "hate_f1": 0.0791,
+        "precision": 0.3783,
+        "recall": 0.207,
+        "accuracy": 0.28,
+        "n_instances": 300,
+        "n_unclear": 113,
+        "coverage": 62.3,
+        "timestamp": "2026-05-16"
+      }
+    }
+  },
+  "mm_overall": {
+    "gemma4:26b": {
+      "macro_f1": 0.3107,
+      "macro_f1_binary": 0.472,
+      "hate_f1": 0.2755,
+      "precision": 0.4751,
+      "recall": 0.3797,
+      "accuracy": 0.5233,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 97.3
+    },
+    "microsoft/Phi-3.5-vision-instruct": {
+      "macro_f1": 0.3397,
+      "macro_f1_binary": 0.5104,
+      "hate_f1": 0.3662,
+      "precision": 0.4486,
+      "recall": 0.3936,
+      "accuracy": 0.55,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 99.7
+    },
+    "Qwen/Qwen2.5-VL-7B-Instruct-AWQ": {
+      "macro_f1": 0.3828,
+      "macro_f1_binary": 0.5741,
+      "hate_f1": 0.4762,
+      "precision": 0.4616,
+      "recall": 0.4206,
+      "accuracy": 0.5967,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 100.0
+    },
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
+      "macro_f1": 0.2012,
+      "macro_f1_binary": 0.7669,
+      "hate_f1": 0.2741,
+      "precision": 0.5248,
+      "recall": 0.1266,
+      "accuracy": 0.1867,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 24.3
+    },
+    "gemma4:e2b": {
+      "macro_f1": 0.2623,
+      "macro_f1_binary": 0.3939,
+      "hate_f1": 0.1538,
+      "precision": 0.466,
+      "recall": 0.3588,
+      "accuracy": 0.4867,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 99.7
+    },
+    "gemma4:e4b": {
+      "macro_f1": 0.192,
+      "macro_f1_binary": 0.3594,
+      "hate_f1": 0.0791,
+      "precision": 0.3783,
+      "recall": 0.207,
+      "accuracy": 0.28,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 62.3
+    }
+  },
+  "mm_models_meta": {
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
       "display_name": "Qwen 2.5 VL 3B",
       "family": "Qwen",
       "params": "3B",
       "params_exact": 3.7,
       "developer": "Alibaba",
       "backend": "vllm",
-      "macro_f1": 0.2012,
-      "macro_f1_binary": 0.7669,
-      "hate_f1": 0.2741,
-      "accuracy": 0.1867,
-      "coverage": 24.3,
-      "n_instances": 300,
-      "n_unclear": 227,
-      "timestamp": "2026-05-16"
+      "release_date": "2024-12-01"
     },
-    {
-      "model": "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
+    "Qwen/Qwen2.5-VL-7B-Instruct-AWQ": {
       "display_name": "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
       "family": "Qwen",
       "params": "7B",
       "params_exact": null,
       "developer": "",
       "backend": "vllm",
-      "macro_f1": 0.3828,
-      "macro_f1_binary": 0.5741,
-      "hate_f1": 0.4762,
-      "accuracy": 0.5967,
-      "coverage": 100.0,
-      "n_instances": 300,
-      "n_unclear": 0,
-      "timestamp": "2026-05-16"
+      "release_date": ""
     },
-    {
-      "model": "microsoft/Phi-3.5-vision-instruct",
-      "display_name": "Phi 3.5 Vision",
-      "family": "Phi",
-      "params": "4B",
-      "params_exact": 4.2,
-      "developer": "Microsoft",
-      "backend": "vllm",
-      "macro_f1": 0.3397,
-      "macro_f1_binary": 0.5104,
-      "hate_f1": 0.3662,
-      "accuracy": 0.55,
-      "coverage": 99.7,
-      "n_instances": 300,
-      "n_unclear": 1,
-      "timestamp": "2026-05-16"
-    },
-    {
-      "model": "gemma4:26b",
+    "gemma4:26b": {
       "display_name": "gemma4:26b",
       "family": "Gemma 4",
       "params": "26B",
       "params_exact": null,
       "developer": "",
       "backend": "ollama",
-      "macro_f1": 0.3107,
-      "macro_f1_binary": 0.472,
-      "hate_f1": 0.2755,
-      "accuracy": 0.5233,
-      "coverage": 97.3,
-      "n_instances": 300,
-      "n_unclear": 8,
-      "timestamp": "2026-05-15"
+      "release_date": ""
     },
-    {
-      "model": "gemma4:e2b",
+    "gemma4:e2b": {
       "display_name": "Gemma 4 2B",
       "family": "Gemma 4",
       "params": "2B",
       "params_exact": 2.0,
       "developer": "Google DeepMind",
       "backend": "ollama",
-      "macro_f1": 0.2623,
-      "macro_f1_binary": 0.3939,
-      "hate_f1": 0.1538,
-      "accuracy": 0.4867,
-      "coverage": 99.7,
-      "n_instances": 300,
-      "n_unclear": 1,
-      "timestamp": "2026-05-16"
+      "release_date": "2026-04-03"
     },
-    {
-      "model": "gemma4:e4b",
+    "gemma4:e4b": {
       "display_name": "Gemma 4 4B",
       "family": "Gemma 4",
       "params": "4B",
       "params_exact": 4.0,
       "developer": "Google DeepMind",
       "backend": "ollama",
-      "macro_f1": 0.192,
-      "macro_f1_binary": 0.3594,
-      "hate_f1": 0.0791,
-      "accuracy": 0.28,
-      "coverage": 62.3,
-      "n_instances": 300,
-      "n_unclear": 113,
-      "timestamp": "2026-05-16"
+      "release_date": "2026-04-03"
+    },
+    "microsoft/Phi-3.5-vision-instruct": {
+      "display_name": "Phi 3.5 Vision",
+      "family": "Phi",
+      "params": "4B",
+      "params_exact": 4.2,
+      "developer": "Microsoft",
+      "backend": "vllm",
+      "release_date": "2024-08-20"
     }
-  ],
-  "mm_n_models": 6
+  },
+  "mm_n_models": 6,
+  "mm_n_datasets": 1
 }
