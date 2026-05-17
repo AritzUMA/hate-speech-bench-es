@@ -1,11 +1,12 @@
 {
-  "generated": "2026-05-17T00:41:11.883301+00:00",
-  "n_runs": 81,
-  "n_models": 14,
+  "generated": "2026-05-17T12:49:42.984091+00:00",
+  "n_runs": 88,
+  "n_models": 15,
   "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
     "deepseek-r1:7b",
+    "deepseek-r1:latest",
     "gemma2:latest",
     "gemma3:12b",
     "gpt-oss-safeguard:20b",
@@ -1108,6 +1109,99 @@
         "coverage": 0.0,
         "elapsed": 639.8,
         "timestamp": "2026-05-16T01:05:12.782680+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.2571,
+        "macro_f1_binary": 0.6872,
+        "precision": 0.5087,
+        "recall": 0.1811,
+        "accuracy": 0.2882,
+        "hate_f1": 0.28795653486266226,
+        "n_instances": 6595,
+        "n_unclear": 3985,
+        "coverage": 39.6,
+        "elapsed": 5134.0,
+        "timestamp": "2026-05-17T09:01:47.804773+00:00"
+      }
+    },
+    "deepseek-r1:latest": {
+      "encarni": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 667,
+        "n_unclear": 667,
+        "coverage": 0.0,
+        "elapsed": 1.5,
+        "timestamp": "2026-05-17T09:00:00.791699+00:00"
+      },
+      "hateval": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 6595,
+        "n_unclear": 6595,
+        "coverage": 0.0,
+        "elapsed": 18.8,
+        "timestamp": "2026-05-17T09:00:03.785320+00:00"
+      },
+      "haternet": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 5999,
+        "n_unclear": 5999,
+        "coverage": 0.0,
+        "elapsed": 17.7,
+        "timestamp": "2026-05-17T09:00:23.794414+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 9500,
+        "n_unclear": 9500,
+        "coverage": 0.0,
+        "elapsed": 21.0,
+        "timestamp": "2026-05-17T09:00:42.800118+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3994,
+        "n_unclear": 3994,
+        "coverage": 0.0,
+        "elapsed": 11.4,
+        "timestamp": "2026-05-17T09:01:05.791781+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.0,
+        "macro_f1_binary": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "accuracy": 0.0,
+        "hate_f1": 0.0,
+        "n_instances": 3463,
+        "n_unclear": 3463,
+        "coverage": 0.0,
+        "elapsed": 9.4,
+        "timestamp": "2026-05-17T09:01:18.783783+00:00"
       }
     }
   },
@@ -1256,18 +1350,85 @@
       "coverage": 4.8
     },
     "gpt-oss-safeguard:20b": {
-      "macro_f1": 0.0178,
-      "macro_f1_binary": 0.1275,
-      "hate_f1": 0.0176,
-      "precision": 0.0894,
-      "recall": 0.0099,
-      "accuracy": 0.0174,
-      "n_datasets": 5,
+      "macro_f1": 0.0577,
+      "macro_f1_binary": 0.2208,
+      "hate_f1": 0.0627,
+      "precision": 0.1593,
+      "recall": 0.0385,
+      "accuracy": 0.0626,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 3.0
+      "coverage": 11.0
+    },
+    "deepseek-r1:latest": {
+      "macro_f1": 0.0,
+      "macro_f1_binary": 0.0,
+      "hate_f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.0,
+      "n_datasets": 6,
+      "n_datasets_total": 6,
+      "coverage": 0.0
     }
   },
   "history": [
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "encarni",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 1.5
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "hateval",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 18.8
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "haternet",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 17.7
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "chileno",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 21.0
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "hascosva",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 11.4
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "deepseek-r1:latest",
+      "dataset": "misocorpus",
+      "f1": 0.0,
+      "hate_f1": 0.0,
+      "elapsed": 9.4
+    },
+    {
+      "ts": "2026-05-17",
+      "model": "gpt-oss-safeguard:20b",
+      "dataset": "hateval",
+      "f1": 0.2571,
+      "hate_f1": 0.28795653486266226,
+      "elapsed": 5134.0
+    },
     {
       "ts": "2026-05-16",
       "model": "gpt-oss-safeguard:20b",
@@ -1963,6 +2124,15 @@
       "release_date": "2024-05-27",
       "developer": "Mistral AI"
     },
+    "deepseek-r1:latest": {
+      "display_name": "DeepSeek R1 7B",
+      "family": "DeepSeek R1",
+      "params": "7B",
+      "params_exact": 7.0,
+      "size_gb": 4.7,
+      "release_date": "2025-01-20",
+      "developer": "DeepSeek"
+    },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",
       "family": "Salamandra",
@@ -2116,8 +2286,14 @@
     "gemma4:26b",
     "gemma4:e2b",
     "gemma4:e4b",
+    "granite3.2-vision:2b",
     "llama3.2-vision:latest",
-    "microsoft/Phi-3.5-vision-instruct"
+    "llava:13b",
+    "llava:7b",
+    "microsoft/Phi-3.5-vision-instruct",
+    "minicpm-v:8b",
+    "qwen3-vl:4b",
+    "qwen3-vl:8b"
   ],
   "mm_datasets": [
     "multi3hate"
@@ -2220,6 +2396,90 @@
         "coverage": 62.3,
         "timestamp": "2026-05-16"
       }
+    },
+    "qwen3-vl:4b": {
+      "multi3hate": {
+        "macro_f1": 0.3575,
+        "macro_f1_binary": 0.5495,
+        "hate_f1": 0.4093,
+        "precision": 0.4778,
+        "recall": 0.3961,
+        "accuracy": 0.5567,
+        "n_instances": 300,
+        "n_unclear": 14,
+        "coverage": 95.3,
+        "timestamp": "2026-05-17"
+      }
+    },
+    "qwen3-vl:8b": {
+      "multi3hate": {
+        "macro_f1": 0.3403,
+        "macro_f1_binary": 0.5259,
+        "hate_f1": 0.3818,
+        "precision": 0.4323,
+        "recall": 0.3746,
+        "accuracy": 0.5267,
+        "n_instances": 300,
+        "n_unclear": 17,
+        "coverage": 94.3,
+        "timestamp": "2026-05-17"
+      }
+    },
+    "llava:7b": {
+      "multi3hate": {
+        "macro_f1": 0.3061,
+        "macro_f1_binary": 0.4591,
+        "hate_f1": 0.268,
+        "precision": 0.4822,
+        "recall": 0.3827,
+        "accuracy": 0.5267,
+        "n_instances": 300,
+        "n_unclear": 0,
+        "coverage": 100.0,
+        "timestamp": "2026-05-17"
+      }
+    },
+    "llava:13b": {
+      "multi3hate": {
+        "macro_f1": 0.3431,
+        "macro_f1_binary": 0.6267,
+        "hate_f1": 0.5234,
+        "precision": 0.4287,
+        "recall": 0.2941,
+        "accuracy": 0.4367,
+        "n_instances": 300,
+        "n_unclear": 91,
+        "coverage": 69.7,
+        "timestamp": "2026-05-17"
+      }
+    },
+    "granite3.2-vision:2b": {
+      "multi3hate": {
+        "macro_f1": 0.1159,
+        "macro_f1_binary": 0.5712,
+        "hate_f1": 0.127,
+        "precision": 0.3818,
+        "recall": 0.0691,
+        "accuracy": 0.1,
+        "n_instances": 300,
+        "n_unclear": 248,
+        "coverage": 17.3,
+        "timestamp": "2026-05-17"
+      }
+    },
+    "minicpm-v:8b": {
+      "multi3hate": {
+        "macro_f1": 0.4239,
+        "macro_f1_binary": 0.6418,
+        "hate_f1": 0.7086,
+        "precision": 0.4312,
+        "recall": 0.4204,
+        "accuracy": 0.6433,
+        "n_instances": 300,
+        "n_unclear": 5,
+        "coverage": 98.3,
+        "timestamp": "2026-05-17"
+      }
     }
   },
   "mm_overall": {
@@ -2299,6 +2559,72 @@
       "n_datasets": 1,
       "n_datasets_total": 1,
       "coverage": 62.3
+    },
+    "qwen3-vl:4b": {
+      "macro_f1": 0.3575,
+      "macro_f1_binary": 0.5495,
+      "hate_f1": 0.4093,
+      "precision": 0.4778,
+      "recall": 0.3961,
+      "accuracy": 0.5567,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 95.3
+    },
+    "qwen3-vl:8b": {
+      "macro_f1": 0.3403,
+      "macro_f1_binary": 0.5259,
+      "hate_f1": 0.3818,
+      "precision": 0.4323,
+      "recall": 0.3746,
+      "accuracy": 0.5267,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 94.3
+    },
+    "llava:7b": {
+      "macro_f1": 0.3061,
+      "macro_f1_binary": 0.4591,
+      "hate_f1": 0.268,
+      "precision": 0.4822,
+      "recall": 0.3827,
+      "accuracy": 0.5267,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 100.0
+    },
+    "llava:13b": {
+      "macro_f1": 0.3431,
+      "macro_f1_binary": 0.6267,
+      "hate_f1": 0.5234,
+      "precision": 0.4287,
+      "recall": 0.2941,
+      "accuracy": 0.4367,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 69.7
+    },
+    "granite3.2-vision:2b": {
+      "macro_f1": 0.1159,
+      "macro_f1_binary": 0.5712,
+      "hate_f1": 0.127,
+      "precision": 0.3818,
+      "recall": 0.0691,
+      "accuracy": 0.1,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 17.3
+    },
+    "minicpm-v:8b": {
+      "macro_f1": 0.4239,
+      "macro_f1_binary": 0.6418,
+      "hate_f1": 0.7086,
+      "precision": 0.4312,
+      "recall": 0.4204,
+      "accuracy": 0.6433,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 98.3
     }
   },
   "mm_models_meta": {
@@ -2347,6 +2673,15 @@
       "backend": "ollama",
       "release_date": "2026-04-03"
     },
+    "granite3.2-vision:2b": {
+      "display_name": "Granite 3.2 Vision 2B",
+      "family": "Granite",
+      "params": "2B",
+      "params_exact": 2.0,
+      "developer": "IBM",
+      "backend": "ollama",
+      "release_date": "2025-02-01"
+    },
     "llama3.2-vision:latest": {
       "display_name": "LLaMA 3.2 Vision 11B",
       "family": "LLaMA 3.2",
@@ -2356,6 +2691,24 @@
       "backend": "ollama",
       "release_date": "2024-09-25"
     },
+    "llava:13b": {
+      "display_name": "LLaVA 13B",
+      "family": "LLaVA",
+      "params": "13B",
+      "params_exact": 13.0,
+      "developer": "LLaVA Team",
+      "backend": "ollama",
+      "release_date": "2023-10-05"
+    },
+    "llava:7b": {
+      "display_name": "LLaVA 7B",
+      "family": "LLaVA",
+      "params": "7B",
+      "params_exact": 7.0,
+      "developer": "LLaVA Team",
+      "backend": "ollama",
+      "release_date": "2023-10-05"
+    },
     "microsoft/Phi-3.5-vision-instruct": {
       "display_name": "Phi 3.5 Vision",
       "family": "Phi",
@@ -2364,8 +2717,35 @@
       "developer": "Microsoft",
       "backend": "vllm",
       "release_date": "2024-08-20"
+    },
+    "minicpm-v:8b": {
+      "display_name": "MiniCPM-V 8B",
+      "family": "MiniCPM",
+      "params": "8B",
+      "params_exact": 8.0,
+      "developer": "OpenBMB",
+      "backend": "ollama",
+      "release_date": "2024-05-01"
+    },
+    "qwen3-vl:4b": {
+      "display_name": "Qwen3 VL 4B",
+      "family": "Qwen",
+      "params": "4B",
+      "params_exact": 4.0,
+      "developer": "Alibaba",
+      "backend": "ollama",
+      "release_date": "2025-04-28"
+    },
+    "qwen3-vl:8b": {
+      "display_name": "Qwen3 VL 8B",
+      "family": "Qwen",
+      "params": "8B",
+      "params_exact": 8.0,
+      "developer": "Alibaba",
+      "backend": "ollama",
+      "release_date": "2025-04-28"
     }
   },
-  "mm_n_models": 7,
+  "mm_n_models": 13,
   "mm_n_datasets": 1
 }
