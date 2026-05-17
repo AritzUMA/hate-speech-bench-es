@@ -1,8 +1,8 @@
 {
-  "generated": "2026-05-17T00:03:50.154150+00:00",
-  "n_runs": 82,
-  "n_models": 15,
-  "n_datasets": 7,
+  "generated": "2026-05-17T00:24:39.679786+00:00",
+  "n_runs": 81,
+  "n_models": 14,
+  "n_datasets": 6,
   "best_overall_f1": 0.427,
   "models": [
     "deepseek-r1:7b",
@@ -12,7 +12,6 @@
     "hdnh2006/salamandra-7b-instruct:latest",
     "jobautomation/OpenEuroLLM-Spanish:latest",
     "llama3.1:8b",
-    "llama3.2-vision:latest",
     "mistral:7b",
     "phi3.5:3.8b",
     "phi3:3.8b",
@@ -27,8 +26,7 @@
     "hascosva",
     "haternet",
     "hateval",
-    "misocorpus",
-    "multi3hate"
+    "misocorpus"
   ],
   "results": {
     "llama3.1:8b": {
@@ -885,21 +883,6 @@
         "timestamp": "2026-05-14T11:46:17.774385+00:00"
       }
     },
-    "llama3.2-vision:latest": {
-      "multi3hate": {
-        "macro_f1": 0.2726,
-        "macro_f1_binary": 0.524,
-        "precision": 0.486,
-        "recall": 0.2655,
-        "accuracy": 0.3667,
-        "hate_f1": 0.21164021164021163,
-        "n_instances": 300,
-        "n_unclear": 114,
-        "coverage": 62.0,
-        "elapsed": 8814.9,
-        "timestamp": "2026-05-15T09:58:10.353893+00:00"
-      }
-    },
     "phi3.5:3.8b": {
       "encarni": {
         "macro_f1": 0.0,
@@ -1137,7 +1120,7 @@
       "recall": 0.4563,
       "accuracy": 0.6124,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 99.6
     },
     "gemma2:latest": {
@@ -1148,7 +1131,7 @@
       "recall": 0.4215,
       "accuracy": 0.568,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 89.4
     },
     "gemma3:12b": {
@@ -1159,7 +1142,7 @@
       "recall": 0.4503,
       "accuracy": 0.6593,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 92.6
     },
     "qwen2.5:7b": {
@@ -1170,7 +1153,7 @@
       "recall": 0.4385,
       "accuracy": 0.6832,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 98.4
     },
     "mistral:7b": {
@@ -1181,7 +1164,7 @@
       "recall": 0.3181,
       "accuracy": 0.4372,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 68.8
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
@@ -1192,7 +1175,7 @@
       "recall": 0.2392,
       "accuracy": 0.316,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 51.7
     },
     "yi:9b": {
@@ -1203,7 +1186,7 @@
       "recall": 0.4172,
       "accuracy": 0.6307,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 94.2
     },
     "stablelm2:12b": {
@@ -1214,7 +1197,7 @@
       "recall": 0.4391,
       "accuracy": 0.678,
       "n_datasets": 5,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 98.8
     },
     "jobautomation/OpenEuroLLM-Spanish:latest": {
@@ -1225,7 +1208,7 @@
       "recall": 0.3677,
       "accuracy": 0.5443,
       "n_datasets": 5,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 62.2
     },
     "qwen3:8b": {
@@ -1236,7 +1219,7 @@
       "recall": 0.3951,
       "accuracy": 0.5953,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 81.0
     },
     "deepseek-r1:7b": {
@@ -1247,19 +1230,8 @@
       "recall": 0.3616,
       "accuracy": 0.5562,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 86.5
-    },
-    "llama3.2-vision:latest": {
-      "macro_f1": 0.2726,
-      "macro_f1_binary": 0.524,
-      "hate_f1": 0.2116,
-      "precision": 0.486,
-      "recall": 0.2655,
-      "accuracy": 0.3667,
-      "n_datasets": 1,
-      "n_datasets_total": 7,
-      "coverage": 62.0
     },
     "phi3.5:3.8b": {
       "macro_f1": 0.0,
@@ -1269,7 +1241,7 @@
       "recall": 0.0,
       "accuracy": 0.0,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 0.0
     },
     "phi3:3.8b": {
@@ -1280,7 +1252,7 @@
       "recall": 0.0269,
       "accuracy": 0.0497,
       "n_datasets": 6,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 4.8
     },
     "gpt-oss-safeguard:20b": {
@@ -1291,7 +1263,7 @@
       "recall": 0.0099,
       "accuracy": 0.0174,
       "n_datasets": 5,
-      "n_datasets_total": 7,
+      "n_datasets_total": 6,
       "coverage": 3.0
     }
   },
@@ -1367,14 +1339,6 @@
       "f1": 0.3038,
       "hate_f1": 0.20108275328692962,
       "elapsed": 11713.7
-    },
-    {
-      "ts": "2026-05-15",
-      "model": "llama3.2-vision:latest",
-      "dataset": "multi3hate",
-      "f1": 0.2726,
-      "hate_f1": 0.21164021164021163,
-      "elapsed": 8814.9
     },
     {
       "ts": "2026-05-15",
@@ -2070,15 +2034,6 @@
       "size_gb": 2.2,
       "release_date": "2024-04-23",
       "developer": "Microsoft"
-    },
-    "llama3.2-vision:latest": {
-      "display_name": "LLaMA 3.2 Vision 11B",
-      "family": "LLaMA 3.2",
-      "params": "11B",
-      "params_exact": 11.0,
-      "size_gb": 7.8,
-      "release_date": "2024-09-25",
-      "developer": "Meta"
     }
   },
   "datasets_meta": {
@@ -2153,18 +2108,6 @@
       "topic": "misoginia",
       "lang": "es",
       "paper": "García-Díaz et al. (2021)"
-    },
-    "multi3hate": {
-      "display": "Multi3Hate — Bui et al. (2024)",
-      "platform": "Internet (memes)",
-      "source": "Memes multilingüe — anotadores MX",
-      "n_total": 300,
-      "hate": 167,
-      "no_hate": 133,
-      "iaa": "Acuerdo medio: 74%",
-      "topic": "hate speech en memes — perspectiva multicultural",
-      "lang": "es-MX",
-      "paper": "Bui et al. (2024)"
     }
   },
   "mm_models": [
@@ -2173,12 +2116,27 @@
     "gemma4:26b",
     "gemma4:e2b",
     "gemma4:e4b",
+    "llama3.2-vision:latest",
     "microsoft/Phi-3.5-vision-instruct"
   ],
   "mm_datasets": [
     "multi3hate"
   ],
   "mm_results": {
+    "llama3.2-vision:latest": {
+      "multi3hate": {
+        "macro_f1": 0.2726,
+        "macro_f1_binary": 0.524,
+        "hate_f1": 0.2116,
+        "precision": 0.486,
+        "recall": 0.2655,
+        "accuracy": 0.3667,
+        "n_instances": 300,
+        "n_unclear": 114,
+        "coverage": 62.0,
+        "timestamp": "2026-05-15"
+      }
+    },
     "gemma4:26b": {
       "multi3hate": {
         "macro_f1": 0.3107,
@@ -2265,6 +2223,17 @@
     }
   },
   "mm_overall": {
+    "llama3.2-vision:latest": {
+      "macro_f1": 0.2726,
+      "macro_f1_binary": 0.524,
+      "hate_f1": 0.2116,
+      "precision": 0.486,
+      "recall": 0.2655,
+      "accuracy": 0.3667,
+      "n_datasets": 1,
+      "n_datasets_total": 1,
+      "coverage": 62.0
+    },
     "gemma4:26b": {
       "macro_f1": 0.3107,
       "macro_f1_binary": 0.472,
@@ -2378,6 +2347,15 @@
       "backend": "ollama",
       "release_date": "2026-04-03"
     },
+    "llama3.2-vision:latest": {
+      "display_name": "LLaMA 3.2 Vision 11B",
+      "family": "LLaMA 3.2",
+      "params": "11B",
+      "params_exact": 11.0,
+      "developer": "Meta",
+      "backend": "ollama",
+      "release_date": "2024-09-25"
+    },
     "microsoft/Phi-3.5-vision-instruct": {
       "display_name": "Phi 3.5 Vision",
       "family": "Phi",
@@ -2388,6 +2366,6 @@
       "release_date": "2024-08-20"
     }
   },
-  "mm_n_models": 6,
+  "mm_n_models": 7,
   "mm_n_datasets": 1
 }

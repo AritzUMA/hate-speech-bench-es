@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-16_gpt-oss-safeguard-20b_hascosva.json",
+  "timestamp": "2026-05-16T00:52:40.772944+00:00",
+  "model": "gpt-oss-safeguard:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 3994,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.0,
+    "macro_f1_binary": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "accuracy": 0.0
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.0,
+    "macro avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 0,
+      "no_hate": 0,
+      "unclear": 3994
+    }
+  },
+  "elapsed_seconds": 749.6,
+  "prompt_hash": "v2",
+  "predictions_file": "results/predictions/2026-05-16_gpt-oss-safeguard-20b_hascosva_predictions.jsonl"
+}
