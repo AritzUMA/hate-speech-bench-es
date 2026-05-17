@@ -14,12 +14,23 @@ DOCS_DIR  = REPO_ROOT / "docs"
 
 
 def load_runs():
+    with open(REPO_ROOT / "registry" / "models.yaml") as f:
+        vision_models = {m["ollama_name"] for m in yaml.safe_load(f)["models"]
+                         if m.get("modality") == "image+text"}
+    with open(REPO_ROOT / "registry" / "datasets.yaml") as f:
+        vision_datasets = {d["name"] for d in yaml.safe_load(f)["datasets"]
+                           if d.get("modality") == "image+text"}
     runs = []
     for f in sorted(RUNS_DIR.glob("*.json")):
         if f.name.startswith("partial_"):
             continue
         try:
-            runs.append(json.loads(f.read_text(encoding="utf-8")))
+            r = json.loads(f.read_text(encoding="utf-8"))
+            if r.get("model") in vision_models:
+                continue
+            if r.get("dataset") in vision_datasets:
+                continue
+            runs.append(r)
         except Exception as e:
             print(f"  [warn] skip {f.name}: {e}")
     return runs
