@@ -78,7 +78,7 @@ models:
     display_name: "GPT-OSS Safeguard 20B"
     family: "GPT-OSS"
     params: "20B"
-    params_exact: 3.6
+    params_exact: 20.0
     size_gb: 13.0
     release_date: "2025-04-16"
     developer: "OpenAI"

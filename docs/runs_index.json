@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-17T00:33:12.883156+00:00",
+  "generated": "2026-05-17T00:41:11.883301+00:00",
   "n_runs": 81,
   "n_models": 14,
   "n_datasets": 6,
@@ -1976,7 +1976,7 @@
       "display_name": "GPT-OSS Safeguard 20B",
       "family": "GPT-OSS",
       "params": "20B",
-      "params_exact": 3.6,
+      "params_exact": 20.0,
       "size_gb": 13.0,
       "release_date": "2025-04-16",
       "developer": "OpenAI"
