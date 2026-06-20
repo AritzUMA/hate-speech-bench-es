@@ -11,12 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
+body{font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
 .wrap{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem}
 .gh-btn{position:fixed;top:14px;right:18px;display:flex;align-items:center;gap:7px;background:#fff;border:0.5px solid #d0d0d0;border-radius:8px;padding:6px 12px;font-size:12px;color:#333;text-decoration:none;z-index:1000;box-shadow:0 1px 4px rgba(0,0,0,.08);transition:box-shadow .15s}
 .gh-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,.15);color:#000}
 .header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:0.5px solid #e0e0e0}
-.header h1{font-size:24px;font-weight:600;margin-bottom:.4rem;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
+.header h1{font-family:'EB Garamond',serif;font-size:28px;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
 .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d32;animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .header-meta{font-size:12px;color:#aaa;margin-bottom:1rem}
@@ -54,6 +54,9 @@ select{font-size:12px;padding:5px 9px;border-radius:7px;border:0.5px solid #ddd;
 .cov-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
 .info-box{background:#f0f4ff;border:0.5px solid #c7d2fe;border-radius:8px;padding:.8rem 1rem;font-size:12px;color:#4338ca;margin-bottom:1rem}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="root"></div>
@@ -1101,7 +1104,7 @@ function App() {
         AritzUMA/hate-speech-bench-es
       </a>
       <div className="wrap">
-        <div className="header">
+        <div style={{textAlign:"center",marginBottom:"2rem"}}><h1 style={{fontFamily:"EB Garamond, serif",fontSize:"42px",fontWeight:700,letterSpacing:"-0.5px",color:"#1a1a1a",marginBottom:"0.3rem"}}>Nutcracker Benchmark</h1><p style={{fontFamily:"IBM Plex Sans, sans-serif",fontSize:"14px",color:"#888",fontWeight:300}}>Evaluación continua de modelos de lenguaje para detección de discurso de odio en español</p></div><div className="header">
           <h1>
             <span className="live"/>
             Deteccion de Discurso de Odio en Espanol — Benchmark Continuo
