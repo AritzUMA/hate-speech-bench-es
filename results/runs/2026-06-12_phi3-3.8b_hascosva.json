@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-12_phi3-3.8b_hascosva.json",
+  "timestamp": "2026-06-12T21:57:28.763295+00:00",
+  "model": "phi3:3.8b",
+  "family": "unknown",
+  "params": "unknown",
+  "size_gb": null,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4396,
+    "macro_f1_binary": 0.6593,
+    "precision": 0.4275,
+    "recall": 0.4811,
+    "accuracy": 0.7867
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.35070140280561124,
+      "recall": 0.631768953068592,
+      "f1-score": 0.45103092783505155,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.931909212283044,
+      "recall": 0.8116279069767441,
+      "f1-score": 0.867619639527657,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7866800200300451,
+    "macro avg": {
+      "precision": 0.4275368716962184,
+      "recall": 0.4811322866817787,
+      "f1-score": 0.4395501891209028,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.8512910033570306,
+      "recall": 0.7866800200300451,
+      "f1-score": 0.8098354266388981,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 998,
+      "no_hate": 2996,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 7188.7,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-12_phi3-3.8b_hascosva_predictions.jsonl"
+}

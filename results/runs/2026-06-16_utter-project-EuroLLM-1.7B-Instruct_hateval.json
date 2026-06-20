@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-16_utter-project-EuroLLM-1.7B-Instruct_hateval.json",
+  "timestamp": "2026-06-16T05:17:55.870001+00:00",
+  "model": "utter-project/EuroLLM-1.7B-Instruct",
+  "family": "EuroLLM",
+  "params": "1.7B",
+  "size_gb": 3.4,
+  "backend": "vllm",
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 46,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.2134,
+    "macro_f1_binary": 0.3208,
+    "precision": 0.3502,
+    "recall": 0.3332,
+    "accuracy": 0.4197
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.41658812441093307,
+      "recall": 0.969652650822669,
+      "f1-score": 0.5827930996593781,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.6338797814207651,
+      "recall": 0.03005181347150259,
+      "f1-score": 0.05738313133811526,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.41971190295678545,
+    "macro avg": {
+      "precision": 0.350155968610566,
+      "recall": 0.33323482143139055,
+      "f1-score": 0.21339207699916443,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.5437671685440568,
+      "recall": 0.41971190295678545,
+      "f1-score": 0.27527490743495436,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 6366,
+      "no_hate": 183,
+      "unclear": 46
+    }
+  },
+  "elapsed_seconds": 837.5,
+  "prompt_hash": "v3_vllm_rationale",
+  "predictions_file": "results/predictions/2026-06-16_utter-project-EuroLLM-1.7B-Instruct_hateval_predictions.jsonl"
+}

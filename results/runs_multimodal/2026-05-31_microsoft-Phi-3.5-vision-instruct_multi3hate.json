@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-05-31_microsoft-Phi-3.5-vision-instruct_multi3hate.json",
+  "timestamp": "2026-05-31T15:09:30.661667+00:00",
+  "model": "microsoft/Phi-3.5-vision-instruct",
+  "family": "Phi",
+  "params": "4B",
+  "size_gb": 8.5,
+  "backend": "vllm",
+  "dataset": "multi3hate",
+  "dataset_display": "Multi3Hate — Bui et al. (2024)",
+  "modality": "image+text",
+  "n_instances": 300,
+  "n_unclear": 0,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.3453,
+    "macro_f1_binary": 0.518,
+    "precision": 0.4514,
+    "recall": 0.3976,
+    "accuracy": 0.5567
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.8541666666666666,
+      "recall": 0.24550898203592814,
+      "f1-score": 0.3813953488372093,
+      "support": 167.0
+    },
+    "no_hate": {
+      "precision": 0.5,
+      "recall": 0.9473684210526315,
+      "f1-score": 0.6545454545454545,
+      "support": 133.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.5566666666666666,
+    "macro avg": {
+      "precision": 0.45138888888888884,
+      "recall": 0.3976258010295199,
+      "f1-score": 0.3453136011275546,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.6971527777777777,
+      "recall": 0.5566666666666666,
+      "f1-score": 0.502491895701198,
+      "support": 300.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 167,
+      "no_hate": 133
+    },
+    "pred": {
+      "hate": 48,
+      "no_hate": 252,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 72.4,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-05-31_microsoft-Phi-3.5-vision-instruct_multi3hate_predictions.jsonl"
+}

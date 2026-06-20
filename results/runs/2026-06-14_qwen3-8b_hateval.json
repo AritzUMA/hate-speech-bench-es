@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-14_qwen3-8b_hateval.json",
+  "timestamp": "2026-06-14T06:49:06.031584+00:00",
+  "model": "qwen3:8b",
+  "family": "Qwen 3",
+  "params": "8B",
+  "size_gb": 5.2,
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 1,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4538,
+    "macro_f1_binary": 0.6807,
+    "precision": 0.4582,
+    "recall": 0.4614,
+    "accuracy": 0.6816
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.5911174785100286,
+      "recall": 0.7542961608775137,
+      "f1-score": 0.6628112449799197,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.7835051546391752,
+      "recall": 0.6300518134715026,
+      "f1-score": 0.6984491671453188,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6815769522365428,
+    "macro avg": {
+      "precision": 0.45820754438306793,
+      "recall": 0.46144932478300543,
+      "f1-score": 0.4537534707084128,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.7037204246599158,
+      "recall": 0.6815769522365428,
+      "f1-score": 0.683669831721154,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 3490,
+      "no_hate": 3104,
+      "unclear": 1
+    }
+  },
+  "elapsed_seconds": 26298.3,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-14_qwen3-8b_hateval_predictions.jsonl"
+}

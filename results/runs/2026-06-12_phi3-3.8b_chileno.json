@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-12_phi3-3.8b_chileno.json",
+  "timestamp": "2026-06-12T16:48:58.819164+00:00",
+  "model": "phi3:3.8b",
+  "family": "unknown",
+  "params": "unknown",
+  "size_gb": null,
+  "dataset": "chileno",
+  "dataset_display": "Chileno — Arango Monnar et al. (2022)",
+  "n_instances": 9500,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3168,
+    "macro_f1_binary": 0.4752,
+    "precision": 0.3601,
+    "recall": 0.4418,
+    "accuracy": 0.6277
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.11137566137566138,
+      "recall": 0.7028380634390651,
+      "f1-score": 0.19228134277232245,
+      "support": 599.0
+    },
+    "no_hate": {
+      "precision": 0.9688811188811188,
+      "recall": 0.6226266711605437,
+      "f1-score": 0.7580876821010875,
+      "support": 8901.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6276842105263158,
+    "macro avg": {
+      "precision": 0.3600855934189267,
+      "recall": 0.4418215781998696,
+      "f1-score": 0.3167896749578033,
+      "support": 9500.0
+    },
+    "weighted avg": {
+      "precision": 0.9148131431920906,
+      "recall": 0.6276842105263158,
+      "f1-score": 0.722412103442358,
+      "support": 9500.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 599,
+      "no_hate": 8901
+    },
+    "pred": {
+      "hate": 3780,
+      "no_hate": 5720,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 17252.6,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-12_phi3-3.8b_chileno_predictions.jsonl"
+}

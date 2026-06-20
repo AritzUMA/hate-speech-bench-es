@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-16_utter-project-EuroLLM-1.7B-Instruct_hascosva.json",
+  "timestamp": "2026-06-16T04:53:01.914470+00:00",
+  "model": "utter-project/EuroLLM-1.7B-Instruct",
+  "family": "EuroLLM",
+  "params": "1.7B",
+  "size_gb": 3.4,
+  "backend": "vllm",
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 37,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.1041,
+    "macro_f1_binary": 0.1565,
+    "precision": 0.3352,
+    "recall": 0.332,
+    "accuracy": 0.164
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.13944954128440368,
+      "recall": 0.9602888086642599,
+      "f1-score": 0.2435339894712749,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.8661971830985915,
+      "recall": 0.03575581395348837,
+      "f1-score": 0.06867671691792294,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.16399599399098647,
+    "macro avg": {
+      "precision": 0.3352155747943317,
+      "recall": 0.3320148742059161,
+      "f1-score": 0.10407023546306594,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.7653914260717863,
+      "recall": 0.16399599399098647,
+      "f1-score": 0.09293083033669035,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 3815,
+      "no_hate": 142,
+      "unclear": 37
+    }
+  },
+  "elapsed_seconds": 554.0,
+  "prompt_hash": "v3_vllm_rationale",
+  "predictions_file": "results/predictions/2026-06-16_utter-project-EuroLLM-1.7B-Instruct_hascosva_predictions.jsonl"
+}

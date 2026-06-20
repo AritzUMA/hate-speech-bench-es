@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-06-05_qwen3-vl-4b_multi3hate.json",
+  "timestamp": "2026-06-05T16:21:39.695995+00:00",
+  "model": "qwen3-vl:4b",
+  "family": "Qwen",
+  "params": "4B",
+  "size_gb": 3.3,
+  "backend": "ollama",
+  "dataset": "multi3hate",
+  "dataset_display": "Multi3Hate — Bui et al. (2024)",
+  "modality": "image+text",
+  "n_instances": 300,
+  "n_unclear": 8,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3472,
+    "macro_f1_binary": 0.5281,
+    "precision": 0.4737,
+    "recall": 0.3986,
+    "accuracy": 0.5567
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.9069767441860465,
+      "recall": 0.23353293413173654,
+      "f1-score": 0.37142857142857144,
+      "support": 167.0
+    },
+    "no_hate": {
+      "precision": 0.5140562248995983,
+      "recall": 0.9624060150375939,
+      "f1-score": 0.6701570680628273,
+      "support": 133.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.5566666666666666,
+    "macro avg": {
+      "precision": 0.47367765636188164,
+      "recall": 0.3986463163897768,
+      "f1-score": 0.3471952131637996,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.7327819806357211,
+      "recall": 0.5566666666666666,
+      "f1-score": 0.5038648716030916,
+      "support": 300.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 167,
+      "no_hate": 133
+    },
+    "pred": {
+      "hate": 43,
+      "no_hate": 249,
+      "unclear": 8
+    }
+  },
+  "elapsed_seconds": 1451.7,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-06-05_qwen3-vl-4b_multi3hate_predictions.jsonl"
+}

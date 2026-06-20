@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-15_yi-9b_hateval.json",
+  "timestamp": "2026-06-15T22:55:23.457720+00:00",
+  "model": "yi:9b",
+  "family": "Yi",
+  "params": "9B",
+  "size_gb": 5.0,
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4323,
+    "macro_f1_binary": 0.6485,
+    "precision": 0.4413,
+    "recall": 0.4427,
+    "accuracy": 0.6487
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.5563342318059299,
+      "recall": 0.7546617915904936,
+      "f1-score": 0.6404965089216447,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.767417677642981,
+      "recall": 0.5735751295336787,
+      "f1-score": 0.65648628613788,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6486732373009856,
+    "macro avg": {
+      "precision": 0.4412506364829703,
+      "recall": 0.44274564037472414,
+      "f1-score": 0.4323275983531749,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.6798796603019144,
+      "recall": 0.6486732373009856,
+      "f1-score": 0.649855195813937,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 3710,
+      "no_hate": 2885,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 5767.4,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-15_yi-9b_hateval_predictions.jsonl"
+}

@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-19_gpt-oss-safeguard-20b_hateval.json",
+  "timestamp": "2026-06-19T21:45:17.817244+00:00",
+  "model": "gpt-oss-safeguard:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 8,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4452,
+    "macro_f1_binary": 0.6682,
+    "precision": 0.4512,
+    "recall": 0.4534,
+    "accuracy": 0.6681
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.577171773966826,
+      "recall": 0.7506398537477148,
+      "f1-score": 0.6525746980292435,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.7765676567656765,
+      "recall": 0.6095854922279793,
+      "f1-score": 0.6830188679245283,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.668081880212282,
+    "macro avg": {
+      "precision": 0.4512464769108342,
+      "recall": 0.4534084486585647,
+      "f1-score": 0.4451978553179239,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.6938765666284732,
+      "recall": 0.668081880212282,
+      "f1-score": 0.6703934236995693,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 3557,
+      "no_hate": 3030,
+      "unclear": 8
+    }
+  },
+  "elapsed_seconds": 16232.9,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-19_gpt-oss-safeguard-20b_hateval_predictions.jsonl"
+}

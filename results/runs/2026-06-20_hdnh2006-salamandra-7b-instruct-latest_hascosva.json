@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-20_hdnh2006-salamandra-7b-instruct-latest_hascosva.json",
+  "timestamp": "2026-06-20T09:16:33.796357+00:00",
+  "model": "hdnh2006/salamandra-7b-instruct:latest",
+  "family": "Salamandra",
+  "params": "7B",
+  "size_gb": 4.9,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4093,
+    "macro_f1_binary": 0.6139,
+    "precision": 0.4244,
+    "recall": 0.5198,
+    "accuracy": 0.687
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.29553466509988247,
+      "recall": 0.907942238267148,
+      "f1-score": 0.44592198581560283,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.9777486910994765,
+      "recall": 0.651453488372093,
+      "f1-score": 0.7819260293091417,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6870305458187281,
+    "macro avg": {
+      "precision": 0.4244277853997864,
+      "recall": 0.5197985755464137,
+      "f1-score": 0.4092826717082481,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.883120105620314,
+      "recall": 0.6870305458187281,
+      "f1-score": 0.7353195595806938,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 1702,
+      "no_hate": 2292,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 5828.7,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-20_hdnh2006-salamandra-7b-instruct-latest_hascosva_predictions.jsonl"
+}

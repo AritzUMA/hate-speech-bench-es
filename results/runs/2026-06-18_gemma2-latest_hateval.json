@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-18_gemma2-latest_hateval.json",
+  "timestamp": "2026-06-18T08:19:16.803100+00:00",
+  "model": "gemma2:latest",
+  "family": "Gemma 2",
+  "params": "9B",
+  "size_gb": 5.4,
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3912,
+    "macro_f1_binary": 0.5869,
+    "precision": 0.4737,
+    "recall": 0.4349,
+    "accuracy": 0.6014
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.5104003139717426,
+      "recall": 0.9510054844606947,
+      "f1-score": 0.6642829779083131,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.9106070713809206,
+      "recall": 0.3536269430051813,
+      "f1-score": 0.5094233998880389,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6013646702047005,
+    "macro avg": {
+      "precision": 0.47366912845088766,
+      "recall": 0.4348774758219587,
+      "f1-score": 0.3912354592654507,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.744638082523589,
+      "recall": 0.6013646702047005,
+      "f1-score": 0.5736449231458781,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 5096,
+      "no_hate": 1499,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 20944.0,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-18_gemma2-latest_hateval_predictions.jsonl"
+}

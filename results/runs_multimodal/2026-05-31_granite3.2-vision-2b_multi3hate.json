@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-05-31_granite3.2-vision-2b_multi3hate.json",
+  "timestamp": "2026-05-31T19:09:06.443551+00:00",
+  "model": "granite3.2-vision:2b",
+  "family": "Granite",
+  "params": "2B",
+  "size_gb": 2.0,
+  "backend": "ollama",
+  "dataset": "multi3hate",
+  "dataset_display": "Multi3Hate — Bui et al. (2024)",
+  "modality": "image+text",
+  "n_instances": 300,
+  "n_unclear": 0,
+  "n_workers": 4,
+  "metrics": {
+    "macro_f1": 0.2667,
+    "macro_f1_binary": 0.4,
+    "precision": 0.4349,
+    "recall": 0.3578,
+    "accuracy": 0.4867
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.8421052631578947,
+      "recall": 0.09580838323353294,
+      "f1-score": 0.17204301075268819,
+      "support": 167.0
+    },
+    "no_hate": {
+      "precision": 0.4626334519572954,
+      "recall": 0.9774436090225563,
+      "f1-score": 0.6280193236714976,
+      "support": 133.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.4866666666666667,
+    "macro avg": {
+      "precision": 0.4349129050383967,
+      "recall": 0.3577506640853631,
+      "f1-score": 0.2666874448080619,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.6738727601922957,
+      "recall": 0.4866666666666667,
+      "f1-score": 0.374192509480027,
+      "support": 300.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 167,
+      "no_hate": 133
+    },
+    "pred": {
+      "hate": 19,
+      "no_hate": 281,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 1772.6,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-05-31_granite3.2-vision-2b_multi3hate_predictions.jsonl"
+}

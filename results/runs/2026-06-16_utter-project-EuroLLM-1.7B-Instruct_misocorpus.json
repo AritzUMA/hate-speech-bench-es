@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-16_utter-project-EuroLLM-1.7B-Instruct_misocorpus.json",
+  "timestamp": "2026-06-16T05:33:11.870958+00:00",
+  "model": "utter-project/EuroLLM-1.7B-Instruct",
+  "family": "EuroLLM",
+  "params": "1.7B",
+  "size_gb": 3.4,
+  "backend": "vllm",
+  "dataset": "misocorpus",
+  "dataset_display": "MisoCorpus — García-Díaz et al. (2021)",
+  "n_instances": 3463,
+  "n_unclear": 131,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.2206,
+    "macro_f1_binary": 0.3338,
+    "precision": 0.3275,
+    "recall": 0.3273,
+    "accuracy": 0.4308
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.44482331060136393,
+      "recall": 0.952855245683931,
+      "f1-score": 0.606508875739645,
+      "support": 1506.0
+    },
+    "no_hate": {
+      "precision": 0.5377358490566038,
+      "recall": 0.02912621359223301,
+      "f1-score": 0.055259331071255455,
+      "support": 1957.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.4308403118683223,
+    "macro avg": {
+      "precision": 0.3275197198859892,
+      "recall": 0.3273271530920547,
+      "f1-score": 0.22058940227030013,
+      "support": 3463.0
+    },
+    "weighted avg": {
+      "precision": 0.49732976100763143,
+      "recall": 0.4308403118683223,
+      "f1-score": 0.2949884140255132,
+      "support": 3463.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1506,
+      "no_hate": 1957
+    },
+    "pred": {
+      "hate": 3226,
+      "no_hate": 106,
+      "unclear": 131
+    }
+  },
+  "elapsed_seconds": 535.8,
+  "prompt_hash": "v3_vllm_rationale",
+  "predictions_file": "results/predictions/2026-06-16_utter-project-EuroLLM-1.7B-Instruct_misocorpus_predictions.jsonl"
+}

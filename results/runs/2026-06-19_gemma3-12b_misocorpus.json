@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-19_gemma3-12b_misocorpus.json",
+  "timestamp": "2026-06-19T04:54:25.805761+00:00",
+  "model": "gemma3:12b",
+  "family": "Gemma 3",
+  "params": "12B",
+  "size_gb": 8.1,
+  "dataset": "misocorpus",
+  "dataset_display": "MisoCorpus — García-Díaz et al. (2021)",
+  "n_instances": 3463,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4926,
+    "macro_f1_binary": 0.7389,
+    "precision": 0.503,
+    "recall": 0.502,
+    "accuracy": 0.739
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.6511044176706827,
+      "recall": 0.8612217795484728,
+      "f1-score": 0.7415666094911378,
+      "support": 1506.0
+    },
+    "no_hate": {
+      "precision": 0.8579197824609109,
+      "recall": 0.6448645886561063,
+      "f1-score": 0.7362893815635939,
+      "support": 1957.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7389546635864858,
+    "macro avg": {
+      "precision": 0.5030080667105312,
+      "recall": 0.5020287894015264,
+      "f1-score": 0.4926186636849106,
+      "support": 3463.0
+    },
+    "weighted avg": {
+      "precision": 0.7679792859624751,
+      "recall": 0.7389546635864858,
+      "f1-score": 0.7385843585369931,
+      "support": 3463.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1506,
+      "no_hate": 1957
+    },
+    "pred": {
+      "hate": 1992,
+      "no_hate": 1471,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 10975.4,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-19_gemma3-12b_misocorpus_predictions.jsonl"
+}

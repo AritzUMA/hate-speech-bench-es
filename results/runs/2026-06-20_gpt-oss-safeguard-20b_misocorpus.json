@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-20_gpt-oss-safeguard-20b_misocorpus.json",
+  "timestamp": "2026-06-20T02:15:51.786705+00:00",
+  "model": "gpt-oss-safeguard:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "misocorpus",
+  "dataset_display": "MisoCorpus — García-Díaz et al. (2021)",
+  "n_instances": 3463,
+  "n_unclear": 3,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4766,
+    "macro_f1_binary": 0.7152,
+    "precision": 0.4781,
+    "recall": 0.4801,
+    "accuracy": 0.7156
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.6488027366020525,
+      "recall": 0.7556440903054449,
+      "f1-score": 0.698159509202454,
+      "support": 1506.0
+    },
+    "no_hate": {
+      "precision": 0.7854630715123095,
+      "recall": 0.684721512519162,
+      "f1-score": 0.7316407316407316,
+      "support": 1957.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7155645394166907,
+    "macro avg": {
+      "precision": 0.4780886027047873,
+      "recall": 0.48012186760820236,
+      "f1-score": 0.4766000802810619,
+      "support": 3463.0
+    },
+    "weighted avg": {
+      "precision": 0.7260318083373608,
+      "recall": 0.7155645394166907,
+      "f1-score": 0.7170803155298318,
+      "support": 3463.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1506,
+      "no_hate": 1957
+    },
+    "pred": {
+      "hate": 1754,
+      "no_hate": 1706,
+      "unclear": 3
+    }
+  },
+  "elapsed_seconds": 8521.6,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-20_gpt-oss-safeguard-20b_misocorpus_predictions.jsonl"
+}

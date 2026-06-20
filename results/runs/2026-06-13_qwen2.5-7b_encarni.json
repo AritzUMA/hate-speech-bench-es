@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-13_qwen2.5-7b_encarni.json",
+  "timestamp": "2026-06-13T08:59:45.754525+00:00",
+  "model": "qwen2.5:7b",
+  "family": "Qwen 2.5",
+  "params": "7B",
+  "size_gb": 4.7,
+  "dataset": "encarni",
+  "dataset_display": "Encarnación Hidalgo (UMA)",
+  "n_instances": 667,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3207,
+    "macro_f1_binary": 0.481,
+    "precision": 0.3957,
+    "recall": 0.4079,
+    "accuracy": 0.4843
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.8909952606635071,
+      "recall": 0.3693516699410609,
+      "f1-score": 0.5222222222222223,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.29605263157894735,
+      "recall": 0.8544303797468354,
+      "f1-score": 0.43973941368078173,
+      "support": 158.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.48425787106446777,
+    "macro avg": {
+      "precision": 0.3956826307474848,
+      "recall": 0.40792734989596546,
+      "f1-score": 0.32065387863433464,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.7500643230392786,
+      "recall": 0.48425787106446777,
+      "f1-score": 0.5026835659260489,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 211,
+      "no_hate": 456,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 312.0,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-13_qwen2.5-7b_encarni_predictions.jsonl"
+}

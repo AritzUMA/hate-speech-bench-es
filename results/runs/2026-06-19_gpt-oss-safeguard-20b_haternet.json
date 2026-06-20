@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-19_gpt-oss-safeguard-20b_haternet.json",
+  "timestamp": "2026-06-19T17:30:31.801434+00:00",
+  "model": "gpt-oss-safeguard:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "haternet",
+  "dataset_display": "HaterNet — Pereira-Kohatsu et al. (2019)",
+  "n_instances": 5999,
+  "n_unclear": 16,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4479,
+    "macro_f1_binary": 0.6728,
+    "precision": 0.4442,
+    "recall": 0.4659,
+    "accuracy": 0.7156
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.47101449275362317,
+      "recall": 0.6636885768985322,
+      "f1-score": 0.5509933774834437,
+      "support": 1567.0
+    },
+    "no_hate": {
+      "precision": 0.8617218543046358,
+      "recall": 0.7339801444043321,
+      "f1-score": 0.7927379066650421,
+      "support": 4432.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.715619269878313,
+    "macro avg": {
+      "precision": 0.44424544901941965,
+      "recall": 0.46588957376762147,
+      "f1-score": 0.4479104280494952,
+      "support": 5999.0
+    },
+    "weighted avg": {
+      "precision": 0.7596651055881102,
+      "recall": 0.715619269878313,
+      "f1-score": 0.7295917694375768,
+      "support": 5999.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 1567,
+      "no_hate": 4432
+    },
+    "pred": {
+      "hate": 2208,
+      "no_hate": 3775,
+      "unclear": 16
+    }
+  },
+  "elapsed_seconds": 15283.9,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-19_gpt-oss-safeguard-20b_haternet_predictions.jsonl"
+}

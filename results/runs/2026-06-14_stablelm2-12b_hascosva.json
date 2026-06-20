@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-14_stablelm2-12b_hascosva.json",
+  "timestamp": "2026-06-14T18:54:35.842823+00:00",
+  "model": "stablelm2:12b",
+  "family": "StableLM 2",
+  "params": "12B",
+  "size_gb": 7.0,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.4415,
+    "macro_f1_binary": 0.6622,
+    "precision": 0.4536,
+    "recall": 0.4328,
+    "accuracy": 0.8523
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.4594594594594595,
+      "recall": 0.36823104693140796,
+      "f1-score": 0.4088176352705411,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.9014084507042254,
+      "recall": 0.9302325581395349,
+      "f1-score": 0.9155937052932761,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.8522784176264396,
+    "macro avg": {
+      "precision": 0.4536226367212283,
+      "recall": 0.4328212016903143,
+      "f1-score": 0.44147044685460574,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.8401065625846459,
+      "recall": 0.8522784176264396,
+      "f1-score": 0.8452997787052452,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 444,
+      "no_hate": 3550,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 16488.1,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-14_stablelm2-12b_hascosva_predictions.jsonl"
+}

@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-16_utter-project-EuroLLM-1.7B-Instruct_encarni.json",
+  "timestamp": "2026-06-16T04:49:56.936042+00:00",
+  "model": "utter-project/EuroLLM-1.7B-Instruct",
+  "family": "EuroLLM",
+  "params": "1.7B",
+  "size_gb": 3.4,
+  "backend": "vllm",
+  "dataset": "encarni",
+  "dataset_display": "Encarnación Hidalgo (UMA)",
+  "n_instances": 667,
+  "n_unclear": 20,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.3023,
+    "macro_f1_binary": 0.4596,
+    "precision": 0.3541,
+    "recall": 0.3275,
+    "accuracy": 0.7331
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.7682539682539683,
+      "recall": 0.9508840864440079,
+      "f1-score": 0.8498683055311677,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.29411764705882354,
+      "recall": 0.03164556962025317,
+      "f1-score": 0.05714285714285714,
+      "support": 158.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7331334332833583,
+    "macro avg": {
+      "precision": 0.3541238717709306,
+      "recall": 0.3275098853547537,
+      "f1-score": 0.30233705422467494,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.6559398172062428,
+      "recall": 0.7331334332833583,
+      "f1-score": 0.662086265283262,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 630,
+      "no_hate": 17,
+      "unclear": 20
+    }
+  },
+  "elapsed_seconds": 106.1,
+  "prompt_hash": "v3_vllm_rationale",
+  "predictions_file": "results/predictions/2026-06-16_utter-project-EuroLLM-1.7B-Instruct_encarni_predictions.jsonl"
+}

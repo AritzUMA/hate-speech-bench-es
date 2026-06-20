@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-16_deepseek-r1-7b_encarni.json",
+  "timestamp": "2026-06-16T17:30:52.753233+00:00",
+  "model": "deepseek-r1:7b",
+  "family": "DeepSeek R1",
+  "params": "7B",
+  "size_gb": 4.7,
+  "dataset": "encarni",
+  "dataset_display": "Encarnación Hidalgo (UMA)",
+  "n_instances": 667,
+  "n_unclear": 1,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3465,
+    "macro_f1_binary": 0.5202,
+    "precision": 0.3924,
+    "recall": 0.4114,
+    "accuracy": 0.5322
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.8689138576779026,
+      "recall": 0.45579567779960706,
+      "f1-score": 0.5979381443298969,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.3082706766917293,
+      "recall": 0.7784810126582279,
+      "f1-score": 0.44165170556552963,
+      "support": 158.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.5322338830584707,
+    "macro avg": {
+      "precision": 0.3923948447898773,
+      "recall": 0.41142556348594495,
+      "f1-score": 0.3465299499651422,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.7361078267996187,
+      "recall": 0.5322338830584707,
+      "f1-score": 0.5609167690303917,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 267,
+      "no_hate": 399,
+      "unclear": 1
+    }
+  },
+  "elapsed_seconds": 2687.4,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-16_deepseek-r1-7b_encarni_predictions.jsonl"
+}

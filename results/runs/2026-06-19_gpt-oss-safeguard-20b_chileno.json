@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-19_gpt-oss-safeguard-20b_chileno.json",
+  "timestamp": "2026-06-19T07:57:22.812362+00:00",
+  "model": "gpt-oss-safeguard:20b",
+  "family": "GPT-OSS",
+  "params": "20B",
+  "size_gb": 13.0,
+  "dataset": "chileno",
+  "dataset_display": "Chileno — Arango Monnar et al. (2022)",
+  "n_instances": 9500,
+  "n_unclear": 28,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3149,
+    "macro_f1_binary": 0.4731,
+    "precision": 0.3401,
+    "recall": 0.3555,
+    "accuracy": 0.6986
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.07776519441298603,
+      "recall": 0.34390651085141904,
+      "f1-score": 0.1268472906403941,
+      "support": 599.0
+    },
+    "no_hate": {
+      "precision": 0.9425472665982706,
+      "recall": 0.722503089540501,
+      "f1-score": 0.8179852454846095,
+      "support": 8901.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6986315789473684,
+    "macro avg": {
+      "precision": 0.34010415367041885,
+      "recall": 0.3554698667973067,
+      "f1-score": 0.3149441787083345,
+      "support": 9500.0
+    },
+    "weighted avg": {
+      "precision": 0.8880204812046931,
+      "recall": 0.6986315789473684,
+      "f1-score": 0.77440717864759,
+      "support": 9500.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 599,
+      "no_hate": 8901
+    },
+    "pred": {
+      "hate": 2649,
+      "no_hate": 6823,
+      "unclear": 28
+    }
+  },
+  "elapsed_seconds": 24436.9,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-19_gpt-oss-safeguard-20b_chileno_predictions.jsonl"
+}

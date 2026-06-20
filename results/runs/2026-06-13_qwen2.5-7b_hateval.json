@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-13_qwen2.5-7b_hateval.json",
+  "timestamp": "2026-06-13T10:30:02.808451+00:00",
+  "model": "qwen2.5:7b",
+  "family": "Qwen 2.5",
+  "params": "7B",
+  "size_gb": 4.7,
+  "dataset": "hateval",
+  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "n_instances": 6595,
+  "n_unclear": 1,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.435,
+    "macro_f1_binary": 0.6526,
+    "precision": 0.4412,
+    "recall": 0.4435,
+    "accuracy": 0.6531
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.5625,
+      "recall": 0.7371115173674588,
+      "f1-score": 0.638075644880519,
+      "support": 2735.0
+    },
+    "no_hate": {
+      "precision": 0.7611295681063123,
+      "recall": 0.5935233160621761,
+      "f1-score": 0.6669577874818049,
+      "support": 3860.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.6530705079605762,
+    "macro avg": {
+      "precision": 0.4412098560354374,
+      "recall": 0.44354494447654497,
+      "f1-score": 0.4350111441207747,
+      "support": 6595.0
+    },
+    "weighted avg": {
+      "precision": 0.6787562748886073,
+      "recall": 0.6530705079605762,
+      "f1-score": 0.6549801286471549,
+      "support": 6595.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 2735,
+      "no_hate": 3860
+    },
+    "pred": {
+      "hate": 3584,
+      "no_hate": 3010,
+      "unclear": 1
+    }
+  },
+  "elapsed_seconds": 2864.3,
+  "prompt_hash": "v4_structured_output",
+  "predictions_file": "results/predictions/2026-06-13_qwen2.5-7b_hateval_predictions.jsonl"
+}
