@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-20T18:15:09.065209+00:00",
-  "n_runs": 81,
+  "generated": "2026-06-20T18:53:15.528583+00:00",
+  "n_runs": 82,
   "n_models": 16,
   "n_datasets": 6,
   "best_overall_f1": 0.461,
@@ -1114,6 +1114,19 @@
         "coverage": 99.9,
         "elapsed": 11693.4,
         "timestamp": "2026-06-20T13:45:47.793852+00:00"
+      },
+      "misocorpus": {
+        "macro_f1": 0.3877,
+        "macro_f1_binary": 0.5816,
+        "precision": 0.49,
+        "recall": 0.4325,
+        "accuracy": 0.6061,
+        "hate_f1": 0.6829381682938168,
+        "n_instances": 3463,
+        "n_unclear": 0,
+        "coverage": 100.0,
+        "elapsed": 6320.9,
+        "timestamp": "2026-06-20T17:00:42.820678+00:00"
       }
     }
   },
@@ -1284,13 +1297,13 @@
       "coverage": 99.8
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
-      "macro_f1": 0.3463,
-      "macro_f1_binary": 0.5195,
-      "hate_f1": 0.5169,
-      "precision": 0.4231,
-      "recall": 0.4401,
-      "accuracy": 0.5669,
-      "n_datasets": 5,
+      "macro_f1": 0.3532,
+      "macro_f1_binary": 0.5298,
+      "hate_f1": 0.5445,
+      "precision": 0.4343,
+      "recall": 0.4388,
+      "accuracy": 0.5734,
+      "n_datasets": 6,
       "n_datasets_total": 6,
       "coverage": 100.0
     }
@@ -1343,6 +1356,14 @@
       "f1": 0.3713,
       "hate_f1": 0.6498557270104127,
       "elapsed": 11693.4
+    },
+    {
+      "ts": "2026-06-20",
+      "model": "hdnh2006/salamandra-7b-instruct:latest",
+      "dataset": "misocorpus",
+      "f1": 0.3877,
+      "hate_f1": 0.6829381682938168,
+      "elapsed": 6320.9
     },
     {
       "ts": "2026-06-19",
