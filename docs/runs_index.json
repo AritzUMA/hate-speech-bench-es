@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-21T10:32:27.591512+00:00",
+  "generated": "2026-06-21T10:41:30.291960+00:00",
   "n_runs": 82,
   "n_models": 16,
   "n_datasets": 6,
@@ -2012,15 +2012,6 @@
       "release_date": "2024-05-27",
       "developer": "Mistral AI"
     },
-    "deepseek-r1:7b": {
-      "display_name": "DeepSeek R1 7B",
-      "family": "DeepSeek R1",
-      "params": "7B",
-      "params_exact": 7.0,
-      "size_gb": 4.7,
-      "release_date": "2025-01-20",
-      "developer": "DeepSeek"
-    },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",
       "family": "Salamandra",
@@ -2047,6 +2038,15 @@
       "size_gb": 5.0,
       "release_date": "2024-03-06",
       "developer": "01.AI"
+    },
+    "phi3.5:3.8b": {
+      "display_name": "Phi 3.5 3.8B",
+      "family": "Phi 3.5",
+      "params": "3.8B",
+      "params_exact": 3.82,
+      "size_gb": 2.2,
+      "release_date": "2024-08-20",
+      "developer": "Microsoft"
     },
     "stablelm2:12b": {
       "display_name": "StableLM 2 12B",
@@ -2075,14 +2075,14 @@
       "release_date": "2025-04-28",
       "developer": "Alibaba"
     },
-    "utter-project/EuroLLM-1.7B-Instruct": {
-      "display_name": "EuroLLM 1.7B",
-      "family": "EuroLLM",
-      "params": "1.7B",
-      "params_exact": 1.7,
-      "size_gb": 3.4,
-      "release_date": "2024-09-24",
-      "developer": "EuroLLM Consortium"
+    "phi3:3.8b": {
+      "display_name": "Phi 3 3.8B",
+      "family": "Phi 3",
+      "params": "3.8B",
+      "params_exact": 3.82,
+      "size_gb": 2.2,
+      "release_date": "2024-04-23",
+      "developer": "Microsoft"
     }
   },
   "datasets_meta": {
@@ -2500,13 +2500,13 @@
       "release_date": "2024-12-01"
     },
     "Qwen/Qwen3-VL-2B-Instruct": {
-      "display_name": "Qwen 3 VL 3B",
+      "display_name": "Qwen/Qwen3-VL-2B-Instruct",
       "family": "Qwen",
       "params": "3B",
-      "params_exact": 3.7,
-      "developer": "Alibaba",
+      "params_exact": null,
+      "developer": "",
       "backend": "vllm",
-      "release_date": "2025-05-01"
+      "release_date": ""
     },
     "gemma4:e2b": {
       "display_name": "Gemma 4 2B",
@@ -2554,13 +2554,13 @@
       "release_date": "2024-08-20"
     },
     "microsoft/Phi-4-multimodal-instruct": {
-      "display_name": "Phi 4 Multimodal",
+      "display_name": "microsoft/Phi-4-multimodal-instruct",
       "family": "Phi",
       "params": "5B",
-      "params_exact": 5.6,
-      "developer": "Microsoft",
+      "params_exact": null,
+      "developer": "",
       "backend": "vllm",
-      "release_date": "2025-03-03"
+      "release_date": ""
     },
     "minicpm-v:8b": {
       "display_name": "MiniCPM-V 8B",
