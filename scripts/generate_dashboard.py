@@ -1003,12 +1003,7 @@ function App() {
             Actualizado: {gen}
           </div>
           <div className="header-desc">
-            Benchmark continuo de modelos de lenguaje pequenos (SLMs, Small Language Models) para la deteccion
-            de discurso de odio en espanol. Todos los modelos se evaluan en modo zero-shot mediante prompts JSON
-            estructurados, sin fine-tuning ni adaptacion especifica a los datasets. Se utiliza temperatura=0
-            para maximizar el determinismo de las respuestas. Las predicciones se clasifican en tres categorias:
-            hate, no_hate y unclear (respuestas no parseables o ambiguas). Las metricas se reportan sobre las
-            tres clases y tambien en version binaria excluyendo unclear.
+            Nutcracker es un benchmark continuo y abierto para evaluar modelos de lenguaje en la deteccion de discurso de odio en espanol. El proyecto se divide en dos benchmarks: el primero es puramente de texto (SLMs) y el segundo se centra exclusivamente en imagen (VLMs). Todos los modelos se evaluan en modo zero-shot mediante prompts JSON estructurados, sin fine-tuning ni adaptacion especifica a los datasets, utilizando motores de inferencia como Ollama y vLLM. Se utiliza temperatura=0 para maximizar el determinismo de las respuestas. Las predicciones se clasifican en dos clases: hate y no_hate.
           </div>
 
         </div>
