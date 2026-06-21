@@ -995,7 +995,7 @@ function App() {
         <div className="header">
           <h1>
             <span className="live"/>
-            Deteccion de Discurso de Odio en Espanol — Benchmark Continuo
+            Nutcracker Benchmark
           </h1>
           <div className="header-meta">
             Actualizado: {gen} - {DATA.n_models} modelos - {DATA.n_datasets} datasets - {DATA.n_runs} evaluaciones

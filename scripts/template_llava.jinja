@@ -1,0 +1,31 @@
+{% for message in messages %}
+  {% if message.role == 'system' %}
+    {{ message.content.strip() }}
+    {{ '\n' }}
+  {% elif message.role == 'user' %}
+    {% if message.content is string %}
+      USER: {{ message.content.strip() }}
+    {% elif message.content is iterable %}
+      USER: 
+      
+      {% for content in message.content %}
+        
+        {% if content.type == 'image_url' and content.image_url is mapping and content.image_url.url is string%}
+          {{ content.image_url.url.strip() + ' ' }}
+        {% endif %}
+      {% endfor %}
+      {% for content in message.content %}
+        {% if content.type == 'text' %}
+          {{ content.text.strip() }}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {{ '\n' }}
+  {% elif message.role == 'assistant' and message.content is not none %}
+    ASSISTANT: {{ message.content.strip() }}
+    {{ '\n' }}
+  {% endif %}
+{% endfor %}
+{% if add_generation_prompt %}
+  ASSISTANT: 
+{% endif %}
