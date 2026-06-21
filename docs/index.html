@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deteccion de Discurso de Odio en Espanol - Benchmark Continuo</title>
+<title>Nutcracker Benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
@@ -11,12 +14,12 @@
 <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
 .wrap{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem}
 .gh-btn{position:fixed;top:14px;right:18px;display:flex;align-items:center;gap:7px;background:#fff;border:0.5px solid #d0d0d0;border-radius:8px;padding:6px 12px;font-size:12px;color:#333;text-decoration:none;z-index:1000;box-shadow:0 1px 4px rgba(0,0,0,.08);transition:box-shadow .15s}
 .gh-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,.15);color:#000}
 .header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:0.5px solid #e0e0e0}
-.header h1{font-size:56px;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px;text-align:center}
+.header h1{font-family:'EB Garamond',serif;font-size:56px;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px;text-align:center}
 .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d32;animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .header-meta{font-size:12px;color:#6b7280;margin-bottom:1rem}
