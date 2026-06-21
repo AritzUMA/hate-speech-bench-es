@@ -397,7 +397,7 @@ function ReleaseDateScatter({DATA, ds}) {
       type: 'scatter', data: {datasets}, plugins: [leaderLabelPlugin],
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: {display: false}, tooltip: {callbacks: {label: ctx => { const mo = MONTHS[(ctx.raw.mo||1)-1]; const day = ctx.raw.day || 1; return ctx.raw.label + '  (' + day + ' ' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4); }}},
+        plugins: { legend: {display: false}, tooltip: {callbacks: {label: ctx => { const mo = MONTHS[(ctx.raw.mo||1)-1]; const day = ctx.raw.day || 1; return ctx.raw.label + '  (' + day + ' ' + mo + ' ' + ctx.raw.yr + ')  ' + ctx.raw.y.toFixed(4); }}}},
         layout: { padding: { top: 35, right: 45, bottom: 35, left: 45 } },
         scales: {
           x: { grid: {color:'#f0f0f0'}, ticks: { font:{size:11}, color:'#6b7280', maxTicksLimit:8, callback: function(val) { const y = Math.floor(val); const mo = Math.round((val - y) * 12); return MONTHS[mo >= 12 ? 11 : mo] + ' ' + y; } } },
