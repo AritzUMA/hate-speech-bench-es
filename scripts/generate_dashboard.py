@@ -201,7 +201,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;background:
 .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d32;animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .header-meta{font-size:12px;color:#6b7280;margin-bottom:1rem}
-.header-desc{font-size:14px;color:#444;max-width:860px;margin-bottom:1rem;line-height:1.75}
+.header-desc{font-size:14px;color:#444;max-width:100%;margin-bottom:1rem;line-height:1.75}
 .header-method{font-size:13px;color:#666;margin-bottom:1rem;line-height:1.8}
 .section{margin-bottom:3.5rem}
 .section-header{display:flex;align-items:baseline;gap:12px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:0.5px solid #eee}
