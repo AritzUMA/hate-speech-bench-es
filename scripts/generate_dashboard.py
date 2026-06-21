@@ -194,7 +194,7 @@ body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f
 .gh-btn{position:fixed;top:14px;right:18px;display:flex;align-items:center;gap:7px;background:#fff;border:0.5px solid #d0d0d0;border-radius:8px;padding:6px 12px;font-size:12px;color:#333;text-decoration:none;z-index:1000;box-shadow:0 1px 4px rgba(0,0,0,.08);transition:box-shadow .15s}
 .gh-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,.15);color:#000}
 .header{margin-bottom:3rem;padding-bottom:2rem;border-bottom:0.5px solid #e0e0e0}
-.header h1{font-size:56px;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
+.header h1{font-size:56px;font-weight:700;margin-bottom:.4rem;letter-spacing:-.3px;text-align:center}
 .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2e7d32;animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .header-meta{font-size:12px;color:#6b7280;margin-bottom:1rem}
@@ -994,7 +994,6 @@ function App() {
       <div className="wrap">
         <div className="header">
           <h1>
-            <span className="live"/>
             Nutcracker Benchmark
           </h1>
           <div className="header-meta">
