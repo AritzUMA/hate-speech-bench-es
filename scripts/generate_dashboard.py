@@ -1000,7 +1000,7 @@ function App() {
             Nutcracker Benchmark
           </h1>
           <div className="header-meta">
-            Actualizado: {gen} - {DATA.n_models} modelos - {DATA.n_datasets} datasets - {DATA.n_runs} evaluaciones
+            Actualizado: {gen}
           </div>
           <div className="header-desc">
             Benchmark continuo de modelos de lenguaje pequenos (SLMs, Small Language Models) para la deteccion
