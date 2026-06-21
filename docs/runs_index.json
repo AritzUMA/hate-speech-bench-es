@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-21T12:36:03.333600+00:00",
+  "generated": "2026-06-21T12:40:38.338528+00:00",
   "n_runs": 82,
   "n_models": 16,
   "n_datasets": 6,
@@ -2087,16 +2087,16 @@
   },
   "datasets_meta": {
     "encarni": {
-      "display": "Encarnación Hidalgo (UMA)",
+      "display": "Nutcracker",
       "platform": "Twitter",
       "source": "Twitter España",
       "n_total": 667,
       "hate": 509,
       "no_hate": 158,
       "iaa": null,
-      "topic": "hate speech general + desinformación",
+      "topic": "hate speech en inmigración",
       "lang": "es-ES",
-      "paper": "Hidalgo Tenorio & Castro Peña (UMA)"
+      "paper": "Sin publicar"
     },
     "hateval": {
       "display": "HatEval — SemEval-2019 Task 5",
