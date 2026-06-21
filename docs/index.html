@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deteccion de Discurso de Odio en Espanol - Benchmark Continuo</title>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;font-size:14px;background:#f9f9f7;color:#1a1a1a;line-height:1.6}
@@ -56,11 +56,45 @@ tr:hover td{background:#fafaf8}
 select{font-size:12px;padding:5px 9px;border-radius:7px;border:0.5px solid #ddd;background:#fff;cursor:pointer}
 .cov-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
 .info-box{background:#f0f4ff;border:0.5px solid #c7d2fe;border-radius:8px;padding:.8rem 1rem;font-size:12px;color:#4338ca;margin-bottom:1rem}
+.fatal-box{max-width:760px;margin:60px auto;padding:24px;font-family:system-ui,sans-serif;border:1px solid #fca5a5;background:#fef2f2;border-radius:10px;color:#991b1b}
+.fatal-box h2{margin:0 0 8px;font-size:18px}
+.fatal-box p{font-size:13px;color:#7f1d1d;word-break:break-word}
+.fatal-box .hint{font-size:12px;color:#9ca3af;margin-top:10px}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script type="text/babel">
+<script>
+/* Red de seguridad: si algo falla al arrancar, mostramos el error en pantalla
+   en lugar de dejar la pagina en blanco (caso tipico en GitHub Pages). */
+(function(){
+  function showError(msg){
+    var root = document.getElementById('root');
+    if (root && !root.hasChildNodes()){
+      root.innerHTML =
+        '<div class="fatal-box">'
+        + '<h2>No se pudo cargar el dashboard</h2>'
+        + '<p>' + String(msg) + '</p>'
+        + '<p class="hint">Abre la consola (F12) para mas detalle. Comprueba que '
+        + '<b>runs_index.json</b> esta junto a index.html y que los CDN (react, chart.js, babel) cargan.</p>'
+        + '</div>';
+    }
+  }
+  window.addEventListener('error', function(e){ showError((e && e.message) || 'Error de script'); });
+  window.addEventListener('unhandledrejection', function(e){
+    var r = e && e.reason; showError((r && (r.message || r)) || 'Promesa rechazada');
+  });
+  window.addEventListener('DOMContentLoaded', function(){
+    var missing = [];
+    if (typeof React === 'undefined')    missing.push('React');
+    if (typeof ReactDOM === 'undefined') missing.push('ReactDOM');
+    if (typeof Chart === 'undefined')    missing.push('Chart.js');
+    if (typeof Babel === 'undefined')    missing.push('Babel');
+    if (missing.length) showError('No cargaron dependencias: ' + missing.join(', ') + '. Posible bloqueo de CDN o red.');
+  });
+})();
+</script>
+<script type="text/babel" data-presets="react">
 const { useState, useMemo, useEffect, useRef } = React;
 
 const CDN   = 'https://unpkg.com/@lobehub/icons-static-png@latest/light/';
@@ -120,7 +154,7 @@ const logoPlugin = {
     });
   }
 };
-Chart.register(logoPlugin);
+if (typeof Chart !== 'undefined') Chart.register(logoPlugin);
 
 function SortTh({k, label, sortKey, sortDir, onSort}) {
   return (
@@ -258,7 +292,7 @@ function HateF1Bar({DATA, ds}) {
   }, [ds, DATA]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || typeof Chart === 'undefined') return;
     const ex = Chart.getChart(ref.current); if (ex) ex.destroy();
     new Chart(ref.current, {
       type: 'bar',
@@ -357,7 +391,7 @@ function ReleaseDateScatter({DATA, ds}) {
   }, [ds, DATA]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || typeof Chart === 'undefined') return;
     const ex = Chart.getChart(ref.current); if (ex) ex.destroy();
     new Chart(ref.current, {
       type: 'scatter', data: {datasets}, plugins: [leaderLabelPlugin],
@@ -394,7 +428,7 @@ function ParamsScatter({DATA, ds}) {
   }, [ds, DATA]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || typeof Chart === 'undefined') return;
     const ex = Chart.getChart(ref.current); if (ex) ex.destroy();
     new Chart(ref.current, {
       type: 'scatter', data: {datasets}, plugins: [leaderLabelPlugin],
@@ -505,7 +539,7 @@ function MmHateF1Bar({DATA, ds}) {
   }, [ds, DATA]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || typeof Chart === 'undefined') return;
     const ex = Chart.getChart(ref.current); if (ex) ex.destroy();
     new Chart(ref.current, {
       type: 'bar', data: { labels: chartData.labels, datasets: [{ data: chartData.values, backgroundColor: chartData.colors, borderRadius: 4, borderSkipped: false, _families: chartData.families }] },
@@ -538,7 +572,7 @@ function MmParamsScatter({DATA, ds}) {
   }, [ds, DATA]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || typeof Chart === 'undefined') return;
     const ex = Chart.getChart(ref.current); if (ex) ex.destroy();
     new Chart(ref.current, {
       type: 'scatter', data: {datasets}, plugins: [leaderLabelPlugin],
@@ -737,14 +771,28 @@ function MultimodalSection({DATA}) {
 
 function App() {
   const [DATA, setDATA] = useState(null);
+  const [err, setErr] = useState(null);
   const [ds, setDs] = useState('__overall__');
 
   useEffect(() => {
-    fetch('runs_index.json')
-      .then(res => res.json())
+    fetch('runs_index.json', {cache: 'no-store'})
+      .then(res => { if (!res.ok) throw new Error('runs_index.json -> HTTP ' + res.status); return res.json(); })
       .then(d => setDATA(d))
-      .catch(err => console.error("Error:", err));
+      .catch(e => { console.error("Error cargando runs_index.json:", e); setErr(e.message || String(e)); });
   }, []);
+
+  if (err) {
+    return (
+      <div className="wrap">
+        <div className="fatal-box">
+          <h2>No se pudo cargar runs_index.json</h2>
+          <p>{err}</p>
+          <p className="hint">Asegurate de que el deploy publica tambien <b>docs/runs_index.json</b> (no solo index.html)
+          y de que esta en la misma carpeta que la pagina.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!DATA) {
     return (
