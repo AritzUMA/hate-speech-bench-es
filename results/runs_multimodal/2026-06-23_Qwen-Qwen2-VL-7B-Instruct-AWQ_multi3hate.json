@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-06-23_Qwen-Qwen2-VL-7B-Instruct-AWQ_multi3hate.json",
+  "timestamp": "2026-06-23T23:35:46.786078+00:00",
+  "model": "Qwen/Qwen2-VL-7B-Instruct-AWQ",
+  "family": "Qwen",
+  "params": "7B",
+  "size_gb": 4.5,
+  "backend": "vllm",
+  "dataset": "multi3hate",
+  "dataset_display": "Multi3Hate — Bui et al. (2024)",
+  "modality": "image+text",
+  "n_instances": 300,
+  "n_unclear": 0,
+  "n_workers": 8,
+  "metrics": {
+    "macro_f1": 0.4819,
+    "macro_f1_binary": 0.7228,
+    "precision": 0.4833,
+    "recall": 0.4852,
+    "accuracy": 0.7233
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.7876712328767124,
+      "recall": 0.688622754491018,
+      "f1-score": 0.7348242811501597,
+      "support": 167.0
+    },
+    "no_hate": {
+      "precision": 0.6623376623376623,
+      "recall": 0.7669172932330827,
+      "f1-score": 0.710801393728223,
+      "support": 133.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7233333333333334,
+    "macro avg": {
+      "precision": 0.48333629840479153,
+      "recall": 0.48518001590803356,
+      "f1-score": 0.4818752249594609,
+      "support": 300.0
+    },
+    "weighted avg": {
+      "precision": 0.7321066832710669,
+      "recall": 0.7233333333333334,
+      "f1-score": 0.7241741343931011,
+      "support": 300.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 167,
+      "no_hate": 133
+    },
+    "pred": {
+      "hate": 146,
+      "no_hate": 154,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 44.1,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-06-23_Qwen-Qwen2-VL-7B-Instruct-AWQ_multi3hate_predictions.jsonl"
+}

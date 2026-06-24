@@ -131,3 +131,23 @@ datasets:
     lang: "es-MX"
     paper: "Bui et al. (2024)"
     image_dir: "data/Multi3Hate/data/memes/es"
+
+  - name: "DIMEMEX2024"
+    display: "DIMEMEX 2024 — Jarquín et al. (IberLEF)"
+    modality: "image+text"
+    path: "data/DIMEMEX/processed/dimemex24_unified_binary_benchmark.csv"
+    text_col: "text"
+    image_col: "image_path"
+    label_col: "label_text"
+    labels: {"no_hate_speech": "no_hate", "hate_speech": "hate"}
+    task: "binary"
+    platform: "IberLEF 2024"
+    source: "Memes Mexicanos — IberLEF"
+    n_total: 2263
+    hate: 386
+    no_hate: 1877
+    iaa: "Kappa 0.43"
+    topic: "Memes"
+    lang: "es-MX"
+    paper: "Jarquín-Vásquez, H. et al., (2024)"
+    image_dir: "data/DIMEMEX/processed/images_all"

@@ -64,7 +64,9 @@ if runs_dir.exists():
 for model in all_models:
     for dataset in all_datasets:
         if (model, dataset) not in done:
-            print(f"{model}|{dataset}")
+            m_meta = next((m for m in yaml.safe_load(open(repo / "registry/models.yaml"))["models"] if m["ollama_name"] == model), {})
+            backend = m_meta.get("backend", "ollama")
+            print(f"{model}|{dataset}|{backend}")
 PYEOF
 
 PAIRS=$(python3 "$TMPPY" "$REPO_ROOT" "$FILTER_DATASET" "$FILTER_MODEL")
@@ -81,9 +83,15 @@ echo ""
 
 JOB_IDS=()
 
-while IFS='|' read -r MODEL DATASET; do
+while IFS='|' read -r MODEL DATASET BACKEND; do
   SAFE=$(echo "$MODEL" | tr ':/' '--')
   JOB_NAME="mm_${SAFE}_${DATASET}"
+
+  if [ "$BACKEND" == "vllm" ]; then
+    SLURM_SCRIPT="$REPO_ROOT/slurm/eval_multimodal_vllm.slurm"
+  else
+    SLURM_SCRIPT="$REPO_ROOT/slurm/eval_multimodal.slurm"
+  fi
 
   JOB_ID=$(sbatch \
     --parsable \
@@ -91,7 +99,7 @@ while IFS='|' read -r MODEL DATASET; do
     --output="$LOG_DIR/${JOB_NAME}_%j.out" \
     --error="$LOG_DIR/${JOB_NAME}_%j.err" \
     --export="MODEL=$MODEL,DATASET=$DATASET" \
-    "$REPO_ROOT/slurm/eval_multimodal.slurm")
+    "$SLURM_SCRIPT")
 
   echo "  submitted  $JOB_NAME -> job $JOB_ID"
   JOB_IDS+=("$JOB_ID")

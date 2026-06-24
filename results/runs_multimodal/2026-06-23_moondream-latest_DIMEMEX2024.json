@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-06-23_moondream-latest_DIMEMEX2024.json",
+  "timestamp": "2026-06-23T22:48:02.682024+00:00",
+  "model": "moondream:latest",
+  "family": "Moondream",
+  "params": "1.8B",
+  "size_gb": 1.7,
+  "backend": "ollama",
+  "dataset": "DIMEMEX2024",
+  "dataset_display": "DIMEMEX 2024 — Jarquín et al. (IberLEF)",
+  "modality": "image+text",
+  "n_instances": 2263,
+  "n_unclear": 2263,
+  "n_workers": 4,
+  "metrics": {
+    "macro_f1": 0.0,
+    "macro_f1_binary": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "accuracy": 0.0
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 386.0
+    },
+    "no_hate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1877.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.0,
+    "macro avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2263.0
+    },
+    "weighted avg": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2263.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 386,
+      "no_hate": 1877
+    },
+    "pred": {
+      "hate": 0,
+      "no_hate": 0,
+      "unclear": 2263
+    }
+  },
+  "elapsed_seconds": 5.4,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-06-23_moondream-latest_DIMEMEX2024_predictions.jsonl"
+}

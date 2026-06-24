@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-06-22_llava-7b_DIMEMEX2024.json",
+  "timestamp": "2026-06-22T12:03:41.699011+00:00",
+  "model": "llava:7b",
+  "family": "LLaVA",
+  "params": "7B",
+  "size_gb": 4.7,
+  "backend": "ollama",
+  "dataset": "DIMEMEX2024",
+  "dataset_display": "DIMEMEX 2024 — Jarquín et al. (IberLEF)",
+  "modality": "image+text",
+  "n_instances": 2263,
+  "n_unclear": 35,
+  "n_workers": 4,
+  "metrics": {
+    "macro_f1": 0.3485,
+    "macro_f1_binary": 0.527,
+    "precision": 0.416,
+    "recall": 0.3499,
+    "accuracy": 0.8091
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.4090909090909091,
+      "recall": 0.09326424870466321,
+      "f1-score": 0.1518987341772152,
+      "support": 386.0
+    },
+    "no_hate": {
+      "precision": 0.8387850467289719,
+      "recall": 0.9563132658497603,
+      "f1-score": 0.8937017674881752,
+      "support": 1877.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.8091029606716748,
+    "macro avg": {
+      "precision": 0.41595865193996034,
+      "recall": 0.34985917151814117,
+      "f1-score": 0.34853350055513016,
+      "support": 2263.0
+    },
+    "weighted avg": {
+      "precision": 0.7654921005830186,
+      "recall": 0.8091029606716748,
+      "f1-score": 0.7671723945946575,
+      "support": 2263.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 386,
+      "no_hate": 1877
+    },
+    "pred": {
+      "hate": 88,
+      "no_hate": 2140,
+      "unclear": 35
+    }
+  },
+  "elapsed_seconds": 952.8,
+  "prompt_hash": "v2_multimodal_rationale",
+  "predictions_file": "results/predictions_multimodal/2026-06-22_llava-7b_DIMEMEX2024_predictions.jsonl"
+}
