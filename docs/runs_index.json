@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-24T09:36:25.777280+00:00",
+  "generated": "2026-06-25T16:49:58.942970+00:00",
   "n_runs": 82,
   "n_models": 16,
   "n_datasets": 6,
@@ -1223,7 +1223,7 @@
       "macro_f1": 0.4053,
       "macro_f1_binary": 0.6079,
       "hate_f1": 0.5069,
-      "precision": 0.4125,
+      "precision": 0.4124,
       "recall": 0.4362,
       "accuracy": 0.6784,
       "n_datasets": 6,
@@ -1267,7 +1267,7 @@
       "macro_f1": 0.3831,
       "macro_f1_binary": 0.5746,
       "hate_f1": 0.566,
-      "precision": 0.4436,
+      "precision": 0.4437,
       "recall": 0.4569,
       "accuracy": 0.622,
       "n_datasets": 6,
@@ -2165,13 +2165,9 @@
     "Qwen/Qwen3-VL-2B-Instruct",
     "gemma4:e2b",
     "gemma4:e4b",
-    "granite3.2-vision:2b",
-    "llava:13b",
-    "llava:7b",
+    "ibm-granite/granite-vision-3.3-2b",
     "microsoft/Phi-3.5-vision-instruct",
-    "microsoft/Phi-4-multimodal-instruct",
     "minicpm-v:8b",
-    "qwen3-vl:2b",
     "qwen3-vl:4b",
     "qwen3-vl:8b"
   ],
@@ -2180,98 +2176,6 @@
     "multi3hate"
   ],
   "mm_results": {
-    "Qwen/Qwen2.5-VL-3B-Instruct": {
-      "multi3hate": {
-        "macro_f1": 0.4644,
-        "macro_f1_binary": 0.6967,
-        "hate_f1": 0.6977,
-        "precision": 0.47,
-        "recall": 0.4702,
-        "accuracy": 0.6967,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-06-23"
-      },
-      "DIMEMEX2024": {
-        "macro_f1": 0.4112,
-        "macro_f1_binary": 0.6197,
-        "hate_f1": 0.4135,
-        "precision": 0.4079,
-        "recall": 0.438,
-        "accuracy": 0.7229,
-        "n_instances": 2263,
-        "n_unclear": 21,
-        "coverage": 99.1,
-        "timestamp": "2026-06-23"
-      }
-    },
-    "Qwen/Qwen2-VL-7B-Instruct-AWQ": {
-      "multi3hate": {
-        "macro_f1": 0.4819,
-        "macro_f1_binary": 0.7228,
-        "hate_f1": 0.7348,
-        "precision": 0.4833,
-        "recall": 0.4852,
-        "accuracy": 0.7233,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-06-23"
-      },
-      "DIMEMEX2024": {
-        "macro_f1": 0.4439,
-        "macro_f1_binary": 0.6687,
-        "hate_f1": 0.4633,
-        "precision": 0.4378,
-        "recall": 0.4549,
-        "accuracy": 0.787,
-        "n_instances": 2263,
-        "n_unclear": 18,
-        "coverage": 99.2,
-        "timestamp": "2026-06-23"
-      }
-    },
-    "microsoft/Phi-3.5-vision-instruct": {
-      "multi3hate": {
-        "macro_f1": 0.3422,
-        "macro_f1_binary": 0.5133,
-        "hate_f1": 0.3738,
-        "precision": 0.4497,
-        "recall": 0.3956,
-        "accuracy": 0.5533,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-06-23"
-      },
-      "DIMEMEX2024": {
-        "macro_f1": 0.4088,
-        "macro_f1_binary": 0.6141,
-        "hate_f1": 0.3245,
-        "precision": 0.4557,
-        "recall": 0.3959,
-        "accuracy": 0.8281,
-        "n_instances": 2263,
-        "n_unclear": 7,
-        "coverage": 99.7,
-        "timestamp": "2026-06-23"
-      }
-    },
-    "Qwen/Qwen3-VL-2B-Instruct": {
-      "multi3hate": {
-        "macro_f1": 0.4094,
-        "macro_f1_binary": 0.614,
-        "hate_f1": 0.5356,
-        "precision": 0.479,
-        "recall": 0.441,
-        "accuracy": 0.63,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-05-31"
-      }
-    },
     "minicpm-v:8b": {
       "multi3hate": {
         "macro_f1": 0.4238,
@@ -2296,34 +2200,6 @@
         "n_unclear": 54,
         "coverage": 97.6,
         "timestamp": "2026-06-22"
-      }
-    },
-    "granite3.2-vision:2b": {
-      "multi3hate": {
-        "macro_f1": 0.2667,
-        "macro_f1_binary": 0.4,
-        "hate_f1": 0.172,
-        "precision": 0.4349,
-        "recall": 0.3578,
-        "accuracy": 0.4867,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-05-31"
-      }
-    },
-    "llava:13b": {
-      "multi3hate": {
-        "macro_f1": 0.4103,
-        "macro_f1_binary": 0.6154,
-        "hate_f1": 0.5603,
-        "precision": 0.4492,
-        "recall": 0.4319,
-        "accuracy": 0.6233,
-        "n_instances": 300,
-        "n_unclear": 0,
-        "coverage": 100.0,
-        "timestamp": "2026-06-01"
       }
     },
     "gemma4:e4b": {
@@ -2430,106 +2306,138 @@
         "timestamp": "2026-06-21"
       }
     },
-    "microsoft/Phi-4-multimodal-instruct": {
+    "microsoft/Phi-3.5-vision-instruct": {
       "multi3hate": {
-        "macro_f1": 0.2917,
-        "macro_f1_binary": 0.4458,
-        "hate_f1": 0.2304,
-        "precision": 0.4672,
-        "recall": 0.3647,
-        "accuracy": 0.5,
-        "n_instances": 300,
-        "n_unclear": 12,
-        "coverage": 96.0,
-        "timestamp": "2026-06-16"
-      }
-    },
-    "qwen3-vl:2b": {
-      "multi3hate": {
-        "macro_f1": 0.2236,
-        "macro_f1_binary": 0.4452,
-        "hate_f1": 0.0578,
-        "precision": 0.4764,
-        "recall": 0.2205,
-        "accuracy": 0.2967,
-        "n_instances": 300,
-        "n_unclear": 153,
-        "coverage": 49.0,
-        "timestamp": "2026-06-22"
-      }
-    },
-    "llava:7b": {
-      "multi3hate": {
-        "macro_f1": 0.2954,
-        "macro_f1_binary": 0.4432,
-        "hate_f1": 0.2408,
-        "precision": 0.4789,
-        "recall": 0.3767,
-        "accuracy": 0.5167,
+        "macro_f1": 0.3422,
+        "macro_f1_binary": 0.5133,
+        "hate_f1": 0.3738,
+        "precision": 0.4497,
+        "recall": 0.3956,
+        "accuracy": 0.5533,
         "n_instances": 300,
         "n_unclear": 0,
         "coverage": 100.0,
-        "timestamp": "2026-06-22"
+        "timestamp": "2026-06-23"
       },
       "DIMEMEX2024": {
-        "macro_f1": 0.3485,
-        "macro_f1_binary": 0.527,
-        "hate_f1": 0.1519,
-        "precision": 0.416,
-        "recall": 0.3499,
+        "macro_f1": 0.4088,
+        "macro_f1_binary": 0.6141,
+        "hate_f1": 0.3245,
+        "precision": 0.4557,
+        "recall": 0.3959,
+        "accuracy": 0.8281,
+        "n_instances": 2263,
+        "n_unclear": 7,
+        "coverage": 99.7,
+        "timestamp": "2026-06-23"
+      }
+    },
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
+      "multi3hate": {
+        "macro_f1": 0.4644,
+        "macro_f1_binary": 0.6967,
+        "hate_f1": 0.6977,
+        "precision": 0.47,
+        "recall": 0.4702,
+        "accuracy": 0.6967,
+        "n_instances": 300,
+        "n_unclear": 0,
+        "coverage": 100.0,
+        "timestamp": "2026-06-23"
+      },
+      "DIMEMEX2024": {
+        "macro_f1": 0.4112,
+        "macro_f1_binary": 0.6197,
+        "hate_f1": 0.4135,
+        "precision": 0.4079,
+        "recall": 0.438,
+        "accuracy": 0.7229,
+        "n_instances": 2263,
+        "n_unclear": 21,
+        "coverage": 99.1,
+        "timestamp": "2026-06-23"
+      }
+    },
+    "Qwen/Qwen2-VL-7B-Instruct-AWQ": {
+      "multi3hate": {
+        "macro_f1": 0.4819,
+        "macro_f1_binary": 0.7228,
+        "hate_f1": 0.7348,
+        "precision": 0.4833,
+        "recall": 0.4852,
+        "accuracy": 0.7233,
+        "n_instances": 300,
+        "n_unclear": 0,
+        "coverage": 100.0,
+        "timestamp": "2026-06-23"
+      },
+      "DIMEMEX2024": {
+        "macro_f1": 0.4439,
+        "macro_f1_binary": 0.6687,
+        "hate_f1": 0.4633,
+        "precision": 0.4378,
+        "recall": 0.4549,
+        "accuracy": 0.787,
+        "n_instances": 2263,
+        "n_unclear": 18,
+        "coverage": 99.2,
+        "timestamp": "2026-06-23"
+      }
+    },
+    "Qwen/Qwen3-VL-2B-Instruct": {
+      "DIMEMEX2024": {
+        "macro_f1": 0.4133,
+        "macro_f1_binary": 0.6218,
+        "hate_f1": 0.3513,
+        "precision": 0.4325,
+        "recall": 0.4034,
         "accuracy": 0.8091,
         "n_instances": 2263,
-        "n_unclear": 35,
-        "coverage": 98.5,
-        "timestamp": "2026-06-22"
+        "n_unclear": 13,
+        "coverage": 99.4,
+        "timestamp": "2026-06-24"
+      },
+      "multi3hate": {
+        "macro_f1": 0.4025,
+        "macro_f1_binary": 0.606,
+        "hate_f1": 0.5169,
+        "precision": 0.4766,
+        "recall": 0.435,
+        "accuracy": 0.62,
+        "n_instances": 300,
+        "n_unclear": 2,
+        "coverage": 99.3,
+        "timestamp": "2026-06-25"
+      }
+    },
+    "ibm-granite/granite-vision-3.3-2b": {
+      "DIMEMEX2024": {
+        "macro_f1": 0.3617,
+        "macro_f1_binary": 0.5545,
+        "hate_f1": 0.2208,
+        "precision": 0.3816,
+        "recall": 0.3519,
+        "accuracy": 0.7596,
+        "n_instances": 2263,
+        "n_unclear": 89,
+        "coverage": 96.1,
+        "timestamp": "2026-06-25"
+      },
+      "multi3hate": {
+        "macro_f1": 0.3594,
+        "macro_f1_binary": 0.5735,
+        "hate_f1": 0.4921,
+        "precision": 0.4126,
+        "recall": 0.3543,
+        "accuracy": 0.5133,
+        "n_instances": 300,
+        "n_unclear": 34,
+        "coverage": 88.7,
+        "timestamp": "2026-06-25"
       }
     }
   },
   "mm_overall": {
-    "Qwen/Qwen2.5-VL-3B-Instruct": {
-      "macro_f1": 0.4378,
-      "macro_f1_binary": 0.6582,
-      "hate_f1": 0.5556,
-      "precision": 0.4389,
-      "recall": 0.4541,
-      "accuracy": 0.7098,
-      "n_datasets": 2,
-      "n_datasets_total": 2,
-      "coverage": 99.2
-    },
-    "Qwen/Qwen2-VL-7B-Instruct-AWQ": {
-      "macro_f1": 0.4629,
-      "macro_f1_binary": 0.6957,
-      "hate_f1": 0.599,
-      "precision": 0.4606,
-      "recall": 0.4701,
-      "accuracy": 0.7551,
-      "n_datasets": 2,
-      "n_datasets_total": 2,
-      "coverage": 99.3
-    },
-    "microsoft/Phi-3.5-vision-instruct": {
-      "macro_f1": 0.3755,
-      "macro_f1_binary": 0.5637,
-      "hate_f1": 0.3492,
-      "precision": 0.4527,
-      "recall": 0.3957,
-      "accuracy": 0.6907,
-      "n_datasets": 2,
-      "n_datasets_total": 2,
-      "coverage": 99.7
-    },
-    "Qwen/Qwen3-VL-2B-Instruct": {
-      "macro_f1": 0.4094,
-      "macro_f1_binary": 0.614,
-      "hate_f1": 0.5356,
-      "precision": 0.479,
-      "recall": 0.441,
-      "accuracy": 0.63,
-      "n_datasets": 1,
-      "n_datasets_total": 2,
-      "coverage": 100.0
-    },
     "minicpm-v:8b": {
       "macro_f1": 0.4117,
       "macro_f1_binary": 0.6211,
@@ -2540,28 +2448,6 @@
       "n_datasets": 2,
       "n_datasets_total": 2,
       "coverage": 97.9
-    },
-    "granite3.2-vision:2b": {
-      "macro_f1": 0.2667,
-      "macro_f1_binary": 0.4,
-      "hate_f1": 0.172,
-      "precision": 0.4349,
-      "recall": 0.3578,
-      "accuracy": 0.4867,
-      "n_datasets": 1,
-      "n_datasets_total": 2,
-      "coverage": 100.0
-    },
-    "llava:13b": {
-      "macro_f1": 0.4103,
-      "macro_f1_binary": 0.6154,
-      "hate_f1": 0.5603,
-      "precision": 0.4492,
-      "recall": 0.4319,
-      "accuracy": 0.6233,
-      "n_datasets": 1,
-      "n_datasets_total": 2,
-      "coverage": 100.0
     },
     "gemma4:e4b": {
       "macro_f1": 0.3385,
@@ -2607,38 +2493,60 @@
       "n_datasets_total": 2,
       "coverage": 99.7
     },
-    "microsoft/Phi-4-multimodal-instruct": {
-      "macro_f1": 0.2917,
-      "macro_f1_binary": 0.4458,
-      "hate_f1": 0.2304,
-      "precision": 0.4672,
-      "recall": 0.3647,
-      "accuracy": 0.5,
-      "n_datasets": 1,
-      "n_datasets_total": 2,
-      "coverage": 96.0
-    },
-    "qwen3-vl:2b": {
-      "macro_f1": 0.2236,
-      "macro_f1_binary": 0.4452,
-      "hate_f1": 0.0578,
-      "precision": 0.4764,
-      "recall": 0.2205,
-      "accuracy": 0.2967,
-      "n_datasets": 1,
-      "n_datasets_total": 2,
-      "coverage": 49.0
-    },
-    "llava:7b": {
-      "macro_f1": 0.3219,
-      "macro_f1_binary": 0.4851,
-      "hate_f1": 0.1963,
-      "precision": 0.4475,
-      "recall": 0.3633,
-      "accuracy": 0.6629,
+    "microsoft/Phi-3.5-vision-instruct": {
+      "macro_f1": 0.3755,
+      "macro_f1_binary": 0.5637,
+      "hate_f1": 0.3492,
+      "precision": 0.4527,
+      "recall": 0.3957,
+      "accuracy": 0.6907,
       "n_datasets": 2,
       "n_datasets_total": 2,
-      "coverage": 98.6
+      "coverage": 99.7
+    },
+    "Qwen/Qwen2.5-VL-3B-Instruct": {
+      "macro_f1": 0.4378,
+      "macro_f1_binary": 0.6582,
+      "hate_f1": 0.5556,
+      "precision": 0.4389,
+      "recall": 0.4541,
+      "accuracy": 0.7098,
+      "n_datasets": 2,
+      "n_datasets_total": 2,
+      "coverage": 99.2
+    },
+    "Qwen/Qwen2-VL-7B-Instruct-AWQ": {
+      "macro_f1": 0.4629,
+      "macro_f1_binary": 0.6957,
+      "hate_f1": 0.599,
+      "precision": 0.4606,
+      "recall": 0.4701,
+      "accuracy": 0.7551,
+      "n_datasets": 2,
+      "n_datasets_total": 2,
+      "coverage": 99.3
+    },
+    "Qwen/Qwen3-VL-2B-Instruct": {
+      "macro_f1": 0.4079,
+      "macro_f1_binary": 0.6139,
+      "hate_f1": 0.4341,
+      "precision": 0.4546,
+      "recall": 0.4192,
+      "accuracy": 0.7146,
+      "n_datasets": 2,
+      "n_datasets_total": 2,
+      "coverage": 99.4
+    },
+    "ibm-granite/granite-vision-3.3-2b": {
+      "macro_f1": 0.3606,
+      "macro_f1_binary": 0.564,
+      "hate_f1": 0.3564,
+      "precision": 0.3971,
+      "recall": 0.3531,
+      "accuracy": 0.6364,
+      "n_datasets": 2,
+      "n_datasets_total": 2,
+      "coverage": 95.2
     }
   },
   "mm_models_meta": {
@@ -2661,13 +2569,13 @@
       "release_date": "2024-12-01"
     },
     "Qwen/Qwen3-VL-2B-Instruct": {
-      "display_name": "Qwen/Qwen3-VL-2B-Instruct",
+      "display_name": "Qwen 3 VL 2B",
       "family": "Qwen",
-      "params": "3B",
-      "params_exact": null,
-      "developer": "",
+      "params": "2B",
+      "params_exact": 2.0,
+      "developer": "Alibaba",
       "backend": "vllm",
-      "release_date": ""
+      "release_date": "2025-04-28"
     },
     "gemma4:e2b": {
       "display_name": "Gemma 4 2B",
@@ -2687,32 +2595,14 @@
       "backend": "ollama",
       "release_date": "2026-04-03"
     },
-    "granite3.2-vision:2b": {
-      "display_name": "Granite 3.2 Vision 2B",
+    "ibm-granite/granite-vision-3.3-2b": {
+      "display_name": "Granite Vision 3.3 2B",
       "family": "Granite",
       "params": "2B",
       "params_exact": 2.0,
       "developer": "IBM",
-      "backend": "ollama",
+      "backend": "vllm",
       "release_date": "2025-02-01"
-    },
-    "llava:13b": {
-      "display_name": "LLaVA 13B",
-      "family": "LLaVA",
-      "params": "13B",
-      "params_exact": 13.0,
-      "developer": "LLaVA Team",
-      "backend": "ollama",
-      "release_date": "2023-10-05"
-    },
-    "llava:7b": {
-      "display_name": "LLaVA 7B",
-      "family": "LLaVA",
-      "params": "7B",
-      "params_exact": 7.0,
-      "developer": "LLaVA Team",
-      "backend": "ollama",
-      "release_date": "2023-10-05"
     },
     "microsoft/Phi-3.5-vision-instruct": {
       "display_name": "Phi 3.5 Vision",
@@ -2723,15 +2613,6 @@
       "backend": "vllm",
       "release_date": "2024-08-20"
     },
-    "microsoft/Phi-4-multimodal-instruct": {
-      "display_name": "microsoft/Phi-4-multimodal-instruct",
-      "family": "Phi",
-      "params": "5B",
-      "params_exact": null,
-      "developer": "",
-      "backend": "vllm",
-      "release_date": ""
-    },
     "minicpm-v:8b": {
       "display_name": "MiniCPM-V 8B",
       "family": "MiniCPM",
@@ -2740,15 +2621,6 @@
       "developer": "OpenBMB",
       "backend": "ollama",
       "release_date": "2024-05-01"
-    },
-    "qwen3-vl:2b": {
-      "display_name": "Qwen3 VL 2B",
-      "family": "Qwen",
-      "params": "2B",
-      "params_exact": 2.0,
-      "developer": "Alibaba",
-      "backend": "ollama",
-      "release_date": "2025-04-28"
     },
     "qwen3-vl:4b": {
       "display_name": "Qwen3 VL 4B",
@@ -2769,6 +2641,6 @@
       "release_date": "2025-04-28"
     }
   },
-  "mm_n_models": 14,
+  "mm_n_models": 10,
   "mm_n_datasets": 2
 }
