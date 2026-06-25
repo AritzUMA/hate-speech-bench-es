@@ -61,7 +61,6 @@ models:
     release_date: "2025-01-20"
     developer: "DeepSeek"
     added: "2025-04-08"
-    notes: "resuelve a deepseek-r1:7b en ic4"
 
   - ollama_name: "hdnh2006/salamandra-7b-instruct:latest"
     display_name: "Salamandra 7B"
@@ -72,7 +71,6 @@ models:
     release_date: "2024-09-01"
     developer: "BSC-CNS"
     added: "2025-04-08"
-    notes: "modelo multilingüe europeo — Barcelona Supercomputing Center"
 
   - ollama_name: "gpt-oss-safeguard:20b"
     display_name: "GPT-OSS Safeguard 20B"
@@ -82,7 +80,6 @@ models:
     size_gb: 13.0
     release_date: "2025-04-16"
     developer: "OpenAI"
-    notes: "modelo especializado en clasificacion de contenido ofensivo"
     added: "2025-05-15"
 
   - ollama_name: "yi:9b"
@@ -124,7 +121,6 @@ models:
     release_date: "2024-12-01"
     developer: "OpenEuroLLM Consortium"
     added: "2025-04-08"
-    notes: "modelo español open-source — proyecto europeo"
 
   - ollama_name: "qwen3:8b"
     display_name: "Qwen 3 8B"
@@ -156,205 +152,7 @@ models:
     developer: "Microsoft"
     added: "2025-05-08"
 
-  # ── Vision (imagen + texto) ────────────────────────────────────────────────
-
-  - ollama_name: "llama3.2-vision:latest"
-    display_name: "LLaMA 3.2 Vision 11B"
-    family: "LLaMA 3.2"
-    params: "11B"
-    params_exact: 11.0
-    size_gb: 7.8
-    release_date: "2024-09-25"
-    developer: "Meta"
-    modality: "image+text"
-    added: "2025-05-10"
-
-  - ollama_name: "moondream:latest"
-    display_name: "Moondream 1.8B"
-    family: "Moondream"
-    params: "1.8B"
-    params_exact: 1.86
-    size_gb: 1.7
-    release_date: "2024-06-01"
-    developer: "Vikhyat Kopf"
-    modality: "image+text"
-    notes: "modelo ligero especializado en imagen"
-    added: "2025-05-10"
-
-  - ollama_name: "gemma4:e2b"
-    display_name: "Gemma 4 2B"
-    family: "Gemma 4"
-    params: "2B"
-    params_exact: 2.0
-    size_gb: 7.2
-    release_date: "2026-04-03"
-    developer: "Google DeepMind"
-    modality: "image+text"
-    notes: "multimodal nativo"
-    added: "2025-05-08"
-
-  - ollama_name: "gemma4:e4b"
-    display_name: "Gemma 4 4B"
-    family: "Gemma 4"
-    params: "4B"
-    params_exact: 4.0
-    size_gb: 9.6
-    release_date: "2026-04-03"
-    developer: "Google DeepMind"
-    modality: "image+text"
-    notes: "multimodal nativo"
-    added: "2025-05-08"
-
-  # ── Vision vLLM (HuggingFace) ─────────────────────────────────────────────
-
-  - ollama_name: "BSC-LT/Salamandra-VL-7B-2512"
-    display_name: "Salamandra VL 7B"
-    family: "Salamandra"
-    params: "7B"
-    params_exact: 7.0
-    size_gb: 15.0
-    release_date: "2025-03-01"
-    developer: "BSC-CNS"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "BSC-LT/Salamandra-VL-7B-2512"
-    vllm_port: 8001
-    notes: "modelo multilingue vision-language del BSC, basado en LLaVA OneVision"
-    added: "2026-05-15"
-
-  - ollama_name: "microsoft/Phi-3.5-vision-instruct"
-    display_name: "Phi 3.5 Vision"
-    family: "Phi"
-    params: "4B"
-    params_exact: 4.2
-    size_gb: 8.5
-    release_date: "2024-08-20"
-    developer: "Microsoft"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "microsoft/Phi-3.5-vision-instruct"
-    vllm_port: 8001
-    notes: "modelo vision multimodal de Microsoft, 4.2B parametros"
-    added: "2026-05-16"
-
-  - ollama_name: "Qwen/Qwen2.5-VL-7B-Instruct"
-    display_name: "Qwen 2.5 VL 7B"
-    family: "Qwen"
-    params: "7B"
-    params_exact: 7.6
-    size_gb: 15.0
-    release_date: "2024-12-01"
-    developer: "Alibaba"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "Qwen/Qwen2.5-VL-7B-Instruct"
-    vllm_port: 8001
-    notes: "top VLM multilingue, soporta 29 idiomas incluyendo espanol"
-    added: "2026-05-16"
-
-  - ollama_name: "OpenGVLab/InternVL2-8B"
-    display_name: "InternVL2 8B"
-    family: "InternVL"
-    params: "8B"
-    params_exact: 8.1
-    size_gb: 16.0
-    release_date: "2024-07-01"
-    developer: "Shanghai AI Lab"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "OpenGVLab/InternVL2-8B"
-    vllm_port: 8001
-    notes: "fuerte en benchmarks visuales, multilingue"
-    added: "2026-05-16"
-
-  - ollama_name: "Qwen/Qwen2.5-VL-3B-Instruct"
-    display_name: "Qwen 2.5 VL 3B"
-    family: "Qwen"
-    params: "3B"
-    params_exact: 3.7
-    size_gb: 7.0
-    release_date: "2024-12-01"
-    developer: "Alibaba"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "Qwen/Qwen2.5-VL-3B-Instruct"
-    vllm_port: 8001
-    notes: "version 3B de Qwen2.5-VL, cabe facilmente en 16GB"
-    added: "2026-05-16"
-
-  - ollama_name: "Qwen/Qwen2-VL-7B-Instruct-AWQ"
-    display_name: "Qwen 2 VL 7B (AWQ)"
-    family: "Qwen"
-    params: "7B"
-    params_exact: 7.6
-    size_gb: 4.5
-    release_date: "2024-09-18"
-    developer: "Alibaba"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "Qwen/Qwen2-VL-7B-Instruct-AWQ"
-    vllm_port: 8001
-    notes: "Qwen2-VL version AWQ, comparacion con Qwen2.5"
-    added: "2026-05-16"
-
-  - ollama_name: "llava-hf/llava-v1.6-mistral-7b-hf"
-    display_name: "LLaVA 1.6 Mistral 7B"
-    family: "LLaVA"
-    params: "7B"
-    params_exact: 7.2
-    size_gb: 14.0
-    release_date: "2024-01-30"
-    developer: "LLaVA Team"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "llava-hf/llava-v1.6-mistral-7b-hf"
-    vllm_port: 8001
-    notes: "LLaVA 1.6 con Mistral 7B, baseline clasico en papers de memes"
-    added: "2026-05-16"
-
-  - ollama_name: "llava-hf/llava-1.5-7b-hf"
-    display_name: "LLaVA 1.5 7B"
-    family: "LLaVA"
-    params: "7B"
-    params_exact: 7.1
-    size_gb: 14.0
-    release_date: "2023-10-05"
-    developer: "LLaVA Team"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "llava-hf/llava-1.5-7b-hf"
-    vllm_port: 8001
-    notes: "LLaVA 1.5, baseline habitual en papers de hate speech en memes"
-    added: "2026-05-16"
-
-  - ollama_name: "google/paligemma2-3b-pt-224"
-    display_name: "PaliGemma2 3B"
-    family: "Gemma"
-    params: "3B"
-    params_exact: 3.0
-    size_gb: 6.0
-    release_date: "2024-12-01"
-    developer: "Google DeepMind"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "google/paligemma2-3b-pt-224"
-    vllm_port: 8001
-    notes: "PaliGemma2 multilingue, cabe en 8GB VRAM"
-    added: "2026-05-16"
-
-  # ── Vision Ollama adicionales ─────────────────────────────────────────────
-
-  - ollama_name: "qwen3-vl:2b"
-    display_name: "Qwen3 VL 2B"
-    family: "Qwen"
-    params: "2B"
-    params_exact: 2.0
-    size_gb: 1.9
-    release_date: "2025-04-28"
-    developer: "Alibaba"
-    modality: "image+text"
-    backend: "ollama"
-    added: "2026-05-16"
+  # ── Vision (imagen + texto) — 10 modelos balanceados ──────────────────────
 
   - ollama_name: "qwen3-vl:4b"
     display_name: "Qwen3 VL 4B"
@@ -380,42 +178,6 @@ models:
     backend: "ollama"
     added: "2026-05-16"
 
-  - ollama_name: "llava:7b"
-    display_name: "LLaVA 7B"
-    family: "LLaVA"
-    params: "7B"
-    params_exact: 7.0
-    size_gb: 4.7
-    release_date: "2023-10-05"
-    developer: "LLaVA Team"
-    modality: "image+text"
-    backend: "ollama"
-    added: "2026-05-16"
-
-  - ollama_name: "llava:13b"
-    display_name: "LLaVA 13B"
-    family: "LLaVA"
-    params: "13B"
-    params_exact: 13.0
-    size_gb: 8.0
-    release_date: "2023-10-05"
-    developer: "LLaVA Team"
-    modality: "image+text"
-    backend: "ollama"
-    added: "2026-05-16"
-
-  - ollama_name: "granite3.2-vision:2b"
-    display_name: "Granite 3.2 Vision 2B"
-    family: "Granite"
-    params: "2B"
-    params_exact: 2.0
-    size_gb: 2.0
-    release_date: "2025-02-01"
-    developer: "IBM"
-    modality: "image+text"
-    backend: "ollama"
-    added: "2026-05-16"
-
   - ollama_name: "minicpm-v:8b"
     display_name: "MiniCPM-V 8B"
     family: "MiniCPM"
@@ -428,7 +190,57 @@ models:
     backend: "ollama"
     added: "2026-05-16"
 
-  # ── Modelos añadidos manualmente para completar DIMEMEX ───────────────────
+  - ollama_name: "gemma4:e2b"
+    display_name: "Gemma 4 2B"
+    family: "Gemma 4"
+    params: "2B"
+    params_exact: 2.0
+    size_gb: 7.2
+    release_date: "2026-04-03"
+    developer: "Google DeepMind"
+    modality: "image+text"
+    backend: "ollama"
+    added: "2025-05-08"
+
+  - ollama_name: "gemma4:e4b"
+    display_name: "Gemma 4 4B"
+    family: "Gemma 4"
+    params: "4B"
+    params_exact: 4.0
+    size_gb: 9.6
+    release_date: "2026-04-03"
+    developer: "Google DeepMind"
+    modality: "image+text"
+    backend: "ollama"
+    added: "2025-05-08"
+
+  - ollama_name: "Qwen/Qwen2.5-VL-3B-Instruct"
+    display_name: "Qwen 2.5 VL 3B"
+    family: "Qwen"
+    params: "3B"
+    params_exact: 3.7
+    size_gb: 7.0
+    release_date: "2024-12-01"
+    developer: "Alibaba"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "Qwen/Qwen2.5-VL-3B-Instruct"
+    vllm_port: 8001
+    added: "2026-05-16"
+
+  - ollama_name: "Qwen/Qwen2-VL-7B-Instruct-AWQ"
+    display_name: "Qwen 2 VL 7B (AWQ)"
+    family: "Qwen"
+    params: "7B"
+    params_exact: 7.6
+    size_gb: 4.5
+    release_date: "2024-09-18"
+    developer: "Alibaba"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "Qwen/Qwen2-VL-7B-Instruct-AWQ"
+    vllm_port: 8001
+    added: "2026-05-16"
 
   - ollama_name: "Qwen/Qwen3-VL-2B-Instruct"
     display_name: "Qwen 3 VL 2B"
@@ -444,19 +256,19 @@ models:
     vllm_port: 8001
     added: "2026-06-23"
 
-  - ollama_name: "microsoft/Phi-4-multimodal-instruct"
-    display_name: "Phi 4 Multimodal"
+  - ollama_name: "microsoft/Phi-3.5-vision-instruct"
+    display_name: "Phi 3.5 Vision"
     family: "Phi"
-    params: "5B"
-    params_exact: 5.0
-    size_gb: 13.0
-    release_date: "2025-02-01"
+    params: "4B"
+    params_exact: 4.2
+    size_gb: 8.5
+    release_date: "2024-08-20"
     developer: "Microsoft"
     modality: "image+text"
     backend: "vllm"
-    hf_name: "microsoft/Phi-4-multimodal-instruct"
+    hf_name: "microsoft/Phi-3.5-vision-instruct"
     vllm_port: 8001
-    added: "2026-06-23"
+    added: "2026-05-16"
 
   - ollama_name: "ibm-granite/granite-vision-3.3-2b"
     display_name: "Granite Vision 3.3 2B"
@@ -469,19 +281,5 @@ models:
     modality: "image+text"
     backend: "vllm"
     hf_name: "ibm-granite/granite-vision-3.3-2b"
-    vllm_port: 8001
-    added: "2026-06-25"
-
-  - ollama_name: "llava-hf/llava-1.5-13b-hf"
-    display_name: "LLaVA 1.5 13B (HF)"
-    family: "LLaVA"
-    params: "13B"
-    params_exact: 13.0
-    size_gb: 26.0
-    release_date: "2023-10-05"
-    developer: "LLaVA Team"
-    modality: "image+text"
-    backend: "vllm"
-    hf_name: "llava-hf/llava-1.5-13b-hf"
     vllm_port: 8001
     added: "2026-06-25"
