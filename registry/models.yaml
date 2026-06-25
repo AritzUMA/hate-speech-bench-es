@@ -427,3 +427,61 @@ models:
     modality: "image+text"
     backend: "ollama"
     added: "2026-05-16"
+
+  # ── Modelos añadidos manualmente para completar DIMEMEX ───────────────────
+
+  - ollama_name: "Qwen/Qwen3-VL-2B-Instruct"
+    display_name: "Qwen 3 VL 2B"
+    family: "Qwen"
+    params: "2B"
+    params_exact: 2.0
+    size_gb: 4.0
+    release_date: "2025-04-28"
+    developer: "Alibaba"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "Qwen/Qwen3-VL-2B-Instruct"
+    vllm_port: 8001
+    added: "2026-06-23"
+
+  - ollama_name: "microsoft/Phi-4-multimodal-instruct"
+    display_name: "Phi 4 Multimodal"
+    family: "Phi"
+    params: "5B"
+    params_exact: 5.0
+    size_gb: 13.0
+    release_date: "2025-02-01"
+    developer: "Microsoft"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "microsoft/Phi-4-multimodal-instruct"
+    vllm_port: 8001
+    added: "2026-06-23"
+
+  - ollama_name: "ibm-granite/granite-vision-3.3-2b"
+    display_name: "Granite Vision 3.3 2B"
+    family: "Granite"
+    params: "2B"
+    params_exact: 2.0
+    size_gb: 4.0
+    release_date: "2025-02-01"
+    developer: "IBM"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "ibm-granite/granite-vision-3.3-2b"
+    vllm_port: 8001
+    added: "2026-06-25"
+
+  - ollama_name: "llava-hf/llava-1.5-13b-hf"
+    display_name: "LLaVA 1.5 13B (HF)"
+    family: "LLaVA"
+    params: "13B"
+    params_exact: 13.0
+    size_gb: 26.0
+    release_date: "2023-10-05"
+    developer: "LLaVA Team"
+    modality: "image+text"
+    backend: "vllm"
+    hf_name: "llava-hf/llava-1.5-13b-hf"
+    vllm_port: 8001
+    added: "2026-06-25"

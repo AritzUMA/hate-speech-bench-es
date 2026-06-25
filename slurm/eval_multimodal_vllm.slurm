@@ -26,7 +26,7 @@ vllm serve "$MODEL" \
     --max-model-len 4096 \
     --dtype auto \
     --trust-remote-code \
-    --generation-config vllm &
+    --generation-config vllm --max-num-seqs 1 &
 VLLM_PID=$!
 
 echo "[vllm] Esperando que la API este lista..."

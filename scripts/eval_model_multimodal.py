@@ -25,7 +25,7 @@ from tqdm import tqdm
 
 REPO_ROOT        = Path(__file__).parent.parent
 SAVE_EVERY       = 20
-N_WORKERS_OLLAMA = 4
+N_WORKERS_OLLAMA = 1
 N_WORKERS_VLLM   = 8
 RUNS_DIR_MM      = REPO_ROOT / "results" / "runs_multimodal"
 PRED_DIR_MM      = REPO_ROOT / "results" / "predictions_multimodal"
