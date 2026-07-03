@@ -1,5 +1,4 @@
 data/
-results/predictions/
 logs/
 scripts/venv/
 es_hf_102024.csv
