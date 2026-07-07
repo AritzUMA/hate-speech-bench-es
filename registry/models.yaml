@@ -52,7 +52,7 @@ models:
     developer: "Mistral AI"
     added: "2025-04-08"
 
-  - ollama_name: "deepseek-r1:latest"
+  - ollama_name: "deepseek-r1:7b"
     display_name: "DeepSeek R1 7B"
     family: "DeepSeek R1"
     params: "7B"
@@ -112,7 +112,7 @@ models:
     developer: "Stability AI"
     added: "2025-04-08"
 
-  - ollama_name: "jobautomation/OpenEuroLLM-Spanish:latest"
+  - ollama_name: "utter-project/EuroLLM-1.7B-Instruct"
     display_name: "OpenEuroLLM Spanish 7B"
     family: "OpenEuroLLM"
     params: "7B"
@@ -132,15 +132,6 @@ models:
     developer: "Alibaba"
     added: "2025-05-08"
 
-  - ollama_name: "qwen3.5:9b"
-    display_name: "Qwen 3.5 9B"
-    family: "Qwen 3.5"
-    params: "9B"
-    params_exact: 9.0
-    size_gb: 6.6
-    release_date: "2025-04-28"
-    developer: "Alibaba"
-    added: "2025-05-08"
 
   - ollama_name: "phi3:3.8b"
     display_name: "Phi 3 3.8B"

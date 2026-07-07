@@ -1,11 +1,10 @@
 {
-  "generated": "2026-06-25T16:49:58.942970+00:00",
-  "n_runs": 82,
-  "n_models": 16,
+  "generated": "2026-07-07T13:07:39.165390+00:00",
+  "n_runs": 84,
+  "n_models": 14,
   "n_datasets": 6,
-  "best_overall_f1": 0.461,
+  "best_overall_f1": 0.436,
   "models": [
-    "BSC-LT/salamandra-2b-instruct",
     "deepseek-r1:7b",
     "gemma2:latest",
     "gemma3:12b",
@@ -16,7 +15,6 @@
     "phi3.5:3.8b",
     "phi3:3.8b",
     "qwen2.5:7b",
-    "qwen3.5:9b",
     "qwen3:8b",
     "stablelm2:12b",
     "utter-project/EuroLLM-1.7B-Instruct",
@@ -431,21 +429,6 @@
         "timestamp": "2026-06-13T11:17:48.761487+00:00"
       }
     },
-    "qwen3.5:9b": {
-      "encarni": {
-        "macro_f1": 0.3699,
-        "macro_f1_binary": 0.5715,
-        "precision": 0.4211,
-        "recall": 0.428,
-        "accuracy": 0.5502,
-        "hate_f1": 0.6181818181818182,
-        "n_instances": 667,
-        "n_unclear": 39,
-        "coverage": 94.2,
-        "elapsed": 11928.4,
-        "timestamp": "2026-06-13T11:43:39.793030+00:00"
-      }
-    },
     "qwen3:8b": {
       "encarni": {
         "macro_f1": 0.3626,
@@ -511,6 +494,19 @@
         "coverage": 100.0,
         "elapsed": 14364.6,
         "timestamp": "2026-06-14T14:07:25.805679+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3009,
+        "macro_f1_binary": 0.5212,
+        "precision": 0.3615,
+        "recall": 0.327,
+        "accuracy": 0.5515,
+        "hate_f1": 0.19595645412130638,
+        "n_instances": 9500,
+        "n_unclear": 2315,
+        "coverage": 75.6,
+        "elapsed": 6422.1,
+        "timestamp": "2026-07-04T16:07:22.865956+00:00"
       }
     },
     "stablelm2:12b": {
@@ -578,6 +574,19 @@
         "coverage": 100.0,
         "elapsed": 15020.1,
         "timestamp": "2026-06-15T13:24:09.796842+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.3391,
+        "macro_f1_binary": 0.5117,
+        "precision": 0.3566,
+        "recall": 0.4061,
+        "accuracy": 0.7214,
+        "hate_f1": 0.18491171749598717,
+        "n_instances": 9500,
+        "n_unclear": 113,
+        "coverage": 98.8,
+        "elapsed": 44169.2,
+        "timestamp": "2026-07-05T21:09:04.737662+00:00"
       }
     },
     "yi:9b": {
@@ -738,21 +747,6 @@
         "coverage": 96.2,
         "elapsed": 535.8,
         "timestamp": "2026-06-16T05:33:11.870958+00:00"
-      }
-    },
-    "BSC-LT/salamandra-2b-instruct": {
-      "hateval": {
-        "macro_f1": 0.0,
-        "macro_f1_binary": 0,
-        "precision": 0.0,
-        "recall": 0.0,
-        "accuracy": 0.0,
-        "hate_f1": 0.0,
-        "n_instances": 6595,
-        "n_unclear": 6595,
-        "coverage": 0.0,
-        "elapsed": 23.0,
-        "timestamp": "2026-06-16T08:02:05.741177+00:00"
       }
     },
     "deepseek-r1:7b": {
@@ -967,6 +961,32 @@
         "coverage": 100.0,
         "elapsed": 10975.4,
         "timestamp": "2026-06-19T04:54:25.805761+00:00"
+      },
+      "chileno": {
+        "macro_f1": 0.29,
+        "macro_f1_binary": 0.464,
+        "precision": 0.3598,
+        "recall": 0.3928,
+        "accuracy": 0.5352,
+        "hate_f1": 0.18682634730538922,
+        "n_instances": 9500,
+        "n_unclear": 1086,
+        "coverage": 88.6,
+        "elapsed": 13962.9,
+        "timestamp": "2026-07-05T01:54:52.808199+00:00"
+      },
+      "hascosva": {
+        "macro_f1": 0.4795,
+        "macro_f1_binary": 0.7612,
+        "precision": 0.4828,
+        "recall": 0.5086,
+        "accuracy": 0.7651,
+        "hate_f1": 0.5778997940974605,
+        "n_instances": 3994,
+        "n_unclear": 408,
+        "coverage": 89.8,
+        "elapsed": 6196.6,
+        "timestamp": "2026-07-05T17:49:21.867309+00:00"
       }
     },
     "gpt-oss-safeguard:20b": {
@@ -1186,38 +1206,27 @@
       "n_datasets_total": 6,
       "coverage": 100.0
     },
-    "qwen3.5:9b": {
-      "macro_f1": 0.3699,
-      "macro_f1_binary": 0.5715,
-      "hate_f1": 0.6182,
-      "precision": 0.4211,
-      "recall": 0.428,
-      "accuracy": 0.5502,
-      "n_datasets": 1,
-      "n_datasets_total": 6,
-      "coverage": 94.2
-    },
     "qwen3:8b": {
-      "macro_f1": 0.4458,
-      "macro_f1_binary": 0.6689,
-      "hate_f1": 0.6145,
-      "precision": 0.4562,
-      "recall": 0.4744,
-      "accuracy": 0.7044,
-      "n_datasets": 5,
+      "macro_f1": 0.4217,
+      "macro_f1_binary": 0.6442,
+      "hate_f1": 0.5448,
+      "precision": 0.4404,
+      "recall": 0.4498,
+      "accuracy": 0.6789,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 100.0
+      "coverage": 92.3
     },
     "stablelm2:12b": {
-      "macro_f1": 0.4241,
-      "macro_f1_binary": 0.6361,
-      "hate_f1": 0.5519,
-      "precision": 0.4421,
-      "recall": 0.4438,
-      "accuracy": 0.687,
-      "n_datasets": 5,
+      "macro_f1": 0.4099,
+      "macro_f1_binary": 0.6154,
+      "hate_f1": 0.4907,
+      "precision": 0.4278,
+      "recall": 0.4376,
+      "accuracy": 0.6927,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 100.0
+      "coverage": 99.6
     },
     "yi:9b": {
       "macro_f1": 0.4053,
@@ -1240,17 +1249,6 @@
       "n_datasets": 6,
       "n_datasets_total": 6,
       "coverage": 98.6
-    },
-    "BSC-LT/salamandra-2b-instruct": {
-      "macro_f1": 0.0,
-      "macro_f1_binary": 0.0,
-      "hate_f1": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "accuracy": 0.0,
-      "n_datasets": 1,
-      "n_datasets_total": 6,
-      "coverage": 0.0
     },
     "deepseek-r1:7b": {
       "macro_f1": 0.3749,
@@ -1275,15 +1273,15 @@
       "coverage": 100.0
     },
     "gemma3:12b": {
-      "macro_f1": 0.4613,
-      "macro_f1_binary": 0.6919,
-      "hate_f1": 0.7094,
-      "precision": 0.4728,
-      "recall": 0.4883,
-      "accuracy": 0.7096,
-      "n_datasets": 4,
+      "macro_f1": 0.4358,
+      "macro_f1_binary": 0.6655,
+      "hate_f1": 0.6004,
+      "precision": 0.4556,
+      "recall": 0.4757,
+      "accuracy": 0.6898,
+      "n_datasets": 6,
       "n_datasets_total": 6,
-      "coverage": 100.0
+      "coverage": 95.1
     },
     "gpt-oss-safeguard:20b": {
       "macro_f1": 0.4224,
@@ -1309,6 +1307,38 @@
     }
   },
   "history": [
+    {
+      "ts": "2026-07-05",
+      "model": "gemma3:12b",
+      "dataset": "chileno",
+      "f1": 0.29,
+      "hate_f1": 0.18682634730538922,
+      "elapsed": 13962.9
+    },
+    {
+      "ts": "2026-07-05",
+      "model": "gemma3:12b",
+      "dataset": "hascosva",
+      "f1": 0.4795,
+      "hate_f1": 0.5778997940974605,
+      "elapsed": 6196.6
+    },
+    {
+      "ts": "2026-07-05",
+      "model": "stablelm2:12b",
+      "dataset": "chileno",
+      "f1": 0.3391,
+      "hate_f1": 0.18491171749598717,
+      "elapsed": 44169.2
+    },
+    {
+      "ts": "2026-07-04",
+      "model": "qwen3:8b",
+      "dataset": "chileno",
+      "f1": 0.3009,
+      "hate_f1": 0.19595645412130638,
+      "elapsed": 6422.1
+    },
     {
       "ts": "2026-06-20",
       "model": "gpt-oss-safeguard:20b",
@@ -1559,14 +1589,6 @@
     },
     {
       "ts": "2026-06-16",
-      "model": "BSC-LT/salamandra-2b-instruct",
-      "dataset": "hateval",
-      "f1": 0.0,
-      "hate_f1": 0.0,
-      "elapsed": 23.0
-    },
-    {
-      "ts": "2026-06-16",
       "model": "deepseek-r1:7b",
       "dataset": "chileno",
       "f1": 0.3176,
@@ -1756,14 +1778,6 @@
       "f1": 0.4639,
       "hate_f1": 0.6594488188976378,
       "elapsed": 1549.3
-    },
-    {
-      "ts": "2026-06-13",
-      "model": "qwen3.5:9b",
-      "dataset": "encarni",
-      "f1": 0.3699,
-      "hate_f1": 0.6181818181818182,
-      "elapsed": 11928.4
     },
     {
       "ts": "2026-06-13",
@@ -2012,6 +2026,15 @@
       "release_date": "2024-05-27",
       "developer": "Mistral AI"
     },
+    "deepseek-r1:7b": {
+      "display_name": "DeepSeek R1 7B",
+      "family": "DeepSeek R1",
+      "params": "7B",
+      "params_exact": 7.0,
+      "size_gb": 4.7,
+      "release_date": "2025-01-20",
+      "developer": "DeepSeek"
+    },
     "hdnh2006/salamandra-7b-instruct:latest": {
       "display_name": "Salamandra 7B",
       "family": "Salamandra",
@@ -2057,21 +2080,21 @@
       "release_date": "2024-01-15",
       "developer": "Stability AI"
     },
+    "utter-project/EuroLLM-1.7B-Instruct": {
+      "display_name": "OpenEuroLLM Spanish 7B",
+      "family": "OpenEuroLLM",
+      "params": "7B",
+      "params_exact": 7.0,
+      "size_gb": 8.1,
+      "release_date": "2024-12-01",
+      "developer": "OpenEuroLLM Consortium"
+    },
     "qwen3:8b": {
       "display_name": "Qwen 3 8B",
       "family": "Qwen 3",
       "params": "8B",
       "params_exact": 8.19,
       "size_gb": 5.2,
-      "release_date": "2025-04-28",
-      "developer": "Alibaba"
-    },
-    "qwen3.5:9b": {
-      "display_name": "Qwen 3.5 9B",
-      "family": "Qwen 3.5",
-      "params": "9B",
-      "params_exact": 9.0,
-      "size_gb": 6.6,
       "release_date": "2025-04-28",
       "developer": "Alibaba"
     },

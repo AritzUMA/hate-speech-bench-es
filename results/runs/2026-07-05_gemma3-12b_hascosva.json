@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-07-05_gemma3-12b_hascosva.json",
+  "timestamp": "2026-07-05T17:49:21.867309+00:00",
+  "model": "gemma3:12b",
+  "family": "Gemma 3",
+  "params": "12B",
+  "size_gb": 8.1,
+  "dataset": "hascosva",
+  "dataset_display": "HaSCoSVa \u2014 Castillo-L\u00f3pez et al. (2023)",
+  "n_instances": 3994,
+  "n_unclear": 408,
+  "n_workers": 16,
+  "metrics": {
+    "macro_f1": 0.4795,
+    "macro_f1_binary": 0.7612,
+    "precision": 0.4828,
+    "recall": 0.5086,
+    "accuracy": 0.7651
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.46622369878183834,
+      "recall": 0.759927797833935,
+      "f1-score": 0.5778997940974605,
+      "support": 554.0
+    },
+    "no_hate": {
+      "precision": 0.9821095788296683,
+      "recall": 0.7659883720930233,
+      "f1-score": 0.8606892046382493,
+      "support": 3440.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7651477215823735,
+    "macro avg": {
+      "precision": 0.48277775920383553,
+      "recall": 0.5086387233089861,
+      "f1-score": 0.47952966624523663,
+      "support": 3994.0
+    },
+    "weighted avg": {
+      "precision": 0.91055204814702,
+      "recall": 0.7651477215823735,
+      "f1-score": 0.8214640335216753,
+      "support": 3994.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 554,
+      "no_hate": 3440
+    },
+    "pred": {
+      "hate": 903,
+      "no_hate": 2683,
+      "unclear": 408
+    }
+  },
+  "elapsed_seconds": 6196.6,
+  "prompt_hash": "v3_rationale",
+  "predictions_file": "results/predictions/2026-07-05_gemma3-12b_hascosva_predictions.jsonl"
+}

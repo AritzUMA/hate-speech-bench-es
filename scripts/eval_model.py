@@ -189,7 +189,7 @@ def main():
                                 "gold_label": test_set[idx]["label"],
                                 "pred_label": p, "rationale": r,
                                 "model": args.model, "dataset": args.dataset,
-                            }, ensure_ascii=False) + "\n")
+                            }, ensure_ascii=True) + "\n")
                     tqdm.write(f"  [checkpoint] {completed}/{len(test_set)}")
 
     pbar.close()
@@ -257,12 +257,12 @@ def main():
         "predictions_file": f"results/predictions/{pred_fname}",
     }
 
-    (runs_dir / fname).write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    (runs_dir / fname).write_text(json.dumps(result, indent=2, ensure_ascii=True))
     print(f"[eval] saved -> results/runs/{fname}")
 
     with (pred_dir / pred_fname).open("w", encoding="utf-8") as pf:
         for row in predictions_rows:
-            pf.write(json.dumps(row, ensure_ascii=False) + "\n")
+            pf.write(json.dumps(row, ensure_ascii=True) + "\n")
     print(f"[eval] saved -> results/predictions/{pred_fname}")
 
     if partial_path.exists():
