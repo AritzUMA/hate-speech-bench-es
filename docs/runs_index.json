@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-27T11:02:00.075538+00:00",
+  "generated": "2026-07-27T11:10:42.094162+00:00",
   "n_runs": 84,
   "n_models": 14,
   "n_datasets": 6,
@@ -1197,7 +1197,7 @@
     },
     "qwen2.5:7b": {
       "macro_f1": 0.5292,
-      "macro_f1_binary": 0.568,
+      "macro_f1_binary": 0.5679,
       "hate_f1": 0.5121,
       "precision": 0.4617,
       "recall": 0.5396,
@@ -1207,12 +1207,12 @@
       "coverage": 100.0
     },
     "qwen3:8b": {
-      "macro_f1": 0.5733,
+      "macro_f1": 0.5732,
       "macro_f1_binary": 0.5493,
       "hate_f1": 0.5457,
       "precision": 0.446,
       "recall": 0.5951,
-      "accuracy": 0.7059,
+      "accuracy": 0.706,
       "n_datasets": 6,
       "n_datasets_total": 6,
       "coverage": 100.0
@@ -1265,7 +1265,7 @@
       "macro_f1": 0.3831,
       "macro_f1_binary": 0.5746,
       "hate_f1": 0.566,
-      "precision": 0.4437,
+      "precision": 0.4436,
       "recall": 0.4569,
       "accuracy": 0.622,
       "n_datasets": 6,
@@ -1295,7 +1295,7 @@
       "coverage": 100.0
     },
     "hdnh2006/salamandra-7b-instruct:latest": {
-      "macro_f1": 0.4104,
+      "macro_f1": 0.4105,
       "macro_f1_binary": 0.5483,
       "hate_f1": 0.5445,
       "precision": 0.4222,
