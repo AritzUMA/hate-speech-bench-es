@@ -6,16 +6,16 @@
   "params": "7B",
   "size_gb": 4.7,
   "dataset": "hateval",
-  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "dataset_display": "HatEval \u2014 SemEval-2019 Task 5",
   "n_instances": 6595,
-  "n_unclear": 4,
+  "n_unclear": 0,
   "n_workers": 1,
   "metrics": {
-    "macro_f1": 0.3916,
-    "macro_f1_binary": 0.5876,
-    "precision": 0.3981,
-    "recall": 0.3992,
-    "accuracy": 0.5879
+    "macro_f1": 0.5879,
+    "macro_f1_binary": 0.5721,
+    "precision": 0.5029,
+    "recall": 0.6633,
+    "accuracy": 0.5885
   },
   "per_class": {
     "hate": {

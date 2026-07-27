@@ -6,16 +6,16 @@
   "params": "20B",
   "size_gb": 13.0,
   "dataset": "misocorpus",
-  "dataset_display": "MisoCorpus — García-Díaz et al. (2021)",
+  "dataset_display": "MisoCorpus \u2014 Garc\u00eda-D\u00edaz et al. (2021)",
   "n_instances": 3463,
-  "n_unclear": 3,
+  "n_unclear": 0,
   "n_workers": 1,
   "metrics": {
-    "macro_f1": 0.4766,
-    "macro_f1_binary": 0.7152,
-    "precision": 0.4781,
-    "recall": 0.4801,
-    "accuracy": 0.7156
+    "macro_f1": 0.7152,
+    "macro_f1_binary": 0.6987,
+    "precision": 0.6488,
+    "recall": 0.757,
+    "accuracy": 0.7161
   },
   "per_class": {
     "hate": {

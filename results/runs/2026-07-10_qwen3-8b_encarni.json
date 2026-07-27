@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-07-10_qwen3-8b_encarni.json",
+  "timestamp": "2026-07-10T19:59:57.779842+00:00",
+  "model": "qwen3:8b",
+  "family": "Qwen 3",
+  "params": "8B",
+  "size_gb": 5.2,
+  "dataset": "encarni",
+  "dataset_display": "Nutcracker",
+  "n_instances": 667,
+  "n_unclear": 0,
+  "n_workers": 1,
+  "metrics": {
+    "macro_f1": 0.3649,
+    "macro_f1_binary": 0.5474,
+    "precision": 0.4195,
+    "recall": 0.4452,
+    "accuracy": 0.5562
+  },
+  "per_class": {
+    "hate": {
+      "precision": 0.9243027888446215,
+      "recall": 0.45579567779960706,
+      "f1-score": 0.6105263157894737,
+      "support": 509.0
+    },
+    "no_hate": {
+      "precision": 0.33413461538461536,
+      "recall": 0.879746835443038,
+      "f1-score": 0.4843205574912892,
+      "support": 158.0
+    },
+    "unclear": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.5562218890554723,
+    "macro avg": {
+      "precision": 0.4194791347430789,
+      "recall": 0.44518083774754835,
+      "f1-score": 0.36494895776025427,
+      "support": 667.0
+    },
+    "weighted avg": {
+      "precision": 0.7845028317131657,
+      "recall": 0.5562218890554723,
+      "f1-score": 0.5806304989812081,
+      "support": 667.0
+    }
+  },
+  "label_distribution": {
+    "gold": {
+      "hate": 509,
+      "no_hate": 158
+    },
+    "pred": {
+      "hate": 251,
+      "no_hate": 416,
+      "unclear": 0
+    }
+  },
+  "elapsed_seconds": 2816.4,
+  "prompt_hash": "v3_rationale",
+  "predictions_file": "results/predictions/2026-07-10_qwen3-8b_encarni_predictions.jsonl"
+}

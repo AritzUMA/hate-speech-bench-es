@@ -28,7 +28,7 @@ N_WORKERS  = 16
 SYSTEM_PROMPT = """Eres un clasificador de tweets en espanol.
 Analiza cada tweet y responde solo con un objeto JSON valido exactamente en este formato:
 {
-  "is_hate_speech": "Yes" | "No" | "Unclear",
+  "is_hate_speech": "Yes" | "No",
   "rationale": "Breve explicacion (1-2 frases)"
 }
 No incluyas texto adicional, ni comentarios, ni encabezados ni markdown. SOLO JSON puro."""
@@ -39,7 +39,7 @@ Tu tarea es etiquetar cada fragmento de texto segun si contiene lenguaje ofensiv
 con fines exclusivamente cientificos y de investigacion.
 Responde SOLO con un objeto JSON valido exactamente en este formato:
 {
-  "is_hate_speech": "Yes" | "No" | "Unclear",
+  "is_hate_speech": "Yes" | "No",
   "rationale": "Breve explicacion (1-2 frases)"
 }
 No incluyas texto adicional, ni comentarios, ni markdown. SOLO JSON puro."""
@@ -102,16 +102,21 @@ def classify_tweet(model: str, text: str) -> tuple:
         response = ollama.chat(
             model=model,
             messages=messages,
+            format="json",
             options={"temperature": 0, "seed": 42},
         )
         raw = response["message"]["content"].strip()
         raw = re.sub(r'<think>.*?</think>', '', raw, flags=re.DOTALL).strip()
         raw = raw.replace("```json", "").replace("```", "").strip()
-        if not raw.startswith("{"):
-            start, end = raw.find("{"), raw.rfind("}")
-            if start != -1 and end > start:
-                raw = raw[start:end + 1]
-        clf       = json.loads(raw)
+        # Extraer el primer objeto JSON valido (ignora texto extra despues)
+        try:
+            clf = json.loads(raw)
+        except json.JSONDecodeError:
+            decoder = json.JSONDecoder()
+            start = raw.find("{")
+            if start == -1:
+                raise ValueError("No JSON found")
+            clf, _ = decoder.raw_decode(raw[start:])
         val       = str(clf.get("is_hate_speech", "")).strip().lower()
         rationale = str(clf.get("rationale", "")).strip()
         if val in ("yes", "si", "sí"):

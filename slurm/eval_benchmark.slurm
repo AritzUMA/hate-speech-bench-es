@@ -11,4 +11,4 @@ source /mnt/data/hate-speech-bench-es/scripts/venv/bin/activate
 cd /mnt/data/hate-speech-bench-es
 
 # MODEL y DATASET se pasan desde submit_benchmark.sh via --export
-python3 scripts/eval_model.py --model "$MODEL" --dataset "$DATASET"
+python3 scripts/eval_model.py --workers 1 --model "$MODEL" --dataset "$DATASET"

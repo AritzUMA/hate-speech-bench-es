@@ -6,16 +6,16 @@
   "params": "7B",
   "size_gb": 4.7,
   "dataset": "hascosva",
-  "dataset_display": "HaSCoSVa — Castillo-López et al. (2023)",
+  "dataset_display": "HaSCoSVa \u2014 Castillo-L\u00f3pez et al. (2023)",
   "n_instances": 3994,
-  "n_unclear": 1,
+  "n_unclear": 0,
   "n_workers": 1,
   "metrics": {
-    "macro_f1": 0.4764,
-    "macro_f1_binary": 0.7146,
-    "precision": 0.4782,
-    "recall": 0.4746,
-    "accuracy": 0.865
+    "macro_f1": 0.7147,
+    "macro_f1_binary": 0.5073,
+    "precision": 0.5149,
+    "recall": 0.5,
+    "accuracy": 0.8653
   },
   "per_class": {
     "hate": {

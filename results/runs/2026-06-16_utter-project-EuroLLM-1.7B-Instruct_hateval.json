@@ -7,16 +7,16 @@
   "size_gb": 3.4,
   "backend": "vllm",
   "dataset": "hateval",
-  "dataset_display": "HatEval — SemEval-2019 Task 5",
+  "dataset_display": "HatEval \u2014 SemEval-2019 Task 5",
   "n_instances": 6595,
-  "n_unclear": 46,
+  "n_unclear": 0,
   "n_workers": 8,
   "metrics": {
-    "macro_f1": 0.2134,
-    "macro_f1_binary": 0.3208,
-    "precision": 0.3502,
-    "recall": 0.3332,
-    "accuracy": 0.4197
+    "macro_f1": 0.3261,
+    "macro_f1_binary": 0.5847,
+    "precision": 0.4175,
+    "recall": 0.9755,
+    "accuracy": 0.4253
   },
   "per_class": {
     "hate": {

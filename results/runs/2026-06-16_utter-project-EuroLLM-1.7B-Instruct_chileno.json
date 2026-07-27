@@ -7,16 +7,16 @@
   "size_gb": 3.4,
   "backend": "vllm",
   "dataset": "chileno",
-  "dataset_display": "Chileno — Arango Monnar et al. (2022)",
+  "dataset_display": "Chileno \u2014 Arango Monnar et al. (2022)",
   "n_instances": 9500,
-  "n_unclear": 146,
+  "n_unclear": 0,
   "n_workers": 8,
   "metrics": {
-    "macro_f1": 0.0632,
-    "macro_f1_binary": 0.0954,
-    "precision": 0.3436,
-    "recall": 0.3331,
-    "accuracy": 0.0946
+    "macro_f1": 0.1065,
+    "macro_f1_binary": 0.1214,
+    "precision": 0.0647,
+    "recall": 0.9783,
+    "accuracy": 0.1067
   },
   "per_class": {
     "hate": {

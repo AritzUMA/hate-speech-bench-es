@@ -6,15 +6,15 @@
   "params": "7B",
   "size_gb": 4.7,
   "dataset": "encarni",
-  "dataset_display": "Encarnación Hidalgo (UMA)",
+  "dataset_display": "Encarnaci\u00f3n Hidalgo (UMA)",
   "n_instances": 667,
-  "n_unclear": 1,
+  "n_unclear": 0,
   "n_workers": 1,
   "metrics": {
-    "macro_f1": 0.3465,
-    "macro_f1_binary": 0.5202,
-    "precision": 0.3924,
-    "recall": 0.4114,
+    "macro_f1": 0.5194,
+    "macro_f1_binary": 0.5979,
+    "precision": 0.8689,
+    "recall": 0.4558,
     "accuracy": 0.5322
   },
   "per_class": {

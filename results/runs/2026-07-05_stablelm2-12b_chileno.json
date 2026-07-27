@@ -8,14 +8,14 @@
   "dataset": "chileno",
   "dataset_display": "Chileno \u2014 Arango Monnar et al. (2022)",
   "n_instances": 9500,
-  "n_unclear": 113,
+  "n_unclear": 0,
   "n_workers": 16,
   "metrics": {
-    "macro_f1": 0.3391,
-    "macro_f1_binary": 0.5117,
-    "precision": 0.3566,
-    "recall": 0.4061,
-    "accuracy": 0.7214
+    "macro_f1": 0.5119,
+    "macro_f1_binary": 0.1847,
+    "precision": 0.1142,
+    "recall": 0.4825,
+    "accuracy": 0.7314
   },
   "per_class": {
     "hate": {

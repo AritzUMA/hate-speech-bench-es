@@ -6,16 +6,16 @@
   "params": "7B",
   "size_gb": 4.7,
   "dataset": "chileno",
-  "dataset_display": "Chileno — Arango Monnar et al. (2022)",
+  "dataset_display": "Chileno \u2014 Arango Monnar et al. (2022)",
   "n_instances": 9500,
-  "n_unclear": 7,
+  "n_unclear": 0,
   "n_workers": 1,
   "metrics": {
-    "macro_f1": 0.3176,
-    "macro_f1_binary": 0.4766,
-    "precision": 0.3523,
-    "recall": 0.4059,
-    "accuracy": 0.6564
+    "macro_f1": 0.4765,
+    "macro_f1_binary": 0.1692,
+    "precision": 0.0998,
+    "recall": 0.5543,
+    "accuracy": 0.6568
   },
   "per_class": {
     "hate": {

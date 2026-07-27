@@ -7,16 +7,16 @@
   "size_gb": 3.4,
   "backend": "vllm",
   "dataset": "haternet",
-  "dataset_display": "HaterNet — Pereira-Kohatsu et al. (2019)",
+  "dataset_display": "HaterNet \u2014 Pereira-Kohatsu et al. (2019)",
   "n_instances": 5999,
-  "n_unclear": 50,
+  "n_unclear": 0,
   "n_workers": 8,
   "metrics": {
-    "macro_f1": 0.157,
-    "macro_f1_binary": 0.236,
-    "precision": 0.3469,
-    "recall": 0.3341,
-    "accuracy": 0.2757
+    "macro_f1": 0.2425,
+    "macro_f1_binary": 0.4152,
+    "precision": 0.2637,
+    "recall": 0.9757,
+    "accuracy": 0.2819
   },
   "per_class": {
     "hate": {
